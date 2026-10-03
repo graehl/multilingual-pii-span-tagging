@@ -1,0 +1,1192 @@
+{
+  "schema": "pii-software-stage-v1",
+  "anonymous": false,
+  "status": "staged source subset; see README.md for verified workflows and research/pii/frontier/software/records/README.md for evidence and limits",
+  "files": [
+    {
+      "path": "acli/__init__.py",
+      "sha256": "95bfbbdb4ee7dd38d7ebe57407d076d4d807d35f8e0bd33b8348890e0ddff6c5",
+      "redacted": false
+    },
+    {
+      "path": "acli/args.py",
+      "sha256": "8fc71e419156c9956c33244bfcf93ebae3ae1730068010715074df61d07c8481",
+      "redacted": false
+    },
+    {
+      "path": "acli/commentary.py",
+      "sha256": "ec357414896297c039c45407dc4ff3536f6736c8d3f2982041f695282c262902",
+      "redacted": false
+    },
+    {
+      "path": "acli/emit.py",
+      "sha256": "89b51981172138ac37fe06b50bf77285f3785ef5eea3f686b22da2fbd4ba74ae",
+      "redacted": false
+    },
+    {
+      "path": "acli/errors.py",
+      "sha256": "9cd9467eb5f3a0fc4e2bf0641a3dd3ce37b8abe95cc06a36f99b5f5c4ceb120e",
+      "redacted": false
+    },
+    {
+      "path": "acli/session.py",
+      "sha256": "68b9989cb4a96e865d5606f6d6c3029735c30614da944d79e5d8a15c566fd102",
+      "redacted": false
+    },
+    {
+      "path": "acli/shell.py",
+      "sha256": "8f01b1cbaaa42b11512e71083053852bd88a89fc7b519e3374d69e4dd7b546bc",
+      "redacted": false
+    },
+    {
+      "path": "chat_session.py",
+      "sha256": "cc8f74816fbc8897b1a91c301a0ffdab5c3249c4daad73959baaa45d4599e582",
+      "redacted": false
+    },
+    {
+      "path": "checkpoint_mirror.py",
+      "sha256": "ba01ebe705c1bed4ebba3e5d520fff52bdf1fd4cb45da67de99b760a87e6439d",
+      "redacted": false
+    },
+    {
+      "path": "decodelib.py",
+      "sha256": "6006842a23c6737d9d9e8700fe9d0b78ff23eaad2515bd69ff22e212313df54e",
+      "redacted": false
+    },
+    {
+      "path": "embed_utils.py",
+      "sha256": "8f6842908bf27867dff70af6f3bcb4e1ce0977b5ad45499c0127c38a1dde83fd",
+      "redacted": false
+    },
+    {
+      "path": "gemma4_lora.py",
+      "sha256": "efb08a37d290d7587ceb7d7d971e5ad892a711f6521597e4188a2d3f5590ce40",
+      "redacted": false
+    },
+    {
+      "path": "log_format.py",
+      "sha256": "84aa17499a23a1843ccef835c2fa04c14261fb65500a86b0add930373bc51e2e",
+      "redacted": false
+    },
+    {
+      "path": "pii-reproduce.py",
+      "sha256": "165666de4c3a2b608394f1b176ba3c10357d008efa678807618c68599770df93",
+      "redacted": false
+    },
+    {
+      "path": "prompt.py",
+      "sha256": "775281880081f4db69f4ce6684415deb8d4bedb990921196948c4ffda4195c3f",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/four-corpus-v1/compile-mixture.py",
+      "sha256": "b46d1159d272a5dd4e992b4a8bb929a572b8c738304a2a5a25878ae145461a47",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/human-gold-v1/score.py",
+      "sha256": "8c40e298a8fe0db2a71cc601af407f50acfd32757388882ca0e4d812646d2d53",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/priority9-shared-v1/predict-sweeps.py",
+      "sha256": "e72ccf3a9d8d8584d2cc5f6508bf041864a48d03daa6f12491590aae165b6e1a",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/priority9-shared-v1/render-comparison.py",
+      "sha256": "339914e593af4203f7127b854eed455998742331e7c3500c5309f53db2970706",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/title-extents-v1/mapa-train-titles.py",
+      "sha256": "2f43ddeb4f605dd35e536597b06821a7566157c959d6d0587fded5008a1dde01",
+      "redacted": false
+    },
+    {
+      "path": "run_config.py",
+      "sha256": "9e2465c259a95e7a6e401c9b9fab1dbac44359d963f1a56ca5cda0e83d2d6856",
+      "redacted": false
+    },
+    {
+      "path": "scripts/agents_run_metrics.py",
+      "sha256": "bd3634fe52be5a71d2443c1be040ff1c7bb6805dbe8318937eb04cb55a780a6b",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_annotation_cache.py",
+      "sha256": "3b218d5224f86f3b9512f0f8437e5e6c5509e34ff8a2c2b5eb14c904f23fee44",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_annotation_conventions.py",
+      "sha256": "dd4ca42b82e6500efbe65c2aab7eef1b055b781bff836022dea2d12755dc564a",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_annotation_sampling.py",
+      "sha256": "6490b509f5346dd70a2a08e148b9ab07cca30869a0d8f5d68d2dd87720d6db67",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_api_label.py",
+      "sha256": "f74a36b19a007405e791a754bea6f19d44c2b00538db7fb45837d81a38cfd739",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_assemble_corpus.py",
+      "sha256": "2bc9dd26d6b147a60d690d57bac6826a48f57b082acac36ab9ca51d3716443d7",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_bcp47.py",
+      "sha256": "3dea144ace24d50324afb0894494583c02f74962fda2f75b5a2ea30587350666",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_bioes.py",
+      "sha256": "3f31b6c866f74c93c03b5c7e5a42dba46990bd34c29aadbdb817ee1de41e1d4b",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_character_boundary_refiner.py",
+      "sha256": "0a0b23f437723fb5fc53bd124b482d6290148046f9b0634ebbb299e4a8a76993",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_character_projection.py",
+      "sha256": "d86dcbfc3d5911211b7330f6a233c278d9a7012cd26910522fe0a6d80da8e5cf",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_cjk_name_order.py",
+      "sha256": "3d277108e2be8d6a56170acdec77bff21da874f1a2a63ebb6a09d963dff633f7",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_codex_app_server.py",
+      "sha256": "cfbc25cfd2a95dae457eaafc1d0d59e82e14ce9f803e2bf0c05e47d70ff99ef0",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_continuous_character_cnn.py",
+      "sha256": "4b6ad05ba42c120d9ea8b986076b168fc9cf87eea5fbc908506d22a73c35351a",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_continuous_character_model.py",
+      "sha256": "4339f18b7c69254a7a252f72a28372a970e9cd3846d7e4eb2bcbc109d9b39dec",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_crf_model.py",
+      "sha256": "1145433b64a521c3251069969a776f8bc55c38e30ba4c927ce8a170603c835e8",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_dedup_gate.py",
+      "sha256": "6635ee8573b7eae77ba78971e0c7102dd5bfff330f0a80a8c83120c83eb54329",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_document_context.py",
+      "sha256": "1a6f36064da907c5cefae105506b39266d45bde0487a8553009b9af4c19828dc",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_domain_model.py",
+      "sha256": "b553c6eb5fa78e96d9b9695638a4889fead416b5a231f29a5353b0266253d688",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_domain_select.py",
+      "sha256": "905031bfd3e24b077f251319179751093046f7ba16a8a7f2dc587bfaf8a7ad16",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_dual_head.py",
+      "sha256": "35f0415915ba2047b81efa7a29f8ac5f8e0a450ada2a744cd9ed9a1fb38cd181",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_encoder_train.py",
+      "sha256": "7e88ebb4254b137206d6a894f2433f49d77798f4bb85da66375fcf10489f6877",
+      "redacted": true
+    },
+    {
+      "path": "scripts/pii_eval.py",
+      "sha256": "7f02f06e848f212122d4c8cf928b6b21396142c66f970e2001a76ccc4b011664",
+      "redacted": true
+    },
+    {
+      "path": "scripts/pii_fetch_web.py",
+      "sha256": "5d34d7766054701831076c4c3c969bc99485851eae539e901ee19a4251601dfc",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_final35_native_draw.py",
+      "sha256": "cc13d477f83529e89cbe835c0c40ecaff5e47203695bc00775bd0c1c84b629cc",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_fineweb_sources.py",
+      "sha256": "bc355b24981b9f5e4aa3a5bb8962b5c5dbf1e2d3bbda74fc047b5193bae1be34",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_fresh13_date_localize.py",
+      "sha256": "eff9bd4786f244794db2e64d6738216002f726c393e6a051a1ec3b8ba38844c1",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_label_transfer.py",
+      "sha256": "58a8ae665b58b5e7d812991481b4fd9cdea30fffdf6bf4a6d31b6a033d44f21a",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_ont3_predict.py",
+      "sha256": "30e3f5b385e96e948090fcd713c56c507c76688e6469bc87a834b358d3bcabd6",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_head_input_norm.py",
+      "sha256": "8af072e37762331d3f274e4f23e7fd5052b02d4cf19460ffb86c70123796a3a3",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_head_residual_mlp.py",
+      "sha256": "396368c252254e803dd30653b25723cae18983a7a348c38c0f26cd504257d3b6",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_instantiate_transport.py",
+      "sha256": "8d6583e1740f9f5331d3804e964f4e3a9f24cfd93620ee3d0841702b0366cae5",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_language_policy.py",
+      "sha256": "b96311ba5833f568208a10e68284c1d314fd38bce7c77a4581adf45553b2131e",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_layered_head_model.py",
+      "sha256": "a22950cd4e9ff58bf150795bdab3c7174aa079653d7705a189721c1ae3c6c4fc",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_llm_label.py",
+      "sha256": "2eb82e33a9dda02b6fc06ba70bd3cebb8b40839a39239f7224e37a93a0907e97",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_locale_render.py",
+      "sha256": "bc54ade3ee176bcd0cdf13ea2fff03012c77e71a23a8754b05a8832a781ff10f",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_annotation_qc.py",
+      "sha256": "0739ee49902daadd63c0b1a9dc8f82e17796e3c23022579bc7ce1dd90d297456",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_resource_inventory.py",
+      "sha256": "bf4ad67d79432f68c2745bde21d91cb673ff7d065f31356b2c776cfb89000179",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_role_char_pilot.py",
+      "sha256": "5168a693108a3c3c0f78306bb663de919730185f4ee9d8e19db613c4299bed15",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_role_publish.py",
+      "sha256": "34da393d42b1b8ada5c7106f54ab938c9b8735b4ccd6e150cecfd8de56bb47da",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_native_heads.py",
+      "sha256": "66bf56873b5310b966a952509c0b0ac059e376a6d414e9427c194d431962794e",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_needle_select.py",
+      "sha256": "5d6ecec1f1433068e47f076d4c4fd21726ac1de17f6852e6e20b9ed52175a39d",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_needle_validators.py",
+      "sha256": "aac14f5439ec0ecd58f0e272ed09362be6b78d0aff15a882e61c811e5c49e785",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_o_weight.py",
+      "sha256": "a641da92923c1fbe8733508986846e79cbea5a0a5097ea562e506b6f8937e1cd",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_onboard_sources.py",
+      "sha256": "24bc6ab4f62187e143a2cde1a3924ff18293b758057fbdac5241e8da6bdc1f87",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_ont3_eval.py",
+      "sha256": "e70b71643da98bbc2887fbe19448714f1a7170ee8aa03f6e676824a30a8b5959",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_ont3_surface_retrieval.py",
+      "sha256": "93b30a52c062cc0c63bd1e3b77387f5cc1b8d177a1e8320654a361f4569132b8",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_ontology_v2.py",
+      "sha256": "b2d148b69a2d9e91951acd1801b389503604929b3fa29ccb607cda48a675ea1d",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_overlap_filter.py",
+      "sha256": "95d28b793fcfcb9f2058ef78771afc4f69f129ee1380f6439dbd1965a301d3ae",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_overlap_neighbors.py",
+      "sha256": "a3542006d54af907bc5aebf4fb1f83c73cacbd419386d0289e856ae84f030d8e",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_paper_o4_eval.py",
+      "sha256": "c13c01c394930928d8710ba8aedea8b9635b80fd4235a4f5070740440cf34234",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_paper_o4_figures.py",
+      "sha256": "72f4b6b5667dce2153863d8cf60f17b9b412a4441b38646fb8a272b4fb263374",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_paper_pooled_eval.py",
+      "sha256": "c40091bbdc1b0b137e6e1c84a3a3669a69327d2520e9c8a41cfdbef994edc29c",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_predicate_exposure.py",
+      "sha256": "28c4d9245f23026b888e122dd0294a155b75fe75627952a59cd9169de6c07dce",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_presidio_fresh20.py",
+      "sha256": "fbe3a9bf5ae11d2bdf0453ee1a486a5918dab662dbea8dc2094f71acb7859281",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_projector.py",
+      "sha256": "88ff001c6d30abc86154fe05972061cb5edfa89a13e4c6bcb9d73f3200632ae1",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_prompt_slots.py",
+      "sha256": "28c4cfdc7c02a87e1ade77953dd73d20117d569fb8e3f0124285a7d962746eef",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_prompt_template.py",
+      "sha256": "e1d7077fc09aca264f1245066957b3e9fb849e4cadc2566eae6103265f7edd45",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_public_gold.py",
+      "sha256": "a9c3df031e8058b8816568cc5c26188e20bae1d90760ab377349c9b9c275d5e0",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_public_mixture.py",
+      "sha256": "14140a5e4f45d1f67c366470671f7f249d8b91093a7a6e8cfe63ad30748c97f2",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_redact.py",
+      "sha256": "5cc08a4f2bbe4cfc220d0854cb4cd73808ff19ff71716a847577b47c49bf008b",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_reference_projection.py",
+      "sha256": "4b6c38fb49f82223c47675ca8740aa9dcb78b8bab2d1bf0167182a0ed9c725c9",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_regex_tag.py",
+      "sha256": "d899437ab524e3b91a2db59b36772a262b3630e8f9df6ab316b810de115692f8",
+      "redacted": true
+    },
+    {
+      "path": "scripts/pii_reproduction.py",
+      "sha256": "4d92703e68d5c30e81bb528a7fb0341eae2e0906913129a9d5cccdfb44bef2b2",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_reproduction_export.py",
+      "sha256": "cd54a33a2b7e9eb65ec4b9b81cc6533b0b16d444708d8f1f80bbca281e31dcd3",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_rule_completion.py",
+      "sha256": "c68b2a6ac1dc8fca3aa4854f42540afc35a3967967a333d1ded3e06ec4bbec1b",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_seed_tree.py",
+      "sha256": "87393d68f1a7481cd0b3d5832c5fb7f8ec9b5b9372241e3418b402a1525d59d1",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_segment_eval.py",
+      "sha256": "904cbefe516cc7ef286e92bc21c7dfd93723c3f459dbaea5d70bcf1b0218ac1f",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_sentence_training_view.py",
+      "sha256": "c80907b915a65fa8f74cfdd50b7d0a98bb008b8204b514d637f2e53dd684d791",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_slot_morphology.py",
+      "sha256": "577774b27e3accb85789d9fcfa4f26175a3af5bcb257a3e9f0646187ec6f7434",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_soft_prompt.py",
+      "sha256": "405ba0de4b83789f92b14e35052c155013a8b6d8665559a83f4ea1cb65b079aa",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_soft_registers.py",
+      "sha256": "cfa9c397cbc4457193fd71937fd2be7451d6f7cbc2f01acdae75f987f9f1eb2e",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_software_names.py",
+      "sha256": "dc27ba8ce54ca16fbb49b77b16a739e7648d4f8e712c51708132ae4f4ee7ed89",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_software_receipts.py",
+      "sha256": "96d6a317ab1eafa2b7d35173551ead4877f38fa6d92c66ccea12de37350f8419",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_software_screen.py",
+      "sha256": "56bd9efd86cae601f13589bb3fdcf6a10c9a8fe231a3ed14db0f6b4cca8c27c8",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_software_sources.py",
+      "sha256": "77a432084ae9b8dd5f4df544ce94579339c653e6c0ce83561ef73d271877d058",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_software_workflow.py",
+      "sha256": "af50a9a23166f0abd8526c5fa109bad73ca780e949af52e4d86a236cd1945f37",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_source_classes.py",
+      "sha256": "c2e71e78a94d1ea77c2dabbda2f8f9c337a755a7ac9d372e04577d3a50c24215",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_subclass.py",
+      "sha256": "ac872c5b999b017f6aadb4b62015a3f95c9cfc70f1ce4e269d1f6f808c78e657",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/__init__.py",
+      "sha256": "5284a05d319f4af5e838ae6393bae56e6a8ca349460a4dd96fbb093126371396",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/agreement_mining.py",
+      "sha256": "6cbd358af8025a4542cf49e4fdcef26141f2bf73996742a5efcac2c7f64eeeb4",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/context_generator.py",
+      "sha256": "f3fe623515bba4ebdb05ce3a3f67b8ca8575a2eba11e0a6f385aefa6bb2e63a0",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/exact_agreement_pool.py",
+      "sha256": "c02514e994ed17b1bfa8c6ebcc700c996b270da6b623e08002f4a9938b9dd827",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/expert_bundle.py",
+      "sha256": "e9fe6a91b06db5e77b79501164e269b82ef441c3cfaa989c766ecb20c62e2ca9",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/language_conditioning_bundle.py",
+      "sha256": "41098f036df22f37c104f28055f013becd12502fb8c8d70eca4a6aca75a08d00",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/mix_policy.py",
+      "sha256": "5fcc3686e4c1a24d78049d5722b3303777e483877a240a3a72be08c564bb05eb",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/predicate_pool.py",
+      "sha256": "d74fd4075b97e1f9acfd617250a6529cc67676710b45cb5f05210c138a3a7f78",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/rerealize.py",
+      "sha256": "1b8a811b0f995751d7e6dfd09df4c2673bf4c9b1e68df06d42ee8a8fe3ae00c3",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface/sample_time.py",
+      "sha256": "aecb61e041fd9a3b6d35e0be426a688ca21aa7841bcb9f65890db4be6f4cee19",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface_audit.py",
+      "sha256": "b37f81ee4bdf5ab0977969caf25a532a3dba337a26ae55b2915672ffa5adfd96",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_surface_pool.py",
+      "sha256": "896e73fe4d51e2fccb87cab5819598692fd1ac25bea9e20db2063754c7aa1384",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_tag_status_prompt.py",
+      "sha256": "3ca3562ae07c38a489ff2e6b4cd786b1327255dd9ecdaa83c0862e0247bbf240",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_text_segmentation.py",
+      "sha256": "f3790d86ff705bb7399e953f5a4f5c15e77206c9930d1f28c335a7f2e97dc0ea",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_training_quarantine.py",
+      "sha256": "a798ade571f7e3544df68c96c1de516dfd2c4cd5064e2f593e775679a6ca3b5e",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_transport_semantic_guard.py",
+      "sha256": "65e0e74e908434e87228e6779b0c4073d8fe33c2ee992ca7e332eebcfa9230f4",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_v1_v2_correctness_map.py",
+      "sha256": "61f0ea95f0a202bea9ed809f63a1a60e0fc3096e8a00818f72ce8e59064d1145",
+      "redacted": false
+    },
+    {
+      "path": "trainlib.py",
+      "sha256": "55f3683669ae6b4a49f577068392d360e152e51480d8d59c8d09994ef738dab0",
+      "redacted": false
+    },
+    {
+      "path": "trainlib_input.py",
+      "sha256": "30b55937e39e2cfe92407f94dd9d7613c451be997ba981798a7aab054438b990",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/guide.md",
+      "sha256": "d5742500f4978812ebf299561c21c2ed0c1446eb401a30785d0959bbacf5cc74",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/docs/data.md",
+      "sha256": "c8d007e23ddb8aec39a055643ac59292e47af10786f4ba3d50950e6924f7ded9",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/docs/evaluation.md",
+      "sha256": "5db776fdddf467b4d09bea0b0b8fe8128d6bc96fe585ae46c39e17e8295f0a35",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/docs/ontology.md",
+      "sha256": "7b804a05c99a224782a199d2e22fbd6ef6f38c927008e5cfe99955a91f5470f8",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/docs/training.md",
+      "sha256": "0f0e6b190878d874194ff4f362fd2bbcc3aeac16c70415e5db78512e021cb95f",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/models/boundary-refiner/README.md",
+      "sha256": "e59911cd03d3981c68c9d99d5c94daafd02702e82e6d17b991d4236cdf91a79e",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/models/boundary-refiner/config.json",
+      "sha256": "39d59d8a678e1befa195af20eee70651fdb23efeab51e66756a64f3fd7afbd51",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/models/boundary-refiner/model.safetensors",
+      "sha256": "fc486a9ff25e5ca39b8da2a92ed4cc1d99432b9ee45d46c7467ba874734d2227",
+      "redacted": false
+    },
+    {
+      "path": "LICENSE.md",
+      "sha256": "c34916433266166308d1ca15c4f81212608a0b57b94db79333a0b5f43c34d38a",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/pixi.toml",
+      "sha256": "5dae47c7553a3fdcda0f020752c63574230211ddf34dbf197a0dc7fd28f9e9d2",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/smoke-language-round.yaml",
+      "sha256": "e172a6a6b61964d0fed2a9583da09332256c4a8c424c328b27e034c39d56093f",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/CLAIMS.md",
+      "sha256": "e9a4b6151bcb44e98de3504ae3a2ec88f96431e0772f7a8f932327b79ea1a027",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/README.md",
+      "sha256": "e01b773fed721fa8bdc50e61b1b125335a9699a2207721426b99a36ff1666945",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/o4-training-membership.csv",
+      "sha256": "d6ba03a7999779a22b5e5c1957c28a7cb3c2d14d09ae805e27bc7914dd7e145d",
+      "redacted": true
+    },
+    {
+      "path": "research/pii/frontier/software/records/o4-training-membership.json",
+      "sha256": "d0a52909b3c0b11304a7dc82e428292ace316278e31483f2fd1b8b4920a58755",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/paper-run-records.json",
+      "sha256": "cab4dc18ee27f89b68af723a46d6f195b23e2e14e7e58da80a10863118739d58",
+      "redacted": true
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/annotation-cost.json",
+      "sha256": "a6f6f0011ee33de1e493c366ff50358c2064248109278121be7115566ea4c243",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/annotation-volume.json",
+      "sha256": "ee0770a018b2142e87eae5d6493601ef109a56b8e959dd89a1ac973fe201f265",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/coverage-mixtures-summary.json",
+      "sha256": "b69ae50915a0f55a154ec26894c41ec6395cf23184c947bab69137b5752415b8",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/fresh-fit-summary.json",
+      "sha256": "4813e1cdc0fd554f1c6ba47fdebb432732377b7dcd12dc8269f8ac5d0485f8c3",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/gliner-full-inventory.json",
+      "sha256": "7ce8fbe40c13463e9e6cebc1334e75090b681fd2cb174336fc4e9dc933a2ad95",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/gliner-trajectory.json.gz",
+      "sha256": "76ee25b1375aa1fec3dc3392a38556db9b7e773b1d5232eebe48b46187740927",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/local-llm-per-input.json.gz",
+      "sha256": "7da2375cdf1cb31e70ca2791766e3fe261ce5513ca477aefdef49dcf905c0ebd",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/local-llm-summary.json",
+      "sha256": "da2befd02d480f230d8324643957cad954e75ede2fa1cdf9db83a11819a587d2",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/o4-boundary-summary.json",
+      "sha256": "0e7f9c7bfa52c779770b0446a371e848179d8bbd65ee8c786635d1015e6d0c34",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/o4-boundary.json.gz",
+      "sha256": "d9cbd575ae5d5baefb7fd1ac195d11d9a733f097634359467827da8c183fd70e",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/o4-comparison-summary.json",
+      "sha256": "94f0e6d5cc53974bed46a8968caf3b1bde9ef5d9454d13bd8300d36a64c58b61",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/o4-comparison.json.gz",
+      "sha256": "f07185face3a77bfae000ee3433abaeebba36550bc756a5387b27a892a820608",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/receipts.json",
+      "sha256": "10d4ea5e895c3c64dbc0583108409c8d847e998ea886b6a31b33b21abe43fdb9",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/tab-agreement.json",
+      "sha256": "bd81e9d66ccd284323b5394424ae529c71394a260a0fe0492c66dde80efb585d",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/title-extents-human-gold.jsonl",
+      "sha256": "4df1f0135a2335e309beb125e8d4fdf77f24bbd74dc02d6a97886569fa5d8d36",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_tagset.yaml",
+      "sha256": "8cfc6f1aeb908e581675f7a470b7a18aac69a77a5c2e0ceb65250ec03779fdc7",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_language_round.yaml",
+      "sha256": "1a6218cb519f2af94fc30a4660a078dcadc08deb8a2d1bf0ea30c1ec0aa2c70a",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_language_round_final35.yaml",
+      "sha256": "bf0b9d9463dff49e28aaa25b5a1b74bb097605cfc7e8962265b15a1bb24cd90c",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_reproducibility.yaml",
+      "sha256": "b1e71116769d9cb7591c7993a63d21892cf6bc99372e85e9a9bed26f64ac8c9c",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_register_languages_v1.json",
+      "sha256": "0fd5c9e909a3feea9f85d2a22e0902d90297a8c14ec26cf048ce267c11e99e7f",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_predicate_channels_v1.json",
+      "sha256": "841b8f56753443ca5d8d6be9c543a176786b71c707aba1ddecaa1a8fff1d0e6f",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_ont3_bernoulli_predicate_channels_v1.json",
+      "sha256": "62e100cfed3d0f1478a00256085983b61f4362f5efe1d2f655c4e950d613423f",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_subclass_families_v2.json",
+      "sha256": "35ef72619b0f4e25ab1a09e153691efaf5034e5ebe1d7c797cdd41ffbf4f9de8",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_subclass_families_v3.json",
+      "sha256": "808691ccf29717b9f47555a438145ae9e44db5fa21b00d6f3cfa4a8879c75bea",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_source_classes_v1.json",
+      "sha256": "a08d08e321b8c03d4d224c2b726dd3d3c640858ba4c0de7b76723d913e99e766",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_o_weight.yaml",
+      "sha256": "9da8a61420bfed7ee6505295ea066cb2640e665355ebc9e817ae740ee30ecca3",
+      "redacted": false
+    },
+    {
+      "path": "prompts/pii-label/catalog-ontology-v3-primary-v3.md",
+      "sha256": "f138f33a6f82f4e2892c1ae3d46592dc8b3a8c3d5cb60fd168c2a094d6d6024b",
+      "redacted": false
+    },
+    {
+      "path": "prompts/pii-label/task-ont3-primary-annotate-context-v9.txt",
+      "sha256": "7e3f756e8b8a35a23c9e2bf4047970e99b7e21380e30c8efdedb391834b352dc",
+      "redacted": false
+    },
+    {
+      "path": "prompts/pii-label/examples-reviewed-final35-recall-ont3-v2.json",
+      "sha256": "1d98fe15baff85da14df5b2666ceea1e8ef58a23f7911a3139a07f16199e1a0c",
+      "redacted": false
+    },
+    {
+      "path": "prompts/pii-label/paper-eval/task.txt",
+      "sha256": "6ffe770b43fdc2c13de53f5005b98f3e14c7cc41ab95041c191ec3885fffeaeb",
+      "redacted": false
+    },
+    {
+      "path": "prompts/pii-label/paper-eval/catalog.md",
+      "sha256": "5c68483daa725cdff959cdae364d813e008d98b2ef5e708301e1ad77737a4164",
+      "redacted": false
+    },
+    {
+      "path": "prompts/pii-label/paper-eval/examples.json",
+      "sha256": "775e5eecb8b9e2306df40629b71ebf2c74d82f1606884e94913127160cbbde42",
+      "redacted": false
+    },
+    {
+      "path": "prompts/pii-label/paper-eval/README.md",
+      "sha256": "4cdf1cac00677efa8f48a1604c569aa31cca011cfaf311a90993f167516444d4",
+      "redacted": false
+    },
+    {
+      "path": "scripts/codex-annotation-home.config.toml",
+      "sha256": "aa2c938465822e9291c25e32679acd4ed27590fa65a6ff9abbea0cdd40248648",
+      "redacted": true
+    },
+    {
+      "path": "data/pii-needles/rare-type-needles-v1.json",
+      "sha256": "b58a171fb725371ba8fb6e6fe91f3465b190d07f8cc34989267401266f94fdd7",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/local-llm-label-quarantine-v1.json",
+      "sha256": "d2503e3f364885ae335ebc5b58df8ed970f4f669638e35bfbef5b7c2afdcd93d",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_tagset_v2.yaml",
+      "sha256": "f3c29b16e4ba0aff61fd0e6f5640e30f61c5ea0a945991de5c8a05a6d66f12bd",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gold_v2.schema.json",
+      "sha256": "dac4c4c0e20655dd090157e64830a9a5617799651ecb065616f63e207ff713a8",
+      "redacted": true
+    },
+    {
+      "path": "research/pii/frontier/evidence/four-corpus-v1/candidate-map.json",
+      "sha256": "ba380b6e5b443cb389f5a4dac15ff7f72f85faf4d4e630584051ec9f311dc9fc",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/four-corpus-v1/negative-coverage-v1.json",
+      "sha256": "66c38a5302eb84f7e8f6cd3569a30804494192ab14943402c7769dc9820c14ea",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/four-corpus-v1/language-round.yaml",
+      "sha256": "6297f7f6f391be034baf9ef8c11c21de9f4f7536bb8d0ebbd36f3f836e97cd1e",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/human-gold-v1/selected-ids.json",
+      "sha256": "c1fd6873b156a8962f5e8e526420aa70121acb6511965efbae063fc4c7a017fa",
+      "redacted": true
+    },
+    {
+      "path": "research/pii/frontier/evidence/ontology-v2-source-extension-evidence-v1.json",
+      "sha256": "f842d3c06f07222a14992a7535525d78202df09ebce339035f896185911ed118",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_regex_tags_v1.json",
+      "sha256": "abaaaf733054760ed33dbdaa56617f649ec7b2da91ac9e4d2d909164e2cb48c7",
+      "redacted": true
+    },
+    {
+      "path": "scripts/pii_regex_policy_ont3_v1.json",
+      "sha256": "d4354b2524387e36a8dddd4e6795cb6ac8c6f7fb4cba2f111ea891a526bb6232",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/models/name-components/name-postprocessor-name-kind.json",
+      "sha256": "80ee027fd494cfd61750e55314a642d399478bd327aec1f98b938fd9742caaf7",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_annotation_qc_profiles_v2.json",
+      "sha256": "62a3529ef207b280236a794c7e39c04d55ee87915cb2566d2b98dca1055fb493",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_role_language_round_v2.yaml",
+      "sha256": "9a317918d18acd3f41ce22e3f95389f03d212da174c052b437f9ea86bab14f16",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_wiktionary_final35_gap_v1.json",
+      "sha256": "215fe1cc2dd92b665250b644826152eb53b7b962369ed41f055f07c2227a1b5d",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/models/name-components/README.md",
+      "sha256": "c15ef0de6ae2f5de3482f6f57c5eab5fe55de105ccb85067055a9d91c62ad149",
+      "redacted": true
+    },
+    {
+      "path": "scripts/vendor/script_bpe_v1/script_encoding_v1.json",
+      "sha256": "895fc5cd38a93f8d64509215d2741a4f93f2df722fd5404c8fd27bc9774121fc",
+      "redacted": false
+    },
+    {
+      "path": "scripts/vendor/script_bpe_v1/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "redacted": false
+    },
+    {
+      "path": "scripts/vendor/script_bpe_v1/VENDORED.md",
+      "sha256": "fdf6b1ea7ee4d03dd3ebe94a30fb1cddb271328191e12cf79bb69be9ba1cbac9",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/ai4privacy-health-phi-400k-sample-1k/manifest.json",
+      "sha256": "f0e873d98a56480c1911373967322e5c3799fd7e94fe6b67285fb792f52a3d0f",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/aqmar-openner/manifest.json",
+      "sha256": "641b60a1b87dd6667492bde5e17b92174d3483259e3be1033a200ac1e05c0fce",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/hiner/manifest.json",
+      "sha256": "468e6c970d46230830366bcadbf7185e4b637736b06bb4e9fdb30b638cd1a71f",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/idner-news-2k/manifest.json",
+      "sha256": "942e9a3722a5dc2a77d74d7e10c8e4e9d139a0e520aba1ad53d584cf82bbc8a4",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/klue-ner/manifest.json",
+      "sha256": "3eb3756e07ca82697945ed7490970a1063b7d248696ba2d3b318e7c893d3d1a1",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/mapa/manifest.json",
+      "sha256": "536312a25c5a8de75908b4bbd652a77c068f7d52112541bb8c5fe1c32b5f42a1",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/nemotron-pii/manifest.json",
+      "sha256": "f30ef4945754b5ba358fb23f4e3b5439fb57d52bfe00bda0205f1ac15e77f692",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/openner-commercial-core/manifest.json",
+      "sha256": "6d4a88dd1efeb70c8b5a66b3dc4ad597d471aacceb6ec809c216f8123008c9bb",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/openpii-1m/manifest.json",
+      "sha256": "7181d3de243d7aedb254dc2c0a8d38e3db37b941922a8f919087fe32a5197f56",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-onboarded/wojood-sample/manifest.json",
+      "sha256": "8370256aa00ca9dc5c14ed89db094e6533e09a1717f6f0367b8bf5ab9cc47859",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ar.json",
+      "sha256": "565151cfeda8d80d71e0591611e5377c1145045c5ff076c05228782b4bf6d213",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/bn.json",
+      "sha256": "406a2b82dfcd5a959416212bf190711345fa4ff1aa0c54894c216804b648df61",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/cs.json",
+      "sha256": "8b49882eb96f493bf7c9380660ddd6d81eecba6cbd1984daffba291f87325499",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/da.json",
+      "sha256": "9a0bca17c33579fa030c5d2541a604a0ab7f83f68631588affe55e0dd68dc973",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/de.json",
+      "sha256": "fae3944865a5ec606127516d6ba554abbab0dab0330731b0ee3bc0e7afc3a446",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/el.json",
+      "sha256": "714402a02f52951de57278188490afd5ef1e7f67a5d6cd175221b772785b42e8",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/en.json",
+      "sha256": "c106e586d05e3e1fb8511f6769461caf905aba95e5714de73ae01476e4728865",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/es.json",
+      "sha256": "e71ef718a26ace6a55563107deedac38af267ec2f725d999f0b3abff5a882573",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/fa.json",
+      "sha256": "3c4a026a26723928d2d8980cfa745bec56174f129e4eafab88ea833648d3b5dc",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/fi.json",
+      "sha256": "a7093c3b4f20b7a2abb08e746a93032b29ed2af9b65bafb5db82f20b57d2aea7",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/fil.json",
+      "sha256": "d49e2c86cccd97aeca627f2bdd4b3802e0ecd9d2d718419aa6abd34b82196a6f",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/fr.json",
+      "sha256": "28e0b1d139c4b09f282782fc8a854ca85fbb9478dfe322323531ca0c5343ba03",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/he.json",
+      "sha256": "01d31e467545afb5578ebab34186b4e472640a1c4fdffa520a97758634cb2cac",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/hi.json",
+      "sha256": "f576d4060017612e10dd2281916f85de43f9b55776a7a41b4c51f223a4770047",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/hr.json",
+      "sha256": "64cad223f6b1dc387296d81b62b294e9128b2d43cfbbae93d5fb2e8fe2c6a972",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/id.json",
+      "sha256": "e3ea7c398a4a31d93f2f225b838fe6923931c5f18f779626422fb8962c68829b",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/it.json",
+      "sha256": "55996c28864c6928ca79a923e0bc71ed5a1dfc6807928db33addbe87c97b7239",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ja.json",
+      "sha256": "e12c0f97bbe477df202ee390ddfeb5bbb6c29269e36bfbfb99ab46edd901d774",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ko.json",
+      "sha256": "1e36962a4dd796fb25b0b5ba398d6558445f309b37dc5beb8852569587444f27",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ms.json",
+      "sha256": "7819b4249e0556132ee6d981021b8c469636dd2b590a55418473c551b2a7717f",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/nl.json",
+      "sha256": "9942f10e229bf3bb4dde6eaf401419297cccf788aeb41d021493a808ebcd0985",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/no.json",
+      "sha256": "42c7d40447807e221b410041b09876337bda1cde71d8a05bbca75f60dc26b96e",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/pl.json",
+      "sha256": "fea921fb68a39bc14b0e3685e86166b9b48d9d89e968602b3a15438d17ee91c7",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/pt.json",
+      "sha256": "ad2b1fad8aec68dac5493ddc3853962494c1e3dde3ab4a2ff9695e0649351e5a",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ro.json",
+      "sha256": "ff77c05a95d1715e06c182c7600566394e9d491526188dc3059cf03294821847",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ru.json",
+      "sha256": "79d596d76a8a4ccf495d45d7c3808b77bd87f1e725af37334f79cc9229b55e5c",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/sv.json",
+      "sha256": "290155b177026d894a462cf0c85098dde68dae06fc388e0c512874947e66b1e8",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ta.json",
+      "sha256": "2895ab3b0221be36cb3ee9c39dfdccae6f95a5bee1362d79bc662b04418c7f2d",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/te.json",
+      "sha256": "9397d23fe83597978c160464d8809ebf40e5f37e366c185c25cbe5f07f03433a",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/th.json",
+      "sha256": "4bb24a2b01cad64aeadd903dae9f0babce54ecbcb5174c32196cc2e504eece0b",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/tr.json",
+      "sha256": "16e4a8230c7dc40cb37d2a972cb73606a7f2cfa4f823ed2fc8005525a3a7e7a3",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/uk.json",
+      "sha256": "7fade960321c20da8d2069ddf6853a1edf5184680b8e4574ec86a07b12445ed5",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/ur.json",
+      "sha256": "054264740af239b59f7acc07ac65c725d8d46abd7819b453f1aa78370ac9ec77",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/vi.json",
+      "sha256": "ca9e8776a81314d7eb839e40ea5c5a5e5e258c2994e4cb26617d1bd8c47c2aa6",
+      "redacted": false
+    },
+    {
+      "path": "data/pii-annotations/final35/reference-cue-lexicon-v1/zh.json",
+      "sha256": "794ec3f66fc6081c357a120a4bf9f1d1202111757e11b1ae8d863811637dbbe6",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/pixi.lock",
+      "sha256": "9d22e08f8ea39fe3bf42f08224b055ba50cafa3cf71658060f5545e45183a7af",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/serve/pixi.toml",
+      "sha256": "599cae9106b1972dc0c4d40fbbac4c7189deb777d9bb7dc767ecc2defbd51616",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/serve/pixi.lock",
+      "sha256": "d318ca6fef8bcf0f12d7e3d56f554ba81ea3eb00734395329ea663184216b252",
+      "redacted": false
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "88aef29f9b674d4476f33128af7c821156b226122a03b7669070f33dd35ea91e",
+      "redacted": false
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "289ae55c1560891c1381ee32543951989a8ff95288bc59a95578f7084248becf",
+      "redacted": false
+    }
+  ]
+}

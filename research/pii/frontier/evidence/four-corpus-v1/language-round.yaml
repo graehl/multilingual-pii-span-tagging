@@ -1,0 +1,134 @@
+schema_version: 1
+round_id: final35_v1
+membership: exact
+order: priority
+# The 35-language round the ontology-v3 program actually trains and reports on.
+# It does not supersede commercial_global_20_v1: that manifest records the Final20
+# selection frozen 2026-07-29 and stays as it is. This one exists because the core
+# floor is only checked for languages a manifest names, so the 15 expansion
+# languages had no floor at all while several sat near 0.15% of the training mix.
+selection:
+  frozen_at: 2026-09-11
+  derives_from:
+    round_id: commercial_global_20_v1
+    reason: Final20 plus the 15-language ontology-v3 expansion
+languages:
+  - code: "en"
+    name: English
+    cohort: final20
+  - code: "de"
+    name: German
+    cohort: final20
+  - code: "fr"
+    name: French
+    cohort: final20
+  - code: "es"
+    name: Spanish
+    cohort: final20
+  - code: "it"
+    name: Italian
+    cohort: final20
+  - code: "pt"
+    name: Portuguese
+    cohort: final20
+  - code: "nl"
+    name: Dutch
+    cohort: final20
+  - code: "pl"
+    name: Polish
+    cohort: final20
+  - code: "cs"
+    name: Czech
+    cohort: final20
+  - code: "sv"
+    name: Swedish
+    cohort: final20
+  - code: "ru"
+    name: Russian
+    cohort: final20
+  - code: "uk"
+    name: Ukrainian
+    cohort: final20
+  - code: "zh"
+    name: Chinese
+    cohort: final20
+  - code: "ja"
+    name: Japanese
+    cohort: final20
+  - code: "ko"
+    name: Korean
+    cohort: final20
+  - code: "hi"
+    name: Hindi
+    cohort: final20
+  - code: "ar"
+    name: Arabic
+    cohort: final20
+  - code: "tr"
+    name: Turkish
+    cohort: final20
+  - code: "id"
+    name: Indonesian
+    cohort: final20
+  - code: "vi"
+    name: Vietnamese
+    cohort: final20
+  - code: "bn"
+    name: Bengali
+    cohort: expansion15
+  - code: "da"
+    name: Danish
+    cohort: expansion15
+  - code: "el"
+    name: Greek
+    cohort: expansion15
+  - code: "fa"
+    name: Persian
+    cohort: expansion15
+  - code: "fi"
+    name: Finnish
+    cohort: expansion15
+  - code: "fil"
+    name: Filipino
+    cohort: expansion15
+  - code: "he"
+    name: Hebrew
+    cohort: expansion15
+  - code: "hr"
+    name: Croatian
+    cohort: expansion15
+  - code: "ms"
+    name: Malay
+    cohort: expansion15
+  - code: "no"
+    name: Norwegian
+    cohort: expansion15
+  - code: "ro"
+    name: Romanian
+    cohort: expansion15
+  - code: "ta"
+    name: Tamil
+    cohort: expansion15
+  - code: "te"
+    name: Telugu
+    cohort: expansion15
+  - code: "th"
+    name: Thai
+    cohort: expansion15
+  - code: "ur"
+    name: Urdu
+    cohort: expansion15
+training_mix:
+  apply_after_per_language_tag_floors: true
+  # 1% per language across all 35, by user preference (2026-09-11); 35 at 1%
+  # leaves 65% of the mix free, so this constrains starvation and nothing else.
+  # No language should be effectively absent from the objective whatever
+  # weighting the reported bottom line uses.
+  #
+  # Until the data exists to meet this honestly it is enacted through sampler
+  # pool weights, which repeat existing rows rather than adding new ones. The
+  # floor is therefore also a statement of where annotation is most needed:
+  # 23 of 35 languages were below it on 2026-09-11, the worst at 0.62%.
+  # User-authorized branch mixture allows language drift without rebalancing.
+  # The base 1% guarantee contributes at least 0.75% at the largest gold dose.
+  minimum_core_language_share: 0.0075

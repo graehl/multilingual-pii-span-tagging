@@ -1,0 +1,12 @@
+{
+  "schema": "four-corpus-negative-coverage/v1",
+  "evidence": "void-study/README.md",
+  "status": "Experimental negative coverage, not a claim of exhaustive source annotation",
+  "decision": "Preserve historical negatives except Wojood demographic_attribute: OCC and LANGUAGE positives do not establish exhaustive demographic coverage. Keep positive mappings unchanged. Other reviewed omissions require narrower repairs, not category-wide masking. Rare LOC subclasses remain unresolved and unchanged in this contrast.",
+  "negative_types_by_corpus": {
+    "mapa": ["admin_area", "date", "date_of_birth", "gps_coordinates", "locality", "location", "monetary_amount", "organization", "person_name", "postal_code", "quantity", "street_address", "time"],
+    "aqmar-openner": ["admin_area", "gps_coordinates", "locality", "location", "organization", "person_name", "postal_code", "street_address"],
+    "openner-commercial-core": ["admin_area", "gps_coordinates", "locality", "location", "organization", "person_name", "postal_code", "street_address"],
+    "wojood-sample": ["admin_area", "date", "date_of_birth", "gps_coordinates", "locality", "location", "monetary_amount", "organization", "person_name", "postal_code", "street_address", "time", "url"]
+  }
+}

@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper."
+title: "multilingual-pii-span-tagging"
+abstract: "Software for training, evaluating and serving the multilingual PII span tagger of the paper."
+authors:
+  - family-names: Graehl
+    given-names: Jonathan
+    affiliation: RWS Language Weaver
+    orcid: "https://orcid.org/0009-0008-0255-0811"
+repository-code: "https://github.com/graehl/multilingual-pii-span-tagging"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Strong Multilingual Privacy Tagging at Encoder Speed"
+  authors:
+    - family-names: Graehl
+      given-names: Jonathan
+      affiliation: RWS Language Weaver
+      orcid: "https://orcid.org/0009-0008-0255-0811"
+  year: 2026
+  url: "https://arxiv.org/abs/2609.38630"
+  doi: "10.48550/arXiv.2609.38630"
+  repository: "https://arxiv.org/abs/2609.38630"

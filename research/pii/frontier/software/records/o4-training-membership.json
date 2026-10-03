@@ -1,0 +1,18 @@
+{
+  "schema": "pii-software-membership-v2",
+  "pool_sha256": "533f98fac540efe5f4a697864b2b65e82035d22304a1a91ab87e09c0fdbd9252",
+  "rows": 171168,
+  "locator_status_counts": {
+    "local_identity_only": 120799,
+    "upstream_pointer": 50369
+  },
+  "rows_with_document_offsets": 50036,
+  "contains_source_text_or_annotations": false,
+  "scope": "O4 continuation training membership, not its complete ancestor trajectory",
+  "limitations": "Local identities alone do not reconstruct upstream documents. Corpus text, annotation outputs and model weights are not included.",
+  "upstream_join": "Exact intake id joins against the Luna and needle materialized unions; direct source metadata takes precedence. Document offsets locate the row text inside the upstream record's text.",
+  "input_hashes": {
+    "luna-materialized-complete-v3.jsonl": "5ac579b83d4595967ac85f09118762e04f417bc0493ea8ff712c7b115f414993",
+    "needle-union-v6.jsonl": "5115b1d2808e69d25f2154168a832f723c45daf0a5b0296b52a3ddcd32173513"
+  }
+}

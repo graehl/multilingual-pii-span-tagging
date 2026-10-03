@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "dataset": "idner-news-2k",
+  "upstream": {
+    "repo_id": "khairunnisaor/idner-news-2k",
+    "revision": "625ff40f85b03c615c036ef11bc23cb70c79987a",
+    "url": "https://github.com/khairunnisaor/idner-news-2k",
+    "license": "MIT"
+  },
+  "source_schema": "idner_news_2k",
+  "tagset_sha256": "ab72cab92def31c07a3515ac9f7531c617f5d41b32842eeee6b562ce74d64492",
+  "source_schema_sha256": "5234f9d85a158c071cda79748ec211235cefdb5a7bfdaa5895f43252da49fef8",
+  "record_schema": {
+    "fields": [
+      "id",
+      "text",
+      "spans",
+      "lang",
+      "metadata"
+    ],
+    "span_fields": [
+      "start",
+      "end",
+      "label",
+      "source_label"
+    ],
+    "compression": "gzip",
+    "encoding": "UTF-8"
+  },
+  "counts": {
+    "records": 2340,
+    "spans": 3777,
+    "splits": {
+      "test": 509,
+      "train": 1464,
+      "validation": 367
+    },
+    "languages": {
+      "id": 2340
+    },
+    "canonical_labels": {
+      "person_name": 1632,
+      "organization": 1311,
+      "location": 834
+    },
+    "source_labels": {
+      "PER": 1632,
+      "ORG": 1311,
+      "LOC": 834
+    },
+    "source_anomalies": {}
+  },
+  "shards": [
+    {
+      "path": "test/id.jsonl.gz",
+      "bytes": 71857,
+      "sha256": "a439b89ba721654a17dc8e553ebbe19086201cf9a1db7a40146aa2e4059de285",
+      "records": 509,
+      "spans": 1019
+    },
+    {
+      "path": "train/id.jsonl.gz",
+      "bytes": 219273,
+      "sha256": "a36bb861d1d0e2c6d4f3f5ecc3be61c3bd7f1ede09dd5e92f366a9a3b9253fb5",
+      "records": 1464,
+      "spans": 2196
+    },
+    {
+      "path": "validation/id.jsonl.gz",
+      "bytes": 57187,
+      "sha256": "5d7419ff0f6d02309d3d068b85227e2b88f0ae141bb3246de2312aab3fe33b6e",
+      "records": 367,
+      "spans": 562
+    }
+  ]
+}

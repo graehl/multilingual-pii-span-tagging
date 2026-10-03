@@ -1,0 +1,112 @@
+{
+  "schema": "pii-software-receipts-v1",
+  "receipts": {
+    "o4-comparison": {
+      "purpose": "Main comparison: 13 systems on human gold and the pooled Ont3 development set; O3-O4 paired intervals",
+      "receipt": "o4-comparison.json.gz",
+      "receipt_sha256": "f07185face3a77bfae000ee3433abaeebba36550bc756a5387b27a892a820608",
+      "source": {
+        "evidence": "paper-o4-v1/scores.json.gz",
+        "sha256": "dee13dc7cb080c04b8ec59970fdbb82736a3f2e04183c84f1510fbdf405a0a21"
+      },
+      "leak_scan": {
+        "strings_checked": 3378,
+        "reference_documents": 2514
+      },
+      "summary": "o4-comparison-summary.json",
+      "summary_source": {
+        "evidence": "paper-o4-v1/summary.json",
+        "sha256": "ad497164838c98187874f79359bd278930ccf1b9ae7d72d51b8f1f6c3a197e1d"
+      }
+    },
+    "o4-boundary": {
+      "purpose": "Character-boundary refinement on and off for O4 at zero bias",
+      "receipt": "o4-boundary.json.gz",
+      "receipt_sha256": "d9cbd575ae5d5baefb7fd1ac195d11d9a733f097634359467827da8c183fd70e",
+      "source": {
+        "evidence": "paper-o4-boundary-v2/scores.json.gz",
+        "sha256": "dcc34017253038fdff51b21fa1d59df55a9ad771e4b88e8e9d661dab46302b8c"
+      },
+      "leak_scan": {
+        "strings_checked": 3280,
+        "reference_documents": 2514
+      },
+      "summary": "o4-boundary-summary.json",
+      "summary_source": {
+        "evidence": "paper-o4-boundary-v2/summary.json",
+        "sha256": "5c531bc782513cb87273a93b8c66c41169c6e1b68daf949996bfe0c927a3b3e5"
+      }
+    },
+    "gliner-trajectory": {
+      "purpose": "GLiNER2 adaptation checkpoints on the paper populations (development trajectory)",
+      "receipt": "gliner-trajectory.json.gz",
+      "receipt_sha256": "76ee25b1375aa1fec3dc3392a38556db9b7e773b1d5232eebe48b46187740927",
+      "source": {
+        "evidence": "paper-o4-v1/gliner-paper-trajectory-scores.json.gz",
+        "sha256": "dfeab29ef1c9562826923f69e516e1fcb79e1f8017dedd0767b013c8eb98adf9"
+      },
+      "leak_scan": {
+        "strings_checked": 2532,
+        "reference_documents": 2514
+      }
+    }
+  },
+  "recorded": {
+    "local-llm-summary.json": {
+      "source": {
+        "evidence": "paper-o4-v1/local-llm-summary.json",
+        "sha256": "32898a7cc1e51e73d6bc3a00bec87acc08beffe1d189811a70a2d4c429e2b66c"
+      },
+      "sha256": "da2befd02d480f230d8324643957cad954e75ede2fa1cdf9db83a11819a587d2"
+    },
+    "local-llm-per-input.json.gz": {
+      "source": {
+        "evidence": "paper-o4-v1/local-llm-per-input.json.gz",
+        "sha256": "7da2375cdf1cb31e70ca2791766e3fe261ce5513ca477aefdef49dcf905c0ebd"
+      },
+      "sha256": "7da2375cdf1cb31e70ca2791766e3fe261ce5513ca477aefdef49dcf905c0ebd"
+    },
+    "tab-agreement.json": {
+      "source": {
+        "evidence": "paper-tab-agreement-v1.json",
+        "sha256": "6881b9db39dcc3301bb19f6e8d4ef169ff8579c144b61d581d313aa99dbecc0c"
+      },
+      "sha256": "bd81e9d66ccd284323b5394424ae529c71394a260a0fe0492c66dde80efb585d"
+    },
+    "annotation-volume.json": {
+      "source": {
+        "evidence": "paper-o4-v1/annotation-volume.json",
+        "sha256": "28ff893c38f883c2b97e93e0427ac45ceff541ef1b8e83137f4c851c05964e76"
+      },
+      "sha256": "ee0770a018b2142e87eae5d6493601ef109a56b8e959dd89a1ac973fe201f265"
+    },
+    "annotation-cost.json": {
+      "source": {
+        "evidence": "paper-o4-v1/annotation-cost.json",
+        "sha256": "45ac6c920937f2e0438f17d513bb7d438771f5aad78696c2088c75736a09f72a"
+      },
+      "sha256": "a6f6f0011ee33de1e493c366ff50358c2064248109278121be7115566ea4c243"
+    },
+    "coverage-mixtures-summary.json": {
+      "source": {
+        "evidence": "four-corpus-v1/coverage-v2/summary.json",
+        "sha256": "5fc0fb0895db439a0db52e4a9ba12e622d1ba06130f8e7e5007615691663e45e"
+      },
+      "sha256": "b69ae50915a0f55a154ec26894c41ec6395cf23184c947bab69137b5752415b8"
+    },
+    "gliner-full-inventory.json": {
+      "source": {
+        "evidence": "paper-o4-v1/gliner-full-inventory.json",
+        "sha256": "802051ec4c0c04d13d521a9723992a15a73a4fce2f03fb1e2648b19077d38baf"
+      },
+      "sha256": "7ce8fbe40c13463e9e6cebc1334e75090b681fd2cb174336fc4e9dc933a2ad95"
+    },
+    "fresh-fit-summary.json": {
+      "source": {
+        "evidence": "software-fresh-fit-v1/summary.json",
+        "sha256": "e513957620e1b0ae85376fd2ae5c153a0bb75f75b6d133b87dbc0576f9f4c949"
+      },
+      "sha256": "4813e1cdc0fd554f1c6ba47fdebb432732377b7dcd12dc8269f8ac5d0485f8c3"
+    }
+  }
+}

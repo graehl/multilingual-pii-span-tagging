@@ -1,0 +1,6 @@
+# Created by running the software; never part of a release.
+.pixi/
+__pycache__/
+work/
+work-*/
+license-approvals.json

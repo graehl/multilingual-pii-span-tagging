@@ -1,0 +1,8 @@
+schema_version: 1
+round_id: software_idner_plumbing_smoke
+membership: exact
+languages:
+  - code: id
+    name: Indonesian
+training_mix:
+  minimum_core_language_share: 0.01

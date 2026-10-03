@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "dataset": "klue-ner",
+  "upstream": {
+    "repo_id": "KLUE-benchmark/KLUE",
+    "revision": "3efd98708a40ff49251fddde35453f8fbb11f536",
+    "url": "https://github.com/KLUE-benchmark/KLUE",
+    "license": "CC-BY-SA-4.0",
+    "required_citations": [
+      "Park et al. (2021), KLUE: Korean Language Understanding Evaluation"
+    ]
+  },
+  "source_schema": "klue_ner",
+  "tagset_sha256": "ec2e6812ac09934f107e4ad213ab773b95bd5cba0237dde65b9996f2fc0043af",
+  "source_schema_sha256": "0e984020b14008e555955454bf02f049d97dce0d322973e81661259db38391b2",
+  "source_projection_sha256": "2b014695cc185382dff43cf1f6c4a28a666e549590b286801bb0b4e1bdd73d46",
+  "ignored_source_labels": [
+    "DT",
+    "TI",
+    "QT"
+  ],
+  "record_schema": {
+    "fields": [
+      "id",
+      "text",
+      "spans",
+      "lang",
+      "metadata"
+    ],
+    "span_fields": [
+      "start",
+      "end",
+      "label",
+      "source_label"
+    ],
+    "compression": "gzip",
+    "encoding": "UTF-8"
+  },
+  "counts": {
+    "records": 26008,
+    "spans": 37856,
+    "splits": {
+      "train": 21008,
+      "validation": 5000
+    },
+    "languages": {
+      "ko": 26008
+    },
+    "canonical_labels": {
+      "person_name": 18871,
+      "organization": 10673,
+      "location": 8312
+    },
+    "source_labels": {
+      "PS": 18871,
+      "OG": 10673,
+      "LC": 8312
+    },
+    "source_anomalies": {
+      "header_markup_mismatch": 8,
+      "header_text_mismatch": 3
+    }
+  },
+  "shards": [
+    {
+      "path": "train/ko.jsonl.gz",
+      "bytes": 1721894,
+      "sha256": "1ff9a10a47bc194da6ff00bec39431cf2674a99b2ff0c0fc96c34b2fd0344d67",
+      "records": 21008,
+      "spans": 29607
+    },
+    {
+      "path": "validation/ko.jsonl.gz",
+      "bytes": 454972,
+      "sha256": "7c926d3043d9e8025221cb690ed3d2a7fc8820c413368c10d2b65dee4f710d85",
+      "records": 5000,
+      "spans": 8249
+    }
+  ]
+}

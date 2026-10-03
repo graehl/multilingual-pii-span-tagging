@@ -1,0 +1,18 @@
+{
+  "schema": "pii-source-classes/v1",
+  "note": "Annotation-convention classes for source-conditioning tokens. The training pool carries 44 distinct `src` values whose largest is 44% of rows and whose smallest 16 are each under 500 rows, so per-source tokens would be undertrained for the tail. These classes group by annotation pipeline, which is the axis a conditioning token is meant to absorb: rows sharing a class were labelled by the same process under the same convention. `unknown` is reserved for inference and for training-time dropout, and is never assigned by a rule.",
+  "unknown_class": "unknown",
+  "rules": [
+    {"class": "refinement", "prefix": "ont3-refinement-"},
+    {"class": "nemotron", "prefix": "nemotron"},
+    {"class": "openpii", "prefix": "openpii"},
+    {"class": "transport", "contains": "-transport"},
+    {"class": "ai4p", "prefix": "ai4p"},
+    {"class": "terra", "contains": "terra"},
+    {"class": "spy", "equals": "spy"},
+    {"class": "targeted", "contains": "targeted"},
+    {"class": "ont3-reviewed", "prefix": "ont3-"},
+    {"class": "ont2-reviewed", "prefix": "ont2-"}
+  ],
+  "fallback_class": "other"
+}

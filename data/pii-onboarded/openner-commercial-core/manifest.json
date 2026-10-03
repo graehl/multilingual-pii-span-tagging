@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "dataset": "openner-commercial-core",
+  "upstream": {
+    "repo_id": "bltlab/open-ner-core-types",
+    "revision": "59ce4c55fc54c241e45d2d2c6f1a42f5eaf69719",
+    "url": "https://huggingface.co/datasets/bltlab/open-ner-core-types",
+    "license": "CC-BY-4.0 collection; CC-BY-4.0 and CC-BY-SA-4.0 components",
+    "required_citations": [
+      "Palen-Michel et al. (2025), OpenNER 1.0"
+    ],
+    "components": [
+      {
+        "name": "AnCora Spanish",
+        "relative_root": "AnCora/spa",
+        "lang": "es",
+        "license": "CC-BY-4.0",
+        "url": "https://github.com/UniversalDependencies/UD_Spanish-AnCora",
+        "attribution": "Taulé et al. (2008), AnCora: Multilevel Annotated Corpora for Catalan and Spanish"
+      },
+      {
+        "name": "GermEval 2014",
+        "relative_root": "GermEval/deu",
+        "lang": "de",
+        "license": "CC-BY-4.0",
+        "url": "https://sites.google.com/site/germeval2014ner/data",
+        "attribution": "Benikova et al. (2014), GermEval 2014 Named Entity Recognition Shared Task"
+      },
+      {
+        "name": "Japanese GSD NER",
+        "relative_root": "Japanese_GSD/jap",
+        "lang": "ja",
+        "license": "CC-BY-SA-4.0",
+        "url": "https://github.com/megagonlabs/UD_Japanese-GSD",
+        "attribution": "Asahara et al. (2018), Universal Dependencies Version 2 for Japanese"
+      },
+      {
+        "name": "UNER English EWT",
+        "relative_root": "UNER_English_EWT/eng",
+        "lang": "en",
+        "license": "CC-BY-SA-4.0",
+        "url": "https://github.com/UniversalNER/UNER_English-EWT",
+        "attribution": "Mayhew et al. (2024), Universal NER"
+      },
+      {
+        "name": "UNER Portuguese Bosque",
+        "relative_root": "UNER_Portuguese-Bosque/por",
+        "lang": "pt",
+        "license": "CC-BY-SA-4.0",
+        "url": "https://github.com/UniversalNER/UNER_Portuguese-Bosque",
+        "attribution": "Mayhew et al. (2024), Universal NER"
+      },
+      {
+        "name": "UNER Swedish Talbanken",
+        "relative_root": "UNER_Swedish_Talkbanken/swe",
+        "lang": "sv",
+        "license": "CC-BY-SA-4.0",
+        "url": "https://github.com/UniversalNER/UNER_Swedish-Talbanken",
+        "attribution": "Mayhew et al. (2024), Universal NER"
+      },
+      {
+        "name": "UNER Simplified Chinese GSD",
+        "relative_root": "UNER_Chinese_GSDSIMP/cmn",
+        "lang": "zh",
+        "license": "CC-BY-SA-4.0",
+        "url": "https://github.com/UniversalNER/UNER_Chinese-GSDSIMP",
+        "attribution": "Mayhew et al. (2024), Universal NER"
+      }
+    ]
+  },
+  "source_schema": "openner_core",
+  "tagset_sha256": "4090b4c8dce047f54898f1a7651ee7ecd40fe9fb3bb9b8d1804cf1307f5f2295",
+  "source_schema_sha256": "5234f9d85a158c071cda79748ec211235cefdb5a7bfdaa5895f43252da49fef8",
+  "source_projection_sha256": "aabc940730e54e7d07140d28576ec3f0cc1f3e89a008ba5f8ddb4cb876aaba1a",
+  "ignored_source_labels": [],
+  "record_schema": {
+    "fields": [
+      "id",
+      "text",
+      "spans",
+      "lang",
+      "metadata"
+    ],
+    "span_fields": [
+      "start",
+      "end",
+      "label",
+      "source_label"
+    ],
+    "compression": "gzip",
+    "encoding": "UTF-8"
+  },
+  "counts": {
+    "records": 93750,
+    "spans": 90852,
+    "splits": {
+      "test": 13589,
+      "train": 70285,
+      "validation": 9876
+    },
+    "languages": {
+      "de": 31300,
+      "en": 16621,
+      "es": 17349,
+      "ja": 8100,
+      "pt": 9357,
+      "sv": 6026,
+      "zh": 4997
+    },
+    "canonical_labels": {
+      "person_name": 32833,
+      "location": 30951,
+      "organization": 27068
+    },
+    "source_labels": {
+      "PER": 32833,
+      "LOC": 30951,
+      "ORG": 27068
+    },
+    "source_anomalies": {}
+  },
+  "shards": [
+    {
+      "path": "test/de.jsonl.gz",
+      "bytes": 664358,
+      "sha256": "44855b10f4046898295614c152989c287b048e57ec842bd271edfc3a98f1cab3",
+      "records": 5100,
+      "spans": 4820
+    },
+    {
+      "path": "test/en.jsonl.gz",
+      "bytes": 148101,
+      "sha256": "2975ad2b18411096f6fadb16d682737cb6920f9e76a7a65624bc438f13f48ea0",
+      "records": 2077,
+      "spans": 1088
+    },
+    {
+      "path": "test/es.jsonl.gz",
+      "bytes": 539138,
+      "sha256": "07a656bce0f6729f412befdbfba794ad005316fbb2ddc557f9ec9870389f53a3",
+      "records": 2983,
+      "spans": 4487
+    },
+    {
+      "path": "test/ja.jsonl.gz",
+      "bytes": 70558,
+      "sha256": "0fe3bc4a49e134dda7c554551ff9acd3acff73d66ed7f91333393cce4d4fd90c",
+      "records": 543,
+      "spans": 291
+    },
+    {
+      "path": "test/pt.jsonl.gz",
+      "bytes": 153793,
+      "sha256": "bf1f14af0ad603e5cf466f3f77fba2662755264b889715b326c6830b55a1a6c1",
+      "records": 1167,
+      "spans": 1215
+    },
+    {
+      "path": "test/sv.jsonl.gz",
+      "bytes": 114035,
+      "sha256": "f07991c9f00655945d1cc2765a8d1ca8668c17e931ba71cc5752738c802d9cf9",
+      "records": 1219,
+      "spans": 196
+    },
+    {
+      "path": "test/zh.jsonl.gz",
+      "bytes": 75698,
+      "sha256": "dbc5fec6ac8b38496616e761cef058aa23f34e28cbd4253bc03220ea59bf7c36",
+      "records": 500,
+      "spans": 763
+    },
+    {
+      "path": "train/de.jsonl.gz",
+      "bytes": 3119404,
+      "sha256": "6cfe60c49f5a02008eb79c5057fb80766c8a0f5fe034d9d70dc3f31160e98a57",
+      "records": 24000,
+      "spans": 22717
+    },
+    {
+      "path": "train/en.jsonl.gz",
+      "bytes": 1086269,
+      "sha256": "b28bd98f6c924f25788bc24b7e37bbdd52091d4077a1c49e0cf2439d0cfa0283",
+      "records": 12543,
+      "spans": 7022
+    },
+    {
+      "path": "train/es.jsonl.gz",
+      "bytes": 2069176,
+      "sha256": "d6a73bcf9b951fb9dcf73fed2ab44c35c703f1fb9209f2c5221cf67bc8cf1d66",
+      "records": 11374,
+      "spans": 17354
+    },
+    {
+      "path": "train/ja.jsonl.gz",
+      "bytes": 933556,
+      "sha256": "f355d4c83ce3cd553f1543e72e22dd5fc677dd4ba7bf1c4fadee4e0ebf754330",
+      "records": 7050,
+      "spans": 5488
+    },
+    {
+      "path": "train/pt.jsonl.gz",
+      "bytes": 954325,
+      "sha256": "7e0b7f415b35beeb2de902517748bfea09c8b9bb1b9c94fed2a8dbae7406041c",
+      "records": 7018,
+      "spans": 8101
+    },
+    {
+      "path": "train/sv.jsonl.gz",
+      "bytes": 378003,
+      "sha256": "2467c303df75e3af1fd0808774da1d7fbe6df91b16fd4d210b6dbca8725ad40e",
+      "records": 4303,
+      "spans": 967
+    },
+    {
+      "path": "train/zh.jsonl.gz",
+      "bytes": 616174,
+      "sha256": "9af44827bc5299d4d35697f0bbf0dbfd2154eaafb8d4272b22304969b198f42f",
+      "records": 3997,
+      "spans": 6118
+    },
+    {
+      "path": "validation/de.jsonl.gz",
+      "bytes": 287293,
+      "sha256": "87a71ce7c4d912b8d3943b888611d332304f837b3afbb2dbdf720f9d36c70e64",
+      "records": 2200,
+      "spans": 2131
+    },
+    {
+      "path": "validation/en.jsonl.gz",
+      "bytes": 146333,
+      "sha256": "b6235732cf164f55c86f695bdbd1d8c202586217b92e601701b5c6f6d2c42e28",
+      "records": 2001,
+      "spans": 966
+    },
+    {
+      "path": "validation/es.jsonl.gz",
+      "bytes": 536425,
+      "sha256": "d9c884b68eb5f92bd1f29908f4a1660ad00b3b2654ad3c1f5a90fecc39f48b9e",
+      "records": 2992,
+      "spans": 4534
+    },
+    {
+      "path": "validation/ja.jsonl.gz",
+      "bytes": 69071,
+      "sha256": "c1e283d258c38ffcd0d0b80990af1269a1d00114f1f7080f243d8ab806cedb29",
+      "records": 507,
+      "spans": 417
+    },
+    {
+      "path": "validation/pt.jsonl.gz",
+      "bytes": 159805,
+      "sha256": "720baa47e8515ab18351db7c4ab4de37de403feae8653011009ee28317e89095",
+      "records": 1172,
+      "spans": 1401
+    },
+    {
+      "path": "validation/sv.jsonl.gz",
+      "bytes": 54100,
+      "sha256": "464b0e3f1fa1804b0e4161ae4659c46526be57cd67805ee66210816e402b116a",
+      "records": 504,
+      "spans": 23
+    },
+    {
+      "path": "validation/zh.jsonl.gz",
+      "bytes": 79655,
+      "sha256": "5c59b17ead427d1236fad998cbb19132cc3a9bed0f0c71e63f98b57d4d85b921",
+      "records": 500,
+      "spans": 753
+    }
+  ]
+}

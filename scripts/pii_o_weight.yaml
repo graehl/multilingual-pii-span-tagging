@@ -1,0 +1,57 @@
+# How much to trust each intake method's O (outside) labels.
+#
+# A span-annotated row asserts two things: these characters are entities, and
+# every other character is not. The second claim is only as good as the
+# annotator's recall. A high-precision, low-recall labeller leaves real entities
+# unmarked, so its O positions are partly false negatives and training on them
+# at full strength teaches the tagger to miss what the labeller missed.
+#
+# This file is the ONLY source of those weights. A source absent from it falls
+# back to `default`, and the resolved weight is recorded per row, so a corpus
+# says what it was trained under rather than leaving it to be inferred.
+#
+# The weight scales the loss contribution of O-labelled tokens for rows from
+# that source. 1.0 means "these O labels are as trustworthy as the entity
+# labels"; near 0 means "treat this row as effectively positive-only".
+#
+# It is NOT the same knob as `supervision: annotated_spans_only`, which masks
+# non-span tokens outright (label -100, no gradient at all). Weighting is the
+# continuous version for sources that are better than "unknown" but worse than
+# gold. Positive-only intake stays masked; it never reaches this table.
+#
+# Weights apply per row and therefore vary WITHIN a physical batch, because one
+# batch mixes intake methods. A class weight cannot express that.
+
+schema: pii-o-weight-v1
+
+# Applied to every resolved weight, including `default`. Exists so a whole
+# corpus's O trust can be scaled in one place without editing every entry;
+# leave at 1.0 unless deliberately running a global sensitivity arm.
+scaling_factor: 1.0
+
+# Used when a source matches no rule below. Full trust, matching the historical
+# behaviour before this file existed, so adding the file changes nothing until
+# a source is listed.
+default: 1.0
+
+sources:
+  # --- gold and synthesized: the O claim is sound -------------------------
+  # Gold is annotated exhaustively by construction.
+  gold: 1.0
+  # T transport carriers are synthesized from a known placeholder map, so every
+  # non-span token is a true negative. Full supervision per the 2026-08-20
+  # contract; the scaling factor above is how to dial this without editing here.
+  transport: 1.0
+
+  # --- proven-accurate teachers ------------------------------------------
+  # A teacher whose recall has been measured as roughly correct earns full O
+  # trust: its unmarked tokens really are negatives. Add specific frontier
+  # prompt/model combinations here once their recall is measured, not before.
+  frontier_teacher_measured: 1.0
+
+  # --- consensus that is precision-shaped --------------------------------
+  # Intersection consensus keeps only spans every voter agreed on, which is
+  # deliberately high precision and low recall. Its unmarked tokens are the
+  # disagreements, i.e. exactly where entities are most likely to hide, so its
+  # O labels must be near-worthless. Effectively positive-only.
+  intersection_consensus: 0.02

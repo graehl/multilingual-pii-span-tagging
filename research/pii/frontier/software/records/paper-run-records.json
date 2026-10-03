@@ -1,0 +1,533 @@
+{
+  "projection": "schema, identity, params, metrics and source; free-text logs excluded",
+  "records": [
+    {
+      "path": "runs/aim/pii-gliner2-no-ai4p-train-v1/runs/20260923T190624Z.json",
+      "original_sha256": "6d8e2deb08c94310970dd622c5d01a195e734923400924ab4e8dc18f97d5dcef",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260923T190624Z",
+          "experiment": "pii-gliner2-no-ai4p-train-v1",
+          "run_name": "pii-gliner2-no-ai4p-train-v1/20260923T190624Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": "/mnt/pii-retained/paper-20260923-source/.agentctl/runs/pii-gliner2-no-ai4p-train-v1/20260923T190624Z/headline.txt",
+            "job": "pii-gliner2-no-ai4p-train-v1",
+            "mode": "start",
+            "output": "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train",
+            "run_id": "20260923T190624Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "research/pii/frontier/evidence/four-corpus-v1/runtime/.pixi/gliner-overlay/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "train",
+              "--train",
+              "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train.jsonl",
+              "--eval",
+              "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/selector.jsonl",
+              "--model",
+              "/local/paper-20260923-assets/gliner2-stock",
+              "--output-dir",
+              "/scratch/gliner2-no-ai4p-v1/train",
+              "--verify-supervision",
+              "--epochs",
+              "20",
+              "--max-steps",
+              "8000",
+              "--eval-steps",
+              "250",
+              "--patience",
+              "12",
+              "--batch-size",
+              "8",
+              "--grad-accum",
+              "4",
+              "--checkpoint-mirror",
+              "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train",
+              "--checkpoint-mirror-interval",
+              "3600"
+            ],
+            "cwd": "/mnt/pii-retained/paper-20260923-source",
+            "text": "nice -n 10 research/pii/frontier/evidence/four-corpus-v1/runtime/.pixi/gliner-overlay/bin/python scripts/pii_gliner2_ont3_finetune.py train --train /local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train.jsonl --eval /local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/selector.jsonl --model /local/paper-20260923-assets/gliner2-stock --output-dir /scratch/gliner2-no-ai4p-v1/train --verify-supervision --epochs 20 --max-steps 8000 --eval-steps 250 --patience 12 --batch-size 8 --grad-accum 4 --checkpoint-mirror /local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train --checkpoint-mirror-interval 3600"
+          },
+          "inputs": {
+            "filtered-data": {
+              "is_dir": true,
+              "mtime": "2026-09-23T17:50:55Z",
+              "path": "/local/paper-20260923-results/ont3-context-no-ai4p-v1",
+              "raw": true,
+              "realpath": "/mnt/pii-retained/paper-20260923-results/ont3-context-no-ai4p-v1",
+              "size": 68727524,
+              "source_command_text": "nice -n 10 /local/draft/pixi-gemma4/.pixi/envs/default/bin/python research/pii/frontier/evidence/four-corpus-v1/filter-current-pools.py --source /local/paper-20260923-results/ont3-context-large-training-v7 --output /local/paper-20260923-results/ont3-context-no-ai4p-v1",
+              "source_dump": "runs/aim/pii-four-corpus-filter-current-v1/runs/20260923T175053Z.json",
+              "source_experiment": "pii-four-corpus-filter-current-v1",
+              "source_origin": "/local/paper-20260923-results/ont3-context-no-ai4p-v1",
+              "source_run_id": "20260923T175053Z"
+            },
+            "gliner-pin": {
+              "mtime": "2026-09-23T18:58:48Z",
+              "path": "/mnt/pii-retained/paper-20260923-source/research/pii/frontier/evidence/four-corpus-v1/runtime/gliner2-requirements.txt",
+              "raw": true,
+              "size": 264
+            },
+            "runtime-lock": {
+              "mtime": "2026-09-23T18:05:33Z",
+              "path": "/mnt/pii-retained/paper-20260923-source/research/pii/frontier/evidence/four-corpus-v1/runtime/pixi.lock",
+              "raw": true,
+              "size": 284049
+            },
+            "runtime-manifest": {
+              "mtime": "2026-09-23T18:05:33Z",
+              "path": "/mnt/pii-retained/paper-20260923-source/research/pii/frontier/evidence/four-corpus-v1/runtime/pixi.toml",
+              "raw": true,
+              "size": 4235
+            }
+          },
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "",
+            "git_commit": "faa0d7f8f7d3946e6c83c388fc093d940e158e06",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-bdb9212e-cba6-c0fb-62d5-48abb583c1a0"
+              }
+            ],
+            "hostname": "ip-172-31-14-139",
+            "kernel": "6.8.0-1061-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 22.04.5 LTS",
+              "version_id": "22.04"
+            },
+            "pid": "13883",
+            "python_executable": "/usr/bin/python3.10",
+            "python_version": "3.10.12",
+            "started_at": "2026-09-23T19:06:24Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": "/mnt/pii-retained/paper-20260923-source/.agentctl/runs/pii-gliner2-no-ai4p-train-v1/20260923T190624Z/run.log",
+            "meta_path": "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train.meta.md",
+            "path": "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train",
+            "title": "pii-gliner2-no-ai4p-train-v1 20260923T190624Z"
+          },
+          "outputs": {
+            "primary": {
+              "path": "/local/paper-20260923-results/gliner2-snapped-no-ai4p-v1/train"
+            }
+          },
+          "related": {
+            "agentctl-state": "/mnt/pii-retained/paper-20260923-source/.agentctl/runs/pii-gliner2-no-ai4p-train-v1/20260923T190624Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "8f7825b076e4be3a18553bc2446bbc874a06b87f",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-09-23T18:58:48Z",
+            "path": "/mnt/pii-retained/paper-20260923-source/scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "0ad42a8bfb13bd9082bc63f1a6c8ddcbb5f5024acb7fa64c54a7981d83ff449a",
+            "size": 24049
+          },
+          "setup": {
+            "job": "pii-gliner2-no-ai4p-train-v1",
+            "launch_status": "running",
+            "run_id": "20260923T190624Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "/mnt/pii-retained/paper-20260923-source/pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "/mnt/pii-retained/paper-20260923-source/pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "/mnt/pii-retained/paper-20260923-source/pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "/mnt/pii-retained/paper-20260923-source/requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "project_env": {
+                "git_blob": "bdf2da0bf04ee48c140ca0b7227e93f83cc5e578",
+                "git_path": "agentctl.env",
+                "path": "/mnt/pii-retained/paper-20260923-source/agentctl.env",
+                "sha256": "935bdd1fad56675953fdfc552bdf8f062687269d997d04987f53bf0b154afa22",
+                "size": 124
+              },
+              "script": {
+                "git_blob": "8f7825b076e4be3a18553bc2446bbc874a06b87f",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "/mnt/pii-retained/paper-20260923-source/scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "0ad42a8bfb13bd9082bc63f1a6c8ddcbb5f5024acb7fa64c54a7981d83ff449a",
+                "size": 24049
+              }
+            },
+            "git_branch": "",
+            "git_commit": "faa0d7f8f7d3946e6c83c388fc093d940e158e06",
+            "git_root": "/mnt/pii-retained/paper-20260923-source",
+            "launch_check_at": "2026-09-23T19:06:25Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-23T19:06:24Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "aff613b409dfeed7b9861455",
+          "exported_at": "2026-09-23T19:06:25Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-gs30-titles-v6-g50-seed2-4000/runs/20260928T142402Z.json",
+      "original_sha256": "5441efd7ea7ea7a2618d21ce4cacca259f792c4ff33e7ed82084d42742355286",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260928T142402Z",
+          "experiment": "pii-gs30-titles-v6-g50-seed2-4000",
+          "run_name": "pii-gs30-titles-v6-g50-seed2-4000/20260928T142402Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": ".agentctl/runs/pii-gs30-titles-v6-g50-seed2-4000/20260928T142402Z/headline.txt",
+            "job": "pii-gs30-titles-v6-g50-seed2-4000",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/gold-share-v1/pii-gs30-titles-v6-g50-seed2-4000",
+            "run_id": "20260928T142402Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "pixi-gemma4/.pixi/envs/default/bin/python",
+              "scripts/pii_encoder_train.py",
+              "--model",
+              "FacebookAI/xlm-roberta-large",
+              "--decoder",
+              "linear",
+              "--head-kind",
+              "affine",
+              "--encoder-layers",
+              "24",
+              "--predicate-loss-weight",
+              "1.0",
+              "--predicate-conditioning",
+              "primary-type",
+              "--predicate-objective-mask-channel",
+              "care_provider",
+              "--predicate-objective-mask-channel",
+              "patient",
+              "--predicate-objective-mask-channel",
+              "family_member",
+              "--predicate-objective-mask-channel",
+              "witness_or_bystander",
+              "--predicate-objective-mask-channel",
+              "investigator_or_law_enforcement",
+              "--predicate-objective-mask-channel",
+              "legal_professional",
+              "--subclass-loss-weight",
+              "1.0",
+              "--epochs",
+              "1",
+              "--lr",
+              "2e-5",
+              "--encoder-lr",
+              "1e-5",
+              "--sched",
+              "cosine",
+              "--max-chars",
+              "900",
+              "--max-len",
+              "512",
+              "--early-stopping-threshold",
+              "0.001",
+              "--partial-primary-objective-weight",
+              "1.0",
+              "--bioes-margin-boundary",
+              "0",
+              "--bioes-margin-type",
+              "0",
+              "--bioes-margin-illegal-scale",
+              "0.25",
+              "--bioes-risk-weight",
+              "0",
+              "--bioes-risk-threshold",
+              "1.0",
+              "--bioes-risk-scale",
+              "0.5",
+              "--val-selection",
+              "shuffle",
+              "--train-loss-window-epochs",
+              "1",
+              "--victory-lap-lr-scale",
+              "0",
+              "--sampling-length-window-steps",
+              "1000",
+              "--memory-metrics",
+              "--seed",
+              "20260927",
+              "--predicate-spec=scripts/pii_ont3_bernoulli_predicate_channels_v1.json",
+              "--subclass-spec=scripts/pii_subclass_families_v3.json",
+              "--soft-registers",
+              "0",
+              "--language-bias",
+              "--selection-metric",
+              "span-f1",
+              "--language-round=research/pii/frontier/evidence/four-corpus-v1/language-round.yaml",
+              "--minimum-language-share",
+              "0",
+              "--validation-seed",
+              "20260912",
+              "--patience",
+              "1000",
+              "--annotation-variant-weighting",
+              "legacy",
+              "--training-parameter-precision",
+              "float32",
+              "--context-field",
+              "document_context",
+              "--training-windowing",
+              "token-capacity",
+              "--context-side",
+              "previous",
+              "--o-token-loss-weight",
+              "0.75",
+              "--save-limit",
+              "12",
+              "--data",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles",
+              "--init-from-checkpoint",
+              "artifacts/pii-redaction-frontier/tag-status-replay-v2/pii-tsr2-train-none-fast-6000/checkpoint-6000",
+              "--dual-head-map",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json",
+              "--dual-head-mapped-single-head",
+              "--dual-head-old-weight-schedule",
+              "constant:0",
+              "--max-steps",
+              "4000",
+              "--eval-steps",
+              "2000",
+              "--max-val-windows",
+              "0",
+              "--batch",
+              "8",
+              "--grad-accum",
+              "8",
+              "--sampling-epoch-windows",
+              "64000",
+              "--out",
+              "artifacts/pii-redaction-frontier/gold-share-v1/pii-gs30-titles-v6-g50-seed2-4000",
+              "--keep-final-checkpoint",
+              "--context-configurations",
+              "[[0]]",
+              "--no-prune-early-checkpoints",
+              "--max-grad-norm",
+              "0.125"
+            ],
+            "cwd": ".",
+            "text": "nice -n 10 pixi-gemma4/.pixi/envs/default/bin/python scripts/pii_encoder_train.py --model FacebookAI/xlm-roberta-large --decoder linear --head-kind affine --encoder-layers 24 --predicate-loss-weight 1.0 --predicate-conditioning primary-type --predicate-objective-mask-channel care_provider --predicate-objective-mask-channel patient --predicate-objective-mask-channel family_member --predicate-objective-mask-channel witness_or_bystander --predicate-objective-mask-channel investigator_or_law_enforcement --predicate-objective-mask-channel legal_professional --subclass-loss-weight 1.0 --epochs 1 --lr 2e-5 --encoder-lr 1e-5 --sched cosine --max-chars 900 --max-len 512 --early-stopping-threshold 0.001 --partial-primary-objective-weight 1.0 --bioes-margin-boundary 0 --bioes-margin-type 0 --bioes-margin-illegal-scale 0.25 --bioes-risk-weight 0 --bioes-risk-threshold 1.0 --bioes-risk-scale 0.5 --val-selection shuffle --train-loss-window-epochs 1 --victory-lap-lr-scale 0 --sampling-length-window-steps 1000 --memory-metrics --seed 20260927 --predicate-spec=scripts/pii_ont3_bernoulli_predicate_channels_v1.json --subclass-spec=scripts/pii_subclass_families_v3.json --soft-registers 0 --language-bias --selection-metric span-f1 --language-round=research/pii/frontier/evidence/four-corpus-v1/language-round.yaml --minimum-language-share 0 --validation-seed 20260912 --patience 1000 --annotation-variant-weighting legacy --training-parameter-precision float32 --context-field document_context --training-windowing token-capacity --context-side previous --o-token-loss-weight 0.75 --save-limit 12 --data artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles --init-from-checkpoint artifacts/pii-redaction-frontier/tag-status-replay-v2/pii-tsr2-train-none-fast-6000/checkpoint-6000 --dual-head-map artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json --dual-head-mapped-single-head --dual-head-old-weight-schedule constant:0 --max-steps 4000 --eval-steps 2000 --max-val-windows 0 --batch 8 --grad-accum 8 --sampling-epoch-windows 64000 --out artifacts/pii-redaction-frontier/gold-share-v1/pii-gs30-titles-v6-g50-seed2-4000 --keep-final-checkpoint --context-configurations '[[0]]' --no-prune-early-checkpoints --max-grad-norm 0.125"
+          },
+          "inputs": {},
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "c40ef0cd56279763596168a8c49459630865f85b",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-efc5c7f2-802e-ac7d-4fa5-55cfb26ee388"
+              }
+            ],
+            "hostname": "gra",
+            "kernel": "7.0.0-1012-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 26.04.1 LTS",
+              "version_id": "26.04"
+            },
+            "pid": "3346891",
+            "python_executable": "pixi-gemma4/.pixi/envs/default/bin/python",
+            "python_version": "3.12.13",
+            "started_at": "2026-09-28T14:24:03Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/gold-share-v1/pii-gs30-titles-v6-g50-seed2-4000.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": ".agentctl/runs/pii-gs30-titles-v6-g50-seed2-4000/20260928T142402Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/gold-share-v1/pii-gs30-titles-v6-g50-seed2-4000.meta.md",
+            "path": "artifacts/pii-redaction-frontier/gold-share-v1/pii-gs30-titles-v6-g50-seed2-4000",
+            "title": "pii-gs30-titles-v6-g50-seed2-4000 20260928T142402Z"
+          },
+          "outputs": {
+            "model": {
+              "path": "artifacts/pii-redaction-frontier/gold-share-v1/pii-gs30-titles-v6-g50-seed2-4000"
+            }
+          },
+          "related": {
+            "agentctl-state": ".agentctl/runs/pii-gs30-titles-v6-g50-seed2-4000/20260928T142402Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "40b10a8a8dd4e0f9f996600f64e7961a8c7c8947",
+            "git_path": "scripts/pii_encoder_train.py",
+            "mtime": "2026-09-27T21:46:33Z",
+            "path": "scripts/pii_encoder_train.py",
+            "selection": "detected",
+            "sha256": "eb6ca134516f2093999cd03180980d831640765403a1a791b0e4335ef2cdea2f",
+            "size": 663053
+          },
+          "setup": {
+            "job": "pii-gs30-titles-v6-g50-seed2-4000",
+            "launch_status": "running",
+            "run_id": "20260928T142402Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "40b10a8a8dd4e0f9f996600f64e7961a8c7c8947",
+                "git_path": "scripts/pii_encoder_train.py",
+                "path": "scripts/pii_encoder_train.py",
+                "sha256": "eb6ca134516f2093999cd03180980d831640765403a1a791b0e4335ef2cdea2f",
+                "size": 663053
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "c40ef0cd56279763596168a8c49459630865f85b",
+            "git_root": ".",
+            "guard": "record",
+            "launch_check_at": "2026-09-28T14:24:04Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-28T14:24:02Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "05bd5bc2f8e2b6f236def988",
+          "exported_at": "2026-09-28T14:24:04Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-ont3-surface-capacity-readout-v2/tables/paired-review.json",
+      "original_sha256": "712236819247e354f6edc3d7dc7964d8fc7f55f32a5b00781ed83b5e29cbe08a",
+      "record": {}
+    },
+    {
+      "path": "runs/aim/pii-ont3-surface-repetition-audit-v1/tables/diagnostic.json",
+      "original_sha256": "c16c313bdce3f0b9e6d0a69587c0fceca20e7cdfff6ec92892337358d4eaea4b",
+      "record": {}
+    },
+    {
+      "path": "runs/aim/pii-ont3-surface-weighted-readout-v1/tables/paired-review.json",
+      "original_sha256": "85044a4c2711d259a9f11b78897c3b8983589273a423889778363cf8c794c4df",
+      "record": {}
+    }
+  ]
+}

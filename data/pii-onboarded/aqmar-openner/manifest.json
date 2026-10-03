@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "dataset": "aqmar-openner",
+  "upstream": {
+    "repo_id": "bltlab/open-ner-core-types",
+    "revision": "59ce4c55fc54c241e45d2d2c6f1a42f5eaf69719",
+    "url": "https://huggingface.co/datasets/bltlab/open-ner-core-types",
+    "license": "citation-required",
+    "required_citations": [
+      "Mohit et al. (2012), Recall-Oriented Learning of Named Entities in Arabic Wikipedia"
+    ]
+  },
+  "source_schema": "aqmar_core",
+  "tagset_sha256": "55546ccc4ccb8b240e0acb74b2ad7a25bb86257fbf1a592379908ddcd54f83e6",
+  "source_schema_sha256": "5234f9d85a158c071cda79748ec211235cefdb5a7bfdaa5895f43252da49fef8",
+  "source_projection_sha256": "9871ddac0dbb4a5ef4cb18a2f5c7e3103ef41cc1b9728677d0619603d6b30569",
+  "ignored_source_labels": [],
+  "record_schema": {
+    "fields": [
+      "id",
+      "text",
+      "spans",
+      "lang",
+      "metadata"
+    ],
+    "span_fields": [
+      "start",
+      "end",
+      "label",
+      "source_label"
+    ],
+    "compression": "gzip",
+    "encoding": "UTF-8"
+  },
+  "counts": {
+    "records": 2643,
+    "spans": 3363,
+    "splits": {
+      "test": 605,
+      "train": 1328,
+      "validation": 710
+    },
+    "languages": {
+      "ar": 2643
+    },
+    "canonical_labels": {
+      "person_name": 1469,
+      "location": 1443,
+      "organization": 451
+    },
+    "source_labels": {
+      "PER": 1469,
+      "LOC": 1443,
+      "ORG": 451
+    },
+    "source_anomalies": {}
+  },
+  "shards": [
+    {
+      "path": "test/ar.jsonl.gz",
+      "bytes": 113558,
+      "sha256": "8f335fcfeb9a6c8eebdc8cab3530dbda1378a037e35fa752c12985118cff890c",
+      "records": 605,
+      "spans": 852
+    },
+    {
+      "path": "train/ar.jsonl.gz",
+      "bytes": 246941,
+      "sha256": "5ab1183c9431f40a08026cc69cb765ead7b67d8ec6e1cc71fb9446301ce72386",
+      "records": 1328,
+      "spans": 1959
+    },
+    {
+      "path": "validation/ar.jsonl.gz",
+      "bytes": 112603,
+      "sha256": "75e950fbbd3b590ba18552470077077b9a3414915dc2a3a8b4f47bab64c1dd63",
+      "records": 710,
+      "spans": 552
+    }
+  ]
+}

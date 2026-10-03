@@ -1,0 +1,46 @@
+[workspace]
+name = "pii-reproduction"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[system-requirements]
+cuda = "13.0"
+libc = "2.28"
+
+[dependencies]
+python = "3.12.*"
+pip = "*"
+# Some pinned corpora (Wojood) are Git LFS repositories.
+git = "*"
+git-lfs = "*"
+
+[pypi-dependencies]
+torch = { version = "==2.10.0", index = "https://download.pytorch.org/whl/cu130" }
+transformers = "==5.10.2"
+accelerate = "==1.13.0"
+datasets = "==4.3.0"
+huggingface-hub = "==1.9.1"
+tokenizers = "==0.22.2"
+numpy = "*"
+pyyaml = "*"
+regex = "*"
+sentencepiece = "*"
+safetensors = "*"
+scipy = "*"
+psutil = "*"
+einops = "*"
+peft = ">=0.18.0"
+aiohttp = "*"
+wtpsplit = "==2.2.1"
+faker = "==40.31.0"
+# Name-kind model export and serving (versions of the paper's bundle).
+onnx = "==1.22.0"
+onnxruntime = "==1.29.0"
+
+[pypi-options]
+index-url = "https://pypi.org/simple"
+extra-index-urls = ["https://download.pytorch.org/whl/cu130"]
+index-strategy = "unsafe-best-match"
+
+[activation.env]
+PYTORCH_CUDA_ALLOC_CONF = "expandable_segments:True,garbage_collection_threshold:0.5"

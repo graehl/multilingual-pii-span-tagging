@@ -1,0 +1,73 @@
+# Isolated annotation home. Written from scratch, never copied from ~/.codex,
+# which carries trusted-project entries pre-approving the home directory and /tmp,
+# workspace write access, network access and web search.
+#
+# Every key below was verified against `codex app-server --strict-config`, which
+# rejects unknown fields. Plain `codex exec` does NOT: it silently accepts an
+# invented section, so a config that runs under exec proves nothing. Validate
+# changes with strict mode.
+
+model_provider = "openai-patient"
+
+approval_policy = "never"
+sandbox_mode = "read-only"
+
+[sandbox_workspace_write]
+network_access = false
+
+# No tool surface, no background context aggregation.
+[features]
+memories = false
+computer_use = false
+browser_use = false
+multi_agent = false
+web_search = false
+code_mode = false
+code_mode_host = false
+code_mode_only = false
+code_mode_prewarm = false
+
+# Structural overrides so nothing reads or writes memory even if a feature flag
+# is reinterpreted by a later release.
+[memories]
+generate_memories = false
+use_memories = false
+disable_on_external_context = true
+
+# Present and empty on purpose: no MCP servers, so no external tool surface.
+[mcp_servers]
+
+[model_providers.openai-patient]
+name = "OpenAI"
+wire_api = "responses"
+requires_openai_auth = true
+supports_websockets = true
+supports_standalone_web_search = false
+stream_idle_timeout_ms = 600000
+http_headers = { version = "0.153.4" }
+env_http_headers = { OpenAI-Organization = "OPENAI_ORGANIZATION", OpenAI-Project = "OPENAI_PROJECT" }
+
+# Verification, 2026-09-14, codex-cli 0.154.0.
+#
+# Tool access: asked to list its working directory and read a canary file, the
+# model's tool router refused with "code-mode host is disabled" and it answered
+# NO TOOL ACCESS.
+#
+# Key validity: `codex app-server --strict-config` rejects unknown fields, so
+# acceptance there is evidence. Confirmed real by that route: features.memories,
+# computer_use, browser_use, multi_agent, web_search, code_mode*, the [memories]
+# table with generate_memories / use_memories / disable_on_external_context, and
+# an empty [mcp_servers]. Confirmed invalid: features.smart_approvals,
+# memories.auto_generate, and [approval_policy] or [sandbox_mode] written as
+# tables with a `default` member; the latter two are scalars.
+#
+# Note `codex exec` is NOT strict and silently accepts invented sections, which
+# is how a dead `features.smart_approvals` survived in this file unnoticed.
+# Validate every change with strict mode, not by running a batch.
+#
+# Build the home:
+#   mkdir -p ~/.codex-ont3-annotate && chmod 700 ~/.codex-ont3-annotate
+#   cp ~/.codex/auth.json ~/.codex-ont3-annotate/auth.json
+#   cp scripts/codex-annotation-home.config.toml ~/.codex-ont3-annotate/config.toml
+# Copy nothing else. Clear plugins/ and skills/ between campaigns; Codex
+# recreates them and the runner refuses a home that has them.

@@ -1,0 +1,345 @@
+{
+  "artifact": "ontology-v2-source-extension-evidence-v1",
+  "ontology_version": "pii-ontology-v2",
+  "purpose": "Pinned source identities and aggregate label/split counts corroborating the source_extensions registry in scripts/pii_tagset_v2.yaml. Aggregate counts only: this artifact deliberately carries no surface text, no example span and no personal value.",
+  "redaction": "counts_and_label_names_only",
+  "sources": {
+    "hiner_original": {
+      "dataset": "hiner",
+      "ignored_label_counts": {
+        "FESTIVAL": {
+          "by_split": {
+            "test": 39,
+            "train": 197,
+            "validation": 30
+          },
+          "spans": 266
+        },
+        "GAME": {
+          "by_split": {
+            "test": 369,
+            "train": 1214,
+            "validation": 179
+          },
+          "spans": 1762
+        },
+        "LITERATURE": {
+          "by_split": {
+            "test": 179,
+            "train": 594,
+            "validation": 74
+          },
+          "spans": 847
+        },
+        "MISC": {
+          "by_split": {
+            "test": 1065,
+            "train": 4032,
+            "validation": 552
+          },
+          "spans": 5649
+        },
+        "NUMEX": {
+          "by_split": {
+            "test": 4638,
+            "train": 17105,
+            "validation": 2546
+          },
+          "spans": 24289
+        },
+        "TIMEX": {
+          "by_split": {
+            "test": 3645,
+            "train": 13009,
+            "validation": 1758
+          },
+          "spans": 18412
+        }
+      },
+      "ignored_source_labels": [
+        "FESTIVAL",
+        "GAME",
+        "LITERATURE",
+        "MISC",
+        "NUMEX",
+        "TIMEX"
+      ],
+      "kind": "onboarding_manifest",
+      "manifest": "data/pii-onboarded/hiner/manifest.json",
+      "observed_labels": [
+        "FESTIVAL",
+        "GAME",
+        "LANGUAGE",
+        "LITERATURE",
+        "LOCATION",
+        "MISC",
+        "NUMEX",
+        "ORGANIZATION",
+        "PERSON",
+        "RELIGION",
+        "TIMEX"
+      ],
+      "source_schema": "hiner_original",
+      "source_schema_sha256": "f2206d535d907c0c8e5330cfba2b90f51f29eba46e3c7504b994ed871365bdd2",
+      "splits": {
+        "test": 21657,
+        "train": 75827,
+        "validation": 10851
+      },
+      "upstream": {
+        "license": "CC-BY-SA-4.0",
+        "repo_id": "cfiltnlp/HiNER",
+        "revision": "fdec0c85a6c39a47220932c476f969bb4e2446df"
+      }
+    },
+    "klue_ner": {
+      "dataset": "klue-ner",
+      "ignored_label_counts": {
+        "DT": {
+          "by_split": {
+            "train": 8029,
+            "validation": 2312
+          },
+          "spans": 10341
+        },
+        "QT": {
+          "by_split": {
+            "train": 11717,
+            "validation": 3151
+          },
+          "spans": 14868
+        },
+        "TI": {
+          "by_split": {
+            "train": 2020,
+            "validation": 545
+          },
+          "spans": 2565
+        }
+      },
+      "ignored_source_labels": [
+        "DT",
+        "QT",
+        "TI"
+      ],
+      "kind": "onboarding_manifest",
+      "manifest": "data/pii-onboarded/klue-ner/manifest.json",
+      "observed_labels": [
+        "DT",
+        "LC",
+        "OG",
+        "PS",
+        "QT",
+        "TI"
+      ],
+      "source_schema": "klue_ner",
+      "source_schema_sha256": "0e984020b14008e555955454bf02f049d97dce0d322973e81661259db38391b2",
+      "splits": {
+        "train": 21008,
+        "validation": 5000
+      },
+      "upstream": {
+        "license": "CC-BY-SA-4.0",
+        "repo_id": "KLUE-benchmark/KLUE",
+        "revision": "3efd98708a40ff49251fddde35453f8fbb11f536"
+      }
+    },
+    "multigrascco": {
+      "base_documents": 63,
+      "dataset": "multigrascco",
+      "declared_in_v1_mapping": false,
+      "ignored_label_counts": {
+        "RELATIVE_TIME": {
+          "by_split": {
+            "evaluation": 5444
+          },
+          "spans": 5444
+        }
+      },
+      "kind": "raw_scan",
+      "language_renderings": [
+        "Arabic",
+        "English",
+        "French",
+        "German",
+        "Italian",
+        "Persian",
+        "Polish",
+        "Russian",
+        "Turkish",
+        "Ukrainian"
+      ],
+      "observed_labels": [
+        "AGE",
+        "BODY_DESC",
+        "CIRCUMSTANCES",
+        "CONTACT_EMAIL",
+        "CONTACT_FAX",
+        "CONTACT_PHONE",
+        "DATE",
+        "DIRECT_ID_ADDRESS",
+        "FAMILY",
+        "HEALTH_FCLT",
+        "HOBIS_LFSTL",
+        "ID",
+        "LANGUAGES",
+        "LOCATION_CITY",
+        "LOCATION_COUNTRY",
+        "LOCATION_HOSPITAL",
+        "LOCATION_ORGANIZATION",
+        "LOCATION_STREET",
+        "LOCATION_ZIP",
+        "NAME_DOCTOR",
+        "NAME_EXT",
+        "NAME_PATIENT",
+        "NAME_RELATIVE",
+        "NAME_TITLE",
+        "NAME_USERNAME",
+        "OTHER",
+        "PROFESSION",
+        "RELATIVE_TIME",
+        "SEXUAL_ORIENTATION",
+        "SOCIO",
+        "UNKNOWN"
+      ],
+      "release": "MultiGraSCCo_v2",
+      "scan_root": "untracked/pii-eval/data/multigrascco/extracted/MultiGraSCCo_v2/",
+      "splits": {
+        "evaluation": 25724
+      },
+      "supervision_note": "parallel renderings of one document set; the PHI and IPI files carry disjoint label sets over different supervision units, so per-label totals are not independent support",
+      "undeclared_labels": [
+        "RELATIVE_TIME"
+      ]
+    },
+    "wojood_nested": {
+      "dataset": "wojood-sample",
+      "ignored_label_counts": {
+        "CARDINAL": {
+          "by_split": {
+            "test": 22,
+            "train": 65,
+            "validation": 20
+          },
+          "spans": 107
+        },
+        "CURR": {
+          "by_split": {
+            "test": 3,
+            "train": 10,
+            "validation": 3
+          },
+          "spans": 16
+        },
+        "EVENT": {
+          "by_split": {
+            "test": 21,
+            "train": 107,
+            "validation": 12
+          },
+          "spans": 140
+        },
+        "LAW": {
+          "by_split": {
+            "test": 4,
+            "train": 20
+          },
+          "spans": 24
+        },
+        "NORP": {
+          "by_split": {
+            "test": 37,
+            "train": 168,
+            "validation": 25
+          },
+          "spans": 230
+        },
+        "ORDINAL": {
+          "by_split": {
+            "test": 38,
+            "train": 181,
+            "validation": 25
+          },
+          "spans": 244
+        },
+        "PERCENT": {
+          "by_split": {
+            "test": 1,
+            "train": 1,
+            "validation": 1
+          },
+          "spans": 3
+        },
+        "PRODUCT": {
+          "by_split": {
+            "train": 3
+          },
+          "spans": 3
+        },
+        "QUANTITY": {
+          "by_split": {
+            "train": 2,
+            "validation": 1
+          },
+          "spans": 3
+        },
+        "UNIT": {
+          "by_split": {
+            "train": 4,
+            "validation": 1
+          },
+          "spans": 5
+        }
+      },
+      "ignored_source_labels": [
+        "CARDINAL",
+        "CURR",
+        "EVENT",
+        "LAW",
+        "NORP",
+        "ORDINAL",
+        "PERCENT",
+        "PRODUCT",
+        "QUANTITY",
+        "UNIT"
+      ],
+      "kind": "onboarding_manifest",
+      "manifest": "data/pii-onboarded/wojood-sample/manifest.json",
+      "observed_labels": [
+        "CARDINAL",
+        "CURR",
+        "DATE",
+        "EVENT",
+        "FAC",
+        "GPE",
+        "LANGUAGE",
+        "LAW",
+        "LOC",
+        "MONEY",
+        "NORP",
+        "OCC",
+        "ORDINAL",
+        "ORG",
+        "PERCENT",
+        "PERS",
+        "PRODUCT",
+        "QUANTITY",
+        "TIME",
+        "UNIT",
+        "WEBSITE"
+      ],
+      "source_schema": "wojood_nested",
+      "source_schema_sha256": "c7ba7283f2144d40a94c29294e255721df7bc1e035b47045d1757644a1a88a93",
+      "splits": {
+        "test": 357,
+        "train": 1114,
+        "validation": 158
+      },
+      "upstream": {
+        "license": "MIT",
+        "repo_id": "SinaLab/ArabicNER",
+        "revision": "ef3a7f4e806a2d909b9107d757c5f65545ae83dc"
+      }
+    }
+  }
+}

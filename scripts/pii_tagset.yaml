@@ -1,0 +1,1004 @@
+# Target PII tagset hierarchy + per-source-schema mapping specs.
+# Contract: topics/pii-adaptation.md "Axis 2" (tagset projector).
+#
+# nodes: target tagset as a forest. Each node:
+#   parent: enclosing node (absent = top-level category)
+#   coarse: name | format | freetext  -- the MT-routing stratum
+#           (inherited from parent when absent)
+#   refine: rule family expected to decide this refinement from its parent
+#           (R0 generator provenance, R1 surface form, R2 lexicon,
+#            R3 span structure, R4 context, R5 cross-model, R6 LLM)
+#           -- documentation, not executed config.
+# Backoff: a span undecidable among siblings keeps the parent label.
+#
+# sources: per-schema label -> node maps. Every source label maps to
+# exactly one node; coarsening a prediction = walking up from its node to
+# the source schema's image (see scripts/pii_projector.py).
+
+version: 1
+
+nodes:
+  # ---- person names (coarse: name)
+  person_name: {coarse: name}
+  given_name: {parent: person_name, refine: R0/R2/R3}
+  family_name: {parent: person_name, refine: R0/R2/R3}
+  middle_name: {parent: person_name, refine: R0/R3}
+  name_prefix: {parent: person_name, refine: R1/R2}   # Mr/Dr titles
+  clinician_name: {parent: person_name, refine: R4/R6}
+
+  # ---- person attributes / demographic quasi-identifiers (freetext)
+  person_attribute: {coarse: freetext}
+  age: {parent: person_attribute, coarse: format}
+  gender: {parent: person_attribute}
+  physical_trait: {parent: person_attribute}           # eye color, height
+  occupation: {parent: person_attribute}
+  race_ethnicity: {parent: person_attribute}
+  religious_belief: {parent: person_attribute}
+  political_view: {parent: person_attribute}
+  sexuality: {parent: person_attribute}
+  education_level: {parent: person_attribute}
+  employment_status: {parent: person_attribute}
+  language_spoken: {parent: person_attribute}
+  health_attribute: {parent: person_attribute}         # meds, allergies, conditions
+  organization: {coarse: freetext}
+
+  # ---- location / address
+  location: {coarse: freetext}
+  address: {parent: location}
+  street_address: {parent: address, refine: R2/R3}
+  building_number: {parent: street_address, coarse: format, refine: R1}
+  secondary_address: {parent: street_address, refine: R1}  # apt/suite
+  city: {parent: location, refine: R2}
+  region: {parent: location, refine: R2}               # state/county
+  postal_code: {parent: location, coarse: format, refine: R1}
+  country: {parent: location, refine: R2}
+  gps_coordinates: {parent: location, coarse: format, refine: R1}
+
+  # ---- contact (format)
+  contact: {coarse: format}
+  email: {parent: contact, refine: R1}
+  phone_number: {parent: contact, refine: R1}
+  url: {parent: contact, refine: R1}
+
+  # ---- digital identity (format)
+  digital_id: {coarse: format}
+  username: {parent: digital_id}
+  ip_address: {parent: digital_id, refine: R1}
+  mac_address: {parent: digital_id, refine: R1}
+  device_id: {parent: digital_id, refine: R1}          # IMEI etc.
+  user_agent: {parent: digital_id, refine: R1}
+  account_id: {parent: digital_id}
+  biometric_identifier: {parent: digital_id}
+
+  # ---- government / national IDs (format)
+  government_id: {coarse: format}
+  national_id: {parent: government_id, refine: R1/R4}  # SSN etc.
+  passport_number: {parent: government_id, refine: R1/R4}
+  drivers_license: {parent: government_id, refine: R1/R4}
+  tax_id: {parent: government_id, refine: R1/R4}
+  certificate_license: {parent: government_id, refine: R4}  # professional
+  document_code: {parent: government_id, refine: R4}   # case/doc numbers (TAB CODE)
+
+  # ---- organization-issued person identifiers (format)
+  org_issued_id: {coarse: format}
+  medical_record_number: {parent: org_issued_id, refine: R4}
+  insurance_id: {parent: org_issued_id, refine: R4}    # health plan/policy
+  employee_id: {parent: org_issued_id, refine: R4}
+  customer_id: {parent: org_issued_id, refine: R4}
+
+  # ---- financial (format)
+  financial: {coarse: format}
+  bank_account: {parent: financial}
+  account_number: {parent: bank_account, refine: R1}
+  iban: {parent: bank_account, refine: R1}
+  routing_code: {parent: bank_account, refine: R1}     # ABA/BIC
+  payment_card: {parent: financial}
+  card_number: {parent: payment_card, refine: R1}
+  card_expiry: {parent: payment_card, refine: R1/R4}
+  card_cvv: {parent: payment_card, refine: R1/R4}
+  crypto_address: {parent: financial, refine: R1}
+  monetary_amount: {parent: financial, coarse: freetext}
+
+  # ---- secrets / credentials (format)
+  credential: {coarse: format}
+  password: {parent: credential}
+  api_key: {parent: credential, refine: R1}
+  access_token: {parent: credential, refine: R1}
+  pin: {parent: credential, refine: R1/R4}
+  recovery_code: {parent: credential}
+
+  # ---- dates / times (format)
+  date_time: {coarse: format}
+  date: {parent: date_time}
+  date_of_birth: {parent: date, refine: R4}
+  document_date: {parent: date, refine: R4}
+  expiration_date: {parent: date, refine: R4}
+  transaction_date: {parent: date, refine: R4}
+  time: {parent: date_time}
+
+  # ---- vehicle (format)
+  vehicle_id: {coarse: format}
+  vin: {parent: vehicle_id, refine: R1}
+  vehicle_registration: {parent: vehicle_id, refine: R1}
+
+  # ---- catch-alls
+  quantity: {coarse: freetext}                          # TAB QUANTITY
+  misc_identifier: {coarse: freetext}                   # TAB MISC
+
+  fax_number: {parent: phone_number, refine: R4}      # context-only vs voice
+  ssn: {parent: national_id, refine: R1}
+  masked_number: {parent: account_number, refine: R1}  # already-redacted digits
+  swift_bic: {parent: routing_code, refine: R1}
+  aba_routing: {parent: routing_code, refine: R1}
+  ipv4: {parent: ip_address, refine: R1}
+  ipv6: {parent: ip_address, refine: R1}
+  bitcoin_address: {parent: crypto_address, refine: R1}
+  ethereum_address: {parent: crypto_address, refine: R1}
+  litecoin_address: {parent: crypto_address, refine: R1}
+  currency_designator: {parent: financial, coarse: format}  # $, USD, "dollars"
+  salary: {parent: monetary_amount}                    # income = sensitive amount
+  allergy: {parent: health_attribute}
+  medication: {parent: health_attribute}
+  medical_condition: {parent: health_attribute}
+  blood_type: {parent: health_attribute}
+  eye_color: {parent: physical_trait}
+  height: {parent: physical_trait}
+  weight: {parent: physical_trait}
+  state: {parent: region}
+  county: {parent: region}
+  job_title: {parent: occupation}
+  job_area: {parent: occupation}
+  healthcare_org: {parent: organization}
+  financial_org: {parent: organization}
+  org_department: {parent: organization}
+  airport_code: {parent: location, coarse: format}
+  timezone: {parent: location, coarse: format}
+
+  patient_name: {parent: person_name, refine: R4/R6}
+  relative_name: {parent: person_name, refine: R4/R6}
+  circumstance: {parent: person_attribute}             # identifying events
+  lifestyle: {parent: person_attribute}                # hobbies etc.
+  socioeconomic_status: {parent: person_attribute}
+
+cuts:
+  # Reporting projections, not replacements for the fine deployment
+  # vocabulary. Every canonical node must occur exactly once in each cut.
+  redaction_20_v1:
+    family_name: [family_name]
+    person_name:
+      [person_name, given_name, middle_name, name_prefix, clinician_name,
+       patient_name, relative_name]
+    person_attribute:
+      [person_attribute, age, gender, physical_trait, occupation,
+       race_ethnicity, religious_belief, political_view, sexuality,
+       education_level, employment_status, language_spoken, health_attribute,
+       allergy, medication, medical_condition, blood_type, eye_color, height,
+       weight, job_title, job_area, circumstance, lifestyle,
+       socioeconomic_status]
+    organization: [organization, healthcare_org, financial_org, org_department]
+    location:
+      [location, address, street_address, building_number, secondary_address,
+       city, region, postal_code, country, gps_coordinates, state, county,
+       airport_code, timezone]
+    contact: [contact]
+    email: [email]
+    phone_number: [phone_number, fax_number]
+    url: [url]
+    digital_id:
+      [digital_id, username, ip_address, mac_address, device_id, user_agent,
+       account_id, biometric_identifier, ipv4, ipv6]
+    government_id:
+      [government_id, national_id, passport_number, drivers_license, tax_id,
+       certificate_license, document_code, ssn]
+    org_issued_id:
+      [org_issued_id, medical_record_number, insurance_id, employee_id,
+       customer_id]
+    bank_account:
+      [bank_account, account_number, iban, routing_code, masked_number,
+       swift_bic, aba_routing]
+    payment_card: [payment_card, card_number, card_expiry, card_cvv]
+    monetary_amount: [monetary_amount, salary]
+    financial:
+      [financial, crypto_address, bitcoin_address, ethereum_address,
+       litecoin_address, currency_designator]
+    credential: [credential, password, api_key, access_token, pin, recovery_code]
+    date_time:
+      [date_time, date, date_of_birth, document_date, expiration_date,
+       transaction_date, time]
+    vehicle_id: [vehicle_id, vin, vehicle_registration]
+    other_sensitive: [quantity, misc_identifier]
+
+  # Common typed surface for the literal Presidio AnalyzerEngine default.
+  # Presidio exposes PERSON but cannot distinguish family_name from the
+  # remaining person-name nodes.  Collapse that distinction for every arm;
+  # all other redaction_20_v1 groups remain unchanged.
+  redaction_20_presidio_common_v1:
+    person_name:
+      [person_name, given_name, family_name, middle_name, name_prefix,
+       clinician_name, patient_name, relative_name]
+    person_attribute:
+      [person_attribute, age, gender, physical_trait, occupation,
+       race_ethnicity, religious_belief, political_view, sexuality,
+       education_level, employment_status, language_spoken, health_attribute,
+       allergy, medication, medical_condition, blood_type, eye_color, height,
+       weight, job_title, job_area, circumstance, lifestyle,
+       socioeconomic_status]
+    organization: [organization, healthcare_org, financial_org, org_department]
+    location:
+      [location, address, street_address, building_number, secondary_address,
+       city, region, postal_code, country, gps_coordinates, state, county,
+       airport_code, timezone]
+    contact: [contact]
+    email: [email]
+    phone_number: [phone_number, fax_number]
+    url: [url]
+    digital_id:
+      [digital_id, username, ip_address, mac_address, device_id, user_agent,
+       account_id, biometric_identifier, ipv4, ipv6]
+    government_id:
+      [government_id, national_id, passport_number, drivers_license, tax_id,
+       certificate_license, document_code, ssn]
+    org_issued_id:
+      [org_issued_id, medical_record_number, insurance_id, employee_id,
+       customer_id]
+    bank_account:
+      [bank_account, account_number, iban, routing_code, masked_number,
+       swift_bic, aba_routing]
+    payment_card: [payment_card, card_number, card_expiry, card_cvv]
+    monetary_amount: [monetary_amount, salary]
+    financial:
+      [financial, crypto_address, bitcoin_address, ethereum_address,
+       litecoin_address, currency_designator]
+    credential: [credential, password, api_key, access_token, pin, recovery_code]
+    date_time:
+      [date_time, date, date_of_birth, document_date, expiration_date,
+       transaction_date, time]
+    vehicle_id: [vehicle_id, vin, vehicle_registration]
+    other_sensitive: [quantity, misc_identifier]
+
+  redaction_9_v1:
+    name:
+      [person_name, given_name, family_name, middle_name, name_prefix,
+       clinician_name, patient_name, relative_name]
+    person_attribute:
+      [person_attribute, age, gender, physical_trait, occupation,
+       race_ethnicity, religious_belief, political_view, sexuality,
+       education_level, employment_status, language_spoken, health_attribute,
+       allergy, medication, medical_condition, blood_type, eye_color, height,
+       weight, job_title, job_area, circumstance, lifestyle,
+       socioeconomic_status]
+    organization: [organization, healthcare_org, financial_org, org_department]
+    location_or_contact:
+      [location, address, street_address, building_number, secondary_address,
+       city, region, postal_code, country, gps_coordinates, state, county,
+       airport_code, timezone, contact, email, phone_number, url, fax_number]
+    unique_identifier:
+      [digital_id, username, ip_address, mac_address, device_id, user_agent,
+       account_id, biometric_identifier, ipv4, ipv6, government_id,
+       national_id, passport_number, drivers_license, tax_id,
+       certificate_license, document_code, ssn, org_issued_id,
+       medical_record_number, insurance_id, employee_id, customer_id,
+       vehicle_id, vin, vehicle_registration]
+    financial:
+      [financial, bank_account, account_number, iban, routing_code,
+       payment_card, card_number, card_expiry, card_cvv, crypto_address,
+       monetary_amount, masked_number, swift_bic, aba_routing, bitcoin_address,
+       ethereum_address, litecoin_address, currency_designator, salary]
+    credential: [credential, password, api_key, access_token, pin, recovery_code]
+    date_time:
+      [date_time, date, date_of_birth, document_date, expiration_date,
+       transaction_date, time]
+    other_sensitive: [quantity, misc_identifier]
+
+sources:
+  # Literal AnalyzerEngine() inventory in Presidio Analyzer 2.2.364.  This is
+  # a source-label projection, not a claim that the default can detect every
+  # canonical node below each reporting group.
+  presidio_analyzer_2_2_364_default_en:
+    CREDIT_CARD: card_number
+    CRYPTO: bitcoin_address
+    DATE_TIME: date_time
+    EMAIL_ADDRESS: email
+    IBAN_CODE: iban
+    IP_ADDRESS: ip_address
+    LOCATION: location
+    MAC_ADDRESS: mac_address
+    MEDICAL_LICENSE: certificate_license
+    NRP: person_attribute
+    PERSON: person_name
+    PHONE_NUMBER: phone_number
+    UK_NHS: insurance_id
+    URL: url
+    US_BANK_NUMBER: account_number
+    US_DRIVER_LICENSE: drivers_license
+    US_ITIN: tax_id
+    US_PASSPORT: passport_number
+    US_SSN: ssn
+    UUID: digital_id
+
+  # Literal AnalyzerEngine() inventory of the data-privacy-stack Presidio fork
+  # (presidio-analyzer 2.2.364, 2026-09-09) with spaCy engines: the default
+  # English set above plus AGE, EMAIL and a generic ID recognizer.
+  presidio_fork_2_2_364_multilingual:
+    AGE: age
+    CREDIT_CARD: card_number
+    CRYPTO: bitcoin_address
+    DATE_TIME: date_time
+    EMAIL: email
+    EMAIL_ADDRESS: email
+    IBAN_CODE: iban
+    ID: digital_id
+    IP_ADDRESS: ip_address
+    LOCATION: location
+    MAC_ADDRESS: mac_address
+    MEDICAL_LICENSE: certificate_license
+    NRP: person_attribute
+    PERSON: person_name
+    PHONE_NUMBER: phone_number
+    UK_NHS: insurance_id
+    URL: url
+    US_BANK_NUMBER: account_number
+    US_DRIVER_LICENSE: drivers_license
+    US_ITIN: tax_id
+    US_PASSPORT: passport_number
+    US_SSN: ssn
+    UUID: digital_id
+    # Emitted or advertised by the non-English engines: spaCy ORG and the
+    # country-specific pattern recognizers Presidio enables for es/it/pl.
+    ORGANIZATION: organization
+    ES_NIE: national_id
+    ES_NIF: national_id
+    IT_DRIVER_LICENSE: drivers_license
+    IT_FISCAL_CODE: tax_id
+    IT_IDENTITY_CARD: national_id
+    IT_PASSPORT: passport_number
+    IT_VAT_CODE: tax_id
+    PL_PESEL: national_id
+
+  openai_8:
+    private_person: person_name
+    private_address: address
+    private_email: email
+    private_phone: phone_number
+    private_url: url
+    private_date: date
+    account_number: financial   # coarse class: covers bank/card/crypto ids
+    secret: credential
+
+  fastino_42:
+    person: person_name
+    full_name: person_name
+    first_name: given_name
+    middle_name: middle_name
+    last_name: family_name
+    date_of_birth: date_of_birth
+    email: email
+    phone_number: phone_number
+    address: address
+    street_address: street_address
+    city: city
+    state_or_region: region
+    postal_code: postal_code
+    country: country
+    government_id: government_id
+    national_id_number: national_id
+    passport_number: passport_number
+    drivers_license_number: drivers_license
+    license_number: drivers_license
+    tax_id: tax_id
+    tax_number: tax_id
+    bank_account: bank_account
+    account_number: account_number
+    routing_number: routing_code
+    iban: iban
+    payment_card: payment_card
+    card_number: card_number
+    card_expiry: card_expiry
+    card_cvv: card_cvv
+    username: username
+    ip_address: ip_address
+    account_id: account_id
+    sensitive_account_id: account_id
+    password: password
+    secret: credential
+    api_key: api_key
+    access_token: access_token
+    recovery_code: recovery_code
+    sensitive_date: date
+    document_date: document_date
+    expiration_date: expiration_date
+    transaction_date: transaction_date
+
+  openmed_54:
+    FIRSTNAME: given_name
+    MIDDLENAME: middle_name
+    LASTNAME: family_name
+    PREFIX: name_prefix
+    AGE: age
+    GENDER: gender
+    SEX: gender
+    EYECOLOR: eye_color
+    HEIGHT: height
+    USERNAME: username
+    OCCUPATION: occupation
+    JOBTITLE: job_title
+    JOBDEPARTMENT: org_department
+    ORGANIZATION: organization
+    USERAGENT: user_agent
+    EMAIL: email
+    PHONE: phone_number
+    URL: url
+    STREET: street_address
+    BUILDINGNUMBER: building_number
+    SECONDARYADDRESS: secondary_address
+    CITY: city
+    COUNTY: county
+    STATE: state
+    ZIPCODE: postal_code
+    GPSCOORDINATES: gps_coordinates
+    ORDINALDIRECTION: location
+    DATE: date
+    DATEOFBIRTH: date_of_birth
+    TIME: time
+    SSN: ssn
+    ACCOUNTNAME: bank_account
+    BANKACCOUNT: account_number
+    IBAN: iban
+    BIC: swift_bic
+    CREDITCARD: card_number
+    CREDITCARDISSUER: payment_card
+    CVV: card_cvv
+    PIN: pin
+    MASKEDNUMBER: masked_number
+    AMOUNT: monetary_amount
+    CURRENCY: currency_designator
+    CURRENCYCODE: currency_designator
+    CURRENCYNAME: currency_designator
+    CURRENCYSYMBOL: currency_designator
+    BITCOINADDRESS: bitcoin_address
+    ETHEREUMADDRESS: ethereum_address
+    LITECOINADDRESS: litecoin_address
+    VIN: vin
+    VRM: vehicle_registration
+    IPADDRESS: ip_address
+    MACADDRESS: mac_address
+    IMEI: device_id
+    PASSWORD: password
+
+  spy_7:
+    NAME: person_name
+    EMAIL: email
+    PHONE_NUM: phone_number
+    ID_NUM: government_id     # SPY pools mix national/financial ids; parent-level
+    URL: url
+    USERNAME: username
+    ADDRESS: street_address   # SPY generates faker.street_address only
+
+  tab_8:
+    PERSON: person_name
+    CODE: document_code
+    LOC: location
+    ORG: organization
+    DEM: person_attribute
+    DATETIME: date_time
+    QUANTITY: quantity
+    MISC: misc_identifier
+
+  # Observed inventories (untracked/pii-eval/label_inventory.json, 2026-07-21).
+  nemotron_pii: &nemotron_labels
+    date: date
+    first_name: given_name
+    company_name: organization
+    email: email
+    last_name: family_name
+    url: url
+    occupation: occupation
+    country: country
+    phone_number: phone_number
+    time: time
+    customer_id: customer_id
+    city: city
+    state: state
+    street_address: street_address
+    date_of_birth: date_of_birth
+    user_name: username
+    date_time: date_time
+    account_number: account_number
+    biometric_identifier: biometric_identifier
+    credit_debit_card: card_number
+    employee_id: employee_id
+    education_level: education_level
+    employment_status: employment_status
+    medical_record_number: medical_record_number
+    health_plan_beneficiary_number: insurance_id
+    race_ethnicity: race_ethnicity
+    coordinate: gps_coordinates
+    password: password
+    language: language_spoken
+    bank_routing_number: aba_routing
+    ipv4: ipv4
+    county: county
+    postcode: postal_code
+    vehicle_identifier: vin
+    fax_number: fax_number
+    pin: pin
+    gender: gender
+    swift_bic: swift_bic
+    age: age
+    license_plate: vehicle_registration
+    ssn: ssn
+    religious_belief: religious_belief
+    certificate_license_number: certificate_license
+    api_key: api_key
+    http_cookie: access_token
+    political_view: political_view
+    mac_address: mac_address
+    blood_type: blood_type
+    cvv: card_cvv
+    ipv6: ipv6
+    device_identifier: device_id
+    national_id: national_id
+    sexuality: sexuality
+    unique_id: misc_identifier
+    tax_id: tax_id
+
+  # OpenMed/privacy-filter-nemotron-v2 uses Nemotron-PII's label space
+  # verbatim (verified from its config id2label, 2026-07-21).
+  openmed_nemotron_55: *nemotron_labels
+
+  # ai4privacy GIVENNAME-era vocabulary (open-500k, openpii-1.5m, 400k).
+  ai4privacy_new: &ai4privacy_new
+    GIVENNAME: given_name
+    SURNAME: family_name
+    CITY: city
+    TELEPHONENUM: phone_number
+    TIME: time
+    DATE: date
+    EMAIL: email
+    STREET: street_address
+    BUILDINGNUM: building_number
+    IDCARDNUM: national_id
+    TITLE: name_prefix
+    AGE: age
+    ZIPCODE: postal_code
+    PASSPORTNUM: passport_number
+    TAXNUM: tax_id
+    SEX: gender
+    CREDITCARDNUMBER: card_number
+    SOCIALNUM: ssn
+    DRIVERLICENSENUM: drivers_license
+    GENDER: gender
+    DATEOFBIRTH: date_of_birth
+    ORGANISATION: organization
+    AMOUNT: monetary_amount
+    URL: url
+    COUNTRY: country
+    CURRENCY: currency_designator
+    USERNAME: username
+    BANKNAME: financial_org
+    ACCOUNTNUM: account_number
+    JOBTITLE: job_title
+    IPV4: ipv4
+    PASSWORD: password
+    WEIGHT: weight
+    TIMEZONE: timezone
+    SALARY: salary
+    ALLERGIES: allergy
+    MEDICATION: medication
+    POLICYNUM: insurance_id
+    HEIGHT: height
+    DOCTORNAME: clinician_name
+    AIRPORTCODE: airport_code
+    MACADDRESS: mac_address
+    HOSPITALNAME: healthcare_org
+    JOBTYPE: occupation
+
+  # The Health/PHI 400k line extends the same vocabulary with clinical
+  # attributes and identifiers. Broad information spans stay at the
+  # health_attribute parent rather than inventing unsupported leaf semantics.
+  ai4privacy_health_phi:
+    <<: *ai4privacy_new
+    BLOODTYPE: blood_type
+    DIAGNOSES: medical_condition
+    DISABILITYSTATUS: health_attribute
+    GENETICINFO: health_attribute
+    HEALTHINSURANCENUM: insurance_id
+    IMMUNIZATIONSTATUS: health_attribute
+    MEDICALRECORDNUM: medical_record_number
+    MENTALHEALTHINFO: health_attribute
+    PREGNANCYSTATUS: health_attribute
+    PRESCRIPTIONINFO: health_attribute
+    TESTRESULTS: health_attribute
+    TREATMENTINFO: health_attribute
+
+  # ai4privacy FIRSTNAME-era vocabulary (200k; research use only).
+  ai4privacy_200k:
+    FIRSTNAME: given_name
+    LASTNAME: family_name
+    MIDDLENAME: middle_name
+    DATE: date
+    EMAIL: email
+    PREFIX: name_prefix
+    SEX: gender
+    JOBTYPE: occupation
+    JOBTITLE: job_title
+    JOBAREA: job_area
+    AMOUNT: monetary_amount
+    BUILDINGNUMBER: building_number
+    DOB: date_of_birth
+    STREET: street_address
+    CURRENCYSYMBOL: currency_designator
+    CURRENCYNAME: currency_designator
+    CURRENCYCODE: currency_designator
+    CURRENCY: currency_designator
+    COUNTY: county
+    STATE: state
+    AGE: age
+    TIME: time
+    GENDER: gender
+    USERNAME: username
+    CREDITCARDNUMBER: card_number
+    CREDITCARDISSUER: payment_card
+    CREDITCARDCVV: card_cvv
+    PASSWORD: password
+    ACCOUNTNAME: bank_account
+    ACCOUNTNUMBER: account_number
+    MASKEDNUMBER: masked_number
+    URL: url
+    COMPANYNAME: organization
+    ZIPCODE: postal_code
+    IPV4: ipv4
+    IPV6: ipv6
+    IP: ip_address
+    SECONDARYADDRESS: secondary_address
+    CITY: city
+    PHONENUMBER: phone_number
+    PHONEIMEI: device_id
+    BITCOINADDRESS: bitcoin_address
+    ETHEREUMADDRESS: ethereum_address
+    LITECOINADDRESS: litecoin_address
+    SSN: ssn
+    USERAGENT: user_agent
+    IBAN: iban
+    BIC: swift_bic
+    NEARBYGPSCOORDINATE: gps_coordinates
+    ORDINALDIRECTION: location
+    MAC: mac_address
+    EYECOLOR: eye_color
+    HEIGHT: height
+    VEHICLEVRM: vehicle_registration
+    VEHICLEVIN: vin
+    PIN: pin
+
+  gretel_finance:
+    name: person_name
+    company: organization
+    street_address: street_address
+    date: date
+    time: time
+    date_time: date_time
+    phone_number: phone_number
+    email: email
+    first_name: given_name
+    last_name: family_name
+    date_of_birth: date_of_birth
+    swift_bic_code: swift_bic
+    bank_routing_number: aba_routing
+    customer_id: customer_id
+    employee_id: employee_id
+    iban: iban
+    bban: account_number
+    passport_number: passport_number
+    ipv4: ipv4
+    ipv6: ipv6
+    ssn: ssn
+    credit_card_security_code: card_cvv
+    credit_card_number: card_number
+    account_pin: pin
+    driver_license_number: drivers_license
+    api_key: api_key
+    user_name: username
+    local_latlng: gps_coordinates
+    password: password
+
+  gretel_en:
+    medical_record_number: medical_record_number
+    date_of_birth: date_of_birth
+    ssn: ssn
+    date: date
+    time: time
+    date_time: date_time
+    first_name: given_name
+    last_name: family_name
+    name: person_name
+    email: email
+    customer_id: customer_id
+    employee_id: employee_id
+    street_address: street_address
+    address: address
+    phone_number: phone_number
+    ipv4: ipv4
+    ipv6: ipv6
+    credit_card_number: card_number
+    license_plate: vehicle_registration
+    user_name: username
+    device_identifier: device_id
+    bank_routing_number: aba_routing
+    swift_bic: swift_bic
+    company_name: organization
+    unique_identifier: misc_identifier
+    biometric_identifier: biometric_identifier
+    account_number: account_number
+    city: city
+    certificate_license_number: certificate_license
+    postcode: postal_code
+    vehicle_identifier: vin
+    coordinate: gps_coordinates
+    country: country
+    api_key: api_key
+    password: password
+    health_plan_beneficiary_number: insurance_id
+    national_id: national_id
+    tax_id: tax_id
+    url: url
+    state: state
+    cvv: card_cvv
+    pin: pin
+
+  # Open-vocab head only (>=300 occurrences); converter policy for this
+  # source is drop-unmapped, not error.
+  urchade_pii:
+    person: person_name
+    name: person_name
+    organization: organization
+    bank: financial_org
+    "phone number": phone_number
+    "mobile phone number": phone_number
+    address: address
+    location: location
+    city: city
+    country: country
+    "passport number": passport_number
+    email: email
+    "email address": email
+    "credit card number": card_number
+    "credit card expiration date": card_expiry
+    "social security number": ssn
+    "national insurance number": national_id
+    "identity card number": national_id
+    "personal identification number": national_id
+    "national ID number": national_id
+    date: date
+    time: time
+    "birth date": date_of_birth
+    birthdate: date_of_birth
+    "date of birth": date_of_birth
+    date_of_birth: date_of_birth
+    "health insurance ID number": insurance_id
+    "health insurance number": insurance_id
+    "health insurance id number": insurance_id
+    "bank account number": account_number
+    IBAN: iban
+    medication: medication
+    "medical condition": medical_condition
+    condition: medical_condition
+    CPF: tax_id
+    "tax identification number": tax_id
+    "tax ID number": tax_id
+    "tax ID": tax_id
+    "company registration number": misc_identifier
+    "driver's license number": drivers_license
+    currency: currency_designator
+    age: age
+    weight: physical_trait
+    password: password
+
+  meddocan_phi:
+    TERRITORIO: location
+    FECHAS: date
+    EDAD_SUJETO_ASISTENCIA: age
+    NOMBRE_SUJETO_ASISTENCIA: patient_name
+    NOMBRE_PERSONAL_SANITARIO: clinician_name
+    SEXO_SUJETO_ASISTENCIA: gender
+    CALLE: street_address
+    PAIS: country
+    ID_SUJETO_ASISTENCIA: medical_record_number
+    CORREO_ELECTRONICO: email
+    ID_TITULACION_PERSONAL_SANITARIO: certificate_license
+    ID_EMPLEO_PERSONAL_SANITARIO: employee_id
+    ID_ASEGURAMIENTO: insurance_id
+    ID_CONTACTO_ASISTENCIAL: org_issued_id
+    HOSPITAL: healthcare_org
+    CENTRO_SALUD: healthcare_org
+    FAMILIARES_SUJETO_ASISTENCIA: relative_name
+    INSTITUCION: organization
+    NUMERO_TELEFONO: phone_number
+    NUMERO_FAX: fax_number
+    PROFESION: occupation
+    OTROS_SUJETO_ASISTENCIA: person_attribute
+
+  # frontier-authored data (pii_fresh_authored.py rows; training + eval).
+  # Scope decision 2026-07-26: relative-time expressions are deliberately
+  # NOT in the target tagset (user: out of de-id scope) — authored data
+  # must not label them.
+  authored_v1:
+    first_name: given_name
+    last_name: family_name
+    date: date
+    date_of_birth: date_of_birth
+    date_time: date_time
+    time: time
+    age: age
+    gender: gender
+    race_ethnicity: race_ethnicity
+    religious_belief: religious_belief
+    political_view: political_view
+    sexuality: sexuality
+    medical_condition: medical_condition
+    blood_type: blood_type
+    phone_number: phone_number
+    fax_number: fax_number
+    email: email
+    street_address: street_address
+    city: city
+    state: state
+    county: county
+    country: country
+    postcode: postal_code
+    company_name: organization
+    occupation: occupation
+    job_area: job_area
+    education_level: education_level
+    account_number: account_number
+    customer_id: customer_id
+    employee_id: employee_id
+    unique_id: misc_identifier
+    medical_record_number: medical_record_number
+    health_plan_beneficiary_number: insurance_id
+    credit_debit_card: card_number
+    certificate_license_number: certificate_license
+    national_id: national_id
+    document_code: document_code
+    passport_number: passport_number
+    ssn: ssn
+    tax_id: tax_id
+    url: url
+    ip_address: ip_address
+    ipv6: ipv6
+    user_name: username
+    password: password
+    api_key: api_key
+    pin: pin
+    device_identifier: device_id
+    mac_address: mac_address
+    biometric_identifier: biometric_identifier
+    employment_status: employment_status
+    language: language_spoken
+    iban: iban
+    monetary_amount: monetary_amount
+    facility: healthcare_org
+    name_title: name_prefix
+    license_plate: vehicle_registration
+    vehicle_identifier: vin
+    http_cookie: access_token
+    cvv: card_cvv
+    coordinate: gps_coordinates
+    policy_number: insurance_id
+    bank_routing_number: aba_routing
+    swift_bic: swift_bic
+    order_number: misc_identifier
+    my_number: national_id
+    reservation_number: misc_identifier
+    student_id: org_issued_id
+    business_registration_number: org_issued_id
+    license_key: api_key
+    session_id: access_token
+    membership_number: org_issued_id
+    nationality: person_attribute
+
+  multigrascco:
+    DATE: date
+    HEALTH_FCLT: healthcare_org
+    NAME_PATIENT: patient_name
+    NAME_DOCTOR: clinician_name
+    NAME_RELATIVE: relative_name
+    NAME_TITLE: name_prefix
+    NAME_EXT: person_name
+    NAME_USERNAME: username
+    CIRCUMSTANCES: circumstance
+    BODY_DESC: physical_trait
+    LOCATION_CITY: city
+    LOCATION_ZIP: postal_code
+    LOCATION_STREET: street_address
+    LOCATION_HOSPITAL: healthcare_org
+    LOCATION_ORGANIZATION: organization
+    LOCATION_COUNTRY: country
+    DIRECT_ID_ADDRESS: address
+    ID: org_issued_id
+    FAMILY: person_attribute
+    AGE: age
+    CONTACT_PHONE: phone_number
+    CONTACT_FAX: fax_number
+    CONTACT_EMAIL: email
+    HOBIS_LFSTL: lifestyle
+    SOCIO: socioeconomic_status
+    LANGUAGES: language_spoken
+    PROFESSION: occupation
+    SEXUAL_ORIENTATION: sexuality
+    OTHER: misc_identifier
+    UNKNOWN: misc_identifier
+
+  # MAPA's global sensitive-entity layer. The retained snapshot also keeps
+  # its fine-grained token labels in row metadata; only the complete,
+  # non-overlapping global layer is projected into canonical spans.
+  mapa_coarse:
+    ORGANISATION: organization
+    ADDRESS: location
+    DATE: date
+    PERSON: person_name
+    AMOUNT: quantity
+    TIME: time
+
+  # idner-news-2k's complete annotation inventory is limited to three
+  # conventional named-entity classes. Its outside tokens therefore remain
+  # unsupervised when the source is used for privacy training.
+  idner_news_2k:
+    LOC: location
+    ORG: organization
+    PER: person_name
+
+  # HiNER's other six entity classes are deliberately absent: festival,
+  # game, literature, and misc are not privacy categories; NUMEX is not
+  # inherently identifying; and TIMEX mixes absolute with excluded relative
+  # time. The onboarding manifest freezes that ignored-label inventory.
+  hiner_original:
+    LANGUAGE: language_spoken
+    LOCATION: location
+    ORGANIZATION: organization
+    PERSON: person_name
+    RELIGION: religious_belief
+
+  # KLUE NER annotates generic Korean news/encyclopedic text at character
+  # granularity. DT and TI are deliberately absent because the KLUE guideline
+  # tags relative date/time expressions the canonical tagset excludes (the
+  # HiNER TIMEX precedent), and QT is generic quantity, not inherently
+  # identifying (the HiNER NUMEX precedent; unlike MAPA's sensitive-entity
+  # AMOUNT layer). Outside tokens remain unsupervised when the source is
+  # used for privacy training.
+  klue_ner:
+    PS: person_name
+    LC: location
+    OG: organization
+
+  # Wojood's public repository sample preserves nested BIO tracks. Cardinal,
+  # ordinal, percent, quantity, unit, currency, event, law, product, and NORP
+  # are deliberately excluded: they are either not inherently private or
+  # conflate target attributes that cannot be projected defensibly.
+  wojood_nested:
+    PERS: person_name
+    ORG: organization
+    GPE: location
+    LOC: location
+    FAC: location
+    OCC: occupation
+    LANGUAGE: language_spoken
+    WEBSITE: url
+    DATE: date
+    TIME: time
+    MONEY: monetary_amount
+
+  # AQMAR's corrected OpenNER 1.0 package has the conventional three core
+  # named-entity types. Outside tokens stay unsupervised for privacy training
+  # because AQMAR does not annotate the full deployment inventory.
+  aqmar_core:
+    LOC: location
+    ORG: organization
+    PER: person_name
+
+  # The license-screened OpenNER subset uses the same exhaustive core entity
+  # inventory in every constituent corpus. Outside tokens are negative only
+  # for these three types, not for the full privacy ontology.
+  openner_core:
+    LOC: location
+    ORG: organization
+    PER: person_name

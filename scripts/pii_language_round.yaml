@@ -1,0 +1,148 @@
+schema_version: 1
+round_id: commercial_global_20_v1
+membership: exact
+order: priority
+deployment_tagset:
+  id: privacy_deployment_53_v1
+  count: 53
+  base_schema: ai4privacy_200k
+  additions:
+    - medical_record_number
+  exclusions:
+    - relative_time
+  per_language_training_floor:
+    all_required_types:
+      min_spans: 10
+      min_documents: 5
+    overrides:
+      medical_record_number:
+        min_spans: 100
+        min_documents: 75
+        min_unique_values: 100
+  accepted_support_sources:
+    - compatible_native_gold
+    - nemotron_pii
+    - exact_frontier_authored
+    - verified_translation
+selection:
+  frozen_at: 2026-07-29
+  required_by_user:
+    - en
+    - ja
+    - ko
+    - zh
+    - hi
+    - ar
+  criteria:
+    - commercial and speaker-market importance
+    - share of public web content
+    - geographic and script coverage
+    - usefulness of existing project training-data paths
+  web_content_reference:
+    publisher: W3Techs
+    snapshot: 2026-07-28
+    url: https://w3techs.com/technologies/overview/content_language
+  supersedes:
+    round_id: openmed_nemotron_v2_20
+    reason: OpenMed model-card metadata omitted required Asian languages
+languages:
+  - code: en
+    name: English
+  - code: de
+    name: German
+  - code: fr
+    name: French
+  - code: es
+    name: Spanish
+  - code: it
+    name: Italian
+  - code: pt
+    name: Portuguese
+  - code: nl
+    name: Dutch
+  - code: pl
+    name: Polish
+  - code: cs
+    name: Czech
+  - code: sv
+    name: Swedish
+  - code: ru
+    name: Russian
+  - code: uk
+    name: Ukrainian
+  - code: zh
+    name: Chinese (Simplified)
+  - code: ja
+    name: Japanese
+  - code: ko
+    name: Korean
+  - code: hi
+    name: Hindi
+  - code: ar
+    name: Arabic
+  - code: tr
+    name: Turkish
+  - code: id
+    name: Indonesian
+  - code: vi
+    name: Vietnamese
+language_importance:
+  normalize_over_reported_slice: true
+  unlisted_language_weight: 1.0
+  weights:
+    en: 4.0
+    ar: 2.0
+    de: 2.0
+    es: 2.0
+    fr: 2.0
+    ko: 2.0
+    pt: 2.0
+    vi: 2.0
+    zh: 2.0
+    cs: 1.0
+    hi: 1.0
+    id: 1.0
+    it: 1.0
+    ja: 1.0
+    nl: 1.0
+    pl: 1.0
+    ru: 1.0
+    sv: 1.0
+    tr: 1.0
+    uk: 1.0
+training_mix:
+  apply_after_per_language_tag_floors: true
+  # The current >=35-language program uses a 0.6% per-language floor. This
+  # manifest's 20 languages remain mandatory; routed split models satisfy the
+  # same rule per assigned component and prove full coverage through their
+  # aggregate route manifest.
+  minimum_core_language_share: 0.006
+  minimum_post_windowing_share:
+    en: 0.30
+  # Reserve English's 30% floor, then allocate the remaining primary mass
+  # by the 2:1 Priority-9-versus-other importance ratio above.
+  weights_percent:
+    en: 30.0
+    ar: 5.185185185185185
+    de: 5.185185185185185
+    es: 5.185185185185185
+    fr: 5.185185185185185
+    ko: 5.185185185185185
+    pt: 5.185185185185185
+    vi: 5.185185185185185
+    zh: 5.185185185185185
+    cs: 2.5925925925925926
+    hi: 2.5925925925925926
+    id: 2.5925925925925926
+    it: 2.5925925925925926
+    ja: 2.5925925925925926
+    nl: 2.5925925925925926
+    pl: 2.5925925925925926
+    ru: 2.5925925925925926
+    sv: 2.5925925925925926
+    tr: 2.5925925925925926
+    uk: 2.5925925925925926
+evaluation_aggregates:
+  primary: unweighted_language_macro
+  supplementary:
+    - importance_weighted_language_macro

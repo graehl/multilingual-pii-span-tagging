@@ -1,0 +1,429 @@
+{
+  "schema": "pii-name-annotation-qc-profiles",
+  "version": 2,
+  "annotation_contract": {
+    "carrier_labels": [
+      "person_name",
+      "given_name",
+      "middle_name",
+      "family_name",
+      "name_prefix",
+      "clinician_name",
+      "patient_name",
+      "relative_name"
+    ],
+    "component_labels": {
+      "given_name": "given_name",
+      "middle_name": "middle_name",
+      "family_name": "family_name"
+    },
+    "suppress_name_when_exactly_relabeled_as": [
+      "organization_reference",
+      "person_reference"
+    ],
+    "projection_values": {
+      "P19": [
+        "person_name"
+      ],
+      "P20": [
+        "person_name"
+      ],
+      "family": [
+        "person",
+        "person_name"
+      ]
+    }
+  },
+  "defaults": {
+    "grammar": "und",
+    "limits": {
+      "max_join_gap_chars": 4,
+      "max_name_atoms": 8
+    },
+    "scoring": {
+      "minimum_assignment_margin": 1.0,
+      "weights": {
+        "order": 1.5,
+        "comma": 8.0,
+        "source_component": 0.0,
+        "lexicon": 3.0,
+        "compact_default": 1.25
+      }
+    },
+    "lexicons": {
+      "family_particles": [
+        "al",
+        "ap",
+        "bin",
+        "binti",
+        "da",
+        "de",
+        "del",
+        "della",
+        "der",
+        "di",
+        "dos",
+        "du",
+        "la",
+        "le",
+        "van",
+        "von",
+        "zu"
+      ],
+      "honorifics": [
+        "dr",
+        "miss",
+        "mr",
+        "mrs",
+        "ms",
+        "prof",
+        "sir"
+      ],
+      "given_files": [],
+      "family_files": []
+    }
+  },
+  "grammars": {
+    "und": {
+      "component_order": "any",
+      "allow_comma_inversion": true,
+      "compact_name": null
+    },
+    "given_first": {
+      "component_order": "given_first",
+      "allow_comma_inversion": true,
+      "compact_name": null
+    },
+    "family_first": {
+      "component_order": "family_first",
+      "allow_comma_inversion": true,
+      "compact_name": null
+    },
+    "zh_han": {
+      "component_order": "family_first",
+      "allow_comma_inversion": true,
+      "compact_name": {
+        "script": "Han",
+        "family_lengths": [
+          1,
+          2
+        ],
+        "default_family_length": 1
+      }
+    },
+    "ko_hangul": {
+      "component_order": "family_first",
+      "allow_comma_inversion": true,
+      "compact_name": {
+        "script": "Hangul",
+        "family_lengths": [
+          1,
+          2
+        ],
+        "default_family_length": 1
+      }
+    }
+  },
+  "grammar_scripts": {
+    "Latin": {
+      "positive": [
+        32,
+        126,
+        160,
+        160,
+        183,
+        183,
+        192,
+        591,
+        688,
+        879,
+        7424,
+        7935,
+        8208,
+        8213,
+        8216,
+        8217,
+        11360,
+        11391,
+        42784,
+        43007,
+        43824,
+        43887,
+        65313,
+        65338,
+        65345,
+        65370
+      ],
+      "negative": [
+        33,
+        38,
+        40,
+        43,
+        47,
+        64,
+        91,
+        96,
+        123,
+        126,
+        215,
+        215,
+        247,
+        247
+      ]
+    },
+    "Arabic": {
+      "positive": [
+        32,
+        64,
+        160,
+        160,
+        183,
+        183,
+        1536,
+        1791,
+        1872,
+        1919,
+        2160,
+        2303,
+        8208,
+        8213,
+        8216,
+        8217,
+        64336,
+        65023,
+        65136,
+        65279
+      ],
+      "negative": [
+        33,
+        38,
+        40,
+        43,
+        47,
+        64
+      ]
+    },
+    "Cyrillic": {
+      "positive": [
+        32,
+        64,
+        160,
+        160,
+        183,
+        183,
+        1024,
+        1327,
+        7296,
+        7311,
+        8208,
+        8213,
+        8216,
+        8217,
+        11744,
+        11775,
+        42560,
+        42655
+      ],
+      "negative": [
+        33,
+        38,
+        40,
+        43,
+        47,
+        64
+      ]
+    },
+    "Japanese": {
+      "positive": [
+        32,
+        64,
+        160,
+        160,
+        183,
+        183,
+        8208,
+        8213,
+        8216,
+        8217,
+        12288,
+        12543,
+        12784,
+        12799,
+        13312,
+        19903,
+        19968,
+        40959,
+        63744,
+        64255,
+        65377,
+        65439,
+        131072,
+        173791,
+        173824,
+        192095,
+        194560,
+        195103,
+        196608,
+        205743
+      ],
+      "negative": [
+        33,
+        38,
+        40,
+        43,
+        47,
+        64
+      ]
+    },
+    "Hangul": {
+      "positive": [
+        32,
+        64,
+        160,
+        160,
+        183,
+        183,
+        4352,
+        4607,
+        8208,
+        8213,
+        8216,
+        8217,
+        12592,
+        12687,
+        43360,
+        43391,
+        44032,
+        55295
+      ],
+      "negative": [
+        33,
+        38,
+        40,
+        43,
+        47,
+        64
+      ]
+    },
+    "Han": {
+      "positive": [
+        32,
+        64,
+        160,
+        160,
+        183,
+        183,
+        8208,
+        8213,
+        8216,
+        8217,
+        12288,
+        12351,
+        13312,
+        19903,
+        19968,
+        40959,
+        63744,
+        64255,
+        131072,
+        173791,
+        173824,
+        192095,
+        194560,
+        195103,
+        196608,
+        205743
+      ],
+      "negative": [
+        33,
+        38,
+        40,
+        43,
+        47,
+        64
+      ]
+    }
+  },
+  "languages": {
+    "ar": {
+      "grammar": "given_first",
+      "grammar_script": "Arabic"
+    },
+    "cs": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "de": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "en": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "es": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "fr": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "hu": {
+      "grammar": "family_first",
+      "grammar_script": "Latin"
+    },
+    "id": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "it": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "ja": {
+      "grammar": "family_first",
+      "grammar_script": "Japanese"
+    },
+    "ko": {
+      "grammar": "ko_hangul",
+      "grammar_script": "Hangul"
+    },
+    "nl": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "pl": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "pt": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "ru": {
+      "grammar": "given_first",
+      "grammar_script": "Cyrillic"
+    },
+    "sv": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "tr": {
+      "grammar": "given_first",
+      "grammar_script": "Latin"
+    },
+    "uk": {
+      "grammar": "given_first",
+      "grammar_script": "Cyrillic"
+    },
+    "vi": {
+      "grammar": "family_first",
+      "grammar_script": "Latin"
+    },
+    "zh": {
+      "grammar": "zh_han",
+      "grammar_script": "Han"
+    }
+  }
+}

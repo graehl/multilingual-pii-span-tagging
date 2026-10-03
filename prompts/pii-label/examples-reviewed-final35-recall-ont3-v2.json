@@ -1,0 +1,2415 @@
+{
+ "en": [
+  {
+   "text": "The applicant complained that the Tribunal had ignored her. Google's lawyer wrote to the Court of Appeal on 14 June 2019, and the BCEA replied.",
+   "labels": [
+    {
+     "t": "The applicant",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "the Tribunal",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "her",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Google's lawyer",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Google",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "Court of Appeal",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "14 June 2019",
+     "type": "date",
+     "n": 1
+    },
+    {
+     "t": "BCEA",
+     "type": "organization",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "In Kruglov and Others v. Russia (no. 11264/04), the Court found a violation. The Government of Cyprus intervened.",
+   "labels": [
+    {
+     "t": "Kruglov",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "Others",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Russia",
+     "type": "admin_area",
+     "n": 1
+    },
+    {
+     "t": "11264/04",
+     "type": "record_identifier",
+     "n": 1
+    },
+    {
+     "t": "the Court",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "The Government",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "Cyprus",
+     "type": "admin_area",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "The patient, a 67-year-old Nigerian man, was admitted with atrial fibrillation. Dr Ama Boateng at Mercy General started him on warfarin. MRN 4471902.",
+   "labels": [
+    {
+     "t": "The patient",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "67-year-old",
+     "type": "age",
+     "n": 1
+    },
+    {
+     "t": "Nigerian",
+     "type": "demographic_attribute",
+     "n": 1
+    },
+    {
+     "t": "atrial fibrillation",
+     "type": "health_condition",
+     "n": 1
+    },
+    {
+     "t": "Dr Ama Boateng",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "Mercy General",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "him",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "warfarin",
+     "type": "health_condition",
+     "n": 1
+    },
+    {
+     "t": "4471902",
+     "type": "record_identifier",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "The subject posts as @nightferry and reached the courier on +44 7700 900412. His handset last checked in from 203.0.113.47. They agreed to meet Tuesday.",
+   "labels": [
+    {
+     "t": "The subject",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "@nightferry",
+     "type": "username",
+     "n": 1
+    },
+    {
+     "t": "the courier",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "+44 7700 900412",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "His",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "203.0.113.47",
+     "type": "ip_address",
+     "n": 1
+    },
+    {
+     "t": "They",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Researchers at the University of California, Berkeley published in Nature. The study, funded by Beck, Munich, surveyed 1,240 households across Skane.",
+   "labels": [
+    {
+     "t": "University of California, Berkeley",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "Beck",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "Munich",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "1,240",
+     "type": "quantity",
+     "n": 1
+    },
+    {
+     "t": "Skane",
+     "type": "admin_area",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Her sort code is 60-16-13 and the card ends 4532 9981 0022 7714. The portal password is sunset42, though the form only says enter your password. The euro closed at 1.3090 EUR/USD.",
+   "labels": [
+    {
+     "t": "Her",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "60-16-13",
+     "type": "bank_routing_code",
+     "n": 1
+    },
+    {
+     "t": "4532 9981 0022 7714",
+     "type": "payment_card_data",
+     "n": 1
+    },
+    {
+     "t": "sunset42",
+     "type": "credential",
+     "n": 1
+    },
+    {
+     "t": "1.3090 EUR/USD",
+     "type": "monetary_amount",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Registration for Tomas Nowak, born 12 March 1984, arrived from t.nowak@example.org. Passport C04321987. Address: 44 Birch Lane, Springfield, 62704. Profile: https://example.org/u/tnowak.",
+   "labels": [
+    {
+     "t": "Tomas Nowak",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "12 March 1984",
+     "type": "date_of_birth",
+     "n": 1
+    },
+    {
+     "t": "t.nowak@example.org",
+     "type": "email",
+     "n": 1
+    },
+    {
+     "t": "C04321987",
+     "type": "government_id",
+     "n": 1
+    },
+    {
+     "t": "44 Birch Lane",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "Springfield",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "62704",
+     "type": "postal_code",
+     "n": 1
+    },
+    {
+     "t": "https://example.org/u/tnowak",
+     "type": "url",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Funds moved to IBAN GB29 NWBK 6016 1331 9268 19 at 14:05. The handset, IMEI 490154203237518, was last fixed at 51.5014, -0.1419, near Victoria Station. He is a practising Sikh.",
+   "labels": [
+    {
+     "t": "GB29 NWBK 6016 1331 9268 19",
+     "type": "bank_account_number",
+     "n": 1
+    },
+    {
+     "t": "14:05",
+     "type": "time",
+     "n": 1
+    },
+    {
+     "t": "490154203237518",
+     "type": "device_identifier",
+     "n": 1
+    },
+    {
+     "t": "51.5014, -0.1419",
+     "type": "gps_coordinates",
+     "n": 1
+    },
+    {
+     "t": "Victoria Station",
+     "type": "location",
+     "n": 1
+    },
+    {
+     "t": "He",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "practising Sikh",
+     "type": "protected_attribute",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Senator Ruth Adeyemi's son told reporters that he had never read his mother's diary; voters were not consulted.",
+   "labels": [
+    {
+     "t": "Senator Ruth Adeyemi's son",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Senator",
+     "type": "demographic_attribute",
+     "n": 1
+    },
+    {
+     "t": "Ruth Adeyemi",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "he",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "his mother",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "de": {
+  "text": "Für Fragen steht Ihnen Frau Anka Leiner, Investor Relations Phoenix Solar AG, gerne zur Verfügung. Hirschbergstr. 8, D-85254 Sulzemoos. Tel: 08135-938-315, E-mail: email@example.com.",
+  "labels": [
+   {
+    "t": "Frau Anka Leiner",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Phoenix Solar AG",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Hirschbergstr. 8",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "D-85254",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "Sulzemoos",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "08135-938-315",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "email@example.com",
+    "type": "email",
+    "n": 1
+   }
+  ]
+ },
+ "es": {
+  "text": "El paciente Ignacio Rico Pedroza, con DNI 44857612K, reside en Av. Beniarda 13, Valencia. Correo: nacho.rp@example.es.",
+  "labels": [
+   {
+    "t": "El paciente",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Ignacio Rico Pedroza",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "44857612K",
+    "type": "government_id",
+    "n": 1
+   },
+   {
+    "t": "Av. Beniarda 13",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "Valencia",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "nacho.rp@example.es",
+    "type": "email",
+    "n": 1
+   }
+  ]
+ },
+ "fr": {
+  "text": "Vous pouvez contacter M. BEAUVAIS. Téléphone : 04 73 68 70 42. Email : email@example.com. Mairie de Maringues, Rue de l'Hôtel-de-Ville, 63350 Maringues.",
+  "labels": [
+   {
+    "t": "M. BEAUVAIS",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "04 73 68 70 42",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "email@example.com",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "Mairie de Maringues",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Rue de l'Hôtel-de-Ville",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "63350",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "Maringues",
+    "type": "locality",
+    "n": 2
+   }
+  ]
+ },
+ "it": {
+  "text": "MARCO RICCHI presenta il seminario SABATO 31 MARZO 2012, ORE 9.30, UNIVERSITA’ 2 TOR VERGATA, ROMA, Via Columbia 1.",
+  "labels": [
+   {
+    "t": "MARCO RICCHI",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "31 MARZO 2012",
+    "type": "date",
+    "n": 1
+   },
+   {
+    "t": "9.30",
+    "type": "time",
+    "n": 1
+   },
+   {
+    "t": "UNIVERSITA’ 2 TOR VERGATA",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "ROMA",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "Via Columbia 1",
+    "type": "street_address",
+    "n": 1
+   }
+  ]
+ },
+ "pt": {
+  "text": "Endereço: Associação Bom de Bola, Rua Manoel Alvarenga, nº 1995, Perocão, Guarapari – ES, 29220525. Mais informações: (27) 99977 6827.",
+  "labels": [
+   {
+    "t": "Associação Bom de Bola",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Rua Manoel Alvarenga, nº 1995",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "Perocão",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "Guarapari",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "ES",
+    "type": "admin_area",
+    "n": 1
+   },
+   {
+    "t": "29220525",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "(27) 99977 6827",
+    "type": "phone_number",
+    "n": 1
+   }
+  ]
+ },
+ "nl": {
+  "text": "Voor informatie kun je contact opnemen met Olaf Hietbrink (Business Unit Manager) via 070-3358301 of met Sandra Willemsen, Recruiter SSG: firstname.lastname@example.org.",
+  "labels": [
+   {
+    "t": "Olaf Hietbrink",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Business Unit Manager",
+    "type": "demographic_attribute",
+    "n": 1
+   },
+   {
+    "t": "070-3358301",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "Sandra Willemsen",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Recruiter",
+    "type": "demographic_attribute",
+    "n": 1
+   },
+   {
+    "t": "SSG",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "firstname.lastname@example.org",
+    "type": "email",
+    "n": 1
+   }
+  ]
+ },
+ "pl": [
+  {
+   "text": "Urząd Gminy i Miasta w Goleniowie, Plac Lotników 1, 72-100 Goleniów. SWIFT: BPKOPLPW. IBAN PL 06 1020 4795 0000 9802 0350 9361.",
+   "labels": [
+    {
+     "t": "Urząd Gminy i Miasta w Goleniowie",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "Plac Lotników 1",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "72-100",
+     "type": "postal_code",
+     "n": 1
+    },
+    {
+     "t": "Goleniów",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "BPKOPLPW",
+     "type": "bank_routing_code",
+     "n": 1
+    },
+    {
+     "t": "PL 06 1020 4795 0000 9802 0350 9361",
+     "type": "bank_account_number",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Burmistrz Goleniowa i jego zastępca przyjmują interesantów w poniedziałki, a syn Anny Nowak odebrał dokumenty w jej imieniu.",
+   "labels": [
+    {
+     "t": "Burmistrz Goleniowa",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Goleniowa",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "jego zastępca",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "syn Anny Nowak",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Anny Nowak",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "jej",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "cs": [
+  {
+   "text": "Výstava Leoše Suchana je do 8. 7. 2022 v Artotéce, v pobočce Městské knihovny v Praze, Opatovská 1754, Praha 11.",
+   "labels": [
+    {
+     "t": "Leoše Suchana",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "8. 7. 2022",
+     "type": "date",
+     "n": 1
+    },
+    {
+     "t": "Artotéce",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "pobočce Městské knihovny v Praze",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "Městské knihovny v Praze",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "Opatovská 1754",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "Praha 11",
+     "type": "locality",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Otec Leoše Suchana o něm říká, že jeho obrazy vznikaly v noci; návštěvníci mají vstup zdarma.",
+   "labels": [
+    {
+     "t": "Otec Leoše Suchana",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Leoše Suchana",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "něm",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "jeho",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "sv": {
+  "text": "Åke Edwardson prisas i Tyskland. För information kontakta Linda Altrov Berg, 0705 65 22 70, email@example.com.",
+  "labels": [
+   {
+    "t": "Åke Edwardson",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Tyskland",
+    "type": "admin_area",
+    "n": 1
+   },
+   {
+    "t": "Linda Altrov Berg",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "0705 65 22 70",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "email@example.com",
+    "type": "email",
+    "n": 1
+   }
+  ]
+ },
+ "ru": [
+  {
+   "text": "Адрес: Охотничья улица 15, Львов, Львовская область, 79000, Украина. Телефон: +380 (322) 62-28-92.",
+   "labels": [
+    {
+     "t": "Охотничья улица 15",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "Львов",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "Львовская область",
+     "type": "admin_area",
+     "n": 1
+    },
+    {
+     "t": "79000",
+     "type": "postal_code",
+     "n": 1
+    },
+    {
+     "t": "Украина",
+     "type": "admin_area",
+     "n": 1
+    },
+    {
+     "t": "+380 (322) 62-28-92",
+     "type": "phone_number",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Ольга Иванова живёт здесь, а её отец, брат Ивана Петрова, приезжает к ней по выходным; жильцы дома платят за воду через банк.",
+   "labels": [
+    {
+     "t": "Ольга Иванова",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "её отец",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "брат Ивана Петрова",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Ивана Петрова",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "ней",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "uk": [
+  {
+   "text": "Начальник Сергій Болвінов повідомив новини з Харківської області. Телефон СБУ: 0-800-501-482. Пошта: firstname.lastname@example.org.",
+   "labels": [
+    {
+     "t": "Начальник",
+     "type": "demographic_attribute",
+     "n": 1
+    },
+    {
+     "t": "Сергій Болвінов",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "Харківської області",
+     "type": "admin_area",
+     "n": 1
+    },
+    {
+     "t": "СБУ",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "0-800-501-482",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "firstname.lastname@example.org",
+     "type": "email",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Дружина Сергія Болвінова працює в СБУ, а він і його заступниця щодня відповідають на звернення мешканців.",
+   "labels": [
+    {
+     "t": "Дружина Сергія Болвінова",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Сергія Болвінова",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "він",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "СБУ",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "його заступниця",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "ja": [
+  {
+   "text": "ブラジリアンワックス脱毛サロン Belle vie。ID @xxy8678w、住所：東京都新宿区新宿4丁目1-22、新宿コムロビル1001、TEL：03-6380-1568。",
+   "labels": [
+    {
+     "t": "Belle vie",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "@xxy8678w",
+     "type": "username",
+     "n": 1
+    },
+    {
+     "t": "東京都新宿区新宿4丁目1-22",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "新宿コムロビル1001",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "03-6380-1568",
+     "type": "phone_number",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "田中美咲さんの妹が施術を担当し、彼女への予約は電話のみです。初めてのお客様は割引があります。",
+   "labels": [
+    {
+     "t": "田中美咲さんの妹",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "田中美咲さん",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "彼女",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "ko": [
+  {
+   "text": "사업자명 디바윤, 사업자 번호 148-03-01132, 주소 (08798) 서울 관악구 낙성대역14길 50 (봉천동) 301호, 대표자명 윤미현, 전화 1668-3651. 글번호 102569645, 작성일 2026년 8월 16일.",
+   "labels": [
+    {
+     "t": "디바윤",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "08798",
+     "type": "postal_code",
+     "n": 1
+    },
+    {
+     "t": "서울",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "관악구",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "낙성대역14길 50 (봉천동)",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "301호",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "윤미현",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "1668-3651",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "102569645",
+     "type": "record_identifier",
+     "n": 1
+    },
+    {
+     "t": "2026년 8월 16일",
+     "type": "date",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "윤미현 씨의 남편이 매장을 함께 운영하며, 그는 고객 문의에 직접 답합니다. 방문 고객은 예약이 필요합니다.",
+   "labels": [
+    {
+     "t": "윤미현 씨의 남편",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "윤미현 씨",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "그",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "zh": [
+  {
+   "text": "患者王秀英，身份证号110101196504122841，电话13812345678，住址为北京市朝阳区建国路12号。主治医生：李伟。",
+   "labels": [
+    {
+     "t": "患者",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "王秀英",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "110101196504122841",
+     "type": "government_id",
+     "n": 1
+    },
+    {
+     "t": "13812345678",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "北京市朝阳区建国路12号",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "主治医生",
+     "type": "demographic_attribute",
+     "n": 1
+    },
+    {
+     "t": "李伟",
+     "type": "person_name",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "王秀英的女儿陪同就诊，她表示母亲已停药；家属须在前台登记。",
+   "labels": [
+    {
+     "t": "王秀英的女儿",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "王秀英",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "她",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "母亲",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "hi": {
+  "text": "गोपाल सिंह भादू ने विष्णु प्रकाश निवासी झाब जिला जालोर से 5 लाख रुपये में सौदा तय किया। परीक्षा 24 दिसंबर 2022 को उदयपुर में हुई।",
+  "labels": [
+   {
+    "t": "गोपाल सिंह भादू",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "विष्णु प्रकाश",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "झाब",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "जालोर",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "5 लाख रुपये",
+    "type": "monetary_amount",
+    "n": 1
+   },
+   {
+    "t": "24 दिसंबर 2022",
+    "type": "date",
+    "n": 1
+   },
+   {
+    "t": "उदयपुर",
+    "type": "locality",
+    "n": 1
+   }
+  ]
+ },
+ "ar": [
+  {
+   "text": "أعلنت الشركة السعودية للكهرباء عن وظيفة محقق قانوني لحملة البكالوريوس للعمل في مدينة الرياض. وبلغ سعر التذكرة 250 ريالاً يوم 14 أغسطس 2026 الساعة 18:30.",
+   "labels": [
+    {
+     "t": "الشركة السعودية للكهرباء",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "الرياض",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "250 ريالاً",
+     "type": "monetary_amount",
+     "n": 1
+    },
+    {
+     "t": "14 أغسطس 2026 الساعة 18:30",
+     "type": "date",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "قال مدير الشركة السعودية للكهرباء إن ابنة خالد العتيبي تقدمت للوظيفة؛ ويحق للخريجين التقديم حتى نهاية الشهر.",
+   "labels": [
+    {
+     "t": "مدير الشركة السعودية للكهرباء",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "الشركة السعودية للكهرباء",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "ابنة خالد العتيبي",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "خالد العتيبي",
+     "type": "person_name",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "tr": [
+  {
+   "text": "Op.Dr. Murad Çeltik, Üroloji Uzmanı. Telefon: 0 536 886 12 96. Web: www.muradceltik.com.",
+   "labels": [
+    {
+     "t": "Op.Dr. Murad Çeltik",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "Üroloji Uzmanı",
+     "type": "demographic_attribute",
+     "n": 1
+    },
+    {
+     "t": "0 536 886 12 96",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "www.muradceltik.com",
+     "type": "url",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Randevu için sekreteri Ayşe Hanım'ı arayabilirsiniz; Murad Çeltik'in babası da onunla aynı klinikte çalışıyor.",
+   "labels": [
+    {
+     "t": "Ayşe Hanım",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "Murad Çeltik'in babası",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Murad Çeltik",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "onunla",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "id": [
+  {
+   "text": "Timsus Jatanras Polda Sulut dipimpin AKP Sugeng Wahyudi Santoso di Manado. Pelaku bernama Taufik R Gani, 23, warga Kecamatan Tumunting. Nurul adalah mahasiswi Muslim asal Indonesia yang berbicara bahasa Indonesia.",
+   "labels": [
+    {
+     "t": "Timsus Jatanras Polda Sulut",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "AKP Sugeng Wahyudi Santoso",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "Manado",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "Pelaku",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Taufik R Gani",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "23",
+     "type": "age",
+     "n": 1
+    },
+    {
+     "t": "Kecamatan Tumunting",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "Nurul",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "mahasiswi",
+     "type": "demographic_attribute",
+     "n": 1
+    },
+    {
+     "t": "Muslim",
+     "type": "protected_attribute",
+     "n": 1
+    },
+    {
+     "t": "Indonesia",
+     "type": "admin_area",
+     "n": 1
+    },
+    {
+     "t": "bahasa Indonesia",
+     "type": "demographic_attribute",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "Ibunda Taufik mengatakan anaknya sudah ditahan polisi; warga diminta tetap waspada.",
+   "labels": [
+    {
+     "t": "Ibunda Taufik",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "Taufik",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "anaknya",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "vi": {
+  "text": "Ông Nguyễn Văn An gặp nghệ sĩ Linh Rin tại Hà Nội. Liên hệ: an.nguyen@example.vn.",
+  "labels": [
+   {
+    "t": "Ông Nguyễn Văn An",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "nghệ sĩ",
+    "type": "demographic_attribute",
+    "n": 1
+   },
+   {
+    "t": "Linh Rin",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Hà Nội",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "an.nguyen@example.vn",
+    "type": "email",
+    "n": 1
+   }
+  ]
+ },
+ "bn": [
+  {
+   "text": "কাল্পনিক প্রতিষ্ঠান নীলপদ্ম গবেষণায় রাফি আহমেদ কাজ করেন। কর্মী আইডি কর্মী-৭৪২, জন্মতারিখ ১২ এপ্রিল ১৯৯২। ঠিকানা: বাড়ি ১৭, শান্তিনগর, ঢাকা, পোস্টাল কোড ১২১৭। যোগাযোগ: +৮৮০১৭১২৩৪৫৬৭৮, rafi.ahmed@example.com; ব্যবহারকারীর নাম rafi92।",
+   "labels": [
+    {
+     "t": "কাল্পনিক প্রতিষ্ঠান",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "নীলপদ্ম গবেষণা",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "রাফি আহমেদ",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "কর্মী-৭৪২",
+     "type": "record_identifier",
+     "n": 1
+    },
+    {
+     "t": "১২ এপ্রিল ১৯৯২",
+     "type": "date_of_birth",
+     "n": 1
+    },
+    {
+     "t": "বাড়ি ১৭",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "শান্তিনগর",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "ঢাকা",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "১২১৭",
+     "type": "postal_code",
+     "n": 1
+    },
+    {
+     "t": "+৮৮০১৭১২৩৪৫৬৭৮",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "rafi.ahmed@example.com",
+     "type": "email",
+     "n": 1
+    },
+    {
+     "t": "rafi92",
+     "type": "username",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "রাফি আহমেদের বোন জানান, তিনি প্রতিদিন সকালে ভাইকে অফিসে পৌঁছে দেন; কর্মীরা নয়টায় আসেন।",
+   "labels": [
+    {
+     "t": "রাফি আহমেদের বোন",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "রাফি আহমেদ",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "তিনি",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "ভাইকে",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "da": {
+  "text": "Jeg hedder Maja Vinter og arbejder hos Nordlys Analyse. Min adresse er Sølvgade 14, 8000 Aarhus. Kontakt mig på +45 31 82 47 60 eller maja.vinter@eksempel.dk; mit brugernavn er majav.",
+  "labels": [
+   {
+    "t": "Jeg",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Maja Vinter",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Nordlys Analyse",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Min",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Sølvgade 14",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "8000",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "Aarhus",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "mig",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "+45 31 82 47 60",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "maja.vinter@eksempel.dk",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "mit",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "majav",
+    "type": "username",
+    "n": 1
+   }
+  ]
+ },
+ "el": {
+  "text": "Η Δάφνη Κεραμιδά εργάζεται στη φανταστική εταιρεία «Νηρηίδα Λογισμικού». Μένει στην οδό Αιολίδας 17, Πάτρα, 26441. Τηλέφωνο: +30 210 555 0187, ηλεκτρονικό ταχυδρομείο: dafni.k@example.test. ΑΦΜ: 123456789.",
+  "labels": [
+   {
+    "t": "Δάφνη Κεραμιδά",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "φανταστική εταιρεία",
+    "type": "organization_reference",
+    "n": 1
+   },
+   {
+    "t": "Νηρηίδα Λογισμικού",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "οδό Αιολίδας 17",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "Πάτρα",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "26441",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "+30 210 555 0187",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "dafni.k@example.test",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "123456789",
+    "type": "government_id",
+    "n": 1
+   }
+  ]
+ },
+ "fa": {
+  "text": "خانم ناهید فرهمند در شرکت خیالی «پارس‌نگار» کار می‌کند. نشانی او: تهران، خیابان بهار، پلاک ۲۷، کدپستی ۱۴۶۷۸۳۲۱۰۹. تلفن ۰۹۱۲۱۲۳۴۵۶۷ و ایمیل nahid.farhamand@example.com است؛ تاریخ تولد: ۱۳۷۲/۰۵/۱۹.",
+  "labels": [
+   {
+    "t": "خانم ناهید فرهمند",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "شرکت خیالی",
+    "type": "organization_reference",
+    "n": 1
+   },
+   {
+    "t": "پارس‌نگار",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "او",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "تهران",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "خیابان بهار، پلاک ۲۷",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "۱۴۶۷۸۳۲۱۰۹",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "۰۹۱۲۱۲۳۴۵۶۷",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "nahid.farhamand@example.com",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "۱۳۷۲/۰۵/۱۹",
+    "type": "date_of_birth",
+    "n": 1
+   }
+  ]
+ },
+ "fi": {
+  "text": "Fiktiivisen yrityksen yhteyshenkilö Aino Lehtoranta työskentelee SumuData Oy:ssä. Hän asuu osoitteessa Kivipolku 7, 02150 Espoo. Hänen syntymäaikansa on 14.2.1991, puhelinnumeronsa +358 40 123 4567 ja sähköpostiosoitteensa aino.lehtoranta@example.test.",
+  "labels": [
+   {
+    "t": "Fiktiivisen yrityksen yhteyshenkilö",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Aino Lehtoranta",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "SumuData Oy",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Hän",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Kivipolku 7",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "02150",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "Espoo",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "Hänen",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "14.2.1991",
+    "type": "date_of_birth",
+    "n": 1
+   },
+   {
+    "t": "+358 40 123 4567",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "aino.lehtoranta@example.test",
+    "type": "email",
+    "n": 1
+   }
+  ]
+ },
+ "fil": {
+  "text": "Si Marisol Dela Cruz ay empleyada ng kathang-isip na Samahang Bayani. Nakatira siya sa Blg. 18, Kalye Sampaguita, Lungsod ng Iloilo, 5000. Maaari siyang tawagan sa 0917 555 0134 o padalhan ng email sa marisol.dc@halimbawa.ph; username niya ay marisoldc.",
+  "labels": [
+   {
+    "t": "Marisol Dela Cruz",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "empleyada",
+    "type": "demographic_attribute",
+    "n": 1
+   },
+   {
+    "t": "Samahang Bayani",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "siya",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Blg. 18, Kalye Sampaguita",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "Iloilo",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "5000",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "siyang",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "0917 555 0134",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "marisol.dc@halimbawa.ph",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "niya",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "marisoldc",
+    "type": "username",
+    "n": 1
+   }
+  ]
+ },
+ "he": [
+  {
+   "text": "מרים אלקובי עובדת בארגון ״אופק ירוק״. כתובתה: רחוב התאנה 17, חיפה, 3467812. מספר הטלפון שלה הוא 050-1234567, הדוא״ל שלה הוא מרים.אלקובי@example.com, ותאריך הלידה שלה הוא 14.06.1991. שם המשתמש: miriam92.",
+   "labels": [
+    {
+     "t": "מרים אלקובי",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "ארגון",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "אופק ירוק",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "רחוב התאנה 17",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "חיפה",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "3467812",
+     "type": "postal_code",
+     "n": 1
+    },
+    {
+     "t": "שלה",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "050-1234567",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "שלה",
+     "type": "person_reference",
+     "n": 2
+    },
+    {
+     "t": "מרים.אלקובי@example.com",
+     "type": "email",
+     "n": 1
+    },
+    {
+     "t": "שלה",
+     "type": "person_reference",
+     "n": 3
+    },
+    {
+     "t": "14.06.1991",
+     "type": "date_of_birth",
+     "n": 1
+    },
+    {
+     "t": "miriam92",
+     "type": "username",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "אחיה של מירב כהן התקבל לעבודה במועצה המקומית, והיא שמחה מאוד.",
+   "labels": [
+    {
+     "t": "אחיה של מירב כהן",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "מירב כהן",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "מועצה המקומית",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "היא",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "הרופאה של דנה לוי עובדת בבית החולים העירוני.",
+   "labels": [
+    {
+     "t": "הרופאה של דנה לוי",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "דנה לוי",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "בית החולים העירוני",
+     "type": "organization_reference",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "כתבנו למשרד הפנים, והפקידה שם ענתה מיד.",
+   "labels": [
+    {
+     "t": "משרד הפנים",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "הפקידה",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "hr": {
+  "text": "Kontakt osoba je Petra Kovač iz tvrtke Jadranska Iskra d.o.o., na adresi Ulica Lipa 7, 10000 Zagreb. Telefon je +385 91 234 5678, e-pošta petra.kovac@iskra.example, OIB 12345678901, korisničko ime pkovac. Sastanak je 12.03.2024.",
+  "labels": [
+   {
+    "t": "Kontakt osoba",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Petra Kovač",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Jadranska Iskra d.o.o.",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Ulica Lipa 7",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "10000",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "Zagreb",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "+385 91 234 5678",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "petra.kovac@iskra.example",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "12345678901",
+    "type": "government_id",
+    "n": 1
+   },
+   {
+    "t": "pkovac",
+    "type": "username",
+    "n": 1
+   },
+   {
+    "t": "12.03.2024.",
+    "type": "date",
+    "n": 1
+   }
+  ]
+ },
+ "ms": {
+  "text": "Nur Aisyah Rahman bekerja di Syarikat Bintang Murni di Jalan Kenanga 17, Kuala Lumpur. Hubungi 012-3456789 atau aisyah@contoh.my. Tarikh lahirnya 14 Mei 1992, poskod 50480 dan nombor akaun 7788990011.",
+  "labels": [
+   {
+    "t": "Nur Aisyah Rahman",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Syarikat Bintang Murni",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Jalan Kenanga 17",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "Kuala Lumpur",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "012-3456789",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "aisyah@contoh.my",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "14 Mei 1992",
+    "type": "date_of_birth",
+    "n": 1
+   },
+   {
+    "t": "50480",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "7788990011",
+    "type": "bank_account_number",
+    "n": 1
+   }
+  ]
+ },
+ "no": {
+  "text": "Maria Solberg arbeider i Nordlys Data AS i Tromsø. Fødselsdatoen hennes er 14.02.1991. Hun bor i Fjellveien 8, 9010 Tromsø. Kontakt henne på +47 912 34 567 eller maria.solberg@eksempel.no. Brukernavn: msolberg91.",
+  "labels": [
+   {
+    "t": "Maria Solberg",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Nordlys Data AS",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Tromsø",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "hennes",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "14.02.1991",
+    "type": "date_of_birth",
+    "n": 1
+   },
+   {
+    "t": "Hun",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "Fjellveien 8",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "9010",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "Tromsø",
+    "type": "locality",
+    "n": 2
+   },
+   {
+    "t": "henne",
+    "type": "person_reference",
+    "n": 2
+   },
+   {
+    "t": "+47 912 34 567",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "maria.solberg@eksempel.no",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "msolberg91",
+    "type": "username",
+    "n": 1
+   }
+  ]
+ },
+ "ro": {
+  "text": "Ana-Maria Dobre lucrează la Fundația „Lumină Nouă”, în Cluj-Napoca, pe strada Mesteacănului 14. O puteți contacta la +40 721 555 284 sau ana.dobre@exemplu.ro; data nașterii este 12 martie 1989, iar codul poștal este 400123.",
+  "labels": [
+   {
+    "t": "Ana-Maria Dobre",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "Fundația „Lumină Nouă”",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "Cluj-Napoca",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "strada Mesteacănului 14",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "O",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "+40 721 555 284",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "ana.dobre@exemplu.ro",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "12 martie 1989",
+    "type": "date_of_birth",
+    "n": 1
+   },
+   {
+    "t": "400123",
+    "type": "postal_code",
+    "n": 1
+   }
+  ]
+ },
+ "ta": [
+  {
+   "text": "நிலாவொளி ஆய்வகம் என்ற கற்பனை நிறுவனத்தில் அருண்மொழி தேவி பணிபுரிகிறார். பிறந்த தேதி: 12-08-1991. சென்னை, மல்லிகை தெரு, எண் 17; அஞ்சல் குறியீடு 600042. தொலைபேசி: +91 98765 43210; மின்னஞ்சல்: arunmozhi@nilavoli.example. பயனர் பெயர்: arun_devi.",
+   "labels": [
+    {
+     "t": "நிலாவொளி ஆய்வகம்",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "கற்பனை நிறுவனத்தில்",
+     "type": "organization_reference",
+     "n": 1
+    },
+    {
+     "t": "அருண்மொழி தேவி",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "12-08-1991",
+     "type": "date_of_birth",
+     "n": 1
+    },
+    {
+     "t": "சென்னை",
+     "type": "locality",
+     "n": 1
+    },
+    {
+     "t": "மல்லிகை தெரு, எண் 17",
+     "type": "street_address",
+     "n": 1
+    },
+    {
+     "t": "600042",
+     "type": "postal_code",
+     "n": 1
+    },
+    {
+     "t": "+91 98765 43210",
+     "type": "phone_number",
+     "n": 1
+    },
+    {
+     "t": "arunmozhi@nilavoli.example",
+     "type": "email",
+     "n": 1
+    },
+    {
+     "t": "arun_devi",
+     "type": "username",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "முருகனின் சகோதரி நிலாவொளி ஆய்வகத்தில் பணிபுரிகிறார்; அவர் தினமும் அவளை அலுவலகத்திற்கு அழைத்துச் செல்கிறார்; ஊழியர்கள் காலை ஒன்பது மணிக்கு வருகிறார்கள்.",
+   "labels": [
+    {
+     "t": "முருகனின் சகோதரி",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "முருகனின்",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "நிலாவொளி ஆய்வகத்தில்",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "அவர்",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "அவளை",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "விஜயலட்சுமியின் கணவர் சென்னை மாநகராட்சியில் பணிபுரிகிறார்.",
+   "labels": [
+    {
+     "t": "விஜயலட்சுமியின் கணவர்",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "விஜயலட்சுமியின்",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "சென்னை மாநகராட்சியில்",
+     "type": "organization",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "செல்வத்துக்கும் அவரது மனைவிக்கும் நீதிமன்றம் பிணை வழங்கியது.",
+   "labels": [
+    {
+     "t": "செல்வத்துக்கும்",
+     "type": "person_name",
+     "n": 1
+    },
+    {
+     "t": "அவரது மனைவிக்கும்",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "நீதிமன்றம்",
+     "type": "organization_reference",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "text": "கோவை மருத்துவக் கல்லூரி மருத்துவமனையின் மருத்துவர்கள் நோயாளிக்கு அறுவை சிகிச்சை செய்தனர்.",
+   "labels": [
+    {
+     "t": "கோவை மருத்துவக் கல்லூரி மருத்துவமனையின் மருத்துவர்கள்",
+     "type": "person_reference",
+     "n": 1
+    },
+    {
+     "t": "கோவை மருத்துவக் கல்லூரி மருத்துவமனையின்",
+     "type": "organization",
+     "n": 1
+    },
+    {
+     "t": "நோயாளிக்கு",
+     "type": "person_reference",
+     "n": 1
+    }
+   ]
+  }
+ ],
+ "te": {
+  "text": "సాయి కిరణ్, నీలిమా టెక్ సంస్థలో ఉద్యోగి, విజయవాడలోని 17-బి, మల్లెవనం వీధి, 520010 చిరునామాలో నివసిస్తున్నారు. ఫోన్ 9000000000, ఇమెయిల్ sai.kiran@example.com, పుట్టిన తేదీ 12-05-1992, వినియోగదారు పేరు saikiran92.",
+  "labels": [
+   {
+    "t": "సాయి కిరణ్",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "నీలిమా టెక్",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "ఉద్యోగి",
+    "type": "demographic_attribute",
+    "n": 1
+   },
+   {
+    "t": "విజయవాడ",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "17-బి, మల్లెవనం వీధి",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "520010",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "9000000000",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "sai.kiran@example.com",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "12-05-1992",
+    "type": "date_of_birth",
+    "n": 1
+   },
+   {
+    "t": "saikiran92",
+    "type": "username",
+    "n": 1
+   }
+  ]
+ },
+ "th": {
+  "text": "คุณศุภชัย วัฒนากร ทำงานอยู่ที่บริษัทเมฆาไพร จำกัด ที่อยู่เลขที่ 88 ถนนร่มเย็น แขวงบางรัก กรุงเทพมหานคร 10500 ติดต่อโทรศัพท์ 081-234-5678 อีเมล supachai@example.test วันเกิด 12 มีนาคม 2533 เลขประจำตัวผู้เสียภาษี TH-458921",
+  "labels": [
+   {
+    "t": "คุณศุภชัย วัฒนากร",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "บริษัทเมฆาไพร จำกัด",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "88 ถนนร่มเย็น",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "แขวงบางรัก",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "กรุงเทพมหานคร",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "10500",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "081-234-5678",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "supachai@example.test",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "12 มีนาคม 2533",
+    "type": "date_of_birth",
+    "n": 1
+   },
+   {
+    "t": "TH-458921",
+    "type": "government_id",
+    "n": 1
+   }
+  ]
+ },
+ "ur": {
+  "text": "عائشہ نور نے بتایا کہ وہ تخیلاتی ادارہ روشن علم میں ملازمت کرتی ہیں۔ ان کا پتہ مکان ۲۳، گلشنِ بہار، لاہور، ۵۴۰۰۰ ہے؛ فون ۰۳۰۰۱۲۳۴۵۶۷، ای میل aisha.noor@example.com، شناختی نمبر ۴۲۱۰۱-۱۲۳۴۵۶۷-۸ ہے۔",
+  "labels": [
+   {
+    "t": "عائشہ نور",
+    "type": "person_name",
+    "n": 1
+   },
+   {
+    "t": "وہ",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "تخیلاتی ادارہ",
+    "type": "organization_reference",
+    "n": 1
+   },
+   {
+    "t": "روشن علم",
+    "type": "organization",
+    "n": 1
+   },
+   {
+    "t": "ان کا",
+    "type": "person_reference",
+    "n": 1
+   },
+   {
+    "t": "مکان ۲۳",
+    "type": "street_address",
+    "n": 1
+   },
+   {
+    "t": "گلشنِ بہار",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "لاہور",
+    "type": "locality",
+    "n": 1
+   },
+   {
+    "t": "۵۴۰۰۰",
+    "type": "postal_code",
+    "n": 1
+   },
+   {
+    "t": "۰۳۰۰۱۲۳۴۵۶۷",
+    "type": "phone_number",
+    "n": 1
+   },
+   {
+    "t": "aisha.noor@example.com",
+    "type": "email",
+    "n": 1
+   },
+   {
+    "t": "۴۲۱۰۱-۱۲۳۴۵۶۷-۸",
+    "type": "government_id",
+    "n": 1
+   }
+  ]
+ }
+}

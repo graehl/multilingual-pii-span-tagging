@@ -1,0 +1,8 @@
+# Shared root for reproducible PII corpus and training draws.
+#
+# Callers fork this root by stable namespace. A new corpus revision may change
+# root_seed; changing one component's draw count must not perturb another.
+
+schema_version: 1
+scheme: pii-seed-tree-v1
+root_seed: 20260721

@@ -1,0 +1,15 @@
+{
+  "schema": "pii-regex-policy/v1",
+  "model": "unset: name the checkpoint this policy was tuned against",
+  "note": "How a regex rule argues with the model. Kept apart from scripts/pii_regex_tags_v1.json because the rules follow the ontology and change rarely, while the right arbitration follows how good the model is and must be retuned when the model changes. Which mode wins is an open question, to be settled by what improves the evaluation: `skip` lets the model keep any span it found, `add` emits both, `detail` emits nothing and instead writes the rule's fine class onto a model span it agrees with, and `score` lets the scores below compete with the model's. `detail` is the interesting one, because a rule too loose to assert a span can still be precise enough to name one; see research/pii/frontier/gaps/regex-rule-name-as-confirmed-detail.md.",
+  "mode": "skip",
+  "agreement": "family",
+  "min_iou": 0.8,
+  "max_edge_shift": 1,
+  "span_owner": "model",
+  "min_model_score": null,
+  "scores": {},
+  "scores_note": "Unspecified score is inactive: a rule that names no score does not compete, which is what every rule here wants. A specified score keeps its old meaning as an anti-confidence against the model detection, for compatibility only. New rules should use the two declared confidences instead; see research/pii/frontier/topics/regex-rule-arbitration.md.",
+  "gates": {},
+  "gates_note": "Optional per rule and empty by default. A rule states what it believes about its documents: require_tags activates it only where the model already chose one of those tags (a coarse family counts), except_tags forbids it. A single tag may be written without a list. These are duals over a closed tag set, so both are kept for how they fail when the ontology grows: a new type never satisfies a require list, but silently escapes an except list. Gates are for overbroad rules; a self-evidencing one should stay ungated so it can still find what the model missed."
+}

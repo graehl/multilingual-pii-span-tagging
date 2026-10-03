@@ -1,0 +1,89 @@
+schema_version: 1
+round_id: name_role_final35_resource_v2
+membership: exact
+languages:
+  - {code: en, name: English}
+  - {code: de, name: German}
+  - {code: fr, name: French}
+  - {code: es, name: Spanish}
+  - {code: it, name: Italian}
+  - {code: pt, name: Portuguese}
+  - {code: nl, name: Dutch}
+  - {code: pl, name: Polish}
+  - {code: cs, name: Czech}
+  - {code: sv, name: Swedish}
+  - {code: ru, name: Russian}
+  - {code: uk, name: Ukrainian}
+  - {code: zh, name: Chinese (Simplified)}
+  - {code: ja, name: Japanese}
+  - {code: ko, name: Korean}
+  - {code: hi, name: Hindi}
+  - {code: ar, name: Arabic}
+  - {code: tr, name: Turkish}
+  - {code: id, name: Indonesian}
+  - {code: vi, name: Vietnamese}
+  - {code: bn, name: Bengali}
+  - {code: te, name: Telugu}
+  - {code: hr, name: Croatian}
+  - {code: da, name: Danish}
+  - {code: fi, name: Finnish}
+  - {code: el, name: Greek}
+  - {code: ro, name: Romanian}
+  - {code: "no", name: Norwegian}
+  - {code: th, name: Thai}
+  - {code: ms, name: Malay}
+  - {code: fil, name: Filipino}
+  - {code: fa, name: Persian}
+  - {code: ta, name: Tamil}
+  - {code: ur, name: Urdu}
+  - {code: he, name: Hebrew}
+training_mix:
+  minimum_core_language_share: 0.006
+  maximum_support_multiplier: 2.0
+  full_support_effective_cell_weight: 1000.0
+retention_gate:
+  metric: natural_case_macro_f1
+  maximum_absolute_drop: 0.02
+  sparse_training_examples_below: 10000
+  sparse_maximum_absolute_drop: 0.05
+  significant_expected_maximum_absolute_drop: 0.01
+  scope: every language represented in the frozen predecessor evaluation set
+language_importance:
+  normalize_over_reported_slice: true
+  unlisted_language_weight: 1.0
+  weights:
+    en: 4.0
+    ar: 2.0
+    de: 2.0
+    es: 2.0
+    fr: 2.0
+    ko: 2.0
+    pt: 2.0
+    vi: 2.0
+    zh: 2.0
+    bn: 1.0
+    cs: 1.0
+    da: 1.0
+    el: 1.0
+    fa: 1.0
+    fi: 1.0
+    fil: 1.0
+    he: 1.0
+    hi: 1.0
+    hr: 1.0
+    id: 1.0
+    it: 1.0
+    ja: 1.0
+    ms: 1.0
+    nl: 1.0
+    no: 1.0
+    pl: 1.0
+    ro: 1.0
+    ru: 1.0
+    sv: 1.0
+    ta: 1.0
+    te: 1.0
+    th: 1.0
+    tr: 1.0
+    uk: 1.0
+    ur: 1.0

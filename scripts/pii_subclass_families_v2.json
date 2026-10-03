@@ -1,0 +1,170 @@
+{
+  "schema": "pii-subclass-families",
+  "version": 2,
+  "primary_output_types": [
+    "person_reference",
+    "organization_reference"
+  ],
+  "bernoulli_channels": [
+    {
+      "name": "care_provider",
+      "scope": "full_primary_span",
+      "applicable_types": ["person_name", "person_reference"]
+    },
+    {
+      "name": "patient",
+      "scope": "full_primary_span",
+      "applicable_types": ["person_name", "person_reference"]
+    },
+    {
+      "name": "family_member",
+      "scope": "full_primary_span",
+      "applicable_types": ["person_name", "person_reference"]
+    },
+    {
+      "name": "witness_or_bystander",
+      "scope": "full_primary_span",
+      "applicable_types": ["person_name", "person_reference"]
+    },
+    {
+      "name": "investigator_or_law_enforcement",
+      "scope": "full_primary_span",
+      "applicable_types": ["person_name", "person_reference"]
+    },
+    {
+      "name": "legal_professional",
+      "scope": "full_primary_span",
+      "applicable_types": ["person_name", "person_reference"]
+    }
+  ],
+  "families": [
+    {
+      "name": "name_component",
+      "scope": "component_span",
+      "decode_constraint": "component_sequence",
+      "applicable_types": ["person_name"],
+      "outcomes": ["Q", "given_name", "middle_name", "family_name"],
+      "definition": "The role of one exact internal name component. Middle/other means name material that is neither reliably given nor family name. Separate nonoverlapping components of one person-name carrier receive separate decisions.",
+      "Q_definition": "An exact within-carrier region reliably known not to be name material, such as an honorific or punctuation outside a name component. Any actual name material that is neither reliably given nor family name is middle/other; unresolved actual name tokens and mononyms are unknown and omitted, not Q.",
+      "sequence_grammar": {
+        "symbols": {
+          "given_name": "G",
+          "middle_name": "M",
+          "family_name": "F"
+        },
+        "ignored_values": ["Q"],
+        "pattern": "(?:FG*M?G*|G*M?G*F?)",
+        "maximum_components": {
+          "middle_name": 1,
+          "family_name": 1
+        },
+        "description": "Sort component spans by source position, remove Q components, map the remaining values through the declared symbols, and require a full regular-expression match. This is the v1 language written explicitly: family name may be the sole, first, or last non-Q component but never an interior component; middle/other may occur once at any position and therefore never recurs or alternates. Given-name components remain unrestricted, matching v1 behavior."
+      }
+    },
+    {
+      "name": "government_id_kind",
+      "scope": "full_primary_span",
+      "decode_constraint": "whole_carrier_consistent",
+      "applicable_types": ["government_id"],
+      "outcomes": [
+        "Q",
+        "passport",
+        "national_identity_number",
+        "us_social_security_number",
+        "tax_identifier",
+        "driver_license",
+        "professional_license",
+        "other_government_id"
+      ],
+      "definition": "The single established kind of one government-identifier span.",
+      "Q_definition": "The identifier is reliably known to be outside the modeled kinds; generic or unresolved government IDs are unknown and omitted."
+    },
+    {
+      "name": "place_coarseness",
+      "scope": "full_primary_span",
+      "decode_constraint": "whole_carrier_consistent",
+      "applicable_types": ["admin_area", "locality"],
+      "outcomes": [
+        "Q",
+        "country",
+        "first_order_admin",
+        "second_order_admin",
+        "primary_locality",
+        "sublocality"
+      ],
+      "definition": "The jurisdiction-relative rung of one complete place span. Municipality and settlement share primary_locality.",
+      "Q_definition": "A reliably resolved but deliberately unmodeled place rung; an ambiguous district or omitted address component is unknown and omitted."
+    },
+    {
+      "name": "jurisdiction_nation",
+      "scope": "full_primary_span",
+      "decode_constraint": "whole_carrier_consistent",
+      "applicable_types": ["government_id", "admin_area", "locality"],
+      "outcomes": [
+        "Q",
+        "country_AU",
+        "country_CA",
+        "country_CN",
+        "country_CZ",
+        "country_DE",
+        "country_EG",
+        "country_ES",
+        "country_FR",
+        "country_GB",
+        "country_ID",
+        "country_IN",
+        "country_IT",
+        "country_JP",
+        "country_KR",
+        "country_NL",
+        "country_PL",
+        "country_PT",
+        "country_RU",
+        "country_SE",
+        "country_TR",
+        "country_UA",
+        "country_US",
+        "country_VN"
+      ],
+      "definition": "The single resolved jurisdiction nation of one complete place or government-ID span.",
+      "Q_definition": "The jurisdiction is reliably resolved but is outside the modeled nation inventory; merely copying the document country is not resolution."
+    },
+    {
+      "name": "currency_identity",
+      "scope": "full_primary_span",
+      "decode_constraint": "whole_carrier_consistent",
+      "applicable_types": ["monetary_amount", "bank_account_number"],
+      "outcomes": [
+        "Q",
+        "currency_AUD",
+        "currency_BTC",
+        "currency_CAD",
+        "currency_CHF",
+        "currency_CNY",
+        "currency_ETH",
+        "currency_EUR",
+        "currency_GBP",
+        "currency_INR",
+        "currency_JPY",
+        "currency_KRW",
+        "currency_LTC",
+        "currency_NOK",
+        "currency_NZD",
+        "currency_RUB",
+        "currency_SEK",
+        "currency_TRY",
+        "currency_USD"
+      ],
+      "definition": "The single resolved currency or ledger identity of one complete amount or account span.",
+      "Q_definition": "The currency is reliably resolved but is outside the modeled inventory; an ambiguous symbol is unknown and omitted."
+    }
+  ],
+  "training_contract": {
+    "conditioning": "Each family block is conditioned on the activating ordinary primary type.",
+    "coverage": "A full_primary_span value applies to every character and overlapping model token of the exact carrier. A component_span value applies to every character and overlapping token of the exact declared internal component.",
+    "unknown": "A missing family/component is masked and never converted to Q.",
+    "loss_unit": "A full_primary_span family uses one categorical cross-entropy after length-normalized logit pooling. A component_span family uses token-local categorical cross-entropy over the component, with its total component weight divided across overlapping model tokens.",
+    "weight_initialization": "Each subclass objective_weight initially inherits its carrier primary-span objective weight. Its independent learning_weight defaults to 1.0; effective optimization mass is objective_weight times learning_weight.",
+    "ordinary_primary_loss": "Primary BIOES boundary/type loss remains independently weighted and unchanged; component-span subclass decoding does not enter the single-winner primary Viterbi lattice."
+  }
+}

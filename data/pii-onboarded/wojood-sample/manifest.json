@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "dataset": "wojood-sample",
+  "upstream": {
+    "repo_id": "SinaLab/ArabicNER",
+    "revision": "ef3a7f4e806a2d909b9107d757c5f65545ae83dc",
+    "url": "https://github.com/SinaLab/ArabicNER",
+    "license": "MIT"
+  },
+  "source_schema": "wojood_nested",
+  "tagset_sha256": "3890f5ae62cb468ea06f855aaf5df75891d185410f806a65520ddd6cae5d6e1e",
+  "source_schema_sha256": "c7ba7283f2144d40a94c29294e255721df7bc1e035b47045d1757644a1a88a93",
+  "source_projection_sha256": "09ebc3af3e3a4346e2943e0d1bf5830ed4a81b34eee45928d15c417c5f8d9afb",
+  "ignored_source_labels": [
+    "CARDINAL",
+    "CURR",
+    "EVENT",
+    "LAW",
+    "NORP",
+    "ORDINAL",
+    "PERCENT",
+    "PRODUCT",
+    "QUANTITY",
+    "UNIT"
+  ],
+  "record_schema": {
+    "fields": [
+      "id",
+      "text",
+      "spans",
+      "lang",
+      "metadata"
+    ],
+    "span_fields": [
+      "start",
+      "end",
+      "label",
+      "source_label"
+    ],
+    "compression": "gzip",
+    "encoding": "UTF-8"
+  },
+  "counts": {
+    "records": 1629,
+    "spans": 3412,
+    "splits": {
+      "test": 357,
+      "train": 1114,
+      "validation": 158
+    },
+    "languages": {
+      "ar": 1629
+    },
+    "canonical_labels": {
+      "location": 1104,
+      "organization": 849,
+      "date": 793,
+      "person_name": 331,
+      "occupation": 265,
+      "url": 35,
+      "time": 14,
+      "monetary_amount": 13,
+      "language_spoken": 8
+    },
+    "source_labels": {
+      "GPE": 1010,
+      "ORG": 849,
+      "DATE": 793,
+      "PERS": 331,
+      "OCC": 265,
+      "FAC": 50,
+      "LOC": 44,
+      "WEBSITE": 35,
+      "TIME": 14,
+      "MONEY": 13,
+      "LANGUAGE": 8
+    },
+    "source_anomalies": {
+      "same_type_nested_tag_dropped": 79,
+      "orphan_i_repaired": 1
+    }
+  },
+  "shards": [
+    {
+      "path": "test/ar.jsonl.gz",
+      "bytes": 40277,
+      "sha256": "1347a37c3d362be7136245b3772ea45bae1c08acbf0ffb70d74b37ab234bd6cf",
+      "records": 357,
+      "spans": 739
+    },
+    {
+      "path": "train/ar.jsonl.gz",
+      "bytes": 137741,
+      "sha256": "d15bf40c6159bb5324a550f3aff6a33833fe24b98e3c07d5412407b390d9e137",
+      "records": 1114,
+      "spans": 2296
+    },
+    {
+      "path": "validation/ar.jsonl.gz",
+      "bytes": 21230,
+      "sha256": "c4465592eacd33320ad62fdc9eb46fe18e4567d6d7cfb55f9fad825e2d7154f7",
+      "records": 158,
+      "spans": 377
+    }
+  ]
+}

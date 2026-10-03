@@ -1,0 +1,42 @@
+{
+  "schema": "pii-token-predicate-channels",
+  "version": 1,
+  "channels": [
+    {
+      "name": "care_provider",
+      "applicable_types": ["person_name", "person_reference"],
+      "definition": "The person mention identifies a clinician, nurse, treating professional, or other care-giving role holder."
+    },
+    {
+      "name": "patient",
+      "applicable_types": ["person_name", "person_reference"],
+      "definition": "The person mention identifies a patient or recipient of care."
+    },
+    {
+      "name": "family_member",
+      "applicable_types": ["person_name", "person_reference"],
+      "definition": "The person mention identifies a family member or close relative in the described context."
+    },
+    {
+      "name": "witness_or_bystander",
+      "applicable_types": ["person_name", "person_reference"],
+      "definition": "The person mention identifies a witness, observer, or bystander."
+    },
+    {
+      "name": "investigator_or_law_enforcement",
+      "applicable_types": ["person_name", "person_reference"],
+      "definition": "The person mention identifies an investigator or law-enforcement role holder."
+    },
+    {
+      "name": "legal_professional",
+      "applicable_types": ["person_name", "person_reference"],
+      "definition": "The person mention identifies a lawyer, judge, prosecutor, or other legal professional."
+    }
+  ],
+  "target_encoding": {
+    "positive": 1,
+    "known_negative": 0,
+    "unknown": -100,
+    "token_rule": "A token is positive iff it overlaps a positive character extent. Other tokens inside the same explicitly labeled activating span are known negative for that declared channel. Every undeclared channel and every token outside an activating span is unknown."
+  }
+}

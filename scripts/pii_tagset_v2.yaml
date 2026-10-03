@@ -1,0 +1,1801 @@
+# PII target ontology v2: the adopted primary inventory, its v1
+# compatibility projection, the adopted attribute channels, and the frozen
+# methodology metadata for training, scoring, warm init, and source remapping.
+#
+# scripts/pii_tagset.yaml (version 1) stays immutable: it remains the
+# compatibility control and the authority for which source labels exist.
+# Loader/validator: scripts/pii_ontology_v2.py. Record schema:
+# scripts/pii_gold_v2.schema.json.
+#
+# primary: the 29 BIOES primary classes. Each class carries the proposal's
+#   family, default redaction action, admission prongs, and definition.
+# attr_channels: independent sigmoid predicate channels over character
+#   extents inside a primary span; they are not BIOES classes.
+# old_v1 / sources: fixed-span retyping candidates. `fallback` is the
+#   declared projection used unless the frozen admission rule below admits a
+#   different member of `acceptable`. O is a sentinel target, not a class.
+
+version: 2
+ontology_version: pii-ontology-v2
+schema_version: pii-gold-v2
+projection_version: pii-v1-to-v2-projection-v2
+span_encoding: BIOES
+outside_label: O
+
+compatibility_tagset:
+  path: scripts/pii_tagset.yaml
+  version: 1
+  status: immutable_compatibility_control
+
+gold_schema:
+  path: scripts/pii_gold_v2.schema.json
+
+# The proposal artifact admitted 28 classes because it merged money into
+# `quantity`. The adopted Q6 decision separates `monetary_amount` from a
+# now non-currency `quantity`, so the adopted inventory is 29. Everything
+# else in `primary` is the proposal's own family/action/prong/definition text.
+adoption_note:
+  proposal: untracked/pii-eval/analysis/ontology-v2-proposal-v1
+  proposal_class_count: 28
+  adopted_class_count: 29
+  difference: q6_separates_monetary_amount_from_quantity
+  proposal_merged_money_into_quantity: true
+  q6_currency_designator_alone: O
+
+families:
+  attribute: Personal attributes and quasi-identifiers.
+  authority_id: Identifiers an authority issues to a person or their entitlement.
+  contact: Reachability channels for a person or organization.
+  credential: Authentication and authorization secrets.
+  date_time: Absolute dates and clock times.
+  digital: Device, client, and account handles in digital systems.
+  financial: Financial instruments, institution routing, and monetary amounts.
+  location: Places and address components.
+  org_id: Identifiers an organization or system issues for its own records.
+  organization: Named organizations.
+  other: Classes that belong to no other family.
+  person: Personal-name entities.
+
+# The proposal's five bulk redaction actions, verbatim.
+actions:
+  SUPPRESS: delete the span, emit no surrogate (a plausible fake would itself be a hazard)
+  PSEUDONYM: replace with a consistent, type-plausible surrogate; the same surface gets the same surrogate across a document set
+  MASK: format-preserving character mask; retain a tail only when the value is long enough that the tail is not the whole secret
+  GENERALIZE: replace with a coarser value from a documented ladder (date->year, age->band, locality->admin area, coordinates->rounded cell)
+  KEEP: retain verbatim; flag for audit only
+
+# Admission-test prongs each class passed: R retrieval-gating, A
+# bulk-action-gating, S support/learnability.
+admission_prongs:
+  R: the class gates targeted retrieval of a person
+  A: the class gates a distinct bulk redaction action
+  S: the class has enough post-split support to learn
+
+primary:
+  admin_area:
+    family: location
+    action: KEEP
+    prongs: [A]
+    definition: >-
+      An administrative area at or above state level: state, province, prefecture, region,
+      country, and the time zone standing for one.
+  age:
+    family: attribute
+    action: GENERALIZE
+    prongs: [A]
+    definition: >-
+      A stated age or age phrase of a person.
+  bank_account_number:
+    family: financial
+    action: MASK
+    prongs: [A]
+    definition: >-
+      An identifier that addresses a value store: bank account number, IBAN, BBAN, already-masked
+      account digits, and cryptocurrency wallet address.
+  bank_routing_code:
+    family: financial
+    action: KEEP
+    prongs: [A]
+    definition: >-
+      A code identifying a financial institution or branch: SWIFT/BIC, ABA routing number, sort
+      code.
+  credential:
+    family: credential
+    action: SUPPRESS
+    prongs: [A]
+    definition: >-
+      A secret that authenticates: password, PIN, API key, access or session token, cookie value,
+      recovery code.
+  date:
+    family: date_time
+    action: GENERALIZE
+    prongs: [A]
+    definition: >-
+      A calendar date, with or without a time component, in any locale convention.
+  date_of_birth:
+    family: date_time
+    action: GENERALIZE
+    prongs: [R, A]
+    definition: >-
+      A date identified by context as a person's birth date.
+  demographic_attribute:
+    family: attribute
+    action: GENERALIZE
+    prongs: [A]
+    definition: >-
+      A non-special-category descriptor of a person used for record linkage: gender, nationality,
+      education level, employment status and occupation, language spoken, physical description,
+      household and socioeconomic situation.
+  device_identifier:
+    family: digital
+    action: SUPPRESS
+    prongs: [R]
+    definition: >-
+      A persistent identifier of a device or client: MAC address, IMEI, advertising or
+      installation ID, user-agent string.
+  email:
+    family: contact
+    action: PSEUDONYM
+    prongs: [R, A]
+    definition: >-
+      An email address.
+  government_id:
+    family: authority_id
+    action: MASK
+    prongs: [A]
+    definition: >-
+      A number an authority issues to identify a person or their entitlement: national ID,
+      social-security number, passport, driving licence, tax identifier, professional licence, and
+      other state-register numbers.
+  gps_coordinates:
+    family: location
+    action: GENERALIZE
+    prongs: [R, A]
+    definition: >-
+      A latitude/longitude pair or other explicit geocoordinate.
+  health_condition:
+    family: attribute
+    action: SUPPRESS
+    prongs: [A]
+    definition: >-
+      A health fact about a person: diagnosis, symptom, medication, allergy, blood group,
+      disability, pregnancy, test or treatment information.
+  ip_address:
+    family: digital
+    action: GENERALIZE
+    prongs: [R, A]
+    definition: >-
+      An IPv4 or IPv6 address.
+  locality:
+    family: location
+    action: GENERALIZE
+    prongs: [A]
+    definition: >-
+      A settlement or sub-state administrative area: city, town, village, district, county,
+      borough, or the airport/station code standing for one.
+  location:
+    family: location
+    action: PSEUDONYM
+    prongs: [A]
+    definition: >-
+      A place reference that is neither a postal component nor an administrative rung: named
+      buildings, facilities, landmarks, rooms, routes, and unresolved place mentions.
+  # Q6 override: separated from `quantity`, which the proposal had merged.
+  monetary_amount:
+    family: financial
+    action: GENERALIZE
+    prongs: [A]
+    definition: >-
+      A numeric amount of money, including cryptocurrency. Any currency, including cryptocurrency,
+      makes a numeric amount monetary; the currency unit belongs inside the span. A currency
+      designator with no amount is O.
+  organization:
+    family: organization
+    action: PSEUDONYM
+    prongs: [R, A]
+    definition: >-
+      A named company, institution, agency, facility, department, payment network, or card brand.
+  payment_card_data:
+    family: financial
+    action: MASK
+    prongs: [A]
+    definition: >-
+      Payment-card account data: primary account number, security code, or expiry. A named payment
+      network or card brand is an organization, not payment_card_data, and remains a separate span
+      when adjacent to a primary account number.
+  person_name:
+    family: person
+    action: PSEUDONYM
+    prongs: [R, A]
+    definition: >-
+      Any mention of a natural person by name, including every component (given, family, middle,
+      initials) and an adjacent honorific, and including role-marked mentions (patient, clinician,
+      relative).
+  phone_number:
+    family: contact
+    action: MASK
+    prongs: [R, A]
+    definition: >-
+      A telephone number in any national convention, including fax and mobile lines.
+  postal_code:
+    family: location
+    action: GENERALIZE
+    prongs: [A]
+    definition: >-
+      A postal or ZIP code.
+  protected_attribute:
+    family: attribute
+    action: SUPPRESS
+    prongs: [A]
+    definition: >-
+      A special-category personal attribute in the GDPR Article 9 sense: racial or ethnic origin,
+      religious or philosophical belief, political opinion, trade-union membership, sexual
+      orientation.
+  # Q6 override: the proposal's definition also covered sums of money and
+  # their currency designators; those are now monetary_amount.
+  quantity:
+    family: other
+    action: GENERALIZE
+    prongs: [A]
+    definition: >-
+      A non-currency number-bearing amount or measure that is quasi-identifying in context: areas,
+      counts including securities and share counts, percentages, and other measures. A monetary
+      amount is monetary_amount, not quantity. A generic elapsed duration ("two years", "30
+      minutes") is NOT a quantity: durations, deictic/relative time and dosing schedules are
+      outside this de-identification ontology and route to O.
+  record_identifier:
+    family: org_id
+    action: PSEUDONYM
+    prongs: [A]
+    definition: >-
+      A code an organization or system issued that links a person to a record it holds: customer
+      and account numbers, medical record numbers, insurance and policy numbers, employee and
+      student numbers, membership, order, reservation and case references, vehicle registration
+      and VIN, biometric-template references, and opaque codes whose issuing system the document
+      does not name.
+  street_address:
+    family: location
+    action: PSEUDONYM
+    prongs: [A]
+    definition: >-
+      The premises line of a postal address: street name with house or building number and any
+      unit, suite, floor, or PO box element.
+  time:
+    family: date_time
+    action: KEEP
+    prongs: [A]
+    definition: >-
+      A clock time or time-of-day expression with no date.
+  url:
+    family: contact
+    action: PSEUDONYM
+    prongs: [R, A]
+    definition: >-
+      A web address, URI, or social-profile locator.
+  username:
+    family: digital
+    action: PSEUDONYM
+    prongs: [R]
+    definition: >-
+      An account handle, login name, or screen name.
+
+# Exactly two predicate channels are adopted. A channel value is a list of
+# absolute half-open Unicode-codepoint [start, end) intervals lying entirely
+# inside the primary span. A nonempty list means known-positive extents, []
+# means known negative, and a missing key means unknown: unknown masks both
+# loss and evaluation. `attrs` is optional so v1 readers can ignore it.
+attr_channels:
+  care_provider:
+    applicable_types: [person_name]
+    semantics_version: 1
+    value_kind: character_extents
+    definition: >-
+      Characters of the name that identify a care provider (clinician, treating professional, or
+      other care-giving role holder) rather than a patient, relative, or unrelated person.
+  family_name:
+    applicable_types: [person_name]
+    semantics_version: 1
+    value_kind: character_extents
+    definition: >-
+      Characters of the person_name span that constitute the family name (surname). Multiple
+      disjoint intervals are valid for compound or split family names.
+
+# Predicate training/inference contract. Recorded here as metadata; no model
+# code in this checkpoint depends on it yet.
+#
+# Raw logits are per MODEL POSITION, never per decoded primary span: the
+# predicate head runs alongside the BIOES head over the same position axis T,
+# and span-level attribute extents only exist after decoding. Whether a
+# position is a token or a character is a property of the producer, which
+# declares it in its own metadata.
+predicate_contract:
+  objective: independent_masked_bce
+  encoding: not_bioes
+  token_supervision: existential_over_characters
+  token_supervision_rule: >-
+    A token is positive for a channel iff it overlaps at least one positive attribute character.
+    Character models preserve the exact extents.
+  raw_output: bioes_logits_plus_predicate_logits
+  raw_output_granularity: model_position
+  primary_logit_shape: [B, T, 117]
+  predicate_logit_shape: [B, T, K]
+  logit_axes: [batch, position, channel]
+  position_granularity: declared_by_producer_metadata
+  position_granularity_values: [token, character]
+  interpreted_output: >-
+    Primary spans plus, for each span, per-channel attribute character intervals with confidences.
+  evaluation:
+    predicate_scope: known_applicable_gold_primary_spans
+    missing_gold_key: excluded
+    separate_from_span_metrics: true
+    primary_span_metrics_use_predicates: false
+
+# Gold dataset metadata contract. A dataset declares the ontology/schema
+# version and an attr_channels registry; the loader requires registry
+# equality with `attr_channels` above rather than accepting undeclared
+# channels.
+gold_metadata_contract:
+  required_fields: [ontology_version, schema_version, attr_channels]
+  registry_match: exact
+  registry_fields: [applicable_types, semantics_version, value_kind]
+  record_shape: "{id, text, spans, ...}"
+  span_shape: "{start, end, type, attrs?}"
+  unknown_row_fields: preserved
+  span_order: sorted_by_start_end_type
+  primary_span_overlap: forbidden
+  offsets: absolute_half_open_unicode_codepoints
+
+# Old-v1 canonical nodes. Every one of the 116 nodes is covered explicitly.
+old_v1:
+  person_name: {fallback: person_name, acceptable: [person_name]}
+  given_name: {fallback: person_name, acceptable: [person_name]}
+  family_name: {fallback: person_name, acceptable: [person_name]}
+  middle_name: {fallback: person_name, acceptable: [person_name]}
+  name_prefix: {fallback: person_name, acceptable: [person_name, O]}
+  clinician_name: {fallback: person_name, acceptable: [person_name]}
+  person_attribute:
+    fallback: demographic_attribute
+    acceptable: [age, demographic_attribute, health_condition, protected_attribute]
+  age: {fallback: age, acceptable: [age]}
+  gender: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  physical_trait: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  occupation: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  race_ethnicity: {fallback: protected_attribute, acceptable: [protected_attribute]}
+  religious_belief: {fallback: protected_attribute, acceptable: [protected_attribute]}
+  political_view: {fallback: protected_attribute, acceptable: [protected_attribute]}
+  sexuality: {fallback: protected_attribute, acceptable: [protected_attribute]}
+  education_level: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  employment_status: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  language_spoken: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  health_attribute: {fallback: health_condition, acceptable: [health_condition]}
+  organization: {fallback: organization, acceptable: [organization]}
+  location:
+    fallback: location
+    acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+  address: {fallback: street_address, acceptable: [street_address]}
+  street_address: {fallback: street_address, acceptable: [street_address]}
+  building_number: {fallback: street_address, acceptable: [street_address]}
+  secondary_address: {fallback: street_address, acceptable: [street_address]}
+  city: {fallback: locality, acceptable: [locality]}
+  region: {fallback: admin_area, acceptable: [admin_area, locality]}
+  postal_code: {fallback: postal_code, acceptable: [postal_code]}
+  country: {fallback: admin_area, acceptable: [admin_area]}
+  gps_coordinates: {fallback: gps_coordinates, acceptable: [gps_coordinates]}
+  contact: {fallback: O, acceptable: [email, phone_number, url, O]}
+  email: {fallback: email, acceptable: [email]}
+  phone_number: {fallback: phone_number, acceptable: [phone_number]}
+  url: {fallback: url, acceptable: [url]}
+  digital_id:
+    fallback: record_identifier
+    acceptable: [device_identifier, ip_address, record_identifier, username]
+  username: {fallback: username, acceptable: [username]}
+  ip_address: {fallback: ip_address, acceptable: [ip_address]}
+  mac_address: {fallback: device_identifier, acceptable: [device_identifier]}
+  device_id: {fallback: device_identifier, acceptable: [device_identifier]}
+  user_agent: {fallback: device_identifier, acceptable: [device_identifier]}
+  account_id: {fallback: record_identifier, acceptable: [record_identifier]}
+  biometric_identifier: {fallback: record_identifier, acceptable: [record_identifier]}
+  government_id: {fallback: government_id, acceptable: [government_id, record_identifier]}
+  national_id: {fallback: government_id, acceptable: [government_id]}
+  passport_number: {fallback: government_id, acceptable: [government_id]}
+  drivers_license: {fallback: government_id, acceptable: [government_id]}
+  tax_id: {fallback: government_id, acceptable: [government_id]}
+  certificate_license: {fallback: government_id, acceptable: [government_id]}
+  document_code: {fallback: record_identifier, acceptable: [record_identifier]}
+  org_issued_id: {fallback: record_identifier, acceptable: [government_id, record_identifier]}
+  medical_record_number: {fallback: record_identifier, acceptable: [record_identifier]}
+  insurance_id: {fallback: record_identifier, acceptable: [record_identifier]}
+  employee_id: {fallback: record_identifier, acceptable: [record_identifier]}
+  customer_id: {fallback: record_identifier, acceptable: [record_identifier]}
+  financial:
+    fallback: bank_account_number
+    acceptable: [bank_account_number, bank_routing_code, monetary_amount, organization,
+      payment_card_data, O]
+  bank_account:
+    fallback: bank_account_number
+    acceptable: [bank_account_number, bank_routing_code]
+  account_number: {fallback: bank_account_number, acceptable: [bank_account_number]}
+  iban: {fallback: bank_account_number, acceptable: [bank_account_number]}
+  routing_code: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+  payment_card: {fallback: organization, acceptable: [organization, payment_card_data]}
+  card_number: {fallback: payment_card_data, acceptable: [payment_card_data]}
+  card_expiry: {fallback: payment_card_data, acceptable: [payment_card_data]}
+  card_cvv: {fallback: payment_card_data, acceptable: [payment_card_data]}
+  crypto_address: {fallback: bank_account_number, acceptable: [bank_account_number]}
+  monetary_amount: {fallback: monetary_amount, acceptable: [monetary_amount]}
+  credential: {fallback: credential, acceptable: [credential]}
+  password: {fallback: credential, acceptable: [credential]}
+  api_key: {fallback: credential, acceptable: [credential]}
+  access_token: {fallback: credential, acceptable: [credential]}
+  pin: {fallback: credential, acceptable: [credential]}
+  recovery_code: {fallback: credential, acceptable: [credential]}
+  date_time: {fallback: date, acceptable: [date, date_of_birth, time]}
+  date: {fallback: date, acceptable: [date, date_of_birth]}
+  date_of_birth: {fallback: date_of_birth, acceptable: [date_of_birth]}
+  document_date: {fallback: date, acceptable: [date]}
+  expiration_date: {fallback: date, acceptable: [date]}
+  transaction_date: {fallback: date, acceptable: [date]}
+  time: {fallback: time, acceptable: [time]}
+  vehicle_id: {fallback: record_identifier, acceptable: [record_identifier]}
+  vin: {fallback: record_identifier, acceptable: [record_identifier]}
+  vehicle_registration: {fallback: record_identifier, acceptable: [record_identifier]}
+  quantity: {fallback: quantity, acceptable: [age, monetary_amount, postal_code, quantity]}
+  misc_identifier:
+    fallback: record_identifier
+    acceptable: [bank_account_number, device_identifier, government_id, ip_address,
+      payment_card_data, record_identifier, username]
+  fax_number: {fallback: phone_number, acceptable: [phone_number]}
+  ssn: {fallback: government_id, acceptable: [government_id]}
+  masked_number: {fallback: bank_account_number, acceptable: [bank_account_number]}
+  swift_bic: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+  aba_routing: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+  ipv4: {fallback: ip_address, acceptable: [ip_address]}
+  ipv6: {fallback: ip_address, acceptable: [ip_address]}
+  bitcoin_address: {fallback: bank_account_number, acceptable: [bank_account_number]}
+  ethereum_address: {fallback: bank_account_number, acceptable: [bank_account_number]}
+  litecoin_address: {fallback: bank_account_number, acceptable: [bank_account_number]}
+  currency_designator: {fallback: O, acceptable: [monetary_amount, O]}
+  salary: {fallback: monetary_amount, acceptable: [monetary_amount]}
+  allergy: {fallback: health_condition, acceptable: [health_condition]}
+  medication: {fallback: health_condition, acceptable: [health_condition]}
+  medical_condition: {fallback: health_condition, acceptable: [health_condition]}
+  blood_type: {fallback: health_condition, acceptable: [health_condition]}
+  eye_color: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  height: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  weight: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  state: {fallback: admin_area, acceptable: [admin_area]}
+  county: {fallback: locality, acceptable: [locality]}
+  job_title: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  job_area: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  healthcare_org: {fallback: organization, acceptable: [organization]}
+  financial_org: {fallback: organization, acceptable: [organization]}
+  org_department: {fallback: organization, acceptable: [organization]}
+  airport_code: {fallback: locality, acceptable: [locality]}
+  timezone: {fallback: admin_area, acceptable: [admin_area]}
+  patient_name: {fallback: person_name, acceptable: [person_name]}
+  relative_name: {fallback: person_name, acceptable: [person_name]}
+  circumstance: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  lifestyle: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+  socioeconomic_status: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+
+# Acceptable-set construction, for review and for regeneration:
+#   acceptable(node) = {functional projection}
+#                     u {final images of the node's forest descendants}
+#                     u {curated indeterminacy links}
+# Ancestor images are deliberately NOT added. Source labels inherit their
+# node's set except where source_overrides adjusts it.
+#
+# The loader recomputes all of this from scripts/pii_tagset.yaml and fails on
+# any difference, so only genuinely curated links appear here: a link whose
+# targets are already implied by the node's own projection and its descendants
+# is rejected as redundant, because a redundant link would silently keep a
+# stale set alive after a projection changes.
+#
+# A source_overrides entry may adjust `acceptable`, `fallback`, or both, but
+# only for the one named source cell. Whichever half is omitted keeps its
+# canonical value, so a corpus whose only defect is the default answer does not
+# have to restate a set it did not change. Shared v1 canonical-node fallbacks are
+# never edited to repair a single source: the qualified-gold audit found four
+# cells whose v1 node projection is wrong *for that corpus only*, and moving the
+# node would silently move every other schema that shares it.
+acceptable_set_construction:
+  rule: functional_projection_plus_descendant_images_plus_curated_links
+  ancestor_images_added: false
+  curated_links_must_be_effective: true
+  source_overrides_must_be_effective: true
+  curated_links:
+    misc_identifier: [bank_account_number, device_identifier, government_id, ip_address,
+      payment_card_data, record_identifier, username]
+    org_issued_id: [government_id, record_identifier]
+    quantity: [age, monetary_amount, postal_code, quantity]
+    name_prefix: [person_name, O]
+    currency_designator: [monetary_amount, O]
+  explicit_money_labels: [monetary_amount, salary, MONEY]
+  source_overrides:
+    - schema: authored_v1
+      label: order_number
+      acceptable: [record_identifier]
+      reason: >-
+        an order number is an issued record identifier, not a candidate for the other misc targets
+    - schema: authored_v1
+      label: reservation_number
+      acceptable: [record_identifier]
+      reason: >-
+        a reservation number is an issued record identifier
+    - schema: multigrascco
+      label: ID
+      acceptable: [record_identifier]
+      reason: >-
+        MultiGraSCCo ID is an organization-issued record identifier, never a government ID
+    - schema: presidio_fork_2_2_364_multilingual
+      label: ID
+      acceptable: [device_identifier, government_id, record_identifier, username]
+      reason: >-
+        the fork's generic ID recognizer fires on alphanumeric identifiers of any issuer
+        (record, government, device, account handle); IP addresses have their own recognizer
+    - schema: openai_8
+      label: account_number
+      acceptable: [bank_account_number, government_id, payment_card_data, record_identifier]
+      reason: >-
+        OpenAI's published example labels a project-file reference as account_number
+        (https://openai.com/index/introducing-openai-privacy-filter/). Preserve record-ID
+        credit alongside financial accounts; permissive comparison also admits authority
+        account identifiers. Bare currency, amounts, organizations and routing codes remain
+        excluded. This source-specific allowance does not broaden the canonical account_number.
+    - schema: spy_7
+      label: ID_NUM
+      acceptable: [bank_account_number, government_id, payment_card_data, record_identifier]
+      reason: >-
+        the SPY generic ID_NUM pool mixes authority-issued, organization-record, financial-account
+        and payment-card identifiers
+    - schema: fastino_42
+      label: payment_card
+      fallback: payment_card_data
+      acceptable: [payment_card_data]
+      reason: >-
+        The GLiNER2-PII tagset describes payment_card as the broad banking/payment
+        category over card-number and CVV subtypes (https://arxiv.org/html/2605.09973v1).
+        It does not define card brands or issuers as payment_card values. A brand
+        such as Mastercard therefore receives no organization credit through this label.
+    - schema: openmed_54
+      label: CREDITCARDISSUER
+      acceptable: [organization]
+      reason: >-
+        the source label explicitly identifies a named card issuer or network, never card account
+        data such as the primary account number, security code, or expiry
+    - schema: ai4privacy_200k
+      label: CREDITCARDISSUER
+      acceptable: [organization]
+      reason: >-
+        the source label explicitly identifies a named card issuer or network, never card account
+        data such as the primary account number, security code, or expiry
+    - schema: tab_8
+      label: QUANTITY
+      acceptable: [monetary_amount, quantity]
+      reason: >-
+        a generic amount label stays ambiguous between non-currency quantity and money
+    - schema: mapa_coarse
+      label: AMOUNT
+      acceptable: [monetary_amount, quantity]
+      reason: >-
+        a generic amount label stays ambiguous between non-currency quantity and money
+    - schema: tab_8
+      label: CODE
+      acceptable: [government_id, phone_number, record_identifier]
+      reason: >-
+        the TAB annotation guideline defines CODE as numbers and codes that identify something and
+        names SSNs, phone numbers, passport numbers and licence plates alongside report
+        identifiers; the observed distribution is dominated by court application numbers, so the
+        record_identifier fallback stands, but the singleton set forbade the guideline's own
+        authority-issued and contact-channel minority
+    - schema: tab_8
+      label: MISC
+      fallback: O
+      acceptable: [O, demographic_attribute, health_condition, location, organization,
+        protected_attribute, record_identifier]
+      reason: >-
+        TAB MISC is the guideline's descriptive residue - "every other type of information that
+        describes an individual" - not an identifier bucket; observed spans are medications,
+        welfare-programme names, case citations, named laws, settlement kinds and health or
+        sexual-orientation descriptions, and the inherited misc_identifier projection could not
+        express any of them; O is the honest default for an unrestricted residue
+    - schema: tab_8
+      label: DATETIME
+      acceptable: [O, date, date_of_birth, time]
+      reason: >-
+        the TAB guideline puts durations ("18 years") in DATETIME alongside dates and clock times;
+        a duration is outside this ontology, so O must be reachable, but only through source
+        structure or independent review - never as a lexical guess
+    - schema: meddocan_phi
+      label: FAMILIARES_SUJETO_ASISTENCIA
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, person_name]
+      reason: >-
+        the label marks the relative, and its observed surfaces are overwhelmingly kinship terms
+        and ages rather than names; the inherited relative_name projection made person_name the
+        default for a label whose modal content is a kinship word, contradicting the identical
+        MultiGraSCCo FAMILY treatment
+    - schema: meddocan_phi
+      label: TERRITORIO
+      fallback: locality
+      acceptable: [admin_area, locality, postal_code]
+      reason: >-
+        TERRITORIO is a union of settlement names, sub-national areas and bare postal codes with no
+        observed facility or street instances, so the broad location backoff was both too wide and
+        wrong at its default
+    - schema: multigrascco
+      label: HEALTH_FCLT
+      fallback: demographic_attribute
+      acceptable: [O, demographic_attribute, health_condition]
+      reason: >-
+        despite the name, the observed spans are care-setting and care-episode descriptors rather
+        than facility names; actual hospital names carry LOCATION_HOSPITAL, so the organization
+        projection typed a descriptive attribute as a named organization
+    - schema: multigrascco
+      label: DIRECT_ID_ADDRESS
+      fallback: demographic_attribute
+      acceptable: [O, demographic_attribute, location, organization]
+      reason: >-
+        the observed spans are living-arrangement clauses rather than postal addresses; the
+        street_address projection typed a housing-situation attribute as a mailing address
+
+# Every source label declared in scripts/pii_tagset.yaml, with an explicit
+# nonempty acceptable target set. Schema and label coverage is validated for
+# exact equality against v1: no missing and no extra labels.
+sources:
+  presidio_analyzer_2_2_364_default_en:
+    CREDIT_CARD: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    CRYPTO: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    DATE_TIME: {fallback: date, acceptable: [date, date_of_birth, time]}
+    EMAIL_ADDRESS: {fallback: email, acceptable: [email]}
+    IBAN_CODE: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    IP_ADDRESS: {fallback: ip_address, acceptable: [ip_address]}
+    LOCATION:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    MAC_ADDRESS: {fallback: device_identifier, acceptable: [device_identifier]}
+    MEDICAL_LICENSE: {fallback: government_id, acceptable: [government_id]}
+    NRP:
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, health_condition, protected_attribute]
+    PERSON: {fallback: person_name, acceptable: [person_name]}
+    PHONE_NUMBER: {fallback: phone_number, acceptable: [phone_number]}
+    UK_NHS: {fallback: record_identifier, acceptable: [record_identifier]}
+    URL: {fallback: url, acceptable: [url]}
+    US_BANK_NUMBER: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    US_DRIVER_LICENSE: {fallback: government_id, acceptable: [government_id]}
+    US_ITIN: {fallback: government_id, acceptable: [government_id]}
+    US_PASSPORT: {fallback: government_id, acceptable: [government_id]}
+    US_SSN: {fallback: government_id, acceptable: [government_id]}
+    UUID:
+      fallback: record_identifier
+      acceptable: [device_identifier, ip_address, record_identifier, username]
+
+  # data-privacy-stack fork inventory (presidio-analyzer 2.2.364 + spaCy): the
+  # default English set plus AGE, EMAIL and a generic ID recognizer. The
+  # acceptable sets are permissive in the same spirit as the other external
+  # schemas: a coarse source label admits every target it plausibly covers.
+  presidio_fork_2_2_364_multilingual:
+    AGE: {fallback: age, acceptable: [age]}
+    CREDIT_CARD: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    CRYPTO: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    DATE_TIME: {fallback: date, acceptable: [date, date_of_birth, time]}
+    EMAIL: {fallback: email, acceptable: [email]}
+    EMAIL_ADDRESS: {fallback: email, acceptable: [email]}
+    IBAN_CODE: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    ID:
+      fallback: record_identifier
+      acceptable: [device_identifier, government_id, record_identifier, username]
+    IP_ADDRESS: {fallback: ip_address, acceptable: [ip_address]}
+    LOCATION:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    MAC_ADDRESS: {fallback: device_identifier, acceptable: [device_identifier]}
+    MEDICAL_LICENSE: {fallback: government_id, acceptable: [government_id]}
+    NRP:
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, health_condition, protected_attribute]
+    PERSON: {fallback: person_name, acceptable: [person_name]}
+    PHONE_NUMBER: {fallback: phone_number, acceptable: [phone_number]}
+    UK_NHS: {fallback: record_identifier, acceptable: [record_identifier]}
+    URL: {fallback: url, acceptable: [url]}
+    US_BANK_NUMBER: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    US_DRIVER_LICENSE: {fallback: government_id, acceptable: [government_id]}
+    US_ITIN: {fallback: government_id, acceptable: [government_id]}
+    US_PASSPORT: {fallback: government_id, acceptable: [government_id]}
+    US_SSN: {fallback: government_id, acceptable: [government_id]}
+    UUID:
+      fallback: record_identifier
+      acceptable: [device_identifier, ip_address, record_identifier, username]
+    ORGANIZATION: {fallback: organization, acceptable: [organization]}
+    ES_NIE: {fallback: government_id, acceptable: [government_id]}
+    ES_NIF: {fallback: government_id, acceptable: [government_id]}
+    IT_DRIVER_LICENSE: {fallback: government_id, acceptable: [government_id]}
+    IT_FISCAL_CODE: {fallback: government_id, acceptable: [government_id]}
+    IT_IDENTITY_CARD: {fallback: government_id, acceptable: [government_id]}
+    IT_PASSPORT: {fallback: government_id, acceptable: [government_id]}
+    IT_VAT_CODE: {fallback: government_id, acceptable: [government_id]}
+    PL_PESEL: {fallback: government_id, acceptable: [government_id]}
+
+  openai_8:
+    private_person: {fallback: person_name, acceptable: [person_name]}
+    private_address: {fallback: street_address, acceptable: [street_address]}
+    private_email: {fallback: email, acceptable: [email]}
+    private_phone: {fallback: phone_number, acceptable: [phone_number]}
+    private_url: {fallback: url, acceptable: [url]}
+    private_date: {fallback: date, acceptable: [date, date_of_birth]}
+    account_number:
+      fallback: bank_account_number
+      acceptable: [bank_account_number, government_id, payment_card_data, record_identifier]
+    secret: {fallback: credential, acceptable: [credential]}
+
+  fastino_42:
+    person: {fallback: person_name, acceptable: [person_name]}
+    full_name: {fallback: person_name, acceptable: [person_name]}
+    first_name: {fallback: person_name, acceptable: [person_name]}
+    middle_name: {fallback: person_name, acceptable: [person_name]}
+    last_name: {fallback: person_name, acceptable: [person_name]}
+    date_of_birth: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    email: {fallback: email, acceptable: [email]}
+    phone_number: {fallback: phone_number, acceptable: [phone_number]}
+    address: {fallback: street_address, acceptable: [street_address]}
+    street_address: {fallback: street_address, acceptable: [street_address]}
+    city: {fallback: locality, acceptable: [locality]}
+    state_or_region: {fallback: admin_area, acceptable: [admin_area, locality]}
+    postal_code: {fallback: postal_code, acceptable: [postal_code]}
+    country: {fallback: admin_area, acceptable: [admin_area]}
+    government_id: {fallback: government_id, acceptable: [government_id, record_identifier]}
+    national_id_number: {fallback: government_id, acceptable: [government_id]}
+    passport_number: {fallback: government_id, acceptable: [government_id]}
+    drivers_license_number: {fallback: government_id, acceptable: [government_id]}
+    license_number: {fallback: government_id, acceptable: [government_id]}
+    tax_id: {fallback: government_id, acceptable: [government_id]}
+    tax_number: {fallback: government_id, acceptable: [government_id]}
+    bank_account:
+      fallback: bank_account_number
+      acceptable: [bank_account_number, bank_routing_code]
+    account_number: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    routing_number: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    iban: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    payment_card: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    card_number: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    card_expiry: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    card_cvv: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    username: {fallback: username, acceptable: [username]}
+    ip_address: {fallback: ip_address, acceptable: [ip_address]}
+    account_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    sensitive_account_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    password: {fallback: credential, acceptable: [credential]}
+    secret: {fallback: credential, acceptable: [credential]}
+    api_key: {fallback: credential, acceptable: [credential]}
+    access_token: {fallback: credential, acceptable: [credential]}
+    recovery_code: {fallback: credential, acceptable: [credential]}
+    sensitive_date: {fallback: date, acceptable: [date, date_of_birth]}
+    document_date: {fallback: date, acceptable: [date]}
+    expiration_date: {fallback: date, acceptable: [date]}
+    transaction_date: {fallback: date, acceptable: [date]}
+
+  openmed_54:
+    FIRSTNAME: {fallback: person_name, acceptable: [person_name]}
+    MIDDLENAME: {fallback: person_name, acceptable: [person_name]}
+    LASTNAME: {fallback: person_name, acceptable: [person_name]}
+    PREFIX: {fallback: person_name, acceptable: [person_name, O]}
+    AGE: {fallback: age, acceptable: [age]}
+    GENDER: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    SEX: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    EYECOLOR: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    HEIGHT: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    USERNAME: {fallback: username, acceptable: [username]}
+    OCCUPATION: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    JOBTITLE: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    JOBDEPARTMENT: {fallback: organization, acceptable: [organization]}
+    ORGANIZATION: {fallback: organization, acceptable: [organization]}
+    USERAGENT: {fallback: device_identifier, acceptable: [device_identifier]}
+    EMAIL: {fallback: email, acceptable: [email]}
+    PHONE: {fallback: phone_number, acceptable: [phone_number]}
+    URL: {fallback: url, acceptable: [url]}
+    STREET: {fallback: street_address, acceptable: [street_address]}
+    BUILDINGNUMBER: {fallback: street_address, acceptable: [street_address]}
+    SECONDARYADDRESS: {fallback: street_address, acceptable: [street_address]}
+    CITY: {fallback: locality, acceptable: [locality]}
+    COUNTY: {fallback: locality, acceptable: [locality]}
+    STATE: {fallback: admin_area, acceptable: [admin_area]}
+    ZIPCODE: {fallback: postal_code, acceptable: [postal_code]}
+    GPSCOORDINATES: {fallback: gps_coordinates, acceptable: [gps_coordinates]}
+    ORDINALDIRECTION:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    DATE: {fallback: date, acceptable: [date, date_of_birth]}
+    DATEOFBIRTH: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    TIME: {fallback: time, acceptable: [time]}
+    SSN: {fallback: government_id, acceptable: [government_id]}
+    ACCOUNTNAME:
+      fallback: bank_account_number
+      acceptable: [bank_account_number, bank_routing_code]
+    BANKACCOUNT: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    IBAN: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    BIC: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    CREDITCARD: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    CREDITCARDISSUER: {fallback: organization, acceptable: [organization]}
+    CVV: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    PIN: {fallback: credential, acceptable: [credential]}
+    MASKEDNUMBER: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    AMOUNT: {fallback: monetary_amount, acceptable: [monetary_amount]}
+    CURRENCY: {fallback: O, acceptable: [monetary_amount, O]}
+    CURRENCYCODE: {fallback: O, acceptable: [monetary_amount, O]}
+    CURRENCYNAME: {fallback: O, acceptable: [monetary_amount, O]}
+    CURRENCYSYMBOL: {fallback: O, acceptable: [monetary_amount, O]}
+    BITCOINADDRESS: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    ETHEREUMADDRESS: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    LITECOINADDRESS: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    VIN: {fallback: record_identifier, acceptable: [record_identifier]}
+    VRM: {fallback: record_identifier, acceptable: [record_identifier]}
+    IPADDRESS: {fallback: ip_address, acceptable: [ip_address]}
+    MACADDRESS: {fallback: device_identifier, acceptable: [device_identifier]}
+    IMEI: {fallback: device_identifier, acceptable: [device_identifier]}
+    PASSWORD: {fallback: credential, acceptable: [credential]}
+
+  spy_7:
+    NAME: {fallback: person_name, acceptable: [person_name]}
+    EMAIL: {fallback: email, acceptable: [email]}
+    PHONE_NUM: {fallback: phone_number, acceptable: [phone_number]}
+    ID_NUM:
+      fallback: government_id
+      acceptable: [bank_account_number, government_id, payment_card_data, record_identifier]
+    URL: {fallback: url, acceptable: [url]}
+    USERNAME: {fallback: username, acceptable: [username]}
+    ADDRESS: {fallback: street_address, acceptable: [street_address]}
+
+  tab_8:
+    PERSON: {fallback: person_name, acceptable: [person_name]}
+    CODE:
+      fallback: record_identifier
+      acceptable: [government_id, phone_number, record_identifier]
+    LOC:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    ORG: {fallback: organization, acceptable: [organization]}
+    DEM:
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, health_condition, protected_attribute]
+    DATETIME: {fallback: date, acceptable: [O, date, date_of_birth, time]}
+    QUANTITY: {fallback: quantity, acceptable: [monetary_amount, quantity]}
+    MISC:
+      fallback: O
+      acceptable: [O, demographic_attribute, health_condition, location, organization,
+        protected_attribute, record_identifier]
+
+  nemotron_pii: &nemotron_v2
+    date: {fallback: date, acceptable: [date, date_of_birth]}
+    first_name: {fallback: person_name, acceptable: [person_name]}
+    company_name: {fallback: organization, acceptable: [organization]}
+    email: {fallback: email, acceptable: [email]}
+    last_name: {fallback: person_name, acceptable: [person_name]}
+    url: {fallback: url, acceptable: [url]}
+    occupation: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    country: {fallback: admin_area, acceptable: [admin_area]}
+    phone_number: {fallback: phone_number, acceptable: [phone_number]}
+    time: {fallback: time, acceptable: [time]}
+    customer_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    city: {fallback: locality, acceptable: [locality]}
+    state: {fallback: admin_area, acceptable: [admin_area]}
+    street_address: {fallback: street_address, acceptable: [street_address]}
+    date_of_birth: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    user_name: {fallback: username, acceptable: [username]}
+    date_time: {fallback: date, acceptable: [date, date_of_birth, time]}
+    account_number: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    biometric_identifier: {fallback: record_identifier, acceptable: [record_identifier]}
+    credit_debit_card: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    employee_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    education_level: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    employment_status: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    medical_record_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    health_plan_beneficiary_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    race_ethnicity: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    coordinate: {fallback: gps_coordinates, acceptable: [gps_coordinates]}
+    password: {fallback: credential, acceptable: [credential]}
+    language: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    bank_routing_number: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    ipv4: {fallback: ip_address, acceptable: [ip_address]}
+    county: {fallback: locality, acceptable: [locality]}
+    postcode: {fallback: postal_code, acceptable: [postal_code]}
+    vehicle_identifier: {fallback: record_identifier, acceptable: [record_identifier]}
+    fax_number: {fallback: phone_number, acceptable: [phone_number]}
+    pin: {fallback: credential, acceptable: [credential]}
+    gender: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    swift_bic: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    age: {fallback: age, acceptable: [age]}
+    license_plate: {fallback: record_identifier, acceptable: [record_identifier]}
+    ssn: {fallback: government_id, acceptable: [government_id]}
+    religious_belief: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    certificate_license_number: {fallback: government_id, acceptable: [government_id]}
+    api_key: {fallback: credential, acceptable: [credential]}
+    http_cookie: {fallback: credential, acceptable: [credential]}
+    political_view: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    mac_address: {fallback: device_identifier, acceptable: [device_identifier]}
+    blood_type: {fallback: health_condition, acceptable: [health_condition]}
+    cvv: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    ipv6: {fallback: ip_address, acceptable: [ip_address]}
+    device_identifier: {fallback: device_identifier, acceptable: [device_identifier]}
+    national_id: {fallback: government_id, acceptable: [government_id]}
+    sexuality: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    unique_id:
+      fallback: record_identifier
+      acceptable: [bank_account_number, device_identifier, government_id, ip_address,
+        payment_card_data, record_identifier, username]
+    tax_id: {fallback: government_id, acceptable: [government_id]}
+
+  # Identical label space to nemotron_pii (verified from its config id2label).
+  openmed_nemotron_55: *nemotron_v2
+  ai4privacy_new: &ai4privacy_v2_new
+    GIVENNAME: {fallback: person_name, acceptable: [person_name]}
+    SURNAME: {fallback: person_name, acceptable: [person_name]}
+    CITY: {fallback: locality, acceptable: [locality]}
+    TELEPHONENUM: {fallback: phone_number, acceptable: [phone_number]}
+    TIME: {fallback: time, acceptable: [time]}
+    DATE: {fallback: date, acceptable: [date, date_of_birth]}
+    EMAIL: {fallback: email, acceptable: [email]}
+    STREET: {fallback: street_address, acceptable: [street_address]}
+    BUILDINGNUM: {fallback: street_address, acceptable: [street_address]}
+    IDCARDNUM: {fallback: government_id, acceptable: [government_id]}
+    TITLE: {fallback: person_name, acceptable: [person_name, O]}
+    AGE: {fallback: age, acceptable: [age]}
+    ZIPCODE: {fallback: postal_code, acceptable: [postal_code]}
+    PASSPORTNUM: {fallback: government_id, acceptable: [government_id]}
+    TAXNUM: {fallback: government_id, acceptable: [government_id]}
+    SEX: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    CREDITCARDNUMBER: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    SOCIALNUM: {fallback: government_id, acceptable: [government_id]}
+    DRIVERLICENSENUM: {fallback: government_id, acceptable: [government_id]}
+    GENDER: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    DATEOFBIRTH: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    ORGANISATION: {fallback: organization, acceptable: [organization]}
+    AMOUNT: {fallback: monetary_amount, acceptable: [monetary_amount]}
+    URL: {fallback: url, acceptable: [url]}
+    COUNTRY: {fallback: admin_area, acceptable: [admin_area]}
+    CURRENCY: {fallback: O, acceptable: [monetary_amount, O]}
+    USERNAME: {fallback: username, acceptable: [username]}
+    BANKNAME: {fallback: organization, acceptable: [organization]}
+    ACCOUNTNUM: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    JOBTITLE: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    IPV4: {fallback: ip_address, acceptable: [ip_address]}
+    PASSWORD: {fallback: credential, acceptable: [credential]}
+    WEIGHT: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    TIMEZONE: {fallback: admin_area, acceptable: [admin_area]}
+    SALARY: {fallback: monetary_amount, acceptable: [monetary_amount]}
+    ALLERGIES: {fallback: health_condition, acceptable: [health_condition]}
+    MEDICATION: {fallback: health_condition, acceptable: [health_condition]}
+    POLICYNUM: {fallback: record_identifier, acceptable: [record_identifier]}
+    HEIGHT: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    DOCTORNAME: {fallback: person_name, acceptable: [person_name]}
+    AIRPORTCODE: {fallback: locality, acceptable: [locality]}
+    MACADDRESS: {fallback: device_identifier, acceptable: [device_identifier]}
+    HOSPITALNAME: {fallback: organization, acceptable: [organization]}
+    JOBTYPE: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+
+  ai4privacy_health_phi:
+    <<: *ai4privacy_v2_new
+    BLOODTYPE: {fallback: health_condition, acceptable: [health_condition]}
+    DIAGNOSES: {fallback: health_condition, acceptable: [health_condition]}
+    DISABILITYSTATUS: {fallback: health_condition, acceptable: [health_condition]}
+    GENETICINFO: {fallback: health_condition, acceptable: [health_condition]}
+    HEALTHINSURANCENUM: {fallback: record_identifier, acceptable: [record_identifier]}
+    IMMUNIZATIONSTATUS: {fallback: health_condition, acceptable: [health_condition]}
+    MEDICALRECORDNUM: {fallback: record_identifier, acceptable: [record_identifier]}
+    MENTALHEALTHINFO: {fallback: health_condition, acceptable: [health_condition]}
+    PREGNANCYSTATUS: {fallback: health_condition, acceptable: [health_condition]}
+    PRESCRIPTIONINFO: {fallback: health_condition, acceptable: [health_condition]}
+    TESTRESULTS: {fallback: health_condition, acceptable: [health_condition]}
+    TREATMENTINFO: {fallback: health_condition, acceptable: [health_condition]}
+
+  ai4privacy_200k:
+    FIRSTNAME: {fallback: person_name, acceptable: [person_name]}
+    LASTNAME: {fallback: person_name, acceptable: [person_name]}
+    MIDDLENAME: {fallback: person_name, acceptable: [person_name]}
+    DATE: {fallback: date, acceptable: [date, date_of_birth]}
+    EMAIL: {fallback: email, acceptable: [email]}
+    PREFIX: {fallback: person_name, acceptable: [person_name, O]}
+    SEX: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    JOBTYPE: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    JOBTITLE: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    JOBAREA: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    AMOUNT: {fallback: monetary_amount, acceptable: [monetary_amount]}
+    BUILDINGNUMBER: {fallback: street_address, acceptable: [street_address]}
+    DOB: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    STREET: {fallback: street_address, acceptable: [street_address]}
+    CURRENCYSYMBOL: {fallback: O, acceptable: [monetary_amount, O]}
+    CURRENCYNAME: {fallback: O, acceptable: [monetary_amount, O]}
+    CURRENCYCODE: {fallback: O, acceptable: [monetary_amount, O]}
+    CURRENCY: {fallback: O, acceptable: [monetary_amount, O]}
+    COUNTY: {fallback: locality, acceptable: [locality]}
+    STATE: {fallback: admin_area, acceptable: [admin_area]}
+    AGE: {fallback: age, acceptable: [age]}
+    TIME: {fallback: time, acceptable: [time]}
+    GENDER: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    USERNAME: {fallback: username, acceptable: [username]}
+    CREDITCARDNUMBER: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    CREDITCARDISSUER: {fallback: organization, acceptable: [organization]}
+    CREDITCARDCVV: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    PASSWORD: {fallback: credential, acceptable: [credential]}
+    ACCOUNTNAME:
+      fallback: bank_account_number
+      acceptable: [bank_account_number, bank_routing_code]
+    ACCOUNTNUMBER: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    MASKEDNUMBER: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    URL: {fallback: url, acceptable: [url]}
+    COMPANYNAME: {fallback: organization, acceptable: [organization]}
+    ZIPCODE: {fallback: postal_code, acceptable: [postal_code]}
+    IPV4: {fallback: ip_address, acceptable: [ip_address]}
+    IPV6: {fallback: ip_address, acceptable: [ip_address]}
+    IP: {fallback: ip_address, acceptable: [ip_address]}
+    SECONDARYADDRESS: {fallback: street_address, acceptable: [street_address]}
+    CITY: {fallback: locality, acceptable: [locality]}
+    PHONENUMBER: {fallback: phone_number, acceptable: [phone_number]}
+    PHONEIMEI: {fallback: device_identifier, acceptable: [device_identifier]}
+    BITCOINADDRESS: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    ETHEREUMADDRESS: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    LITECOINADDRESS: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    SSN: {fallback: government_id, acceptable: [government_id]}
+    USERAGENT: {fallback: device_identifier, acceptable: [device_identifier]}
+    IBAN: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    BIC: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    NEARBYGPSCOORDINATE: {fallback: gps_coordinates, acceptable: [gps_coordinates]}
+    ORDINALDIRECTION:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    MAC: {fallback: device_identifier, acceptable: [device_identifier]}
+    EYECOLOR: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    HEIGHT: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    VEHICLEVRM: {fallback: record_identifier, acceptable: [record_identifier]}
+    VEHICLEVIN: {fallback: record_identifier, acceptable: [record_identifier]}
+    PIN: {fallback: credential, acceptable: [credential]}
+
+  gretel_finance:
+    name: {fallback: person_name, acceptable: [person_name]}
+    company: {fallback: organization, acceptable: [organization]}
+    street_address: {fallback: street_address, acceptable: [street_address]}
+    date: {fallback: date, acceptable: [date, date_of_birth]}
+    time: {fallback: time, acceptable: [time]}
+    date_time: {fallback: date, acceptable: [date, date_of_birth, time]}
+    phone_number: {fallback: phone_number, acceptable: [phone_number]}
+    email: {fallback: email, acceptable: [email]}
+    first_name: {fallback: person_name, acceptable: [person_name]}
+    last_name: {fallback: person_name, acceptable: [person_name]}
+    date_of_birth: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    swift_bic_code: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    bank_routing_number: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    customer_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    employee_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    iban: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    bban: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    passport_number: {fallback: government_id, acceptable: [government_id]}
+    ipv4: {fallback: ip_address, acceptable: [ip_address]}
+    ipv6: {fallback: ip_address, acceptable: [ip_address]}
+    ssn: {fallback: government_id, acceptable: [government_id]}
+    credit_card_security_code: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    credit_card_number: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    account_pin: {fallback: credential, acceptable: [credential]}
+    driver_license_number: {fallback: government_id, acceptable: [government_id]}
+    api_key: {fallback: credential, acceptable: [credential]}
+    user_name: {fallback: username, acceptable: [username]}
+    local_latlng: {fallback: gps_coordinates, acceptable: [gps_coordinates]}
+    password: {fallback: credential, acceptable: [credential]}
+
+  gretel_en:
+    medical_record_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    date_of_birth: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    ssn: {fallback: government_id, acceptable: [government_id]}
+    date: {fallback: date, acceptable: [date, date_of_birth]}
+    time: {fallback: time, acceptable: [time]}
+    date_time: {fallback: date, acceptable: [date, date_of_birth, time]}
+    first_name: {fallback: person_name, acceptable: [person_name]}
+    last_name: {fallback: person_name, acceptable: [person_name]}
+    name: {fallback: person_name, acceptable: [person_name]}
+    email: {fallback: email, acceptable: [email]}
+    customer_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    employee_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    street_address: {fallback: street_address, acceptable: [street_address]}
+    address: {fallback: street_address, acceptable: [street_address]}
+    phone_number: {fallback: phone_number, acceptable: [phone_number]}
+    ipv4: {fallback: ip_address, acceptable: [ip_address]}
+    ipv6: {fallback: ip_address, acceptable: [ip_address]}
+    credit_card_number: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    license_plate: {fallback: record_identifier, acceptable: [record_identifier]}
+    user_name: {fallback: username, acceptable: [username]}
+    device_identifier: {fallback: device_identifier, acceptable: [device_identifier]}
+    bank_routing_number: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    swift_bic: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    company_name: {fallback: organization, acceptable: [organization]}
+    unique_identifier:
+      fallback: record_identifier
+      acceptable: [bank_account_number, device_identifier, government_id, ip_address,
+        payment_card_data, record_identifier, username]
+    biometric_identifier: {fallback: record_identifier, acceptable: [record_identifier]}
+    account_number: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    city: {fallback: locality, acceptable: [locality]}
+    certificate_license_number: {fallback: government_id, acceptable: [government_id]}
+    postcode: {fallback: postal_code, acceptable: [postal_code]}
+    vehicle_identifier: {fallback: record_identifier, acceptable: [record_identifier]}
+    coordinate: {fallback: gps_coordinates, acceptable: [gps_coordinates]}
+    country: {fallback: admin_area, acceptable: [admin_area]}
+    api_key: {fallback: credential, acceptable: [credential]}
+    password: {fallback: credential, acceptable: [credential]}
+    health_plan_beneficiary_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    national_id: {fallback: government_id, acceptable: [government_id]}
+    tax_id: {fallback: government_id, acceptable: [government_id]}
+    url: {fallback: url, acceptable: [url]}
+    state: {fallback: admin_area, acceptable: [admin_area]}
+    cvv: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    pin: {fallback: credential, acceptable: [credential]}
+
+  urchade_pii:
+    person: {fallback: person_name, acceptable: [person_name]}
+    name: {fallback: person_name, acceptable: [person_name]}
+    organization: {fallback: organization, acceptable: [organization]}
+    bank: {fallback: organization, acceptable: [organization]}
+    "phone number": {fallback: phone_number, acceptable: [phone_number]}
+    "mobile phone number": {fallback: phone_number, acceptable: [phone_number]}
+    address: {fallback: street_address, acceptable: [street_address]}
+    location:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    city: {fallback: locality, acceptable: [locality]}
+    country: {fallback: admin_area, acceptable: [admin_area]}
+    "passport number": {fallback: government_id, acceptable: [government_id]}
+    email: {fallback: email, acceptable: [email]}
+    "email address": {fallback: email, acceptable: [email]}
+    "credit card number": {fallback: payment_card_data, acceptable: [payment_card_data]}
+    "credit card expiration date": {fallback: payment_card_data, acceptable: [payment_card_data]}
+    "social security number": {fallback: government_id, acceptable: [government_id]}
+    "national insurance number": {fallback: government_id, acceptable: [government_id]}
+    "identity card number": {fallback: government_id, acceptable: [government_id]}
+    "personal identification number": {fallback: government_id, acceptable: [government_id]}
+    "national ID number": {fallback: government_id, acceptable: [government_id]}
+    date: {fallback: date, acceptable: [date, date_of_birth]}
+    time: {fallback: time, acceptable: [time]}
+    "birth date": {fallback: date_of_birth, acceptable: [date_of_birth]}
+    birthdate: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    "date of birth": {fallback: date_of_birth, acceptable: [date_of_birth]}
+    date_of_birth: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    "health insurance ID number": {fallback: record_identifier, acceptable: [record_identifier]}
+    "health insurance number": {fallback: record_identifier, acceptable: [record_identifier]}
+    "health insurance id number": {fallback: record_identifier, acceptable: [record_identifier]}
+    "bank account number": {fallback: bank_account_number, acceptable: [bank_account_number]}
+    IBAN: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    medication: {fallback: health_condition, acceptable: [health_condition]}
+    "medical condition": {fallback: health_condition, acceptable: [health_condition]}
+    condition: {fallback: health_condition, acceptable: [health_condition]}
+    CPF: {fallback: government_id, acceptable: [government_id]}
+    "tax identification number": {fallback: government_id, acceptable: [government_id]}
+    "tax ID number": {fallback: government_id, acceptable: [government_id]}
+    "tax ID": {fallback: government_id, acceptable: [government_id]}
+    "company registration number":
+      fallback: record_identifier
+      acceptable: [bank_account_number, device_identifier, government_id, ip_address,
+        payment_card_data, record_identifier, username]
+    "driver's license number": {fallback: government_id, acceptable: [government_id]}
+    currency: {fallback: O, acceptable: [monetary_amount, O]}
+    age: {fallback: age, acceptable: [age]}
+    weight: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    password: {fallback: credential, acceptable: [credential]}
+
+  meddocan_phi:
+    TERRITORIO:
+      fallback: locality
+      acceptable: [admin_area, locality, postal_code]
+    FECHAS: {fallback: date, acceptable: [date, date_of_birth]}
+    EDAD_SUJETO_ASISTENCIA: {fallback: age, acceptable: [age]}
+    NOMBRE_SUJETO_ASISTENCIA: {fallback: person_name, acceptable: [person_name]}
+    NOMBRE_PERSONAL_SANITARIO: {fallback: person_name, acceptable: [person_name]}
+    SEXO_SUJETO_ASISTENCIA: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    CALLE: {fallback: street_address, acceptable: [street_address]}
+    PAIS: {fallback: admin_area, acceptable: [admin_area]}
+    ID_SUJETO_ASISTENCIA: {fallback: record_identifier, acceptable: [record_identifier]}
+    CORREO_ELECTRONICO: {fallback: email, acceptable: [email]}
+    ID_TITULACION_PERSONAL_SANITARIO: {fallback: government_id, acceptable: [government_id]}
+    ID_EMPLEO_PERSONAL_SANITARIO: {fallback: record_identifier, acceptable: [record_identifier]}
+    ID_ASEGURAMIENTO: {fallback: record_identifier, acceptable: [record_identifier]}
+    ID_CONTACTO_ASISTENCIAL:
+      fallback: record_identifier
+      acceptable: [government_id, record_identifier]
+    HOSPITAL: {fallback: organization, acceptable: [organization]}
+    CENTRO_SALUD: {fallback: organization, acceptable: [organization]}
+    FAMILIARES_SUJETO_ASISTENCIA:
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, person_name]
+    INSTITUCION: {fallback: organization, acceptable: [organization]}
+    NUMERO_TELEFONO: {fallback: phone_number, acceptable: [phone_number]}
+    NUMERO_FAX: {fallback: phone_number, acceptable: [phone_number]}
+    PROFESION: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    OTROS_SUJETO_ASISTENCIA:
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, health_condition, protected_attribute]
+
+  authored_v1:
+    first_name: {fallback: person_name, acceptable: [person_name]}
+    last_name: {fallback: person_name, acceptable: [person_name]}
+    date: {fallback: date, acceptable: [date, date_of_birth]}
+    date_of_birth: {fallback: date_of_birth, acceptable: [date_of_birth]}
+    date_time: {fallback: date, acceptable: [date, date_of_birth, time]}
+    time: {fallback: time, acceptable: [time]}
+    age: {fallback: age, acceptable: [age]}
+    gender: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    race_ethnicity: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    religious_belief: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    political_view: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    sexuality: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    medical_condition: {fallback: health_condition, acceptable: [health_condition]}
+    blood_type: {fallback: health_condition, acceptable: [health_condition]}
+    phone_number: {fallback: phone_number, acceptable: [phone_number]}
+    fax_number: {fallback: phone_number, acceptable: [phone_number]}
+    email: {fallback: email, acceptable: [email]}
+    street_address: {fallback: street_address, acceptable: [street_address]}
+    city: {fallback: locality, acceptable: [locality]}
+    state: {fallback: admin_area, acceptable: [admin_area]}
+    county: {fallback: locality, acceptable: [locality]}
+    country: {fallback: admin_area, acceptable: [admin_area]}
+    postcode: {fallback: postal_code, acceptable: [postal_code]}
+    company_name: {fallback: organization, acceptable: [organization]}
+    occupation: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    job_area: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    education_level: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    account_number: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    customer_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    employee_id: {fallback: record_identifier, acceptable: [record_identifier]}
+    unique_id:
+      fallback: record_identifier
+      acceptable: [bank_account_number, device_identifier, government_id, ip_address,
+        payment_card_data, record_identifier, username]
+    medical_record_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    health_plan_beneficiary_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    credit_debit_card: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    certificate_license_number: {fallback: government_id, acceptable: [government_id]}
+    national_id: {fallback: government_id, acceptable: [government_id]}
+    document_code: {fallback: record_identifier, acceptable: [record_identifier]}
+    passport_number: {fallback: government_id, acceptable: [government_id]}
+    ssn: {fallback: government_id, acceptable: [government_id]}
+    tax_id: {fallback: government_id, acceptable: [government_id]}
+    url: {fallback: url, acceptable: [url]}
+    ip_address: {fallback: ip_address, acceptable: [ip_address]}
+    ipv6: {fallback: ip_address, acceptable: [ip_address]}
+    user_name: {fallback: username, acceptable: [username]}
+    password: {fallback: credential, acceptable: [credential]}
+    api_key: {fallback: credential, acceptable: [credential]}
+    pin: {fallback: credential, acceptable: [credential]}
+    device_identifier: {fallback: device_identifier, acceptable: [device_identifier]}
+    mac_address: {fallback: device_identifier, acceptable: [device_identifier]}
+    biometric_identifier: {fallback: record_identifier, acceptable: [record_identifier]}
+    employment_status: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    language: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    iban: {fallback: bank_account_number, acceptable: [bank_account_number]}
+    monetary_amount: {fallback: monetary_amount, acceptable: [monetary_amount]}
+    facility: {fallback: organization, acceptable: [organization]}
+    name_title: {fallback: person_name, acceptable: [person_name, O]}
+    license_plate: {fallback: record_identifier, acceptable: [record_identifier]}
+    vehicle_identifier: {fallback: record_identifier, acceptable: [record_identifier]}
+    http_cookie: {fallback: credential, acceptable: [credential]}
+    cvv: {fallback: payment_card_data, acceptable: [payment_card_data]}
+    coordinate: {fallback: gps_coordinates, acceptable: [gps_coordinates]}
+    policy_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    bank_routing_number: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    swift_bic: {fallback: bank_routing_code, acceptable: [bank_routing_code]}
+    order_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    my_number: {fallback: government_id, acceptable: [government_id]}
+    reservation_number: {fallback: record_identifier, acceptable: [record_identifier]}
+    student_id: {fallback: record_identifier, acceptable: [government_id, record_identifier]}
+    business_registration_number:
+      fallback: record_identifier
+      acceptable: [government_id, record_identifier]
+    license_key: {fallback: credential, acceptable: [credential]}
+    session_id: {fallback: credential, acceptable: [credential]}
+    membership_number: {fallback: record_identifier, acceptable: [government_id, record_identifier]}
+    nationality:
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, health_condition, protected_attribute]
+
+  multigrascco:
+    DATE: {fallback: date, acceptable: [date, date_of_birth]}
+    HEALTH_FCLT:
+      fallback: demographic_attribute
+      acceptable: [O, demographic_attribute, health_condition]
+    NAME_PATIENT: {fallback: person_name, acceptable: [person_name]}
+    NAME_DOCTOR: {fallback: person_name, acceptable: [person_name]}
+    NAME_RELATIVE: {fallback: person_name, acceptable: [person_name]}
+    NAME_TITLE: {fallback: person_name, acceptable: [person_name, O]}
+    NAME_EXT: {fallback: person_name, acceptable: [person_name]}
+    NAME_USERNAME: {fallback: username, acceptable: [username]}
+    CIRCUMSTANCES: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    BODY_DESC: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    LOCATION_CITY: {fallback: locality, acceptable: [locality]}
+    LOCATION_ZIP: {fallback: postal_code, acceptable: [postal_code]}
+    LOCATION_STREET: {fallback: street_address, acceptable: [street_address]}
+    LOCATION_HOSPITAL: {fallback: organization, acceptable: [organization]}
+    LOCATION_ORGANIZATION: {fallback: organization, acceptable: [organization]}
+    LOCATION_COUNTRY: {fallback: admin_area, acceptable: [admin_area]}
+    DIRECT_ID_ADDRESS:
+      fallback: demographic_attribute
+      acceptable: [O, demographic_attribute, location, organization]
+    ID: {fallback: record_identifier, acceptable: [record_identifier]}
+    FAMILY:
+      fallback: demographic_attribute
+      acceptable: [age, demographic_attribute, health_condition, protected_attribute]
+    AGE: {fallback: age, acceptable: [age]}
+    CONTACT_PHONE: {fallback: phone_number, acceptable: [phone_number]}
+    CONTACT_FAX: {fallback: phone_number, acceptable: [phone_number]}
+    CONTACT_EMAIL: {fallback: email, acceptable: [email]}
+    HOBIS_LFSTL: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    SOCIO: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    LANGUAGES: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    PROFESSION: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    SEXUAL_ORIENTATION: {fallback: protected_attribute, acceptable: [protected_attribute]}
+    OTHER:
+      fallback: record_identifier
+      acceptable: [bank_account_number, device_identifier, government_id, ip_address,
+        payment_card_data, record_identifier, username]
+    UNKNOWN:
+      fallback: record_identifier
+      acceptable: [bank_account_number, device_identifier, government_id, ip_address,
+        payment_card_data, record_identifier, username]
+
+  mapa_coarse:
+    ORGANISATION: {fallback: organization, acceptable: [organization]}
+    ADDRESS:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    DATE: {fallback: date, acceptable: [date, date_of_birth]}
+    PERSON: {fallback: person_name, acceptable: [person_name]}
+    AMOUNT: {fallback: quantity, acceptable: [monetary_amount, quantity]}
+    TIME: {fallback: time, acceptable: [time]}
+
+  idner_news_2k:
+    LOC:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    ORG: {fallback: organization, acceptable: [organization]}
+    PER: {fallback: person_name, acceptable: [person_name]}
+
+  hiner_original:
+    LANGUAGE: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    LOCATION:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    ORGANIZATION: {fallback: organization, acceptable: [organization]}
+    PERSON: {fallback: person_name, acceptable: [person_name]}
+    RELIGION: {fallback: protected_attribute, acceptable: [protected_attribute]}
+
+  klue_ner:
+    PS: {fallback: person_name, acceptable: [person_name]}
+    LC:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    OG: {fallback: organization, acceptable: [organization]}
+
+  wojood_nested:
+    PERS: {fallback: person_name, acceptable: [person_name]}
+    ORG: {fallback: organization, acceptable: [organization]}
+    GPE:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    LOC:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    FAC:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    OCC: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    LANGUAGE: {fallback: demographic_attribute, acceptable: [demographic_attribute]}
+    WEBSITE: {fallback: url, acceptable: [url]}
+    DATE: {fallback: date, acceptable: [date, date_of_birth]}
+    TIME: {fallback: time, acceptable: [time]}
+    MONEY: {fallback: monetary_amount, acceptable: [monetary_amount]}
+
+  aqmar_core:
+    LOC:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    ORG: {fallback: organization, acceptable: [organization]}
+    PER: {fallback: person_name, acceptable: [person_name]}
+
+  openner_core:
+    LOC:
+      fallback: location
+      acceptable: [admin_area, gps_coordinates, locality, location, postal_code, street_address]
+    ORG: {fallback: organization, acceptable: [organization]}
+    PER: {fallback: person_name, acceptable: [person_name]}
+
+# Relabeler hints only: the later relabeler decides extents, and these never
+# license automatic whole-name merging.
+attribute_provenance_hints:
+  family_name:
+    known_positive_whole_extent: [family_name]
+    known_negative: [given_name, middle_name, name_prefix]
+    unknown_unless_source_structure_supplies_extents:
+      [person_name, clinician_name, patient_name, relative_name]
+  care_provider:
+    known_positive_whole_extent: [clinician_name]
+    known_negative: [patient_name, relative_name]
+    unknown_unless_source_structure_supplies_role:
+      [person_name, given_name, family_name, middle_name, name_prefix]
+
+# Qualified-gold source labels that v1 onboarding intentionally ignored, or (for
+# multigrascco) that the v1 mapping never declared at all. These are a SEPARATE
+# declared surface: `sources` above still has to match the v1 tagset's schema and
+# label inventory exactly, and nothing here relaxes that check.
+#
+# Every entry is fail-closed. The schema must already exist in v1; the label must
+# NOT exist in that schema's v1 mapping; a manifest-backed label must appear in
+# the tracked onboarding manifest's ignored_source_labels with a matching
+# source_schema; a raw-scan label must be listed as undeclared by the tracked,
+# text-redacted evidence artifact, be present in that scan's observed inventory,
+# and be absent from the v1 mapping. That is what separates a genuinely new v2
+# source label from a typo or from silent drift.
+#
+# The declared label set must EQUAL the recovered set, not merely sit inside it,
+# so deleting an entry cannot quietly return a recovered qualified-gold label to
+# being silently dropped. Every declared manifest/evidence path must be a
+# repository-relative path that resolves inside this repository and outside the
+# private tasks/ tree; absolute paths and `..` escapes are rejected.
+#
+# `promotion` is deliberately conservative in this contract: every recovered
+# label is `withheld` (or `evaluation_only`) even where its mapping is
+# deterministic, so declaring a label can never by itself put it into training.
+source_extensions:
+  hiner_original:
+    provenance:
+      kind: onboarding_manifest
+      dataset: hiner
+      manifest: data/pii-onboarded/hiner/manifest.json
+    labels:
+      FESTIVAL:
+        fallback: O
+        acceptable: [O]
+        route: outside
+        promotion: withheld
+        evidence: {spans: 266, by_split: {test: 39, train: 197, validation: 30}}
+        reason: >-
+          named festivals and observances; no v2 class describes a calendar observance and the
+          span identifies nobody
+      GAME:
+        fallback: O
+        acceptable: [O]
+        route: outside
+        promotion: withheld
+        evidence: {spans: 1762, by_split: {test: 369, train: 1214, validation: 179}}
+        reason: >-
+          names of games and sporting fixtures; a product-like name that identifies nobody
+      LITERATURE:
+        fallback: O
+        acceptable: [O]
+        route: outside
+        promotion: withheld
+        evidence: {spans: 847, by_split: {test: 179, train: 594, validation: 74}}
+        reason: >-
+          titles of works; a product-like name that identifies nobody
+      MISC:
+        fallback: demographic_attribute
+        acceptable: [O, demographic_attribute, person_name, protected_attribute]
+        route: independent_review
+        promotion: withheld
+        evidence: {spans: 5649, by_split: {test: 1065, train: 4032, validation: 552}}
+        reason: >-
+          predominantly demonyms and ethnonyms with a surname minority; unrelated to the TAB label
+          of the same name, and the ethnic-origin share cannot be separated from the
+          generic-attribute share without review
+      NUMEX:
+        fallback: O
+        acceptable: [O, quantity]
+        route: constrained_discrimination
+        promotion: withheld
+        evidence: {spans: 24289, by_split: {test: 4638, train: 17105, validation: 2546}}
+        reason: >-
+          bare numerals and counts, median three characters; most identify nobody, but a
+          measured-amount minority exists that only span context can separate
+      TIMEX:
+        fallback: date
+        acceptable: [O, date, time]
+        route: constrained_discrimination
+        promotion: withheld
+        evidence: {spans: 18412, by_split: {test: 3645, train: 13009, validation: 1758}}
+        reason: >-
+          a mixture of absolute dates, clock times, weekdays, durations and relative expressions;
+          durations and deictics are outside this ontology, so O must be reachable and the label
+          must not be promoted wholesale
+  klue_ner:
+    provenance:
+      kind: onboarding_manifest
+      dataset: klue-ner
+      manifest: data/pii-onboarded/klue-ner/manifest.json
+    labels:
+      DT:
+        fallback: date
+        acceptable: [O, date, date_of_birth, time]
+        route: constrained_discrimination
+        promotion: withheld
+        evidence: {spans: 10341, by_split: {train: 8029, validation: 2312}}
+        reason: >-
+          Korean date expressions dominated by absolute calendar dates, with a deictic relative
+          share (this day, this year, last year) and elapsed durations that are outside this
+          ontology
+      QT:
+        fallback: quantity
+        acceptable: [O, monetary_amount, quantity]
+        route: constrained_discrimination
+        promotion: withheld
+        evidence: {spans: 14868, by_split: {train: 11717, validation: 3151}}
+        reason: >-
+          counter-classifier amounts, scores and rankings dominate, with a percentage share and a
+          smaller currency share; the money/non-money split matches the TAB and MAPA
+          generic-amount treatment
+      TI:
+        fallback: time
+        acceptable: [O, time]
+        route: constrained_discrimination
+        promotion: withheld
+        evidence: {spans: 2565, by_split: {train: 2020, validation: 545}}
+        reason: >-
+          clock times and coarse day-parts together with elapsed durations; the duration share is
+          outside this ontology
+  wojood_nested:
+    provenance:
+      kind: onboarding_manifest
+      dataset: wojood-sample
+      manifest: data/pii-onboarded/wojood-sample/manifest.json
+    labels:
+      CARDINAL:
+        fallback: O
+        acceptable: [O, quantity]
+        route: constrained_discrimination
+        promotion: withheld
+        evidence: {spans: 107, by_split: {test: 22, train: 65, validation: 20}}
+        reason: >-
+          bare cardinal numbers; a measured-amount minority exists
+      CURR:
+        fallback: O
+        acceptable: [O]
+        route: composition
+        promotion: withheld
+        evidence: {spans: 16, by_split: {test: 3, train: 10, validation: 3}}
+        reason: >-
+          a currency designator; the audited nesting shows it occurring inside an enclosing MONEY
+          span far more often than alone, so the contract absorbs a contained designator into its
+          amount and leaves a standalone designator outside
+      EVENT:
+        fallback: O
+        acceptable: [O]
+        route: outside
+        promotion: withheld
+        evidence: {spans: 140, by_split: {test: 21, train: 107, validation: 12}}
+        reason: >-
+          named historical events; no v2 class describes an event
+      LAW:
+        fallback: O
+        acceptable: [O, record_identifier]
+        route: constrained_discrimination
+        promotion: withheld
+        evidence: {spans: 24, by_split: {test: 4, train: 20}}
+        reason: >-
+          named statutes and numbered articles; an article or docket number is the same span kind
+          TAB files under CODE, but a bare statute name identifies nobody
+      NORP:
+        fallback: demographic_attribute
+        acceptable: [O, demographic_attribute, health_condition, protected_attribute]
+        route: independent_review
+        promotion: withheld
+        evidence: {spans: 230, by_split: {test: 37, train: 168, validation: 25}}
+        reason: >-
+          a heterogeneous group-of-people label spanning nationalities, patient cohorts, civil
+          status groups and at least one family name; the protected-origin, health-cohort and
+          generic-group shares cannot be separated without review
+      ORDINAL:
+        fallback: O
+        acceptable: [O]
+        route: outside
+        promotion: withheld
+        evidence: {spans: 244, by_split: {test: 38, train: 181, validation: 25}}
+        reason: >-
+          ordinal position words; they identify nobody
+      PERCENT:
+        fallback: quantity
+        acceptable: [quantity]
+        route: deterministic
+        promotion: withheld
+        evidence: {spans: 3, by_split: {test: 1, train: 1, validation: 1}}
+        reason: >-
+          a percentage is a non-currency measured amount
+      PRODUCT:
+        fallback: O
+        acceptable: [O]
+        route: outside
+        promotion: withheld
+        evidence: {spans: 3, by_split: {train: 3}}
+        reason: >-
+          product names; no v2 class describes a product
+      QUANTITY:
+        fallback: quantity
+        acceptable: [quantity]
+        route: deterministic
+        promotion: withheld
+        evidence: {spans: 3, by_split: {train: 2, validation: 1}}
+        reason: >-
+          an explicit measured amount
+      UNIT:
+        fallback: O
+        acceptable: [O]
+        route: composition
+        promotion: withheld
+        evidence: {spans: 5, by_split: {train: 4, validation: 1}}
+        reason: >-
+          a bare measure unit; the contract absorbs a contained unit into its enclosing amount
+          span and leaves a standalone unit outside
+  multigrascco:
+    provenance:
+      kind: raw_scan
+      dataset: multigrascco
+      evidence_artifact: research/pii/frontier/evidence/ontology-v2-source-extension-evidence-v1.json
+    labels:
+      RELATIVE_TIME:
+        fallback: O
+        acceptable: [O, time]
+        route: currently_unrepresentable
+        promotion: evaluation_only
+        evidence: {spans: 5444, by_split: {evaluation: 5444}}
+        reason: >-
+          the corpus carries one more label than the v1 mapping declares, so this label was
+          dropped silently rather than deliberately; its observed content is dominated by
+          medication dosing schedules and admission-relative deictics rather than time
+          expressions, and this corpus is parallel-rendered evaluation gold that never promotes
+          into training automatically
+
+# Composition contracts. These record what source STRUCTURE licenses a boundary
+# transform. They are declarations for the future relabeler, which this module
+# does not implement; no lexical guess may stand in for the structure named here.
+composition_contracts:
+  multigrascco_name_title:
+    schema: multigrascco
+    label: NAME_TITLE
+    contract: attached_title_joins_person_name_standalone_title_is_outside
+    requires: adjacency_in_source_structure
+    without_structure: independent_review
+    creates_new_primary_or_predicate: false
+    note: >-
+      the source annotates honorifics and academic degrees as their own spans and mixes attached
+      forms with standalone ones; an attached title belongs inside one person_name span, a
+      standalone title is O, and the acceptable set alone cannot express the difference because
+      choosing between person_name and O is not the same operation as absorbing a span
+  wojood_nested_amount_components:
+    schema: wojood_nested
+    labels: [CURR, UNIT]
+    contract: contained_component_absorbs_into_enclosing_amount
+    requires: source_nesting_layer
+    without_structure: outside
+    creates_new_primary_or_predicate: false
+    note: >-
+      the audited nesting layer shows the currency designator occurring inside an enclosing MONEY
+      span in most of its occurrences; this is the same convention TAB states in prose and MAPA
+      encodes as a fine UNIT inside a coarse AMOUNT
+  mapa_fine_person_components:
+    schema: mapa_coarse
+    coarse_label: PERSON
+    contract: fine_family_name_supplies_family_name_character_extents
+    requires: fine_layer_containment_in_coarse_span
+    without_structure: unknown_attribute_key
+    creates_new_primary_or_predicate: false
+    fine_title_and_role_stay_inside_person_span: true
+    admit_fine_layer_only_siblings_wholesale: false
+    note: >-
+      fine FAMILY NAME spans contained in a coarse PERSON span give exact family_name character
+      extents, and fine TITLE/ROLE containment is direct gold evidence that honorifics and
+      occupational roles sit inside the person span; fine UNIT inside a coarse AMOUNT is
+      structured evidence for the money/non-money split but is not by itself a deterministic
+      decision, and fine-layer-only siblings are not admitted wholesale
+    provenance_warning: >-
+      MAPA's 21 language renderings are parallel realizations of 12 base documents, so language
+      count is not independent support; documents 205541 and 205542 straddle split boundaries and
+      carry a sentence-level leakage risk that any later promotion must handle
+
+# Source-side metadata channels. These are provenance, not ontology truth: they
+# never become a primary class or a predicate channel. A channel may act as a
+# deterministic type discriminator only where the source's own semantic type is
+# descriptive rather than referential, and only into that label's declared
+# acceptable set.
+source_metadata_channels:
+  tab_8:
+    confidential_status:
+      kind: special_category_provenance
+      values: [BELIEF, ETHNIC, HEALTH, NOT_CONFIDENTIAL, POLITICS, SEX]
+      creates_predicate_channel: false
+      deterministic_discriminator:
+        DEM:
+          HEALTH: health_condition
+          ETHNIC: protected_attribute
+          POLITICS: protected_attribute
+          BELIEF: protected_attribute
+          SEX: protected_attribute
+      note: >-
+        the channel is orthogonal to the semantic type and a name, a date or a court code can all
+        carry it, so it is recorded as provenance rather than adopted as a third predicate; it is
+        used as a deterministic discriminator only on DEM, whose annotated content is a
+        description of a person rather than a reference to one
+    identifier_type:
+      kind: masking_risk_provenance
+      values: [DIRECT, NO_MASK, QUASI]
+      creates_predicate_channel: false
+      note: >-
+        most annotated TAB entities are NO_MASK, so the corpus's own risk judgement disagrees with
+        treating every annotated span as material to redact; this is recorded so later promotion
+        can weigh it, and it does not change any type
+
+# Scoring and warm-init metadata. This checkpoint only records and validates
+# it; no scorer or initializer here consumes it yet.
+compatibility_scoring:
+  primary_matching: [exact, symmetric_80pct_overlap]
+  overlap_criterion: >-
+    A predicted and a gold span match under symmetric 80% overlap iff the intersection covers at
+    least 0.8 of the predicted span and at least 0.8 of the gold span; the criterion is symmetric
+    so neither side is rewarded for being longer.
+  assignment: maximum_cardinality_one_to_one
+  assignment_note: >-
+    Exact matches and overlap matches are resolved together as one maximum-cardinality one-to-one
+    assignment, not by greedy first-come pairing.
+  compatibility_relation_kinds: [functional, hierarchy, indeterminacy, bucket]
+  compatibility_relation_semantics:
+    functional: a v1 node maps to exactly one v2 class
+    hierarchy: a v1 node is coarser than the v2 classes covering it
+    indeterminacy: the v1 label genuinely spans several v2 classes and cannot be resolved by name
+    bucket: a v1 catch-all label whose members are distributed across unrelated v2 classes
+  compatibility_relation_scope: cross_generation_and_external_comparison_only
+  permanent_v2_gold_scoring_uses_compatibility: false
+
+warm_init:
+  one_to_one_rows: copy
+  merged_rows: mass_weighted
+  merged_rows_formula: >-
+    w_new = sum_i (support_i / sum_j support_j) * w_i over the contributing v1 BIOES rows, so a
+    merged row is the support-mass-weighted mean of its contributors.
+  merged_bias: contributor_log_sum_exp
+  merged_bias_formula: b_new = logsumexp(b_1, ..., b_n)
+  merged_bias_rationale: >-
+    The merged class fires when any contributor would, so its prior is the combined prior. Bias is
+    logsumexp of the contributor biases, not their average.
+  outside_row: copy
+  split_rows: duplicate_with_symmetry_breaking
+  symmetry_breaking: deliberate_for_future_splits
+  symmetry_breaking_rationale: >-
+    Identical duplicated rows would stay tied under identical gradients, so a split's copies are
+    perturbed on purpose.
+  new_predicate_heads: initialized_separately
+  matched_control: same_v11_encoder_with_fresh_or_refitted_v2_head
+  checkpoints: [250, 500, 1000, 1500]
+  encoder_schedule: frozen_for_initial_head_fit_then_unfrozen
+  adoption_criterion: better_at_early_checkpoints_and_no_worse_at_the_matched_final_rung
+  matched_pilot:
+    must_match: [data, order, optimizer, schedule, budget, seeds]
+    first_stage: fit_new_head_with_encoder_frozen
+    adopt_warm_init_only_if_matched_pilot_supports_it: true
+
+# Frozen source-span remap admission rule for the later relabeler.
+remap_admission:
+  version: pii-ontology-v2-remap-admission-v1
+  span_geometry: fixed_source_span
+  token_inclusion: every_nonempty_offset_token_overlapping_the_span
+  candidate_strength: mean_over_included_tokens_of_max_bioes_column_logit
+  strength_columns: [B, I, E, S]
+  outside_strength: mean_over_included_tokens_of_the_O_logit
+  logits: raw
+  argmax_restricted_to: declared_acceptable_set
+  margin: winner_strength_minus_runner_up_strength
+  margin_units: mean_logit
+  margin_threshold_nats: 1.0986122886681098
+  margin_threshold_expression: ln(3)
+  margin_required_to_change_away_from_fallback: true
+  fallback_winner_requires_margin: false
+  singleton_acceptable_set: deterministic_not_model_supported
+  ties: retain_fallback
+  record_fields:
+    [winner, runner_up, winner_strength, runner_up_strength, margin, threshold,
+     fallback, model_identity, model_revision, cache_identity, token_offsets,
+     route_provenance]
+  status: proposal_only
+  training_promotion_requires: declared_source_blind_route_review
+  evaluation_promotion_requires: independent_review
+  evaluation_promotion_automatic: false

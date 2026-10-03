@@ -1,0 +1,684 @@
+{
+  "schema": "pii-ontology-v1-v2-correctness-map",
+  "ontology": {
+    "primary_types": [
+      "admin_area",
+      "age",
+      "bank_account_number",
+      "bank_routing_code",
+      "credential",
+      "date",
+      "date_of_birth",
+      "demographic_attribute",
+      "device_identifier",
+      "email",
+      "government_id",
+      "gps_coordinates",
+      "health_condition",
+      "ip_address",
+      "locality",
+      "location",
+      "monetary_amount",
+      "organization",
+      "payment_card_data",
+      "person_name",
+      "phone_number",
+      "postal_code",
+      "protected_attribute",
+      "quantity",
+      "record_identifier",
+      "street_address",
+      "time",
+      "url",
+      "username",
+      "person_reference",
+      "organization_reference"
+    ],
+    "sha256": "bd738b41478434aabdabbb81eefde9f99f5a85647711595172ec6c9bdc52627b"
+  },
+  "v1_to_v2": {
+    "admin_area": {
+      "kind": "canonical",
+      "fallback": "admin_area",
+      "accepted": [
+        "admin_area"
+      ],
+      "origin": {
+        "admin_area": "identity"
+      }
+    },
+    "age": {
+      "kind": "canonical",
+      "fallback": "age",
+      "accepted": [
+        "age"
+      ],
+      "origin": {
+        "age": "identity"
+      }
+    },
+    "bank_account_number": {
+      "kind": "canonical",
+      "fallback": "bank_account_number",
+      "accepted": [
+        "bank_account_number"
+      ],
+      "origin": {
+        "bank_account_number": "identity"
+      }
+    },
+    "bank_routing_code": {
+      "kind": "canonical",
+      "fallback": "bank_routing_code",
+      "accepted": [
+        "bank_routing_code"
+      ],
+      "origin": {
+        "bank_routing_code": "identity"
+      }
+    },
+    "credential": {
+      "kind": "canonical",
+      "fallback": "credential",
+      "accepted": [
+        "credential"
+      ],
+      "origin": {
+        "credential": "identity"
+      }
+    },
+    "date": {
+      "kind": "canonical",
+      "fallback": "date",
+      "accepted": [
+        "date"
+      ],
+      "origin": {
+        "date": "identity"
+      }
+    },
+    "date_of_birth": {
+      "kind": "canonical",
+      "fallback": "date_of_birth",
+      "accepted": [
+        "date_of_birth"
+      ],
+      "origin": {
+        "date_of_birth": "identity"
+      }
+    },
+    "demographic_attribute": {
+      "kind": "canonical",
+      "fallback": "demographic_attribute",
+      "accepted": [
+        "demographic_attribute"
+      ],
+      "origin": {
+        "demographic_attribute": "identity"
+      }
+    },
+    "device_identifier": {
+      "kind": "canonical",
+      "fallback": "device_identifier",
+      "accepted": [
+        "device_identifier"
+      ],
+      "origin": {
+        "device_identifier": "identity"
+      }
+    },
+    "email": {
+      "kind": "canonical",
+      "fallback": "email",
+      "accepted": [
+        "email"
+      ],
+      "origin": {
+        "email": "identity"
+      }
+    },
+    "government_id": {
+      "kind": "canonical",
+      "fallback": "government_id",
+      "accepted": [
+        "government_id"
+      ],
+      "origin": {
+        "government_id": "identity"
+      }
+    },
+    "gps_coordinates": {
+      "kind": "canonical",
+      "fallback": "gps_coordinates",
+      "accepted": [
+        "gps_coordinates"
+      ],
+      "origin": {
+        "gps_coordinates": "identity"
+      }
+    },
+    "health_condition": {
+      "kind": "canonical",
+      "fallback": "health_condition",
+      "accepted": [
+        "health_condition"
+      ],
+      "origin": {
+        "health_condition": "identity"
+      }
+    },
+    "ip_address": {
+      "kind": "canonical",
+      "fallback": "ip_address",
+      "accepted": [
+        "ip_address"
+      ],
+      "origin": {
+        "ip_address": "identity"
+      }
+    },
+    "locality": {
+      "kind": "canonical",
+      "fallback": "locality",
+      "accepted": [
+        "locality"
+      ],
+      "origin": {
+        "locality": "identity"
+      }
+    },
+    "location": {
+      "kind": "canonical",
+      "fallback": "location",
+      "accepted": [
+        "location"
+      ],
+      "origin": {
+        "location": "identity"
+      }
+    },
+    "monetary_amount": {
+      "kind": "canonical",
+      "fallback": "monetary_amount",
+      "accepted": [
+        "monetary_amount"
+      ],
+      "origin": {
+        "monetary_amount": "identity"
+      }
+    },
+    "organization": {
+      "kind": "canonical",
+      "fallback": "organization",
+      "accepted": [
+        "organization"
+      ],
+      "origin": {
+        "organization": "identity"
+      }
+    },
+    "payment_card_data": {
+      "kind": "canonical",
+      "fallback": "payment_card_data",
+      "accepted": [
+        "payment_card_data"
+      ],
+      "origin": {
+        "payment_card_data": "identity"
+      }
+    },
+    "person_name": {
+      "kind": "canonical",
+      "fallback": "person_name",
+      "accepted": [
+        "person_name"
+      ],
+      "origin": {
+        "person_name": "identity"
+      }
+    },
+    "phone_number": {
+      "kind": "canonical",
+      "fallback": "phone_number",
+      "accepted": [
+        "phone_number"
+      ],
+      "origin": {
+        "phone_number": "identity"
+      }
+    },
+    "postal_code": {
+      "kind": "canonical",
+      "fallback": "postal_code",
+      "accepted": [
+        "postal_code"
+      ],
+      "origin": {
+        "postal_code": "identity"
+      }
+    },
+    "protected_attribute": {
+      "kind": "canonical",
+      "fallback": "protected_attribute",
+      "accepted": [
+        "protected_attribute"
+      ],
+      "origin": {
+        "protected_attribute": "identity"
+      }
+    },
+    "quantity": {
+      "kind": "canonical",
+      "fallback": "quantity",
+      "accepted": [
+        "quantity"
+      ],
+      "origin": {
+        "quantity": "identity"
+      }
+    },
+    "record_identifier": {
+      "kind": "canonical",
+      "fallback": "record_identifier",
+      "accepted": [
+        "record_identifier"
+      ],
+      "origin": {
+        "record_identifier": "identity"
+      }
+    },
+    "street_address": {
+      "kind": "canonical",
+      "fallback": "street_address",
+      "accepted": [
+        "street_address"
+      ],
+      "origin": {
+        "street_address": "identity"
+      }
+    },
+    "time": {
+      "kind": "canonical",
+      "fallback": "time",
+      "accepted": [
+        "time"
+      ],
+      "origin": {
+        "time": "identity"
+      }
+    },
+    "url": {
+      "kind": "canonical",
+      "fallback": "url",
+      "accepted": [
+        "url"
+      ],
+      "origin": {
+        "url": "identity"
+      }
+    },
+    "username": {
+      "kind": "canonical",
+      "fallback": "username",
+      "accepted": [
+        "username"
+      ],
+      "origin": {
+        "username": "identity"
+      }
+    },
+    "person_reference": {
+      "kind": "canonical",
+      "fallback": "person_reference",
+      "accepted": [
+        "person_reference"
+      ],
+      "origin": {
+        "person_reference": "identity"
+      }
+    },
+    "organization_reference": {
+      "kind": "canonical",
+      "fallback": "organization_reference",
+      "accepted": [
+        "organization_reference"
+      ],
+      "origin": {
+        "organization_reference": "identity"
+      }
+    },
+    "mapa_coarse__ORGANISATION": {
+      "kind": "canonical",
+      "fallback": "organization",
+      "accepted": [
+        "organization"
+      ],
+      "origin": {
+        "organization": "source:mapa_coarse.ORGANISATION"
+      }
+    },
+    "mapa_coarse__ADDRESS": {
+      "kind": "canonical",
+      "fallback": "location",
+      "accepted": [
+        "admin_area",
+        "gps_coordinates",
+        "locality",
+        "location",
+        "postal_code",
+        "street_address"
+      ],
+      "origin": {
+        "admin_area": "source:mapa_coarse.ADDRESS",
+        "gps_coordinates": "source:mapa_coarse.ADDRESS",
+        "locality": "source:mapa_coarse.ADDRESS",
+        "location": "source:mapa_coarse.ADDRESS",
+        "postal_code": "source:mapa_coarse.ADDRESS",
+        "street_address": "source:mapa_coarse.ADDRESS"
+      }
+    },
+    "mapa_coarse__DATE": {
+      "kind": "canonical",
+      "fallback": "date",
+      "accepted": [
+        "date",
+        "date_of_birth"
+      ],
+      "origin": {
+        "date": "source:mapa_coarse.DATE",
+        "date_of_birth": "source:mapa_coarse.DATE"
+      }
+    },
+    "mapa_coarse__PERSON": {
+      "kind": "canonical",
+      "fallback": "person_name",
+      "accepted": [
+        "person_name"
+      ],
+      "origin": {
+        "person_name": "source:mapa_coarse.PERSON"
+      }
+    },
+    "mapa_coarse__AMOUNT": {
+      "kind": "canonical",
+      "fallback": "quantity",
+      "accepted": [
+        "monetary_amount",
+        "quantity"
+      ],
+      "origin": {
+        "monetary_amount": "source:mapa_coarse.AMOUNT",
+        "quantity": "source:mapa_coarse.AMOUNT"
+      }
+    },
+    "mapa_coarse__TIME": {
+      "kind": "canonical",
+      "fallback": "time",
+      "accepted": [
+        "time"
+      ],
+      "origin": {
+        "time": "source:mapa_coarse.TIME"
+      }
+    },
+    "aqmar_core__LOC": {
+      "kind": "canonical",
+      "fallback": "location",
+      "accepted": [
+        "admin_area",
+        "gps_coordinates",
+        "locality",
+        "location",
+        "postal_code",
+        "street_address"
+      ],
+      "origin": {
+        "admin_area": "source:aqmar_core.LOC",
+        "gps_coordinates": "source:aqmar_core.LOC",
+        "locality": "source:aqmar_core.LOC",
+        "location": "source:aqmar_core.LOC",
+        "postal_code": "source:aqmar_core.LOC",
+        "street_address": "source:aqmar_core.LOC"
+      }
+    },
+    "aqmar_core__ORG": {
+      "kind": "canonical",
+      "fallback": "organization",
+      "accepted": [
+        "organization"
+      ],
+      "origin": {
+        "organization": "source:aqmar_core.ORG"
+      }
+    },
+    "aqmar_core__PER": {
+      "kind": "canonical",
+      "fallback": "person_name",
+      "accepted": [
+        "person_name"
+      ],
+      "origin": {
+        "person_name": "source:aqmar_core.PER"
+      }
+    },
+    "openner_core__LOC": {
+      "kind": "canonical",
+      "fallback": "location",
+      "accepted": [
+        "admin_area",
+        "gps_coordinates",
+        "locality",
+        "location",
+        "postal_code",
+        "street_address"
+      ],
+      "origin": {
+        "admin_area": "source:openner_core.LOC",
+        "gps_coordinates": "source:openner_core.LOC",
+        "locality": "source:openner_core.LOC",
+        "location": "source:openner_core.LOC",
+        "postal_code": "source:openner_core.LOC",
+        "street_address": "source:openner_core.LOC"
+      }
+    },
+    "openner_core__ORG": {
+      "kind": "canonical",
+      "fallback": "organization",
+      "accepted": [
+        "organization"
+      ],
+      "origin": {
+        "organization": "source:openner_core.ORG"
+      }
+    },
+    "openner_core__PER": {
+      "kind": "canonical",
+      "fallback": "person_name",
+      "accepted": [
+        "person_name"
+      ],
+      "origin": {
+        "person_name": "source:openner_core.PER"
+      }
+    },
+    "wojood_nested__PERS": {
+      "kind": "canonical",
+      "fallback": "person_name",
+      "accepted": [
+        "person_name"
+      ],
+      "origin": {
+        "person_name": "source:wojood_nested.PERS"
+      }
+    },
+    "wojood_nested__ORG": {
+      "kind": "canonical",
+      "fallback": "organization",
+      "accepted": [
+        "organization"
+      ],
+      "origin": {
+        "organization": "source:wojood_nested.ORG"
+      }
+    },
+    "wojood_nested__GPE": {
+      "kind": "canonical",
+      "fallback": "location",
+      "accepted": [
+        "admin_area",
+        "gps_coordinates",
+        "locality",
+        "location",
+        "postal_code",
+        "street_address"
+      ],
+      "origin": {
+        "admin_area": "source:wojood_nested.GPE",
+        "gps_coordinates": "source:wojood_nested.GPE",
+        "locality": "source:wojood_nested.GPE",
+        "location": "source:wojood_nested.GPE",
+        "postal_code": "source:wojood_nested.GPE",
+        "street_address": "source:wojood_nested.GPE"
+      }
+    },
+    "wojood_nested__LOC": {
+      "kind": "canonical",
+      "fallback": "location",
+      "accepted": [
+        "admin_area",
+        "gps_coordinates",
+        "locality",
+        "location",
+        "postal_code",
+        "street_address"
+      ],
+      "origin": {
+        "admin_area": "source:wojood_nested.LOC",
+        "gps_coordinates": "source:wojood_nested.LOC",
+        "locality": "source:wojood_nested.LOC",
+        "location": "source:wojood_nested.LOC",
+        "postal_code": "source:wojood_nested.LOC",
+        "street_address": "source:wojood_nested.LOC"
+      }
+    },
+    "wojood_nested__FAC": {
+      "kind": "canonical",
+      "fallback": "location",
+      "accepted": [
+        "admin_area",
+        "gps_coordinates",
+        "locality",
+        "location",
+        "postal_code",
+        "street_address"
+      ],
+      "origin": {
+        "admin_area": "source:wojood_nested.FAC",
+        "gps_coordinates": "source:wojood_nested.FAC",
+        "locality": "source:wojood_nested.FAC",
+        "location": "source:wojood_nested.FAC",
+        "postal_code": "source:wojood_nested.FAC",
+        "street_address": "source:wojood_nested.FAC"
+      }
+    },
+    "wojood_nested__OCC": {
+      "kind": "canonical",
+      "fallback": "demographic_attribute",
+      "accepted": [
+        "demographic_attribute"
+      ],
+      "origin": {
+        "demographic_attribute": "source:wojood_nested.OCC"
+      }
+    },
+    "wojood_nested__LANGUAGE": {
+      "kind": "canonical",
+      "fallback": "demographic_attribute",
+      "accepted": [
+        "demographic_attribute"
+      ],
+      "origin": {
+        "demographic_attribute": "source:wojood_nested.LANGUAGE"
+      }
+    },
+    "wojood_nested__WEBSITE": {
+      "kind": "canonical",
+      "fallback": "url",
+      "accepted": [
+        "url"
+      ],
+      "origin": {
+        "url": "source:wojood_nested.WEBSITE"
+      }
+    },
+    "wojood_nested__DATE": {
+      "kind": "canonical",
+      "fallback": "date",
+      "accepted": [
+        "date",
+        "date_of_birth"
+      ],
+      "origin": {
+        "date": "source:wojood_nested.DATE",
+        "date_of_birth": "source:wojood_nested.DATE"
+      }
+    },
+    "wojood_nested__TIME": {
+      "kind": "canonical",
+      "fallback": "time",
+      "accepted": [
+        "time"
+      ],
+      "origin": {
+        "time": "source:wojood_nested.TIME"
+      }
+    },
+    "wojood_nested__MONEY": {
+      "kind": "canonical",
+      "fallback": "monetary_amount",
+      "accepted": [
+        "monetary_amount"
+      ],
+      "origin": {
+        "monetary_amount": "source:wojood_nested.MONEY"
+      }
+    }
+  },
+  "v2_to_v1": {},
+  "source_labels": {
+    "mapa": {
+      "ORGANISATION": "mapa_coarse__ORGANISATION",
+      "ADDRESS": "mapa_coarse__ADDRESS",
+      "DATE": "mapa_coarse__DATE",
+      "PERSON": "mapa_coarse__PERSON",
+      "AMOUNT": "mapa_coarse__AMOUNT",
+      "TIME": "mapa_coarse__TIME"
+    },
+    "aqmar-openner": {
+      "LOC": "aqmar_core__LOC",
+      "ORG": "aqmar_core__ORG",
+      "PER": "aqmar_core__PER"
+    },
+    "openner-commercial-core": {
+      "LOC": "openner_core__LOC",
+      "ORG": "openner_core__ORG",
+      "PER": "openner_core__PER"
+    },
+    "wojood-sample": {
+      "PERS": "wojood_nested__PERS",
+      "ORG": "wojood_nested__ORG",
+      "GPE": "wojood_nested__GPE",
+      "LOC": "wojood_nested__LOC",
+      "FAC": "wojood_nested__FAC",
+      "OCC": "wojood_nested__OCC",
+      "LANGUAGE": "wojood_nested__LANGUAGE",
+      "WEBSITE": "wojood_nested__WEBSITE",
+      "DATE": "wojood_nested__DATE",
+      "TIME": "wojood_nested__TIME",
+      "MONEY": "wojood_nested__MONEY"
+    }
+  },
+  "source_mapping_sha256": "f3c29b16e4ba0aff61fd0e6f5640e30f61c5ea0a945991de5c8a05a6d66f12bd",
+  "evaluation_scorer_sha256": "37d3462e7f233aa76fd42502c48b69a8ea8256f510ed79889d3a8853a0896b9a",
+  "status": "Candidate objective only; corpus rows not admitted"
+}

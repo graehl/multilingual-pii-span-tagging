@@ -1,0 +1,958 @@
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:99", "extents": [{"start": 8, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 7]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1003", "extents": [{"start": 221, "end": 224, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [225, 237]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:185", "extents": [{"start": 60, "end": 65, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [66, 73]}, {"start": 102, "end": 107, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [108, 111]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1125", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 16]}, {"start": 72, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 95]}, {"start": 96, "end": 106, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [107, 115]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:7", "extents": [{"start": 13, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 27]}, {"start": 28, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 27]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1290", "extents": [{"start": 89, "end": 98, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [99, 103]}, {"start": 112, "end": 129, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [130, 139]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:633", "extents": [{"start": 8, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 19]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2024", "extents": [{"start": 78, "end": 93, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [94, 112]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:923", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 39]}, {"start": 110, "end": 127, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [128, 146]}]}
+{"id": "aqmar-openner:ar:aqmar:test:58", "extents": [{"start": 170, "end": 176, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [177, 184]}, {"start": 335, "end": 343, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [344, 354]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:916", "extents": [{"start": 36, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 66]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1769", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 12]}]}
+{"id": "mapa:el:205542_el:308", "extents": [{"start": 16, "end": 29, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [30, 52]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4529", "extents": [{"start": 0, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 25]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4731", "extents": [{"start": 94, "end": 107, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [108, 120]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4239", "extents": [{"start": 71, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 100]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3360", "extents": [{"start": 45, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 75]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1981", "extents": [{"start": 23, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 37]}]}
+{"id": "mapa:et:205543_et.txt:174", "extents": [{"start": 52, "end": 54, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [44, 51]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2142", "extents": [{"start": 71, "end": 107, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [108, 122]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:930", "extents": [{"start": 54, "end": 62, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [63, 69]}, {"start": 77, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 105]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2948", "extents": [{"start": 73, "end": 76, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [77, 86]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2817", "extents": [{"start": 77, "end": 82, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [83, 98]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:330", "extents": [{"start": 48, "end": 57, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [58, 73]}]}
+{"id": "aqmar-openner:ar:aqmar:test:567", "extents": [{"start": 40, "end": 74, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [75, 95]}]}
+{"id": "aqmar-openner:ar:aqmar:test:63", "extents": [{"start": 6, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 31]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:418", "extents": [{"start": 64, "end": 67, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [68, 72]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3816", "extents": [{"start": 77, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 90]}, {"start": 160, "end": 180, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [181, 185]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1719", "extents": [{"start": 56, "end": 64, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [65, 74]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4", "extents": [{"start": 92, "end": 106, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [107, 125]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:46", "extents": [{"start": 76, "end": 86, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [87, 93]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:893", "extents": [{"start": 18, "end": 54, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 17]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2187", "extents": [{"start": 39, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [50, 61]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4473", "extents": [{"start": 6, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [31, 44]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2172", "extents": [{"start": 99, "end": 107, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [108, 120]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:71", "extents": [{"start": 133, "end": 143, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [144, 158]}]}
+{"id": "aqmar-openner:ar:aqmar:test:50", "extents": [{"start": 113, "end": 128, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [129, 138]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3795", "extents": [{"start": 12, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 39]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2706", "extents": [{"start": 0, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 33]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:315", "extents": [{"start": 57, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 68]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2927", "extents": [{"start": 65, "end": 73, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [74, 92]}, {"start": 122, "end": 143, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [144, 157]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:168", "extents": [{"start": 4, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 3]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2744", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 26]}, {"start": 31, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 52]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4200", "extents": [{"start": 68, "end": 87, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [88, 98]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:100", "extents": [{"start": 65, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 76]}, {"start": 77, "end": 78, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 76]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3888", "extents": [{"start": 111, "end": 126, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [127, 141]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2664", "extents": [{"start": 32, "end": 51, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [52, 58]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4888", "extents": [{"start": 28, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 44]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1558", "extents": [{"start": 42, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 65]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:679", "extents": [{"start": 33, "end": 41, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 58]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:458", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 10]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:391", "extents": [{"start": 133, "end": 154, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [155, 166]}]}
+{"id": "mapa:mt:205542_mt:254", "extents": [{"start": 37, "end": 43, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [44, 72]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3082", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 10]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1951", "extents": [{"start": 173, "end": 183, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [184, 196]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:286", "extents": [{"start": 20, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 28]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1044", "extents": [{"start": 26, "end": 31, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [32, 43]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1163", "extents": [{"start": 110, "end": 121, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [122, 138]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1962", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 34]}, {"start": 128, "end": 155, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [156, 169]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2912", "extents": [{"start": 53, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 74]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1099", "extents": [{"start": 49, "end": 51, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 48]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1627", "extents": [{"start": 19, "end": 31, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [32, 46]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2555", "extents": [{"start": 82, "end": 107, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [108, 110]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4307", "extents": [{"start": 117, "end": 132, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [109, 116]}, {"start": 135, "end": 146, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [147, 150]}, {"start": 153, "end": 162, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [163, 170]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:487", "extents": [{"start": 12, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 11]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:750", "extents": [{"start": 18, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 36]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:397", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 9]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1622", "extents": [{"start": 131, "end": 148, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [149, 168]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3422", "extents": [{"start": 0, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 30]}, {"start": 186, "end": 204, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [205, 216]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1593", "extents": [{"start": 160, "end": 176, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [177, 184]}]}
+{"id": "aqmar-openner:ar:aqmar:test:73", "extents": [{"start": 5, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 27]}, {"start": 288, "end": 316, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [317, 322]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:420", "extents": [{"start": 9, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 22]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2809", "extents": [{"start": 88, "end": 99, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [100, 118]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:306", "extents": [{"start": 50, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 81]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2646", "extents": [{"start": 28, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3465", "extents": [{"start": 33, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 63]}]}
+{"id": "aqmar-openner:ar:aqmar:test:444", "extents": [{"start": 8, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 24]}]}
+{"id": "aqmar-openner:ar:aqmar:test:445", "extents": [{"start": 28, "end": 33, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 44]}, {"start": 45, "end": 62, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 44]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4506", "extents": [{"start": 52, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 51]}, {"start": 131, "end": 144, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [145, 156]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2519", "extents": [{"start": 79, "end": 96, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [97, 110]}]}
+{"id": "aqmar-openner:ar:aqmar:test:52", "extents": [{"start": 30, "end": 43, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 29]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2069", "extents": [{"start": 0, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 35]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3385", "extents": [{"start": 9, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 22]}]}
+{"id": "aqmar-openner:ar:aqmar:test:439", "extents": [{"start": 9, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 28]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1942", "extents": [{"start": 26, "end": 33, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 47]}, {"start": 95, "end": 109, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [110, 126]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1912", "extents": [{"start": 87, "end": 100, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [101, 119]}]}
+{"id": "aqmar-openner:ar:aqmar:test:273", "extents": [{"start": 88, "end": 94, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [95, 114]}, {"start": 115, "end": 129, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [95, 114]}, {"start": 575, "end": 581, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [582, 599]}, {"start": 635, "end": 641, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [642, 646]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2751", "extents": [{"start": 25, "end": 35, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [36, 49]}]}
+{"id": "aqmar-openner:ar:aqmar:test:65", "extents": [{"start": 6, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 26]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1494", "extents": [{"start": 0, "end": 6, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [7, 17]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:778", "extents": [{"start": 204, "end": 220, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [221, 228]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:131", "extents": [{"start": 59, "end": 61, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [53, 58]}]}
+{"id": "mapa:fi:205543_fi.txt:184", "extents": [{"start": 36, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [28, 35]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:607", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 23]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4884", "extents": [{"start": 42, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [50, 57]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1587", "extents": [{"start": 51, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 66]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1578", "extents": [{"start": 17, "end": 20, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 26]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2115", "extents": [{"start": 41, "end": 61, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [62, 73]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2499", "extents": [{"start": 108, "end": 121, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [122, 131]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1506", "extents": [{"start": 57, "end": 68, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [69, 85]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3150", "extents": [{"start": 36, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 66]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1843", "extents": [{"start": 0, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 38]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:35", "extents": [{"start": 68, "end": 74, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [75, 89]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3689", "extents": [{"start": 38, "end": 43, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [44, 57]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2338", "extents": [{"start": 14, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 21]}, {"start": 36, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 43]}, {"start": 108, "end": 112, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [113, 115]}, {"start": 191, "end": 195, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [196, 198]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2370", "extents": [{"start": 50, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 74]}]}
+{"id": "aqmar-openner:ar:aqmar:test:83", "extents": [{"start": 320, "end": 325, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [326, 334]}]}
+{"id": "aqmar-openner:ar:aqmar:test:261", "extents": [{"start": 256, "end": 261, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [262, 266]}, {"start": 292, "end": 297, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [298, 316]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4407", "extents": [{"start": 47, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 68]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2106", "extents": [{"start": 14, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 38]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3510", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 11]}, {"start": 12, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 11]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4178", "extents": [{"start": 26, "end": 35, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [36, 47]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4886", "extents": [{"start": 102, "end": 115, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [90, 101]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:174", "extents": [{"start": 10, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 15]}, {"start": 28, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [31, 35]}, {"start": 61, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 70]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2310", "extents": [{"start": 50, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 72]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:534", "extents": [{"start": 7, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 6]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:536", "extents": [{"start": 24, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 23]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1043", "extents": [{"start": 17, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 16]}]}
+{"id": "aqmar-openner:ar:aqmar:test:43", "extents": [{"start": 316, "end": 333, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [334, 350]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:371", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 30]}]}
+{"id": "aqmar-openner:ar:aqmar:test:59", "extents": [{"start": 132, "end": 136, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [137, 142]}, {"start": 143, "end": 149, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [137, 142]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1520", "extents": [{"start": 32, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 56]}, {"start": 59, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 82]}, {"start": 166, "end": 173, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [174, 186]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2785", "extents": [{"start": 64, "end": 76, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [77, 88]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2256", "extents": [{"start": 60, "end": 71, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [72, 89]}, {"start": 92, "end": 104, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [105, 123]}, {"start": 129, "end": 136, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [137, 154]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1163", "extents": [{"start": 0, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 62]}]}
+{"id": "mapa:mt:205542_mt:266", "extents": [{"start": 1017, "end": 1023, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [1024, 1039]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:194", "extents": [{"start": 0, "end": 29, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [30, 44]}, {"start": 47, "end": 80, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [81, 95]}, {"start": 246, "end": 255, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [256, 267]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1948", "extents": [{"start": 116, "end": 125, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [126, 146]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1467", "extents": [{"start": 0, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [12, 26]}]}
+{"id": "aqmar-openner:ar:aqmar:test:109", "extents": [{"start": 28, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 52]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:757", "extents": [{"start": 0, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 28]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:355", "extents": [{"start": 4, "end": 6, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 3]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:350", "extents": [{"start": 3, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 2]}]}
+{"id": "mapa:lv:205542_lv:305", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 52]}]}
+{"id": "aqmar-openner:ar:aqmar:test:95", "extents": [{"start": 38, "end": 51, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 37]}, {"start": 134, "end": 147, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [148, 156]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1873", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 14]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:767", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 19]}]}
+{"id": "mapa:lv:205542_lv:139", "extents": [{"start": 0, "end": 5, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [6, 14]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1546", "extents": [{"start": 119, "end": 126, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [127, 142]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4797", "extents": [{"start": 93, "end": 100, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [101, 109]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:505", "extents": [{"start": 221, "end": 224, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [225, 236]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:583", "extents": [{"start": 127, "end": 129, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [130, 139]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2080", "extents": [{"start": 83, "end": 109, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [110, 132]}, {"start": 154, "end": 162, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [163, 169]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:492", "extents": [{"start": 130, "end": 158, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [159, 173]}]}
+{"id": "mapa:mt:205543_mt:167", "extents": [{"start": 258, "end": 274, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [275, 281]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1971", "extents": [{"start": 64, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 106]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:629", "extents": [{"start": 81, "end": 93, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [94, 108]}]}
+{"id": "aqmar-openner:ar:aqmar:test:74", "extents": [{"start": 13, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 39]}, {"start": 357, "end": 363, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [364, 373]}, {"start": 422, "end": 424, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [425, 429]}, {"start": 473, "end": 479, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [480, 493]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2024", "extents": [{"start": 60, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 97]}, {"start": 163, "end": 185, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [186, 201]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2376", "extents": [{"start": 70, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 84]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:959", "extents": [{"start": 66, "end": 74, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [75, 89]}, {"start": 138, "end": 147, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [148, 164]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:485", "extents": [{"start": 193, "end": 196, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [197, 208]}, {"start": 209, "end": 219, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [197, 208]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1032", "extents": [{"start": 76, "end": 84, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [85, 92]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4694", "extents": [{"start": 11, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 30]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1427", "extents": [{"start": 8, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 40]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1245", "extents": [{"start": 0, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 30]}, {"start": 33, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 53]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1922", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 24]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2374", "extents": [{"start": 122, "end": 139, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [140, 159]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2327", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 13]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2288", "extents": [{"start": 30, "end": 39, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 50]}]}
+{"id": "aqmar-openner:ar:aqmar:test:235", "extents": [{"start": 16, "end": 31, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [32, 46]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3975", "extents": [{"start": 0, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 40]}]}
+{"id": "mapa:ga:205543_en_GA:32", "extents": [{"start": 5, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2786", "extents": [{"start": 0, "end": 6, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [7, 11]}]}
+{"id": "mapa:lt:205543_lt.txt:186", "extents": [{"start": 267, "end": 276, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [277, 281]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2063", "extents": [{"start": 145, "end": 153, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [154, 164]}, {"start": 167, "end": 176, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [177, 191]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2885", "extents": [{"start": 45, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 74]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1495", "extents": [{"start": 96, "end": 102, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [103, 114]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2305", "extents": [{"start": 24, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 60]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4566", "extents": [{"start": 18, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [31, 52]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1078", "extents": [{"start": 71, "end": 84, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [85, 107]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2524", "extents": [{"start": 5, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [12, 17]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1086", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 20]}]}
+{"id": "aqmar-openner:ar:aqmar:test:300", "extents": [{"start": 5, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 37]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3867", "extents": [{"start": 47, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 72]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:198", "extents": [{"start": 2, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 25]}]}
+{"id": "aqmar-openner:ar:aqmar:test:363", "extents": [{"start": 171, "end": 187, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [188, 201]}]}
+{"id": "aqmar-openner:ar:aqmar:test:584", "extents": [{"start": 39, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 74]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:2013", "extents": [{"start": 23, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 60]}]}
+{"id": "aqmar-openner:ar:aqmar:test:44", "extents": [{"start": 349, "end": 357, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [358, 372]}, {"start": 375, "end": 385, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [386, 398]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:594", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 24]}]}
+{"id": "aqmar-openner:ar:aqmar:test:506", "extents": [{"start": 27, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 60]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:488", "extents": [{"start": 12, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 17]}]}
+{"id": "mapa:ro:205542_ro:132", "extents": [{"start": 333, "end": 342, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [343, 359]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3622", "extents": [{"start": 38, "end": 46, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [47, 62]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3370", "extents": [{"start": 52, "end": 67, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [68, 75]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2389", "extents": [{"start": 28, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 54]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3941", "extents": [{"start": 93, "end": 115, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [116, 128]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:2043", "extents": [{"start": 216, "end": 240, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [241, 256]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:996", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 29]}]}
+{"id": "aqmar-openner:ar:aqmar:test:15", "extents": [{"start": 365, "end": 398, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [399, 410]}]}
+{"id": "mapa:ro:205542_ro:172", "extents": [{"start": 223, "end": 232, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [233, 241]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:526", "extents": [{"start": 52, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 77]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2006", "extents": [{"start": 14, "end": 24, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [25, 33]}, {"start": 55, "end": 67, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [68, 74]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4521", "extents": [{"start": 91, "end": 100, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [101, 113]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:741", "extents": [{"start": 38, "end": 58, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [59, 71]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:684", "extents": [{"start": 5, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 26]}]}
+{"id": "mapa:it:205543_it:45", "extents": [{"start": 0, "end": 2, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [3, 16]}]}
+{"id": "mapa:bg:205542_bg:351", "extents": [{"start": 17, "end": 27, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [28, 42]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2392", "extents": [{"start": 111, "end": 121, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [122, 135]}, {"start": 152, "end": 161, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [147, 151]}]}
+{"id": "mapa:mt:205542_mt:0", "extents": [{"start": 20, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 40]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2971", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 22]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5098", "extents": [{"start": 0, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 38]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2286", "extents": [{"start": 0, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 38]}, {"start": 323, "end": 332, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [333, 346]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:601", "extents": [{"start": 92, "end": 101, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [102, 114]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:800", "extents": [{"start": 17, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 16]}, {"start": 17, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 38]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4222", "extents": [{"start": 22, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 33]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:460", "extents": [{"start": 5, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 15]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2855", "extents": [{"start": 3, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 16]}, {"start": 19, "end": 27, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [28, 34]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1144", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 25]}]}
+{"id": "mapa:bg:205542_bg:308", "extents": [{"start": 26, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 64]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3528", "extents": [{"start": 0, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 19]}, {"start": 31, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 52]}]}
+{"id": "aqmar-openner:ar:aqmar:test:18", "extents": [{"start": 151, "end": 160, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [161, 166]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:506", "extents": [{"start": 92, "end": 106, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [107, 119]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2549", "extents": [{"start": 4, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [12, 28]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1952", "extents": [{"start": 0, "end": 2, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [3, 13]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3009", "extents": [{"start": 33, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 69]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:210", "extents": [{"start": 21, "end": 47, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [48, 62]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:866", "extents": [{"start": 82, "end": 107, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [108, 114]}]}
+{"id": "mapa:lt:205542_lt.txt:320", "extents": [{"start": 117, "end": 126, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [127, 135]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:405", "extents": [{"start": 28, "end": 34, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [35, 48]}, {"start": 76, "end": 80, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [81, 89]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3586", "extents": [{"start": 35, "end": 76, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [77, 88]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5002", "extents": [{"start": 39, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [50, 58]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3395", "extents": [{"start": 2, "end": 6, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [7, 13]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1484", "extents": [{"start": 105, "end": 112, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [113, 118]}]}
+{"id": "aqmar-openner:ar:aqmar:test:280", "extents": [{"start": 279, "end": 285, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [286, 290]}]}
+{"id": "aqmar-openner:ar:aqmar:test:17", "extents": [{"start": 10, "end": 27, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [28, 36]}]}
+{"id": "aqmar-openner:ar:aqmar:test:462", "extents": [{"start": 148, "end": 156, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [157, 164]}]}
+{"id": "aqmar-openner:ar:aqmar:test:31", "extents": [{"start": 378, "end": 384, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [385, 400]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:334", "extents": [{"start": 24, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 35]}]}
+{"id": "aqmar-openner:ar:aqmar:test:72", "extents": [{"start": 127, "end": 131, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [132, 142]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:84", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 6]}, {"start": 7, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 6]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4007", "extents": [{"start": 84, "end": 87, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [88, 96]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:998", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 22]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:233", "extents": [{"start": 0, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 31]}, {"start": 81, "end": 90, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [91, 104]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2915", "extents": [{"start": 146, "end": 157, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [158, 176]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3123", "extents": [{"start": 10, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 25]}, {"start": 64, "end": 92, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [93, 100]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1279", "extents": [{"start": 74, "end": 94, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [95, 107]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2711", "extents": [{"start": 5, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 24]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3198", "extents": [{"start": 0, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 20]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2341", "extents": [{"start": 130, "end": 146, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [147, 162]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:1127", "extents": [{"start": 60, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 86]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4697", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 20]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2258", "extents": [{"start": 83, "end": 92, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [93, 98]}]}
+{"id": "mapa:fi:205542_fi.txt:133", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 16]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:352", "extents": [{"start": 13, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 12]}]}
+{"id": "mapa:es:205543:33", "extents": [{"start": 17, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 24]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:261", "extents": [{"start": 51, "end": 83, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [84, 106]}, {"start": 203, "end": 212, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [213, 225]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2672", "extents": [{"start": 113, "end": 124, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [101, 112]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:610", "extents": [{"start": 0, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 25]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1715", "extents": [{"start": 13, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 19]}]}
+{"id": "aqmar-openner:ar:aqmar:test:94", "extents": [{"start": 65, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 80]}, {"start": 130, "end": 142, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [143, 151]}, {"start": 152, "end": 179, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [143, 151]}, {"start": 165, "end": 170, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [171, 179]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1835", "extents": [{"start": 147, "end": 161, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [162, 172]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:579", "extents": [{"start": 63, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 83]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2887", "extents": [{"start": 76, "end": 91, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [92, 109]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4722", "extents": [{"start": 0, "end": 47, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [48, 59]}]}
+{"id": "mapa:bg:205542_bg:322", "extents": [{"start": 41, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 60]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:773", "extents": [{"start": 20, "end": 39, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 44]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:57", "extents": [{"start": 69, "end": 78, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [79, 91]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4788", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 21]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3050", "extents": [{"start": 94, "end": 103, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [104, 125]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3223", "extents": [{"start": 42, "end": 64, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [65, 79]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:1135", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 17]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:524", "extents": [{"start": 36, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 55]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:19", "extents": [{"start": 4, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 25]}, {"start": 26, "end": 39, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 25]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3491", "extents": [{"start": 31, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 54]}]}
+{"id": "aqmar-openner:ar:aqmar:test:148", "extents": [{"start": 5, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 30]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3798", "extents": [{"start": 7, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 28]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2562", "extents": [{"start": 55, "end": 84, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [85, 99]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4166", "extents": [{"start": 98, "end": 113, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [114, 125]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:1113", "extents": [{"start": 19, "end": 27, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [28, 31]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:47", "extents": [{"start": 9, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 8]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:684", "extents": [{"start": 101, "end": 126, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [127, 139]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1475", "extents": [{"start": 67, "end": 75, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [76, 87]}]}
+{"id": "aqmar-openner:ar:aqmar:test:127", "extents": [{"start": 20, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 51]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3045", "extents": [{"start": 81, "end": 98, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [99, 113]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1629", "extents": [{"start": 80, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 109]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:373", "extents": [{"start": 18, "end": 20, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 32]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1851", "extents": [{"start": 0, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 40]}]}
+{"id": "aqmar-openner:ar:aqmar:test:62", "extents": [{"start": 73, "end": 78, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [79, 87]}, {"start": 156, "end": 161, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [162, 167]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:68", "extents": [{"start": 10, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 31]}]}
+{"id": "mapa:ga:205543_en_GA:43", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 23]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4455", "extents": [{"start": 62, "end": 72, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [73, 85]}, {"start": 86, "end": 131, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [73, 85]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2600", "extents": [{"start": 42, "end": 71, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [72, 84]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3782", "extents": [{"start": 62, "end": 69, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [70, 75]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1909", "extents": [{"start": 20, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 38]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1022", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 9]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:416", "extents": [{"start": 59, "end": 69, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [70, 86]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4542", "extents": [{"start": 7, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 29]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4253", "extents": [{"start": 85, "end": 110, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [111, 122]}]}
+{"id": "mapa:ga:205543_en_GA:144", "extents": [{"start": 75, "end": 80, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [81, 87]}]}
+{"id": "aqmar-openner:ar:aqmar:test:88", "extents": [{"start": 59, "end": 69, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [70, 78]}, {"start": 160, "end": 164, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [165, 170]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:711", "extents": [{"start": 11, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 10]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3138", "extents": [{"start": 84, "end": 121, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [122, 135]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:593", "extents": [{"start": 213, "end": 222, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [223, 234]}, {"start": 250, "end": 252, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [253, 260]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:149", "extents": [{"start": 61, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 84]}, {"start": 136, "end": 146, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [147, 161]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1368", "extents": [{"start": 66, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 79]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1507", "extents": [{"start": 9, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 50]}, {"start": 133, "end": 156, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [157, 177]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:981", "extents": [{"start": 64, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 93]}, {"start": 334, "end": 344, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [345, 357]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1266", "extents": [{"start": 183, "end": 193, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [194, 209]}]}
+{"id": "mapa:hu:205543_hu:178", "extents": [{"start": 326, "end": 332, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [321, 325]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:494", "extents": [{"start": 62, "end": 74, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [75, 87]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:31", "extents": [{"start": 131, "end": 138, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [139, 149]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2618", "extents": [{"start": 161, "end": 171, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [172, 188]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:978", "extents": [{"start": 73, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 101]}, {"start": 202, "end": 205, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [206, 217]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:213", "extents": [{"start": 46, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [50, 55]}, {"start": 82, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 98]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2772", "extents": [{"start": 107, "end": 114, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [115, 121]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2686", "extents": [{"start": 69, "end": 91, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [92, 99]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1348", "extents": [{"start": 40, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 61]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3575", "extents": [{"start": 152, "end": 155, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [156, 166]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2860", "extents": [{"start": 35, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 64]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1407", "extents": [{"start": 75, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 102]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3280", "extents": [{"start": 33, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 67]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2203", "extents": [{"start": 37, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 78]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4961", "extents": [{"start": 46, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 61]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:831", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 29]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2033", "extents": [{"start": 8, "end": 41, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 59]}]}
+{"id": "aqmar-openner:ar:aqmar:test:77", "extents": [{"start": 9, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 22]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3237", "extents": [{"start": 71, "end": 78, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [79, 94]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:695", "extents": [{"start": 55, "end": 67, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [68, 78]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3394", "extents": [{"start": 113, "end": 129, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [130, 142]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2593", "extents": [{"start": 121, "end": 126, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [127, 131]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2226", "extents": [{"start": 108, "end": 125, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [126, 142]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4558", "extents": [{"start": 45, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 75]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:490", "extents": [{"start": 7, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 6]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1568", "extents": [{"start": 104, "end": 109, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [110, 117]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1823", "extents": [{"start": 29, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 60]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:1107", "extents": [{"start": 32, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 57]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:180", "extents": [{"start": 47, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [50, 54]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1753", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 9]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1695", "extents": [{"start": 114, "end": 120, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [121, 132]}]}
+{"id": "mapa:lt:205542_lt.txt:326", "extents": [{"start": 45, "end": 54, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [55, 63]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1608", "extents": [{"start": 115, "end": 122, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [123, 134]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2526", "extents": [{"start": 18, "end": 35, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [36, 49]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:867", "extents": [{"start": 49, "end": 56, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [57, 65]}]}
+{"id": "aqmar-openner:ar:aqmar:test:92", "extents": [{"start": 37, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 36]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:346", "extents": [{"start": 4, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 47]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2422", "extents": [{"start": 98, "end": 105, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [106, 117]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:735", "extents": [{"start": 40, "end": 57, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [58, 72]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2141", "extents": [{"start": 0, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 25]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3038", "extents": [{"start": 21, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 33]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:554", "extents": [{"start": 17, "end": 27, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 16]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2433", "extents": [{"start": 292, "end": 302, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [303, 317]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:351", "extents": [{"start": 30, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 58]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1037", "extents": [{"start": 76, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 99]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:240", "extents": [{"start": 12, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 11]}, {"start": 25, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 36]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3226", "extents": [{"start": 4, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 31]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:774", "extents": [{"start": 15, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 22]}, {"start": 31, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 45]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:328", "extents": [{"start": 20, "end": 24, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [25, 38]}, {"start": 67, "end": 80, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [81, 91]}, {"start": 113, "end": 121, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [122, 128]}]}
+{"id": "aqmar-openner:ar:aqmar:test:24", "extents": [{"start": 133, "end": 154, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [155, 164]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:97", "extents": [{"start": 22, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 61]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1904", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 29]}, {"start": 56, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 93]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4031", "extents": [{"start": 40, "end": 44, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [45, 50]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:392", "extents": [{"start": 5, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 4]}, {"start": 136, "end": 143, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [130, 135]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2219", "extents": [{"start": 8, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 39]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:826", "extents": [{"start": 173, "end": 180, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [181, 189]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1193", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 25]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:232", "extents": [{"start": 36, "end": 41, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 52]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:965", "extents": [{"start": 11, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [31, 45]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:166", "extents": [{"start": 150, "end": 159, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [160, 175]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3659", "extents": [{"start": 37, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 57]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3359", "extents": [{"start": 21, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 46]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:2034", "extents": [{"start": 22, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 43]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3734", "extents": [{"start": 20, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 48]}]}
+{"id": "mapa:ga:205543_en_GA:34", "extents": [{"start": 17, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 34]}]}
+{"id": "aqmar-openner:ar:aqmar:test:79", "extents": [{"start": 6, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 23]}]}
+{"id": "aqmar-openner:ar:aqmar:test:597", "extents": [{"start": 71, "end": 78, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [79, 87]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:90", "extents": [{"start": 105, "end": 119, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [120, 127]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3406", "extents": [{"start": 58, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 83]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2982", "extents": [{"start": 112, "end": 117, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [118, 129]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:487", "extents": [{"start": 110, "end": 121, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [122, 137]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3420", "extents": [{"start": 45, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 70]}]}
+{"id": "aqmar-openner:ar:aqmar:test:558", "extents": [{"start": 132, "end": 144, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [145, 164]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1123", "extents": [{"start": 25, "end": 52, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [53, 57]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3514", "extents": [{"start": 134, "end": 141, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [142, 156]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:98", "extents": [{"start": 0, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 38]}]}
+{"id": "aqmar-openner:ar:aqmar:test:64", "extents": [{"start": 51, "end": 58, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [59, 65]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:534", "extents": [{"start": 5, "end": 20, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 40]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:797", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 21]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1127", "extents": [{"start": 148, "end": 178, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [179, 191]}]}
+{"id": "mapa:lv:205543_lv:37", "extents": [{"start": 5, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 24]}]}
+{"id": "mapa:hu:205542_hu:320", "extents": [{"start": 64, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [52, 63]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4062", "extents": [{"start": 14, "end": 20, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 32]}, {"start": 37, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 68]}]}
+{"id": "mapa:et:205543_et.txt:135", "extents": [{"start": 10, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 9]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:517", "extents": [{"start": 0, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 29]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3998", "extents": [{"start": 103, "end": 119, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [120, 132]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:681", "extents": [{"start": 29, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 50]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:103", "extents": [{"start": 36, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [30, 35]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3709", "extents": [{"start": 14, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 64]}]}
+{"id": "mapa:hu:205542_hu:304", "extents": [{"start": 54, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [47, 53]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1244", "extents": [{"start": 135, "end": 139, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [140, 149]}, {"start": 177, "end": 203, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [204, 215]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4845", "extents": [{"start": 42, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 69]}, {"start": 143, "end": 154, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [137, 142]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2249", "extents": [{"start": 0, "end": 27, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [28, 45]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4069", "extents": [{"start": 25, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 51]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:738", "extents": [{"start": 73, "end": 93, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [94, 108]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1539", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 12]}]}
+{"id": "aqmar-openner:ar:aqmar:test:534", "extents": [{"start": 19, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 48]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2183", "extents": [{"start": 124, "end": 132, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [133, 142]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2729", "extents": [{"start": 80, "end": 89, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [90, 108]}]}
+{"id": "aqmar-openner:ar:aqmar:test:110", "extents": [{"start": 10, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 37]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1187", "extents": [{"start": 46, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 54]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2369", "extents": [{"start": 90, "end": 112, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [113, 129]}, {"start": 233, "end": 258, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [259, 272]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:75", "extents": [{"start": 20, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 19]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5046", "extents": [{"start": 89, "end": 104, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [105, 117]}]}
+{"id": "aqmar-openner:ar:aqmar:test:91", "extents": [{"start": 44, "end": 48, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [49, 52]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1033", "extents": [{"start": 169, "end": 172, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [173, 193]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3803", "extents": [{"start": 10, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 26]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:87", "extents": [{"start": 5, "end": 6, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 4]}]}
+{"id": "aqmar-openner:ar:aqmar:test:303", "extents": [{"start": 31, "end": 35, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [36, 45]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5084", "extents": [{"start": 39, "end": 54, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [55, 61]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:862", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 33]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:175", "extents": [{"start": 0, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 42]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2760", "extents": [{"start": 9, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 29]}, {"start": 32, "end": 46, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [47, 55]}, {"start": 58, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 80]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1774", "extents": [{"start": 157, "end": 185, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [144, 156]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:508", "extents": [{"start": 229, "end": 236, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [237, 243]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3766", "extents": [{"start": 28, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 50]}]}
+{"id": "aqmar-openner:ar:aqmar:test:113", "extents": [{"start": 26, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 56]}, {"start": 222, "end": 226, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [227, 234]}, {"start": 287, "end": 298, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [299, 307]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3087", "extents": [{"start": 66, "end": 83, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [84, 93]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1057", "extents": [{"start": 188, "end": 194, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [195, 201]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:367", "extents": [{"start": 7, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 14]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1513", "extents": [{"start": 29, "end": 43, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [44, 61]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:112", "extents": [{"start": 3, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 2]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:739", "extents": [{"start": 103, "end": 110, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [111, 123]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2660", "extents": [{"start": 19, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 34]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2970", "extents": [{"start": 104, "end": 127, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [128, 146]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2497", "extents": [{"start": 63, "end": 75, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [76, 82]}, {"start": 109, "end": 122, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [123, 128]}, {"start": 286, "end": 295, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [296, 304]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2331", "extents": [{"start": 0, "end": 5, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [6, 12]}]}
+{"id": "mapa:bg:205542_bg:339", "extents": [{"start": 53, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 72]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2981", "extents": [{"start": 157, "end": 170, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [171, 186]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3021", "extents": [{"start": 24, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 56]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:746", "extents": [{"start": 18, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 35]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1973", "extents": [{"start": 0, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 30]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:613", "extents": [{"start": 0, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [12, 18]}, {"start": 114, "end": 123, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [124, 143]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:475", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 20]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1994", "extents": [{"start": 122, "end": 126, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [127, 136]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2144", "extents": [{"start": 89, "end": 116, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [117, 129]}]}
+{"id": "aqmar-openner:ar:aqmar:test:56", "extents": [{"start": 48, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 64]}, {"start": 67, "end": 76, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [77, 82]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2266", "extents": [{"start": 256, "end": 262, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [263, 274]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1564", "extents": [{"start": 27, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 70]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1400", "extents": [{"start": 29, "end": 34, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [35, 44]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1235", "extents": [{"start": 0, "end": 5, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [6, 15]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3677", "extents": [{"start": 103, "end": 108, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [109, 113]}, {"start": 103, "end": 118, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [119, 123]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1656", "extents": [{"start": 123, "end": 136, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [137, 143]}]}
+{"id": "aqmar-openner:ar:aqmar:test:12", "extents": [{"start": 166, "end": 182, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [183, 199]}]}
+{"id": "aqmar-openner:ar:aqmar:test:11", "extents": [{"start": 39, "end": 62, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [63, 72]}]}
+{"id": "aqmar-openner:ar:aqmar:test:55", "extents": [{"start": 131, "end": 143, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [144, 160]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2111", "extents": [{"start": 29, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 50]}, {"start": 97, "end": 101, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [102, 109]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1685", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 25]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:904", "extents": [{"start": 86, "end": 96, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [97, 109]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2684", "extents": [{"start": 3, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 28]}]}
+{"id": "aqmar-openner:ar:aqmar:test:54", "extents": [{"start": 82, "end": 87, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [88, 104]}, {"start": 368, "end": 370, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [371, 379]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:240", "extents": [{"start": 95, "end": 111, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [112, 128]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:407", "extents": [{"start": 184, "end": 196, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [197, 211]}]}
+{"id": "aqmar-openner:ar:aqmar:test:38", "extents": [{"start": 140, "end": 152, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [153, 160]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:1057", "extents": [{"start": 123, "end": 135, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [136, 145]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3717", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 37]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:136", "extents": [{"start": 43, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 70]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:962", "extents": [{"start": 35, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [25, 34]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2", "extents": [{"start": 63, "end": 82, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [83, 97]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1161", "extents": [{"start": 0, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3180", "extents": [{"start": 44, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 63]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:640", "extents": [{"start": 16, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 40]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4283", "extents": [{"start": 54, "end": 58, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [59, 68]}, {"start": 73, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 82]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:495", "extents": [{"start": 89, "end": 99, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [100, 114]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1546", "extents": [{"start": 0, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 29]}]}
+{"id": "aqmar-openner:ar:aqmar:test:111", "extents": [{"start": 19, "end": 33, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 51]}, {"start": 175, "end": 177, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [178, 186]}, {"start": 251, "end": 253, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [254, 257]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4630", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 29]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1981", "extents": [{"start": 0, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 25]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:705", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 9]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:943", "extents": [{"start": 120, "end": 133, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [134, 144]}]}
+{"id": "aqmar-openner:ar:aqmar:test:16", "extents": [{"start": 79, "end": 105, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [106, 119]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2379", "extents": [{"start": 37, "end": 43, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [44, 51]}, {"start": 132, "end": 137, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [138, 149]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2315", "extents": [{"start": 45, "end": 52, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [53, 66]}, {"start": 87, "end": 102, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [103, 108]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4197", "extents": [{"start": 88, "end": 106, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [107, 115]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5", "extents": [{"start": 76, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 91]}]}
+{"id": "aqmar-openner:ar:aqmar:test:290", "extents": [{"start": 7, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 22]}, {"start": 7, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 26]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:2057", "extents": [{"start": 196, "end": 207, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [208, 216]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4419", "extents": [{"start": 0, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 19]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1459", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 14]}]}
+{"id": "aqmar-openner:ar:aqmar:test:260", "extents": [{"start": 7, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 41]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2545", "extents": [{"start": 230, "end": 237, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [238, 248]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:819", "extents": [{"start": 192, "end": 205, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [206, 220]}]}
+{"id": "aqmar-openner:ar:aqmar:test:89", "extents": [{"start": 5, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 18]}, {"start": 5, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 34]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:407", "extents": [{"start": 29, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 43]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:436", "extents": [{"start": 12, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 17]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:207", "extents": [{"start": 9, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 18]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:329", "extents": [{"start": 26, "end": 33, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 37]}, {"start": 47, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 62]}, {"start": 84, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 93]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:471", "extents": [{"start": 167, "end": 197, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [198, 209]}]}
+{"id": "aqmar-openner:ar:aqmar:test:23", "extents": [{"start": 69, "end": 99, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [100, 111]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2270", "extents": [{"start": 0, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 34]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1869", "extents": [{"start": 2, "end": 6, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [7, 13]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:846", "extents": [{"start": 125, "end": 133, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [134, 167]}, {"start": 196, "end": 206, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [207, 228]}, {"start": 234, "end": 241, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [242, 265]}, {"start": 277, "end": 288, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [289, 310]}]}
+{"id": "mapa:ga:205543_en_GA:140", "extents": [{"start": 39, "end": 51, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [52, 66]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:429", "extents": [{"start": 5, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [12, 18]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:26", "extents": [{"start": 6, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 5]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:401", "extents": [{"start": 27, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 33]}, {"start": 34, "end": 35, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 33]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4490", "extents": [{"start": 51, "end": 74, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [75, 90]}, {"start": 121, "end": 142, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [143, 154]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:817", "extents": [{"start": 39, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 58]}]}
+{"id": "aqmar-openner:ar:aqmar:test:70", "extents": [{"start": 91, "end": 96, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [97, 102]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2126", "extents": [{"start": 74, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 105]}, {"start": 110, "end": 124, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [125, 136]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2992", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 22]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1002", "extents": [{"start": 15, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 37]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:60", "extents": [{"start": 13, "end": 25, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 38]}, {"start": 135, "end": 144, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [145, 158]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1481", "extents": [{"start": 104, "end": 113, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [114, 126]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:722", "extents": [{"start": 87, "end": 112, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [113, 121]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1698", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 14]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3630", "extents": [{"start": 30, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 49]}]}
+{"id": "aqmar-openner:ar:aqmar:test:104", "extents": [{"start": 269, "end": 273, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [274, 282]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3508", "extents": [{"start": 47, "end": 68, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [69, 81]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1889", "extents": [{"start": 97, "end": 103, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [104, 122]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:620", "extents": [{"start": 34, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 51]}, {"start": 52, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 51]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:793", "extents": [{"start": 38, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 75]}, {"start": 80, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 95]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4281", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 9]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3965", "extents": [{"start": 54, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 86]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:313", "extents": [{"start": 6, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 5]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2151", "extents": [{"start": 75, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 90]}, {"start": 121, "end": 131, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [132, 146]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1543", "extents": [{"start": 28, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 54]}, {"start": 65, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 105]}, {"start": 69, "end": 105, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [106, 119]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4645", "extents": [{"start": 29, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 46]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:377", "extents": [{"start": 33, "end": 39, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 45]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:177", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 13]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3346", "extents": [{"start": 38, "end": 44, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [45, 59]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1114", "extents": [{"start": 72, "end": 90, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [91, 97]}]}
+{"id": "aqmar-openner:ar:aqmar:test:272", "extents": [{"start": 7, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 39]}, {"start": 154, "end": 159, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [160, 164]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2959", "extents": [{"start": 100, "end": 109, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [110, 122]}, {"start": 142, "end": 156, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [157, 174]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1022", "extents": [{"start": 3, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 27]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1796", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 21]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:52", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 10]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2289", "extents": [{"start": 128, "end": 141, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [142, 152]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1369", "extents": [{"start": 31, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 51]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:519", "extents": [{"start": 38, "end": 54, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [55, 73]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2428", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 31]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2544", "extents": [{"start": 10, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 43]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4066", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3614", "extents": [{"start": 60, "end": 67, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [68, 83]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1296", "extents": [{"start": 10, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 24]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:696", "extents": [{"start": 43, "end": 57, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [58, 69]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1282", "extents": [{"start": 184, "end": 202, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [203, 215]}, {"start": 257, "end": 269, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [270, 278]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1117", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 27]}]}
+{"id": "mapa:mt:205542_mt:262", "extents": [{"start": 65, "end": 72, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [73, 84]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:13", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 24]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:410", "extents": [{"start": 9, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 24]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:946", "extents": [{"start": 0, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 23]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4515", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 9]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:932", "extents": [{"start": 51, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 104]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4375", "extents": [{"start": 114, "end": 120, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [121, 137]}]}
+{"id": "aqmar-openner:ar:aqmar:test:308", "extents": [{"start": 65, "end": 72, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [73, 86]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2383", "extents": [{"start": 184, "end": 204, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [205, 219]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2712", "extents": [{"start": 80, "end": 89, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [90, 101]}]}
+{"id": "aqmar-openner:ar:aqmar:test:500", "extents": [{"start": 20, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 53]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:894", "extents": [{"start": 67, "end": 72, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [73, 89]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:937", "extents": [{"start": 131, "end": 143, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [144, 158]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1371", "extents": [{"start": 59, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 89]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:85", "extents": [{"start": 68, "end": 75, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [76, 92]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4290", "extents": [{"start": 64, "end": 86, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [87, 100]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:152", "extents": [{"start": 41, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 53]}, {"start": 54, "end": 56, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 53]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3706", "extents": [{"start": 0, "end": 20, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 26]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1583", "extents": [{"start": 198, "end": 210, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [211, 220]}, {"start": 233, "end": 247, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [248, 264]}, {"start": 297, "end": 307, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [308, 312]}, {"start": 338, "end": 351, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [352, 357]}, {"start": 399, "end": 411, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [412, 419]}, {"start": 435, "end": 444, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [445, 451]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:575", "extents": [{"start": 58, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 79]}]}
+{"id": "mapa:ga:205542_en_GA:333", "extents": [{"start": 107, "end": 111, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [112, 123]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:166", "extents": [{"start": 8, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 7]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3474", "extents": [{"start": 10, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 50]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:542", "extents": [{"start": 138, "end": 152, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [153, 157]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1749", "extents": [{"start": 7, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 18]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2364", "extents": [{"start": 35, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 34]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5096", "extents": [{"start": 41, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 51]}, {"start": 81, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 94]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5031", "extents": [{"start": 86, "end": 112, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [113, 132]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5029", "extents": [{"start": 34, "end": 41, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 53]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4516", "extents": [{"start": 49, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 75]}, {"start": 121, "end": 132, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [133, 144]}, {"start": 147, "end": 159, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [160, 171]}, {"start": 174, "end": 184, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [185, 197]}, {"start": 200, "end": 209, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [210, 223]}, {"start": 228, "end": 242, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [243, 253]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2551", "extents": [{"start": 10, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 29]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2943", "extents": [{"start": 126, "end": 155, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [156, 173]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2644", "extents": [{"start": 12, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 22]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:198", "extents": [{"start": 5, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 4]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:250", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 8]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2532", "extents": [{"start": 60, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 98]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:843", "extents": [{"start": 46, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 54]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:55", "extents": [{"start": 37, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [50, 62]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:158", "extents": [{"start": 44, "end": 48, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [49, 54]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:791", "extents": [{"start": 28, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 38]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1993", "extents": [{"start": 105, "end": 114, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [115, 123]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:315", "extents": [{"start": 103, "end": 110, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [111, 124]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2899", "extents": [{"start": 0, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [31, 52]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:454", "extents": [{"start": 10, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 38]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2816", "extents": [{"start": 11, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 35]}]}
+{"id": "aqmar-openner:ar:aqmar:test:21", "extents": [{"start": 22, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 34]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:413", "extents": [{"start": 115, "end": 138, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [139, 148]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1013", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 16]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:322", "extents": [{"start": 19, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 41]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:999", "extents": [{"start": 81, "end": 103, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [104, 116]}]}
+{"id": "mapa:es:205543:0", "extents": [{"start": 13, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 40]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:856", "extents": [{"start": 64, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 103]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:96", "extents": [{"start": 6, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [3, 5]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2062", "extents": [{"start": 0, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 31]}]}
+{"id": "mapa:cs:205543_cs:0", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 30]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1401", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 34]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:272", "extents": [{"start": 24, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 32]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3896", "extents": [{"start": 59, "end": 79, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [80, 100]}]}
+{"id": "aqmar-openner:ar:aqmar:test:61", "extents": [{"start": 214, "end": 225, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [226, 233]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:523", "extents": [{"start": 39, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 54]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:461", "extents": [{"start": 47, "end": 56, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [57, 79]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2937", "extents": [{"start": 54, "end": 65, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [66, 70]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1105", "extents": [{"start": 118, "end": 125, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [126, 140]}, {"start": 155, "end": 176, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [177, 192]}]}
+{"id": "mapa:ga:205543_en_GA:50", "extents": [{"start": 129, "end": 138, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [139, 146]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2655", "extents": [{"start": 77, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 104]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:124", "extents": [{"start": 169, "end": 179, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [180, 190]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2928", "extents": [{"start": 97, "end": 102, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [103, 118]}]}
+{"id": "aqmar-openner:ar:aqmar:test:60", "extents": [{"start": 36, "end": 41, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 58]}]}
+{"id": "aqmar-openner:ar:aqmar:test:306", "extents": [{"start": 83, "end": 87, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [88, 94]}, {"start": 187, "end": 192, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [193, 199]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1091", "extents": [{"start": 0, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1980", "extents": [{"start": 73, "end": 90, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [91, 104]}]}
+{"id": "mapa:lv:205543_lv:106", "extents": [{"start": 5, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 16]}, {"start": 17, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 16]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:474", "extents": [{"start": 96, "end": 99, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [100, 114]}, {"start": 115, "end": 132, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [100, 114]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1376", "extents": [{"start": 26, "end": 47, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [48, 58]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:624", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 17]}, {"start": 20, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 45]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:300", "extents": [{"start": 0, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 20]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1389", "extents": [{"start": 112, "end": 119, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [120, 136]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4748", "extents": [{"start": 58, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 106]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:379", "extents": [{"start": 14, "end": 43, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [44, 53]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2072", "extents": [{"start": 32, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 47]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3656", "extents": [{"start": 39, "end": 47, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [48, 68]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:297", "extents": [{"start": 84, "end": 89, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [90, 94]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:464", "extents": [{"start": 100, "end": 115, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [116, 127]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2404", "extents": [{"start": 24, "end": 41, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 56]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:659", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 23]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3341", "extents": [{"start": 82, "end": 90, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [91, 109]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2000", "extents": [{"start": 93, "end": 110, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [111, 127]}, {"start": 148, "end": 155, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [156, 163]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:641", "extents": [{"start": 57, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 68]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2530", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 19]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:773", "extents": [{"start": 91, "end": 110, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [111, 144]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1441", "extents": [{"start": 8, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 38]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:99", "extents": [{"start": 28, "end": 47, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [48, 64]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:839", "extents": [{"start": 70, "end": 109, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [110, 130]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1352", "extents": [{"start": 33, "end": 60, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [61, 72]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:312", "extents": [{"start": 7, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 28]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3516", "extents": [{"start": 0, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 23]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2081", "extents": [{"start": 0, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 36]}]}
+{"id": "aqmar-openner:ar:aqmar:test:106", "extents": [{"start": 78, "end": 80, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [81, 89]}, {"start": 137, "end": 143, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [144, 165]}, {"start": 188, "end": 191, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [192, 202]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4442", "extents": [{"start": 79, "end": 108, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [109, 126]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2037", "extents": [{"start": 231, "end": 245, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [246, 261]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1860", "extents": [{"start": 141, "end": 157, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [158, 169]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:620", "extents": [{"start": 56, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 71]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2325", "extents": [{"start": 116, "end": 130, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [131, 152]}]}
+{"id": "aqmar-openner:ar:aqmar:test:296", "extents": [{"start": 53, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 69]}, {"start": 110, "end": 117, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [118, 125]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2224", "extents": [{"start": 139, "end": 163, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [164, 176]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1499", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 17]}]}
+{"id": "mapa:hu:205542_hu:334", "extents": [{"start": 67, "end": 73, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [55, 66]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1875", "extents": [{"start": 30, "end": 39, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 44]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3411", "extents": [{"start": 113, "end": 130, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [131, 145]}]}
+{"id": "mapa:lt:205542_lt.txt:342", "extents": [{"start": 231, "end": 240, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [241, 255]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1580", "extents": [{"start": 24, "end": 41, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 47]}]}
+{"id": "aqmar-openner:ar:aqmar:test:10", "extents": [{"start": 128, "end": 154, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [155, 167]}, {"start": 168, "end": 230, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [155, 167]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3770", "extents": [{"start": 24, "end": 47, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [48, 61]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4960", "extents": [{"start": 12, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 36]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1423", "extents": [{"start": 56, "end": 69, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [70, 86]}, {"start": 149, "end": 155, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [156, 161]}, {"start": 156, "end": 167, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [168, 175]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1643", "extents": [{"start": 20, "end": 39, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 53]}]}
+{"id": "aqmar-openner:ar:aqmar:test:557", "extents": [{"start": 82, "end": 90, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [91, 107]}]}
+{"id": "aqmar-openner:ar:aqmar:test:554", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 15]}, {"start": 16, "end": 65, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 15]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:728", "extents": [{"start": 155, "end": 174, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [175, 189]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1689", "extents": [{"start": 0, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 40]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:711", "extents": [{"start": 206, "end": 233, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [234, 244]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3376", "extents": [{"start": 176, "end": 183, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [184, 199]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1135", "extents": [{"start": 65, "end": 76, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [77, 84]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4193", "extents": [{"start": 97, "end": 106, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [107, 120]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1342", "extents": [{"start": 10, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 23]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4980", "extents": [{"start": 49, "end": 58, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [59, 68]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:271", "extents": [{"start": 17, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 16]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2101", "extents": [{"start": 79, "end": 105, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [106, 118]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1072", "extents": [{"start": 144, "end": 151, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [152, 164]}, {"start": 170, "end": 184, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [185, 199]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:117", "extents": [{"start": 22, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 38]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4016", "extents": [{"start": 36, "end": 48, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [49, 56]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:793", "extents": [{"start": 37, "end": 44, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [45, 48]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:40", "extents": [{"start": 246, "end": 253, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [254, 259]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:2030", "extents": [{"start": 35, "end": 59, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [60, 72]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:338", "extents": [{"start": 16, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 15]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1064", "extents": [{"start": 5, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 33]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2427", "extents": [{"start": 227, "end": 230, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [231, 243]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2864", "extents": [{"start": 26, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 41]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2066", "extents": [{"start": 143, "end": 174, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [175, 186]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:501", "extents": [{"start": 150, "end": 158, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [159, 174]}]}
+{"id": "aqmar-openner:ar:aqmar:test:105", "extents": [{"start": 12, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 21]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3392", "extents": [{"start": 113, "end": 123, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [124, 132]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:460", "extents": [{"start": 45, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 86]}]}
+{"id": "mapa:mt:205543_mt:0", "extents": [{"start": 20, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 45]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3070", "extents": [{"start": 62, "end": 75, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [76, 96]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3432", "extents": [{"start": 0, "end": 31, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [32, 47]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:416", "extents": [{"start": 81, "end": 82, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 80]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2620", "extents": [{"start": 46, "end": 57, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [58, 68]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3357", "extents": [{"start": 23, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 33]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1271", "extents": [{"start": 75, "end": 102, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [103, 117]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1992", "extents": [{"start": 19, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 45]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1716", "extents": [{"start": 26, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 40]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:468", "extents": [{"start": 60, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 74]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3852", "extents": [{"start": 39, "end": 44, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [45, 66]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1792", "extents": [{"start": 81, "end": 96, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [97, 121]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3479", "extents": [{"start": 29, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 48]}]}
+{"id": "mapa:lt:205542_lt.txt:332", "extents": [{"start": 46, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 62]}, {"start": 170, "end": 179, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [180, 185]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1157", "extents": [{"start": 206, "end": 217, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [218, 233]}, {"start": 245, "end": 248, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [249, 255]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:485", "extents": [{"start": 47, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 67]}]}
+{"id": "mapa:sv:205542_sv.txt:303", "extents": [{"start": 0, "end": 33, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 70]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2591", "extents": [{"start": 16, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 43]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4320", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 22]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:617", "extents": [{"start": 0, "end": 2, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [3, 17]}]}
+{"id": "aqmar-openner:ar:aqmar:test:277", "extents": [{"start": 207, "end": 219, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [197, 206]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:646", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 23]}, {"start": 95, "end": 109, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [110, 128]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:380", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 20]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:24", "extents": [{"start": 136, "end": 142, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [143, 151]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1092", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 23]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1603", "extents": [{"start": 233, "end": 247, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [248, 269]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2854", "extents": [{"start": 146, "end": 156, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [157, 173]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1192", "extents": [{"start": 63, "end": 76, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [77, 90]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1823", "extents": [{"start": 0, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 27]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2641", "extents": [{"start": 51, "end": 57, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [58, 67]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:344", "extents": [{"start": 88, "end": 97, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [98, 113]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:749", "extents": [{"start": 45, "end": 52, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [53, 64]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1041", "extents": [{"start": 18, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 37]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1417", "extents": [{"start": 0, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 28]}]}
+{"id": "aqmar-openner:ar:aqmar:test:147", "extents": [{"start": 6, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 38]}]}
+{"id": "aqmar-openner:ar:aqmar:test:499", "extents": [{"start": 23, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 51]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1559", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 21]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3157", "extents": [{"start": 31, "end": 33, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 30]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1389", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 22]}, {"start": 25, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 57]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:381", "extents": [{"start": 90, "end": 95, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [96, 104]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:203", "extents": [{"start": 98, "end": 104, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [105, 109]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:118", "extents": [{"start": 10, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 9]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:22", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 22]}]}
+{"id": "mapa:ga:205542_en_GA:51", "extents": [{"start": 33, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 55]}, {"start": 58, "end": 67, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [68, 85]}, {"start": 91, "end": 100, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [101, 114]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2841", "extents": [{"start": 76, "end": 97, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [98, 112]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1215", "extents": [{"start": 21, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 50]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4112", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 36]}]}
+{"id": "aqmar-openner:ar:aqmar:test:85", "extents": [{"start": 19, "end": 24, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [25, 38]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:393", "extents": [{"start": 222, "end": 228, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [229, 241]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1151", "extents": [{"start": 0, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 33]}]}
+{"id": "aqmar-openner:ar:aqmar:test:39", "extents": [{"start": 202, "end": 217, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [218, 228]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:469", "extents": [{"start": 12, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 23]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3871", "extents": [{"start": 92, "end": 102, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [103, 118]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:259", "extents": [{"start": 59, "end": 69, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [70, 85]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1448", "extents": [{"start": 46, "end": 79, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [80, 95]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:215", "extents": [{"start": 0, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 50]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2556", "extents": [{"start": 93, "end": 106, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [107, 121]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4484", "extents": [{"start": 75, "end": 82, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [83, 87]}]}
+{"id": "mapa:el:205542_el:350", "extents": [{"start": 3, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 39]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4804", "extents": [{"start": 113, "end": 130, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [131, 152]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:328", "extents": [{"start": 90, "end": 96, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [97, 109]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1869", "extents": [{"start": 9, "end": 32, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [33, 48]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:644", "extents": [{"start": 101, "end": 106, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [107, 131]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:921", "extents": [{"start": 97, "end": 117, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [118, 128]}]}
+{"id": "aqmar-openner:ar:aqmar:test:329", "extents": [{"start": 94, "end": 102, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [103, 112]}]}
+{"id": "aqmar-openner:ar:aqmar:test:84", "extents": [{"start": 56, "end": 69, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 55]}, {"start": 279, "end": 294, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [295, 307]}, {"start": 355, "end": 358, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [359, 367]}]}
+{"id": "aqmar-openner:ar:aqmar:test:82", "extents": [{"start": 304, "end": 307, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [308, 313]}, {"start": 347, "end": 353, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [354, 363]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2011", "extents": [{"start": 59, "end": 64, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [65, 74]}, {"start": 79, "end": 84, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [85, 90]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:5004", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 25]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:238", "extents": [{"start": 0, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 29]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2252", "extents": [{"start": 49, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 73]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1294", "extents": [{"start": 0, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 29]}, {"start": 48, "end": 65, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [66, 75]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:632", "extents": [{"start": 110, "end": 113, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [114, 120]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1032", "extents": [{"start": 154, "end": 160, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [161, 168]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1283", "extents": [{"start": 57, "end": 68, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [69, 86]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:595", "extents": [{"start": 31, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 55]}]}
+{"id": "aqmar-openner:ar:aqmar:test:523", "extents": [{"start": 143, "end": 150, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [151, 159]}]}
+{"id": "mapa:ga:205543_en_GA:26", "extents": [{"start": 33, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 50]}]}
+{"id": "mapa:lt:205542_lt.txt:312", "extents": [{"start": 156, "end": 165, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [166, 171]}, {"start": 261, "end": 270, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [271, 275]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4214", "extents": [{"start": 14, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 44]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2168", "extents": [{"start": 5, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 32]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:208", "extents": [{"start": 38, "end": 77, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [78, 83]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2649", "extents": [{"start": 142, "end": 153, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [154, 168]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2749", "extents": [{"start": 168, "end": 185, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [186, 197]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:285", "extents": [{"start": 56, "end": 69, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [70, 84]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:689", "extents": [{"start": 47, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 81]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4090", "extents": [{"start": 77, "end": 83, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [84, 91]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1677", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 42]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3564", "extents": [{"start": 75, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 105]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:491", "extents": [{"start": 97, "end": 107, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [108, 119]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:537", "extents": [{"start": 247, "end": 288, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [289, 315]}]}
+{"id": "aqmar-openner:ar:aqmar:test:262", "extents": [{"start": 31, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 55]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2523", "extents": [{"start": 114, "end": 124, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [125, 128]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2245", "extents": [{"start": 185, "end": 192, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [193, 205]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:616", "extents": [{"start": 87, "end": 120, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [121, 136]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:669", "extents": [{"start": 41, "end": 52, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [53, 61]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3710", "extents": [{"start": 0, "end": 21, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [22, 38]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2961", "extents": [{"start": 3, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 15]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:868", "extents": [{"start": 0, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 23]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3339", "extents": [{"start": 117, "end": 125, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [126, 140]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4518", "extents": [{"start": 162, "end": 169, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [170, 182]}, {"start": 192, "end": 201, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [202, 214]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2792", "extents": [{"start": 35, "end": 46, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [47, 62]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2925", "extents": [{"start": 58, "end": 73, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [74, 87]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2344", "extents": [{"start": 2, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 45]}, {"start": 185, "end": 205, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [206, 228]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1186", "extents": [{"start": 65, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 92]}, {"start": 199, "end": 206, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [207, 219]}]}
+{"id": "mapa:ga:205542_en_GA:289", "extents": [{"start": 14, "end": 24, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [25, 65]}]}
+{"id": "aqmar-openner:ar:aqmar:test:130", "extents": [{"start": 4, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [12, 23]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:732", "extents": [{"start": 49, "end": 83, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [84, 98]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3277", "extents": [{"start": 4, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 26]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1239", "extents": [{"start": 0, "end": 20, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 36]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3295", "extents": [{"start": 0, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1285", "extents": [{"start": 0, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 26]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:576", "extents": [{"start": 85, "end": 96, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [97, 116]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2161", "extents": [{"start": 38, "end": 61, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [62, 68]}]}
+{"id": "aqmar-openner:ar:aqmar:test:592", "extents": [{"start": 60, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 76]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3643", "extents": [{"start": 0, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:732", "extents": [{"start": 54, "end": 68, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [69, 90]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:665", "extents": [{"start": 99, "end": 117, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [118, 130]}, {"start": 220, "end": 232, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [233, 249]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4428", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 28]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2619", "extents": [{"start": 48, "end": 56, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [57, 71]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1778", "extents": [{"start": 75, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 87]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2556", "extents": [{"start": 182, "end": 193, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [194, 214]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:976", "extents": [{"start": 69, "end": 78, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [79, 86]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2527", "extents": [{"start": 0, "end": 28, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [29, 44]}]}
+{"id": "mapa:ga:205543_en_GA:28", "extents": [{"start": 14, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 31]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2704", "extents": [{"start": 47, "end": 62, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [63, 79]}]}
+{"id": "aqmar-openner:ar:aqmar:test:99", "extents": [{"start": 8, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 30]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4621", "extents": [{"start": 21, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 46]}]}
+{"id": "aqmar-openner:ar:aqmar:test:580", "extents": [{"start": 25, "end": 46, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [47, 81]}]}
+{"id": "aqmar-openner:ar:aqmar:test:295", "extents": [{"start": 0, "end": 6, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [7, 19]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:525", "extents": [{"start": 28, "end": 39, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [40, 54]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2680", "extents": [{"start": 0, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 21]}, {"start": 56, "end": 83, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [84, 97]}]}
+{"id": "aqmar-openner:ar:aqmar:test:526", "extents": [{"start": 30, "end": 48, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [49, 59]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:346", "extents": [{"start": 60, "end": 80, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [81, 101]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1444", "extents": [{"start": 4, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 20]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4954", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 34]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1799", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 19]}, {"start": 202, "end": 205, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [206, 217]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1057", "extents": [{"start": 5, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 15]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4065", "extents": [{"start": 72, "end": 84, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [85, 92]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:880", "extents": [{"start": 50, "end": 72, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [73, 87]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:126", "extents": [{"start": 24, "end": 30, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [31, 38]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:542", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 21]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2102", "extents": [{"start": 29, "end": 45, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [46, 53]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2799", "extents": [{"start": 93, "end": 98, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [99, 117]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:223", "extents": [{"start": 75, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 103]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1490", "extents": [{"start": 44, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [50, 57]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1153", "extents": [{"start": 19, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 55]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3608", "extents": [{"start": 90, "end": 114, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [115, 125]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1154", "extents": [{"start": 35, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 45]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1106", "extents": [{"start": 40, "end": 54, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 39]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1759", "extents": [{"start": 102, "end": 115, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [116, 127]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4121", "extents": [{"start": 56, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 78]}, {"start": 99, "end": 123, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [124, 135]}]}
+{"id": "aqmar-openner:ar:aqmar:test:128", "extents": [{"start": 92, "end": 97, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [98, 104]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1455", "extents": [{"start": 49, "end": 64, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [65, 80]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2415", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 32]}]}
+{"id": "mapa:el:205543_el:219", "extents": [{"start": 43, "end": 49, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [35, 42]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4103", "extents": [{"start": 0, "end": 16, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [17, 36]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:127", "extents": [{"start": 81, "end": 116, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [117, 127]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:889", "extents": [{"start": 56, "end": 78, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [79, 97]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2865", "extents": [{"start": 249, "end": 261, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [262, 276]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1053", "extents": [{"start": 29, "end": 44, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [45, 56]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3278", "extents": [{"start": 162, "end": 189, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [190, 206]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:599", "extents": [{"start": 161, "end": 172, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [173, 188]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:38", "extents": [{"start": 11, "end": 24, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [25, 46]}, {"start": 49, "end": 61, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [62, 77]}, {"start": 80, "end": 91, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [92, 105]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3771", "extents": [{"start": 8, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 18]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:157", "extents": [{"start": 6, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 5]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3216", "extents": [{"start": 0, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 32]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1480", "extents": [{"start": 27, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 60]}]}
+{"id": "aqmar-openner:ar:aqmar:test:604", "extents": [{"start": 32, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 51]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1932", "extents": [{"start": 48, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [42, 47]}, {"start": 48, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 71]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:297", "extents": [{"start": 133, "end": 140, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [141, 163]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1148", "extents": [{"start": 4, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 15]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1221", "extents": [{"start": 114, "end": 124, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [125, 138]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:331", "extents": [{"start": 203, "end": 213, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [214, 220]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:352", "extents": [{"start": 35, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 60]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3618", "extents": [{"start": 120, "end": 127, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [128, 139]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1954", "extents": [{"start": 107, "end": 115, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [116, 134]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1727", "extents": [{"start": 79, "end": 86, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [87, 93]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4456", "extents": [{"start": 54, "end": 70, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [71, 85]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:241", "extents": [{"start": 99, "end": 120, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [121, 136]}]}
+{"id": "mapa:el:205543_el:0", "extents": [{"start": 0, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 32]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1705", "extents": [{"start": 52, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 79]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2685", "extents": [{"start": 227, "end": 245, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [246, 262]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4150", "extents": [{"start": 78, "end": 97, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [98, 103]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:344", "extents": [{"start": 10, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 33]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:269", "extents": [{"start": 39, "end": 51, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [52, 64]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2284", "extents": [{"start": 0, "end": 5, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [6, 22]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1699", "extents": [{"start": 0, "end": 2, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [3, 10]}]}
+{"id": "mapa:ga:205543_en_GA:30", "extents": [{"start": 14, "end": 23, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [24, 31]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2209", "extents": [{"start": 0, "end": 15, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [16, 24]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3347", "extents": [{"start": 93, "end": 97, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [98, 106]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1092", "extents": [{"start": 8, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [11, 14]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2503", "extents": [{"start": 12, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 55]}, {"start": 152, "end": 183, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [184, 197]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3730", "extents": [{"start": 10, "end": 40, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [41, 60]}]}
+{"id": "aqmar-openner:ar:aqmar:test:286", "extents": [{"start": 5, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 32]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:340", "extents": [{"start": 208, "end": 225, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [226, 238]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1150", "extents": [{"start": 150, "end": 158, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [159, 170]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:174", "extents": [{"start": 0, "end": 11, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [12, 28]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:74", "extents": [{"start": 21, "end": 51, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [52, 64]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3365", "extents": [{"start": 45, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 60]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1643", "extents": [{"start": 29, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 57]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3639", "extents": [{"start": 55, "end": 73, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [74, 87]}]}
+{"id": "mapa:nl:205542_nl:308", "extents": [{"start": 463, "end": 468, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [449, 462]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4789", "extents": [{"start": 68, "end": 82, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [83, 106]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:434", "extents": [{"start": 40, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 51]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2504", "extents": [{"start": 191, "end": 204, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [205, 222]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1281", "extents": [{"start": 0, "end": 17, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [18, 30]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3541", "extents": [{"start": 0, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 24]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:177", "extents": [{"start": 90, "end": 117, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [118, 129]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:951", "extents": [{"start": 14, "end": 24, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [25, 43]}]}
+{"id": "mapa:sv:205542_sv.txt:133", "extents": [{"start": 5, "end": 18, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [19, 29]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:568", "extents": [{"start": 31, "end": 37, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [38, 54]}]}
+{"id": "mapa:hu:205543_hu:175", "extents": [{"start": 115, "end": 124, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [104, 114]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:288", "extents": [{"start": 8, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 7]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2734", "extents": [{"start": 23, "end": 43, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [44, 58]}]}
+{"id": "aqmar-openner:ar:aqmar:test:310", "extents": [{"start": 66, "end": 75, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 65]}, {"start": 113, "end": 136, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [137, 153]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:824", "extents": [{"start": 279, "end": 288, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [289, 300]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3265", "extents": [{"start": 133, "end": 144, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [145, 155]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1607", "extents": [{"start": 0, "end": 3, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [4, 19]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:745", "extents": [{"start": 161, "end": 173, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [174, 180]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:2953", "extents": [{"start": 104, "end": 109, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [110, 116]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2545", "extents": [{"start": 57, "end": 62, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [63, 73]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:487", "extents": [{"start": 49, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 62]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2727", "extents": [{"start": 71, "end": 89, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [90, 101]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:350", "extents": [{"start": 26, "end": 36, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [37, 56]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1731", "extents": [{"start": 112, "end": 125, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [126, 141]}]}
+{"id": "aqmar-openner:ar:aqmar:test:98", "extents": [{"start": 50, "end": 62, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [63, 67]}, {"start": 80, "end": 86, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [87, 92]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3004", "extents": [{"start": 41, "end": 52, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [53, 71]}, {"start": 166, "end": 179, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [180, 196]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:336", "extents": [{"start": 9, "end": 13, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [14, 18]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:960", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 37]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:1636", "extents": [{"start": 45, "end": 48, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [49, 55]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3445", "extents": [{"start": 51, "end": 65, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [66, 85]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2138", "extents": [{"start": 78, "end": 95, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [96, 105]}]}
+{"id": "mapa:it:205543_it:36", "extents": [{"start": 5, "end": 7, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [8, 21]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3669", "extents": [{"start": 126, "end": 147, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [148, 154]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4030", "extents": [{"start": 76, "end": 93, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [94, 106]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1863", "extents": [{"start": 14, "end": 19, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [20, 24]}]}
+{"id": "aqmar-openner:ar:aqmar:test:32", "extents": [{"start": 165, "end": 186, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [187, 196]}]}
+{"id": "mapa:bg:205543_bg:182", "extents": [{"start": 69, "end": 85, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [86, 92]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3928", "extents": [{"start": 11, "end": 33, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [34, 49]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4300", "extents": [{"start": 62, "end": 67, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [68, 77]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:147", "extents": [{"start": 12, "end": 14, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [15, 19]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3075", "extents": [{"start": 39, "end": 56, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [26, 38]}]}
+{"id": "aqmar-openner:ar:aqmar:test:522", "extents": [{"start": 19, "end": 35, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [36, 57]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:704", "extents": [{"start": 0, "end": 4, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [5, 17]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2214", "extents": [{"start": 35, "end": 46, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [47, 71]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:116", "extents": [{"start": 42, "end": 53, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [54, 65]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:909", "extents": [{"start": 48, "end": 57, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [58, 73]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:300", "extents": [{"start": 81, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 102]}]}
+{"id": "openner-commercial-core:zh:openner:uner_chinese_gsdsimp-cmn:test:364", "extents": [{"start": 20, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 27]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2261", "extents": [{"start": 60, "end": 63, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [64, 76]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:272", "extents": [{"start": 6, "end": 10, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 5]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1679", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 29]}, {"start": 32, "end": 42, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [43, 51]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1793", "extents": [{"start": 120, "end": 129, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [130, 135]}]}
+{"id": "openner-commercial-core:ja:openner:japanese_gsd-jap:test:170", "extents": [{"start": 3, "end": 5, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [0, 2]}, {"start": 55, "end": 57, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [52, 54]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4992", "extents": [{"start": 0, "end": 12, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [13, 18]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1017", "extents": [{"start": 239, "end": 256, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [257, 271]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4926", "extents": [{"start": 16, "end": 35, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [36, 59]}]}
+{"id": "aqmar-openner:ar:aqmar:test:75", "extents": [{"start": 49, "end": 55, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [56, 72]}]}
+{"id": "mapa:lt:205542_lt.txt:140", "extents": [{"start": 0, "end": 9, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [10, 18]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:512", "extents": [{"start": 43, "end": 52, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [53, 66]}]}
+{"id": "aqmar-openner:ar:aqmar:test:297", "extents": [{"start": 20, "end": 26, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [27, 37]}, {"start": 320, "end": 326, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [327, 337]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:3042", "extents": [{"start": 17, "end": 38, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [39, 51]}]}
+{"id": "openner-commercial-core:en:openner:uner_english_ewt-eng:test:639", "extents": [{"start": 5, "end": 8, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [9, 17]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2190", "extents": [{"start": 82, "end": 89, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [90, 99]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:306", "extents": [{"start": 88, "end": 116, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [117, 132]}]}
+{"id": "openner-commercial-core:sv:openner:uner_swedish_talkbanken-swe:test:580", "extents": [{"start": 72, "end": 88, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [89, 103]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:296", "extents": [{"start": 110, "end": 123, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [124, 136]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1982", "extents": [{"start": 0, "end": 22, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [23, 34]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:887", "extents": [{"start": 71, "end": 81, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [82, 95]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:1813", "extents": [{"start": 23, "end": 27, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [28, 37]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:411", "extents": [{"start": 10, "end": 20, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [21, 34]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:1350", "extents": [{"start": 180, "end": 191, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [192, 203]}]}
+{"id": "openner-commercial-core:pt:openner:uner_portuguese-bosque-por:test:496", "extents": [{"start": 55, "end": 66, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [67, 84]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:2974", "extents": [{"start": 45, "end": 58, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [59, 72]}]}
+{"id": "openner-commercial-core:de:openner:germeval-deu:test:4132", "extents": [{"start": 114, "end": 122, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [123, 131]}]}
+{"id": "openner-commercial-core:es:openner:ancora-spa:test:910", "extents": [{"start": 40, "end": 50, "kind": "neutral", "source": "llm:qwen3.8-flash-next", "name": [51, 65]}]}

@@ -1,0 +1,54 @@
+# Batching LLM server for `annotate --server`, kept apart from the training
+# environment's pins. The lock file is the exact resolution used for the
+# paper's local-LLM runs: vLLM from the main-branch wheel at commit
+# e0050f287 (0.29.1rc1.dev333), with Gemma-4 support, the NVFP4
+# (modelopt_fp4) kernels and Blackwell (sm_120) builds.
+#
+#   pixi install --locked
+#   pixi run serve-teacher            # Gemma-4 31B IT, bf16, port 8000
+#   pixi run serve-teacher-nvfp4      # NVIDIA's NVFP4 Gemma-4 31B IT
+#
+# Then from the main environment:
+#   python pii-reproduce.py annotate --server http://127.0.0.1:8000/v1 ...
+#
+# Prefix caching is on by default, so the ~6,700-token annotation prompt is
+# prefilled once. It does not apply to all-token pooling (`token_embed`),
+# which vLLM always recomputes because it must return a state for every
+# prompt token.
+
+[workspace]
+name = "pii-reproduction-serve"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[system-requirements]
+cuda = "13"
+
+[dependencies]
+python = "3.12.*"
+pip = ">=25"
+# vLLM caps setuptools below 81; conda-forge Python would otherwise bring 84.
+setuptools = ">=77.0.3,<81"
+git = ">=2.40"
+huggingface_hub = ">=0.36"
+zstandard = "*"
+
+[pypi-options]
+extra-index-urls = ["https://flashinfer.ai/whl/"]
+
+[pypi-dependencies]
+vllm = { url = "https://wheels.vllm.ai/e0050f287aae8b3ddbe2947a5af1c5dd23db2781/vllm-0.29.1rc1.dev333%2Bge0050f287-cp38-abi3-manylinux_2_28_x86_64.whl" }
+
+[activation.env]
+VLLM_WORKER_MULTIPROC_METHOD = "spawn"
+
+[tasks.versions]
+cmd = """python -c 'import torch,vllm;print("vllm",vllm.__version__);print("torch",torch.__version__,torch.version.cuda)'"""
+
+[tasks.serve-teacher]
+description = "Serve Gemma-4 31B IT for annotate --server (bf16, port 8000)"
+cmd = "vllm serve google/gemma-4-31B-it --port 8000 --max-model-len 16384 --max-num-seqs 64"
+
+[tasks.serve-teacher-nvfp4]
+description = "Serve NVIDIA's NVFP4 Gemma-4 31B IT for annotate --server (port 8000)"
+cmd = "vllm serve nvidia/Gemma-4-31B-IT-NVFP4 --port 8000 --max-model-len 16384 --max-num-seqs 64 --quantization modelopt_fp4"

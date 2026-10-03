@@ -1,0 +1,27 @@
+{
+  "schema": "pii-token-predicate-channels",
+  "version": 1,
+  "channels": [
+    {
+      "name": "given_name",
+      "applicable_types": ["person_name"],
+      "definition": "Characters of a person_name span that constitute the given name. The name's written order does not change this predicate."
+    },
+    {
+      "name": "family_name",
+      "applicable_types": ["person_name"],
+      "definition": "Characters of a person_name span that constitute the family name or surname."
+    },
+    {
+      "name": "care_provider",
+      "applicable_types": ["person_name", "person_reference"],
+      "definition": "The person mention identifies a clinician, nurse, treating professional, or other care-giving role holder rather than a patient, relative, witness, bystander, or unrelated person."
+    }
+  ],
+  "target_encoding": {
+    "positive": 1,
+    "known_negative": 0,
+    "unknown": -100,
+    "token_rule": "A token is positive iff it overlaps a positive character extent. Other tokens inside the same explicitly labeled activating span are known negative. Every token outside such a span is unknown."
+  }
+}

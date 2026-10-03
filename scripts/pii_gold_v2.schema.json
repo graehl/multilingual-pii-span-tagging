@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/scripts/pii_gold_v2.schema.json",
+  "title": "PII gold record (ontology v2)",
+  "description": "One JSONL row of PII gold under the v2 target ontology. Primary spans carry a BIOES primary class from the 29-class inventory in scripts/pii_tagset_v2.yaml. The optional per-span attrs object holds independent predicate channels over character extents inside the span, so a v1 reader that ignores attrs still reads a valid record. Unknown top-level row fields are provenance and are preserved.",
+  "$ref": "#/$defs/record",
+  "x-ontology-version": "pii-ontology-v2",
+  "x-schema-version": "pii-gold-v2",
+  "x-validator": "scripts/pii_ontology_v2.py",
+  "x-loader-enforced-invariants": [
+    "0 <= span.start < span.end <= len(text)",
+    "spans are sorted by (start, end, type)",
+    "primary spans do not overlap",
+    "record ids are unique within a file",
+    "an attrs channel is present only on a primary type in its applicable_types",
+    "every attribute interval lies inside its primary span",
+    "attribute intervals within one channel are pairwise disjoint",
+    "dataset metadata declares an attr_channels registry equal to the authoritative one, including each channel's value_kind"
+  ],
+  "$defs": {
+    "record": {
+      "type": "object",
+      "required": ["id", "text", "spans"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Record identifier, unique within the file."
+        },
+        "text": {
+          "type": "string",
+          "description": "Document text. All offsets index this string in Unicode codepoints."
+        },
+        "spans": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/span"},
+          "description": "Primary spans, sorted by (start, end, type) and non-overlapping."
+        }
+      },
+      "additionalProperties": true
+    },
+    "span": {
+      "type": "object",
+      "required": ["start", "end", "type"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 1},
+        "type": {"$ref": "#/$defs/primary_type"},
+        "attrs": {"$ref": "#/$defs/attrs"}
+      },
+      "additionalProperties": false,
+      "description": "Absolute half-open [start, end) primary span."
+    },
+    "attrs": {
+      "type": "object",
+      "properties": {
+        "family_name": {"$ref": "#/$defs/intervals"},
+        "care_provider": {"$ref": "#/$defs/intervals"}
+      },
+      "additionalProperties": false,
+      "description": "Independent predicate channels. A present key with a nonempty list gives the known-positive character extents; a present key with an empty list is a known negative; a missing key is unknown and masks loss and evaluation for that channel."
+    },
+    "intervals": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/interval"},
+      "description": "Pairwise-disjoint character extents inside the primary span. Multiple disjoint intervals are valid."
+    },
+    "interval": {
+      "type": "array",
+      "prefixItems": [
+        {"type": "integer", "minimum": 0},
+        {"type": "integer", "minimum": 1}
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Absolute half-open [start, end) Unicode-codepoint interval inside the primary span."
+    },
+    "primary_type": {
+      "type": "string",
+      "enum": [
+        "admin_area",
+        "age",
+        "bank_account_number",
+        "bank_routing_code",
+        "credential",
+        "date",
+        "date_of_birth",
+        "demographic_attribute",
+        "device_identifier",
+        "email",
+        "government_id",
+        "gps_coordinates",
+        "health_condition",
+        "ip_address",
+        "locality",
+        "location",
+        "monetary_amount",
+        "organization",
+        "payment_card_data",
+        "person_name",
+        "phone_number",
+        "postal_code",
+        "protected_attribute",
+        "quantity",
+        "record_identifier",
+        "street_address",
+        "time",
+        "url",
+        "username"
+      ],
+      "description": "The 29 adopted primary classes. O is the outside sentinel of the BIOES tagging, never a span type."
+    },
+    "dataset_metadata": {
+      "type": "object",
+      "required": ["ontology_version", "schema_version", "attr_channels"],
+      "properties": {
+        "ontology_version": {"const": "pii-ontology-v2"},
+        "schema_version": {"const": "pii-gold-v2"},
+        "attr_channels": {
+          "type": "object",
+          "required": ["family_name", "care_provider"],
+          "properties": {
+            "family_name": {"$ref": "#/$defs/attr_channel_registration"},
+            "care_provider": {"$ref": "#/$defs/attr_channel_registration"}
+          },
+          "additionalProperties": false,
+          "description": "Must equal the authoritative registry in scripts/pii_tagset_v2.yaml on applicable_types, semantics_version, and value_kind. Undeclared channels are rejected rather than accepted."
+        }
+      },
+      "additionalProperties": true,
+      "description": "Per-dataset declaration. It lives beside the gold file as <file>.meta.json, either at the top level or nested under an \"ontology\" key."
+    },
+    "attr_channel_registration": {
+      "type": "object",
+      "required": ["applicable_types", "semantics_version", "value_kind"],
+      "properties": {
+        "applicable_types": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/primary_type"}
+        },
+        "semantics_version": {"type": "integer", "minimum": 1},
+        "value_kind": {
+          "const": "character_extents",
+          "description": "A channel value is a list of character extents inside the primary span, not a scalar or a label."
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

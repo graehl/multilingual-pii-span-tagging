@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "dataset": "openpii-1m",
+  "upstream": {
+    "repo_id": "ai4privacy/pii-masking-openpii-1m",
+    "revision": "ecfdc547f4a0955600cfe6ab98ba2a162207fcc0",
+    "url": "https://huggingface.co/datasets/ai4privacy/pii-masking-openpii-1m",
+    "license": "CC-BY-4.0"
+  },
+  "source_schema": "ai4privacy_new",
+  "tagset_sha256": "fbdc1bc04838573ef699c11062925ea127f5c57143c138043f6175f911e37932",
+  "record_schema": {
+    "fields": [
+      "id",
+      "text",
+      "spans",
+      "lang",
+      "metadata"
+    ],
+    "span_fields": [
+      "start",
+      "end",
+      "label",
+      "source_label"
+    ],
+    "compression": "gzip",
+    "encoding": "UTF-8"
+  },
+  "counts": {
+    "records": 1428143,
+    "spans": 10328208,
+    "splits": {
+      "train": 1143397,
+      "validation": 284746
+    },
+    "languages": {
+      "bg": 46801,
+      "cs": 46473,
+      "da": 45062,
+      "de": 120105,
+      "el": 45178,
+      "en": 179419,
+      "es": 90254,
+      "et": 45777,
+      "fi": 45313,
+      "fr": 131173,
+      "hr": 44935,
+      "hu": 45345,
+      "it": 89304,
+      "lt": 45823,
+      "lv": 45636,
+      "nl": 44460,
+      "pl": 46621,
+      "pt": 43819,
+      "ro": 45322,
+      "sk": 45739,
+      "sl": 44993,
+      "sr": 44817,
+      "sv": 45774
+    },
+    "canonical_labels": {
+      "date": 1218939,
+      "given_name": 1205300,
+      "family_name": 1056355,
+      "email": 769479,
+      "city": 721890,
+      "name_prefix": 670650,
+      "phone_number": 574865,
+      "gender": 533515,
+      "age": 512150,
+      "street_address": 484891,
+      "building_number": 476224,
+      "postal_code": 443413,
+      "national_id": 333065,
+      "card_number": 320504,
+      "drivers_license": 286935,
+      "tax_id": 266967,
+      "ssn": 246414,
+      "passport_number": 206652
+    },
+    "source_labels": {
+      "DATE": 1218939,
+      "GIVENNAME": 1205300,
+      "SURNAME": 1056355,
+      "EMAIL": 769479,
+      "CITY": 721890,
+      "TITLE": 670650,
+      "TELEPHONENUM": 574865,
+      "AGE": 512150,
+      "STREET": 484891,
+      "BUILDINGNUM": 476224,
+      "ZIPCODE": 443413,
+      "IDCARDNUM": 333065,
+      "CREDITCARDNUMBER": 320504,
+      "DRIVERLICENSENUM": 286935,
+      "GENDER": 277496,
+      "TAXNUM": 266967,
+      "SEX": 256019,
+      "SOCIALNUM": 246414,
+      "PASSPORTNUM": 206652
+    },
+    "source_anomalies": {}
+  },
+  "shards": [
+    {
+      "path": "train/bg.jsonl.gz",
+      "bytes": 8653078,
+      "sha256": "144b0a2b3147b6089b7b8961581bd1f146ce9a304af84535c74c743f6fa0aa9e",
+      "records": 37379,
+      "spans": 264480
+    },
+    {
+      "path": "train/cs.jsonl.gz",
+      "bytes": 8207753,
+      "sha256": "51bcc6b827f27fd1683bedced4cd71a6ba7940c22ac3cbf8ecb19f9bb06e6b63",
+      "records": 37251,
+      "spans": 264683
+    },
+    {
+      "path": "train/da.jsonl.gz",
+      "bytes": 7726198,
+      "sha256": "5b1150c1446431d9e9b235c2e6f89fafb10f7f6d5acbf1fe12dfaca30f835e6b",
+      "records": 36117,
+      "spans": 263769
+    },
+    {
+      "path": "train/de.jsonl.gz",
+      "bytes": 20143871,
+      "sha256": "a487d1d1ed26c92fb1dcdb42fb606d62a59df70b451e67756207774e6d8b9005",
+      "records": 96179,
+      "spans": 657869
+    },
+    {
+      "path": "train/el.jsonl.gz",
+      "bytes": 8553065,
+      "sha256": "06de65c38043c5429230297515b8c8086e2cd13b846cd07179c230a36299fb30",
+      "records": 36236,
+      "spans": 249344
+    },
+    {
+      "path": "train/en.jsonl.gz",
+      "bytes": 33076526,
+      "sha256": "4f187da92c435e61a87b92148cec5dc705bfa2d006bafb19064a267fd5f14515",
+      "records": 143515,
+      "spans": 1089379
+    },
+    {
+      "path": "train/es.jsonl.gz",
+      "bytes": 15244738,
+      "sha256": "e7af5ca260b8b1b0a18d52db3e93a9abcee5d58d0ecd477627fc2f4321cc719b",
+      "records": 72180,
+      "spans": 505577
+    },
+    {
+      "path": "train/et.jsonl.gz",
+      "bytes": 8212133,
+      "sha256": "f0ddd2784ff60a70e95daa828c815a21af5630bd8da87c017ffce18ffde4a4b4",
+      "records": 36667,
+      "spans": 274800
+    },
+    {
+      "path": "train/fi.jsonl.gz",
+      "bytes": 8168722,
+      "sha256": "078c6c7227c66fadbe5ad899672cd85022854f95254ab3494622eac4875b294f",
+      "records": 36228,
+      "spans": 269939
+    },
+    {
+      "path": "train/fr.jsonl.gz",
+      "bytes": 22600735,
+      "sha256": "f15e17d9e6cff414e9c318b3655e3c891bfdac150a570709fee472e5495b78f2",
+      "records": 105227,
+      "spans": 750559
+    },
+    {
+      "path": "train/hr.jsonl.gz",
+      "bytes": 7845540,
+      "sha256": "3651a0c48a426b9c12117858f6c2ab7902acc8bafd9dd18705fe097b9a47ac8d",
+      "records": 35842,
+      "spans": 257779
+    },
+    {
+      "path": "train/hu.jsonl.gz",
+      "bytes": 8415145,
+      "sha256": "07b4d51a98d1dad9cb27129bbc68534f9041a48bfa11cff9b9ba603bb9f33f4d",
+      "records": 36332,
+      "spans": 274930
+    },
+    {
+      "path": "train/it.jsonl.gz",
+      "bytes": 15490951,
+      "sha256": "ee32a54dcd2c8bd6096f77bbee42a9ece23fc590efa1426c198e988bd23d2343",
+      "records": 71362,
+      "spans": 518573
+    },
+    {
+      "path": "train/lt.jsonl.gz",
+      "bytes": 8202595,
+      "sha256": "ec6b2c709b9578293f8d351be11ffd432ea871aaa2a45631d7745694d87a99fe",
+      "records": 36695,
+      "spans": 275181
+    },
+    {
+      "path": "train/lv.jsonl.gz",
+      "bytes": 8203762,
+      "sha256": "1602c908d987d500de4e503f28df567c456c70834c8fb8fa91d6f9ce704a0bb7",
+      "records": 36591,
+      "spans": 267267
+    },
+    {
+      "path": "train/nl.jsonl.gz",
+      "bytes": 7557820,
+      "sha256": "151a4c9a7161bc7174bdcd63261db7f8648dc2446a5e52f271a57552cf9759ac",
+      "records": 35677,
+      "spans": 254610
+    },
+    {
+      "path": "train/pl.jsonl.gz",
+      "bytes": 8357991,
+      "sha256": "88f4dd81e7ece1c1154bc434dfe718e0abbbe3daa98883bbb95d74fce96c9a51",
+      "records": 37331,
+      "spans": 269178
+    },
+    {
+      "path": "train/pt.jsonl.gz",
+      "bytes": 7456491,
+      "sha256": "aaf14d48168d181dd6d9f53a9f1e73876a6eb71528cffc7868463a113661ec8d",
+      "records": 35061,
+      "spans": 249279
+    },
+    {
+      "path": "train/ro.jsonl.gz",
+      "bytes": 8091561,
+      "sha256": "b0b93ba447aec9802c9feb5939c1ff8a1a960f61a40ac18fca6872dd98808b87",
+      "records": 36166,
+      "spans": 262325
+    },
+    {
+      "path": "train/sk.jsonl.gz",
+      "bytes": 8446822,
+      "sha256": "98e992d689f77094f800f42717e82797e2d4633639a4a72217575513ee6a9f74",
+      "records": 36736,
+      "spans": 267247
+    },
+    {
+      "path": "train/sl.jsonl.gz",
+      "bytes": 7774012,
+      "sha256": "548151fbebd6e5909cec6ab8495471ae7722b9895cecd0be5076646b56ba400d",
+      "records": 36048,
+      "spans": 263223
+    },
+    {
+      "path": "train/sr.jsonl.gz",
+      "bytes": 7935100,
+      "sha256": "d01fd89049b9cfba2032511ae4490a6df2707777f1501dcae91e1d49fcf02fbe",
+      "records": 35979,
+      "spans": 257223
+    },
+    {
+      "path": "train/sv.jsonl.gz",
+      "bytes": 7796915,
+      "sha256": "d2ba9d17430ad8aea96c5157577c669c99c62ef455c49991f19cef227a83bb45",
+      "records": 36598,
+      "spans": 261724
+    },
+    {
+      "path": "validation/bg.jsonl.gz",
+      "bytes": 2224135,
+      "sha256": "449045d387e0a38932c0944db6595cfdd588b89ce30333c08587e8eacc348826",
+      "records": 9422,
+      "spans": 67240
+    },
+    {
+      "path": "validation/cs.jsonl.gz",
+      "bytes": 2009837,
+      "sha256": "4c40b9bf0a39df3ce171da9ffc439adb836883546cceb9cbf3cf95717ff9935a",
+      "records": 9222,
+      "spans": 64932
+    },
+    {
+      "path": "validation/da.jsonl.gz",
+      "bytes": 1931258,
+      "sha256": "1c170dfbf9fd10650ef6171ab556bc442c18ef90428c3b119ea5b6afa5bff9f6",
+      "records": 8945,
+      "spans": 65090
+    },
+    {
+      "path": "validation/de.jsonl.gz",
+      "bytes": 5064509,
+      "sha256": "23908ab451c3f29794887a7335e62bd16f1cbdd60b2bef210dc1050ea530017f",
+      "records": 23926,
+      "spans": 162646
+    },
+    {
+      "path": "validation/el.jsonl.gz",
+      "bytes": 2146979,
+      "sha256": "e02c50a2b4f15101b1d818c9534725cc64ef239a94a7e6dbe91ba852250df63e",
+      "records": 8942,
+      "spans": 61849
+    },
+    {
+      "path": "validation/en.jsonl.gz",
+      "bytes": 8318375,
+      "sha256": "419ac5928f7776e8a8fe54f09bf6f6c0b69c213451dc95e189886e3e7bf5dab5",
+      "records": 35904,
+      "spans": 272268
+    },
+    {
+      "path": "validation/es.jsonl.gz",
+      "bytes": 3827165,
+      "sha256": "788749a16f8b1e3175601574d589a4356bb28070454a3c0b59e5c94f28af217c",
+      "records": 18074,
+      "spans": 126403
+    },
+    {
+      "path": "validation/et.jsonl.gz",
+      "bytes": 2073389,
+      "sha256": "db6b75fc9e5a794bda90d88a1d560d86476645aa73d16ebef84c6e21f8614419",
+      "records": 9110,
+      "spans": 68371
+    },
+    {
+      "path": "validation/fi.jsonl.gz",
+      "bytes": 2043507,
+      "sha256": "cdd944ecf69fdb13bb3a8aa6879fbcf669211472c42a60fd08c65cc5512c2da1",
+      "records": 9085,
+      "spans": 66798
+    },
+    {
+      "path": "validation/fr.jsonl.gz",
+      "bytes": 5617870,
+      "sha256": "b48c79be43050470b6c3167e3de3fc0a2958e5e972f452b301916b7ed6eac640",
+      "records": 25946,
+      "spans": 185507
+    },
+    {
+      "path": "validation/hr.jsonl.gz",
+      "bytes": 2014338,
+      "sha256": "703559f93975f7fc7b13cc9f389e9738272a92ea768faf4603b047ab36631d77",
+      "records": 9093,
+      "spans": 65569
+    },
+    {
+      "path": "validation/hu.jsonl.gz",
+      "bytes": 2121704,
+      "sha256": "291a66335f4d724bfeabc3b8a3586877100bea3fc0f413515b3ad18554e70b76",
+      "records": 9013,
+      "spans": 68188
+    },
+    {
+      "path": "validation/it.jsonl.gz",
+      "bytes": 3912884,
+      "sha256": "b30d4e01153b9ea302984d0c6de8216623eea64452e48cf50451d2fda8d46d0a",
+      "records": 17942,
+      "spans": 130031
+    },
+    {
+      "path": "validation/lt.jsonl.gz",
+      "bytes": 2079801,
+      "sha256": "12b12deade61d97c2e051a7867ea6c63ac43c694805954badf3a9f3298c1a58c",
+      "records": 9128,
+      "spans": 69058
+    },
+    {
+      "path": "validation/lv.jsonl.gz",
+      "bytes": 2044402,
+      "sha256": "5ffa91d9eff6e5752ce0f643e8c1a0d89ae10b3a7abf73844c644dcb7dc71426",
+      "records": 9045,
+      "spans": 66588
+    },
+    {
+      "path": "validation/nl.jsonl.gz",
+      "bytes": 1898804,
+      "sha256": "e3a159915a108bd470a5c0818f973e9e158c933de0a66c267ab608b9e2b1b1f0",
+      "records": 8783,
+      "spans": 63496
+    },
+    {
+      "path": "validation/pl.jsonl.gz",
+      "bytes": 2104569,
+      "sha256": "76f89adc23eff516dd60114df9848204ef48eec25671c727987a1bdff9cb2cc6",
+      "records": 9290,
+      "spans": 67070
+    },
+    {
+      "path": "validation/pt.jsonl.gz",
+      "bytes": 1875011,
+      "sha256": "d9bda77712b8889e70621fb849dd695f8145c2873e85d3758c4c7d7f9370ab87",
+      "records": 8758,
+      "spans": 62161
+    },
+    {
+      "path": "validation/ro.jsonl.gz",
+      "bytes": 2069977,
+      "sha256": "a6370b20363c7bd40fecf35973a60b7bf77c23f1eba4a03e867bbc8925ffb857",
+      "records": 9156,
+      "spans": 66194
+    },
+    {
+      "path": "validation/sk.jsonl.gz",
+      "bytes": 2108923,
+      "sha256": "efe27e83024857e6d34d5f56ec8dd6722304f8512c1d877733b15b74a67d09c1",
+      "records": 9003,
+      "spans": 65839
+    },
+    {
+      "path": "validation/sl.jsonl.gz",
+      "bytes": 1942417,
+      "sha256": "cc38dc099a7f50cf1324c57e759c8dc1e56da9f234a8d66566e6632fdcef9826",
+      "records": 8945,
+      "spans": 65086
+    },
+    {
+      "path": "validation/sr.jsonl.gz",
+      "bytes": 1968051,
+      "sha256": "78f9f692fe690cd5480237f018c43e51c9921bed4c7d41fdc2d4580c1627e0ce",
+      "records": 8838,
+      "spans": 63338
+    },
+    {
+      "path": "validation/sv.jsonl.gz",
+      "bytes": 1975174,
+      "sha256": "a080e68096a02b24785f81375c89ef90d55fc20280500407e4c0dd0d1cfe2701",
+      "records": 9176,
+      "spans": 65548
+    }
+  ],
+  "source_schema_sha256": "10842f18f137fecf0db9fdeb4eee86e9764a360ee123273235093e73c55d4ee9"
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "dataset": "hiner",
+  "upstream": {
+    "repo_id": "cfiltnlp/HiNER",
+    "revision": "fdec0c85a6c39a47220932c476f969bb4e2446df",
+    "url": "https://github.com/cfiltnlp/HiNER",
+    "license": "CC-BY-SA-4.0"
+  },
+  "source_schema": "hiner_original",
+  "tagset_sha256": "40435c31eae01bc540bb47d126c71243e2e2652d5ed6e5219367eb8b37198793",
+  "source_schema_sha256": "f2206d535d907c0c8e5330cfba2b90f51f29eba46e3c7504b994ed871365bdd2",
+  "source_projection_sha256": "0002702fc93e2f6ef226e46752d94d7c9c4eaa18b5a5bae7bc9c75b48a75f104",
+  "ignored_source_labels": [
+    "FESTIVAL",
+    "GAME",
+    "LITERATURE",
+    "MISC",
+    "NUMEX",
+    "TIMEX"
+  ],
+  "record_schema": {
+    "fields": [
+      "id",
+      "text",
+      "spans",
+      "lang",
+      "metadata"
+    ],
+    "span_fields": [
+      "start",
+      "end",
+      "label",
+      "source_label"
+    ],
+    "compression": "gzip",
+    "encoding": "UTF-8"
+  },
+  "counts": {
+    "records": 108335,
+    "spans": 268881,
+    "splits": {
+      "test": 21657,
+      "train": 75827,
+      "validation": 10851
+    },
+    "languages": {
+      "hi": 108335
+    },
+    "canonical_labels": {
+      "location": 197767,
+      "person_name": 37502,
+      "organization": 26499,
+      "language_spoken": 5947,
+      "religious_belief": 1166
+    },
+    "source_labels": {
+      "LOCATION": 197767,
+      "PERSON": 37502,
+      "ORGANIZATION": 26499,
+      "LANGUAGE": 5947,
+      "RELIGION": 1166
+    },
+    "source_anomalies": {}
+  },
+  "shards": [
+    {
+      "path": "test/hi.jsonl.gz",
+      "bytes": 2973102,
+      "sha256": "949fc8755bc7a0b375b2831302af20a33bca25689970939e6bcf0fbcfd7a9359",
+      "records": 21657,
+      "spans": 54338
+    },
+    {
+      "path": "train/hi.jsonl.gz",
+      "bytes": 10410723,
+      "sha256": "5dff2d50b62108ded82a7a37869cc9b1007d5ec869a8434d7cea177b024b70f5",
+      "records": 75827,
+      "spans": 187370
+    },
+    {
+      "path": "validation/hi.jsonl.gz",
+      "bytes": 1488971,
+      "sha256": "e0915708192b5ef6318a9dac0a45b8903936a6f2c70d32d658a638390ef52059",
+      "records": 10851,
+      "spans": 27173
+    }
+  ]
+}
