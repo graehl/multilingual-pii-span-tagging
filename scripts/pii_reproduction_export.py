@@ -30,9 +30,16 @@ ENTRY_POINTS = (
     "scripts/pii_public_gold.py",
     "scripts/pii_public_mixture.py",
     "scripts/pii_redact.py",
+    # evaluate's Ont3 view, and its default serving stages on a prediction sweep.
+    "scripts/pii_software_ont3.py",
+    "scripts/pii_serving_chain.py",
+    "scripts/pii_character_boundary_refiner.py",
     "scripts/pii_software_receipts.py",
     "scripts/pii_fetch_web.py",
     "scripts/pii_software_screen.py",
+    # The evaluation-overlap receipts the dedup gate verifies: retrieval, then thresholds.
+    "scripts/pii_overlap_neighbors.py",
+    "scripts/pii_overlap_filter.py",
     # select: the paper's training draw, needle selection and domain-near selection.
     "scripts/pii_final35_native_draw.py",
     "scripts/pii_needle_select.py",
@@ -113,11 +120,27 @@ def load_omissions(redactions: Path) -> set[str]:
     return omitted
 
 
+def load_verbatim(redactions: Path) -> set[str]:
+    """Package path prefixes a `verbatim` entry ships byte for byte: never redacted, still scanned.
+
+    For released data, such as evaluation text whose bytes predictions are
+    hashed against; a replacement there would corrupt the data, not anonymize
+    it, so any profile match in it fails the build instead.
+    """
+    prefixes = set()
+    for item in load_profile(redactions):
+        if "verbatim" in item:
+            if set(item) != {"verbatim"} or not isinstance(item["verbatim"], str) or not item["verbatim"]:
+                raise ValueError("a verbatim entry names one package path prefix and nothing else")
+            prefixes.add(item["verbatim"])
+    return prefixes
+
+
 def load_redactions(redactions: Path) -> list[tuple[re.Pattern[str], str | None, bool]]:
     """Literal replacements, plus `forbid` entries: text that must not survive redaction at all."""
     replacements = []
     for item in load_profile(redactions):
-        if "omit" in item:
+        if "omit" in item or "verbatim" in item:
             continue
         forbid = item.get("forbid") is True
         if (
@@ -170,6 +193,15 @@ def export_files(root: Path) -> list[tuple[Path, str]]:
     sources.append(license_source)
     sources.append(root / "research/pii/frontier/software/pixi.toml")
     sources.append(root / "research/pii/frontier/software/smoke-language-round.yaml")
+    sources.append(root / "research/pii/frontier/software/language-caps.yaml")
+    # Unit tests of shipped code, run by the package's verify.toml.
+    sources.append(root / "tests/conftest.py")
+    listed = (root / "research/pii/frontier/software/shipped-tests.txt").read_text(encoding="utf-8")
+    sources.extend(
+        root / "tests/unit" / name
+        for name in (line.strip() for line in listed.splitlines())
+        if name and not name.startswith("#")
+    )
     sources.extend(
         sorted(
             path for path in (root / "research/pii/frontier/software/records").rglob("*") if path.is_file()
@@ -189,6 +221,14 @@ def export_files(root: Path) -> list[tuple[Path, str]]:
             "scripts/pii_subclass_families_v3.json",
             "scripts/pii_source_classes_v1.json",
             "scripts/pii_o_weight.yaml",
+            # Loaded by shipped modules from their own directory.
+            "scripts/pii_locale_profiles.yaml",
+            "scripts/pii_named_entity_materializer.yaml",
+            # Fixtures of shipped unit tests (shipped-tests.txt).
+            "scripts/pii_subclass_families_v4.json",
+            "scripts/pii_name_component_grammars_v1.json",
+            "scripts/pii_name_annotation_qc_profiles_v1.json",
+            "tests/data/name-kind-conformance-v1.json",
             "prompts/pii-label/catalog-ontology-v3-primary-v3.md",
             "prompts/pii-label/task-ont3-primary-annotate-context-v9.txt",
             "prompts/pii-label/examples-reviewed-final35-recall-ont3-v2.json",
@@ -197,6 +237,8 @@ def export_files(root: Path) -> list[tuple[Path, str]]:
             "prompts/pii-label/paper-eval/catalog.md",
             "prompts/pii-label/paper-eval/examples.json",
             "prompts/pii-label/paper-eval/README.md",
+            # The dedup gate verifies pre-overlaplib receipts against these committed detector revisions.
+            "scripts/pii_dedup_legacy_detector_code.json",
             # annotate --codex-model builds its isolated Codex home from this.
             "scripts/codex-annotation-home.config.toml",
             # select --needles default set.
@@ -228,6 +270,8 @@ def export_files(root: Path) -> list[tuple[Path, str]]:
     # counts. The ontology loader validates some; readers can compare their own
     # prepared shards against all of them.
     sources.extend(sorted((root / "data/pii-onboarded").glob("*/manifest.json")))
+    # The paper's Ont3 evaluation populations, released verbatim (see the public redaction profile).
+    sources.extend(sorted(path for path in (root / "data/ont3-evaluation").iterdir() if path.is_file()))
     # select's default draw classifies sentences with these per-language reference-cue lexicons.
     sources.extend(
         path
@@ -245,8 +289,15 @@ def export_files(root: Path) -> list[tuple[Path, str]]:
         license_source: "LICENSE.md",
         software / "gitignore": ".gitignore",
         software / "CITATION.cff": "CITATION.cff",
+        software / "verify.toml": "verify.toml",
     }
-    sources += [software / "gitignore", software / "CITATION.cff"]
+    # verify.toml declares the package's checks; scripts/verify (vendored from ~/agents) runs them.
+    sources += [
+        software / "gitignore",
+        software / "CITATION.cff",
+        software / "verify.toml",
+        root / "scripts/verify",
+    ]
     return [(source, renamed.get(source, source.relative_to(root).as_posix())) for source in sources]
 
 
@@ -271,6 +322,9 @@ def stage_files(
     if missing := omitted - {packaged for _source, packaged in files}:
         raise ValueError(f"omit entries name files the build does not have: {sorted(missing)}")
     files = [(source, packaged) for source, packaged in files if packaged not in omitted]
+    verbatim = tuple(sorted({prefix for profile in redactions for prefix in load_verbatim(profile)}))
+    if unused := [prefix for prefix in verbatim if not any(p.startswith(prefix) for _s, p in files)]:
+        raise ValueError(f"verbatim entries match no file the build has: {unused}")
 
     def redact(text: str) -> str:
         for pattern, replacement, _allow_code in replacements:
@@ -284,13 +338,14 @@ def stage_files(
         stage.mkdir()
         records = []
         for source, packaged in files:
-            relative = redact(packaged)
+            exact = packaged.startswith(verbatim) if verbatim else False
+            relative = packaged if exact else redact(packaged)
             destination = stage / relative
             if not destination.resolve().is_relative_to(stage.resolve()):
                 raise ValueError("redaction produced a path outside the stage directory")
             destination.parent.mkdir(parents=True, exist_ok=True)
-            if source.suffix in BINARY_SUFFIXES:
-                # Weights carry no prose; they are copied byte for byte.
+            if source.suffix in BINARY_SUFFIXES or exact:
+                # Weights carry no prose and released data must keep its bytes: copied as is.
                 destination.write_bytes(source.read_bytes())
                 records.append(
                     {
@@ -333,6 +388,8 @@ def stage_files(
             "files": records,
         }
         (stage / "stage-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+        # Verbatim files are scanned too: released data cannot be redacted, so a match must be
+        # removed at its source.
         for path in stage.rglob("*"):
             if path.is_file() and path.suffix not in BINARY_SUFFIXES:
                 content = (

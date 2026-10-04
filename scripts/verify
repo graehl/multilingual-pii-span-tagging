@@ -1,0 +1,702 @@
+#!/usr/bin/env python3
+# acli: 1 complete
+"""Run a project's declared checks and report only what needs attention.
+
+`verify` is the standard entry point for "run the tests" in any project
+that declares its checks in `verify.toml` (committed) or
+`verify.local.toml` (private, for repos whose tracked files you should not
+change). Checks run in parallel; each one's stdout and stderr go to
+`.verify/last/<name>.out|.err` under the project root. On success the
+output is one summary record; each failing check adds a record with its
+exit status, log paths, and the tail of its output. Each result is also
+remembered against the project's source tree, so `--passed` can tell a
+caller such as a publish script which checks already passed on exactly the
+current files. See topics/verify.md.
+"""
+
+from __future__ import annotations
+
+import fnmatch
+import json
+import os
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import tempfile
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any
+
+import tomllib
+
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from acli import args as acli_args
+from acli import errors, session
+from acli.emit import emit
+
+CONFIG_NAMES = ("verify.toml", "verify.local.toml")
+TIERS = ("quick", "deep")
+LOG_DIR = Path(".verify") / "last"
+STATE_FILE = Path(".verify") / "state.json"
+DEFAULT_TIMEOUT = 600.0
+TAIL_LINES = 12
+# sysexits EX_UNAVAILABLE, also acli's `unavailable`: a prerequisite such
+# as an optional dependency is missing, so the check reports a skip.
+EXIT_UNAVAILABLE = 69
+
+
+class ConfigError(Exception):
+    pass
+
+
+@dataclass
+class Check:
+    name: str
+    run: str
+    tier: str = "quick"
+    timeout: float = DEFAULT_TIMEOUT
+    cwd: str = "."
+    requires: list[str] = field(default_factory=list)
+    exclusive: bool = False
+    warn: re.Pattern[str] | None = None
+    source: str = ""
+
+    def record(self) -> dict[str, Any]:
+        return {
+            "kind": "check",
+            "name": self.name,
+            "tier": self.tier,
+            "run": self.run,
+            "cwd": self.cwd,
+            "timeout_s": self.timeout,
+            "requires": self.requires,
+            "exclusive": self.exclusive,
+            "warn": self.warn.pattern if self.warn else None,
+            "source": self.source,
+        }
+
+
+def find_root(start: Path) -> Path:
+    for directory in (start, *start.parents):
+        if any((directory / name).is_file() for name in CONFIG_NAMES):
+            return directory
+    raise FileNotFoundError(start)
+
+
+def _compile_warn(pattern: Any, source: str) -> re.Pattern[str] | None:
+    if pattern is None:
+        return None
+    if not isinstance(pattern, str):
+        raise ConfigError(f"{source}: warn must be a regular expression string")
+    try:
+        return re.compile(pattern)
+    except re.error as exc:
+        raise ConfigError(f"{source}: warn {pattern!r}: {exc}") from exc
+
+
+def _expand(entry: dict[str, Any], root: Path, base: Path, source: str) -> list[Check]:
+    """Checks from one `[[check]]` entry of the config file in `base`.
+
+    `cwd` and `each` are relative to `base`, the defining file's directory,
+    so an included file's checks run where that file expects; the stored
+    `cwd` is re-expressed relative to `root`.
+    """
+    unknown = set(entry) - {
+        "name",
+        "run",
+        "tier",
+        "timeout",
+        "cwd",
+        "requires",
+        "exclusive",
+        "warn",
+        "each",
+        "exclude",
+    }
+    if unknown:
+        raise ConfigError(f"{source}: unknown check keys {sorted(unknown)}")
+    if "run" not in entry:
+        raise ConfigError(f"{source}: check without `run`: {entry}")
+    tier = entry.get("tier", "quick")
+    if tier not in TIERS:
+        raise ConfigError(f"{source}: tier {tier!r} not in {TIERS}")
+    timeout = entry.get("timeout", DEFAULT_TIMEOUT)
+    if isinstance(timeout, str):
+        timeout = acli_args.duration_seconds(timeout)
+    if not isinstance(timeout, int | float) or timeout <= 0:
+        raise ConfigError(f"{source}: timeout must be a positive duration: {timeout!r}")
+    run_dir = base / entry.get("cwd", ".")
+    if not run_dir.is_dir():
+        raise ConfigError(f"{source}: cwd {entry.get('cwd')!r} is not a directory")
+    common = {
+        "tier": tier,
+        "timeout": float(timeout),
+        "cwd": os.path.relpath(run_dir, root),
+        "requires": list(entry.get("requires", [])),
+        "exclusive": bool(entry.get("exclusive", False)),
+        "warn": _compile_warn(entry.get("warn"), source),
+        "source": source,
+    }
+    if "each" not in entry:
+        if "name" not in entry:
+            raise ConfigError(f"{source}: check without `name`: {entry}")
+        return [Check(name=entry["name"], run=entry["run"], **common)]
+    excluded = set(entry.get("exclude", []))
+    paths = sorted(
+        p.relative_to(base).as_posix() for p in base.glob(entry["each"]) if p.is_file()
+    )
+    paths = [p for p in paths if not any(fnmatch.fnmatch(p, x) for x in excluded)]
+    if not paths:
+        raise ConfigError(f"{source}: `each = {entry['each']!r}` matched no files")
+    name_tpl = entry.get("name", "{stem}")
+    return [
+        Check(
+            name=name_tpl.format(path=p, stem=Path(p).stem),
+            run=entry["run"].format(path=p, stem=Path(p).stem),
+            **common,
+        )
+        for p in paths
+    ]
+
+
+def _load_file(
+    path: Path, root: Path, checks: dict[str, Check], stack: tuple[Path, ...]
+) -> None:
+    """Add a config file's checks, after the files it includes.
+
+    `include = ["../verify.toml"]` paths are relative to the including file.
+    Its own checks then replace included ones of the same name.
+    """
+    source = os.path.relpath(path, root)
+    if path in stack:
+        chain = " -> ".join(os.path.relpath(p, root) for p in (*stack, path))
+        raise ConfigError(f"include cycle: {chain}")
+    if not path.is_file():
+        including = os.path.relpath(stack[-1], root)
+        raise ConfigError(f"{including}: no such include {source}")
+    try:
+        data = tomllib.loads(path.read_text(encoding="utf-8"))
+    except tomllib.TOMLDecodeError as exc:
+        raise ConfigError(f"{source}: {exc}") from exc
+    unknown = set(data) - {"check", "include"}
+    if unknown:
+        raise ConfigError(f"{source}: unknown top-level keys {sorted(unknown)}")
+    for inc in data.get("include", []):
+        _load_file((path.parent / inc).resolve(), root, checks, (*stack, path))
+    own: set[str] = set()
+    for entry in data.get("check", []):
+        for check in _expand(entry, root, path.parent, source):
+            if check.name in own:
+                raise ConfigError(f"{source}: duplicate check name {check.name!r}")
+            own.add(check.name)
+            checks[check.name] = check
+
+
+def load_checks(root: Path) -> list[Check]:
+    """The checks of `verify.local.toml` when present, else `verify.toml`.
+
+    A local file replaces the committed one; it gets the committed checks
+    only by including them (`include = ["verify.toml"]`).
+    """
+    config = next(root / n for n in reversed(CONFIG_NAMES) if (root / n).is_file())
+    checks: dict[str, Check] = {}
+    _load_file(config.resolve(), root.resolve(), checks, ())
+    if not checks:
+        raise ConfigError(f"no checks declared in {config.name} or its includes")
+    return list(checks.values())
+
+
+def ensure_excluded(root: Path) -> None:
+    """Keep verify's private files out of git via the per-clone exclude file.
+
+    `.verify/` holds logs and state; `verify.local.toml` is a private config.
+    """
+    probe = subprocess.run(
+        ["git", "-C", str(root), "rev-parse", "--git-path", "info/exclude"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if probe.returncode != 0:
+        return
+    exclude = Path(probe.stdout.strip())
+    if not exclude.is_absolute():
+        exclude = root / exclude
+    # Unanchored, so a program subdirectory with its own config is covered as
+    # well as the repository root.
+    existing = exclude.read_text(encoding="utf-8") if exclude.is_file() else ""
+    missing = [
+        p for p in (".verify/", "verify.local.toml") if p not in existing.splitlines()
+    ]
+    if not missing:
+        return
+    exclude.parent.mkdir(parents=True, exist_ok=True)
+    sep = "" if not existing or existing.endswith("\n") else "\n"
+    exclude.write_text(existing + sep + "".join(f"{p}\n" for p in missing), "utf-8")
+
+
+def _tail(path: Path, lines: int) -> str:
+    """Last lines of a log, without acli banner lines."""
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except FileNotFoundError:
+        return ""
+    kept = [
+        line
+        for line in text.rstrip("\n").splitlines()
+        if not line.startswith("# acli:")
+    ]
+    while kept and not kept[-1].strip():
+        kept.pop()
+    return "\n".join(kept[-lines:])
+
+
+def _unavailable_reason(last_line: str) -> str:
+    """The message of an acli error envelope, else the line itself."""
+    try:
+        envelope = json.loads(last_line)
+    except json.JSONDecodeError:
+        return last_line
+    if isinstance(envelope, dict) and isinstance(envelope.get("error"), dict):
+        return str(envelope["error"].get("message") or last_line)
+    return last_line
+
+
+def _matching_lines(pattern: re.Pattern[str], *paths: Path) -> list[str]:
+    """Every log line that matches a check's warn pattern."""
+    found: list[str] = []
+    for path in paths:
+        with path.open(encoding="utf-8", errors="replace") as fh:
+            found += [line.rstrip("\n") for line in fh if pattern.search(line)]
+    return found
+
+
+def source_tree(root: Path) -> str | None:
+    """Git tree id of the working files: tracked plus untracked, not ignored.
+
+    Built in a throwaway copy of the index, so the real index is untouched.
+    Two runs see the same id exactly when they saw the same file contents.
+    None outside a git work tree.
+    """
+    probe = subprocess.run(
+        ["git", "-C", str(root), "rev-parse", "--git-path", "index"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if probe.returncode != 0:
+        return None
+    index = Path(probe.stdout.strip())
+    if not index.is_absolute():
+        index = root / index
+    with tempfile.TemporaryDirectory(prefix="verify-index-") as tmp:
+        scratch = Path(tmp) / "index"
+        if index.is_file():
+            shutil.copyfile(index, scratch)
+        env = {**os.environ, "GIT_INDEX_FILE": str(scratch)}
+        for cmd in (["add", "-A"], ["write-tree"]):
+            done = subprocess.run(
+                ["git", "-C", str(root), *cmd],
+                capture_output=True,
+                text=True,
+                env=env,
+                check=False,
+            )
+            if done.returncode != 0:
+                raise RuntimeError(f"git {' '.join(cmd)}: {done.stderr.strip()}")
+    return done.stdout.strip()
+
+
+def head_commit(root: Path) -> tuple[str, str] | None:
+    """(commit, tree) of HEAD; None outside git or before the first commit."""
+    probe = subprocess.run(
+        ["git", "-C", str(root), "rev-parse", "HEAD", "HEAD^{tree}"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if probe.returncode != 0:
+        return None
+    commit, tree = probe.stdout.split()
+    return commit, tree
+
+
+def describe_source(root: Path, tree: str | None, recorded: bool) -> dict[str, Any]:
+    """What a run verified: HEAD's files, uncommitted working files, or unrecorded files.
+
+    An uncommitted result stays valid for a later commit of exactly the same
+    files, since that commit's tree id is the one recorded here.
+    """
+    if tree is None:
+        return {"state": "not-git", "recorded": False}
+    head = head_commit(root)
+    state = "committed" if head is not None and head[1] == tree else "uncommitted"
+    return {
+        "state": state,
+        "tree": tree,
+        "head": head[0] if head else None,
+        "recorded": recorded,
+    }
+
+
+def source_text(source: dict[str, Any]) -> str:
+    if source["state"] == "not-git":
+        return "not a git work tree, not recorded"
+    if source["state"] == "committed":
+        text = f"committed HEAD {source['head'][:10]}"
+    else:
+        text = f"uncommitted working tree {source['tree'][:10]}"
+    if not source["recorded"]:
+        text += ", files changed during the run, not recorded"
+    return text
+
+
+def load_state(root: Path) -> dict[str, Any]:
+    path = root / STATE_FILE
+    if not path.is_file():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8")).get("checks", {})
+
+
+def save_state(root: Path, checks: dict[str, Any]) -> None:
+    path = root / STATE_FILE
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps({"checks": checks}, indent=1) + "\n", encoding="utf-8")
+    tmp.replace(path)
+
+
+def passed_here(checks: list[Check], state: dict[str, Any], tree: str) -> list[str]:
+    """Checks whose latest result passed on this tree with today's command."""
+    return [
+        c.name
+        for c in checks
+        if (entry := state.get(c.name))
+        and entry.get("status") == "passed"
+        and entry.get("tree") == tree
+        and entry.get("run") == c.run
+    ]
+
+
+class Runner:
+    """Run checks as process groups and kill any still alive on exit."""
+
+    def __init__(self, root: Path, log_dir: Path) -> None:
+        self.root = root
+        self.log_dir = log_dir
+        self.live: dict[int, subprocess.Popen[bytes]] = {}
+        self.lock = threading.Lock()
+
+    def run(self, check: Check) -> dict[str, Any]:
+        missing = [exe for exe in check.requires if shutil.which(exe) is None]
+        if missing:
+            return {
+                "name": check.name,
+                "status": "skipped",
+                "reason": f"missing {', '.join(missing)}",
+            }
+        out_path = self.log_dir / f"{check.name}.out"
+        err_path = self.log_dir / f"{check.name}.err"
+        start = time.monotonic()
+        with out_path.open("wb") as out, err_path.open("wb") as err:
+            proc = subprocess.Popen(
+                ["bash", "-c", check.run],
+                cwd=self.root / check.cwd,
+                stdin=subprocess.DEVNULL,
+                stdout=out,
+                stderr=err,
+                start_new_session=True,
+            )
+            with self.lock:
+                self.live[proc.pid] = proc
+            try:
+                code: int | None = proc.wait(timeout=check.timeout)
+            except subprocess.TimeoutExpired:
+                self._kill(proc)
+                code = None
+            finally:
+                with self.lock:
+                    self.live.pop(proc.pid, None)
+        if code == EXIT_UNAVAILABLE:
+            return {
+                "name": check.name,
+                "status": "skipped",
+                "reason": _unavailable_reason(_tail(err_path, 1) or _tail(out_path, 1)),
+                "stderr_log": str(err_path),
+            }
+        result: dict[str, Any] = {
+            "name": check.name,
+            "status": "passed" if code == 0 else "failed",
+            "exit_code": code,
+            "duration_s": round(time.monotonic() - start, 2),
+            "stdout_log": str(out_path),
+            "stderr_log": str(err_path),
+        }
+        if code is None:
+            result["timed_out_after_s"] = check.timeout
+        elif code == 0 and check.warn is not None:
+            # A pass with warnings stays a pass; the lines are reported.
+            warnings = _matching_lines(check.warn, out_path, err_path)
+            if warnings:
+                result["warnings"] = warnings
+        return result
+
+    @staticmethod
+    def _kill(proc: subprocess.Popen[bytes]) -> None:
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        proc.wait()
+
+    def kill_all(self) -> None:
+        with self.lock:
+            procs = list(self.live.values())
+        for proc in procs:
+            self._kill(proc)
+
+
+def run_checks(root: Path, checks: list[Check], jobs: int) -> list[dict[str, Any]]:
+    log_dir = root / LOG_DIR
+    if log_dir.is_dir():
+        for stale in log_dir.iterdir():
+            stale.unlink()
+    log_dir.mkdir(parents=True, exist_ok=True)
+    runner = Runner(root, log_dir)
+    pool = ThreadPoolExecutor(max_workers=jobs)
+    shared = [c for c in checks if not c.exclusive]
+    try:
+        by_name = dict(zip((c.name for c in shared), pool.map(runner.run, shared)))
+        # Exclusive checks (e.g. suites that start servers on fixed ports)
+        # run one at a time after the concurrent batch.
+        for check in checks:
+            if check.exclusive:
+                by_name[check.name] = runner.run(check)
+        return [by_name[c.name] for c in checks]
+    finally:
+        runner.kill_all()
+        pool.shutdown(wait=True, cancel_futures=True)
+
+
+def _display(path: str, root: Path) -> str:
+    try:
+        return str(Path(path).relative_to(root))
+    except ValueError:
+        return path
+
+
+def render_text(
+    summary: dict[str, Any],
+    failures: list[dict[str, Any]],
+    skipped: list[dict[str, Any]],
+    warned: list[dict[str, Any]],
+) -> str:
+    counts = f"{summary['passed']} passed"
+    if warned:
+        counts += f" ({len(warned)} with warnings)"
+    if summary["skipped"]:
+        counts += f", {summary['skipped']} skipped"
+    where = (
+        f"{summary['tier']}, {summary['duration_s']}s; {source_text(summary['source'])}"
+    )
+    if summary["ok"]:
+        lines = [f"verify ok: {counts} ({where})"]
+    else:
+        failed = summary["failed"]
+        lines = [
+            f"verify FAILED: {failed} failed, {counts} ({where}); "
+            + f"logs in {summary['log_dir']}"
+        ]
+    lines += [f"- skipped {s['name']}: {s['reason']}" for s in skipped]
+    for w in warned:
+        total = w.get("warnings_total", len(w["warnings"]))
+        lines.append(f"- {w['name']}: passed with {total} warning line(s):")
+        lines += [f"    {line}" for line in w["warnings"]]
+        if total > len(w["warnings"]):
+            lines.append(
+                f"    … {total - len(w['warnings'])} more; see --warnings-file"
+            )
+    for f in failures:
+        if f.get("timed_out_after_s"):
+            status = f"timed out after {f['timed_out_after_s']}s"
+        else:
+            status = f"exit {f['exit_code']}"
+        lines.append(f"- {f['name']}: {status} ({f['duration_s']}s)")
+        for stream in ("stdout", "stderr"):
+            tail = f[f"{stream}_tail"]
+            if tail:
+                lines.append(f"  {stream} ({f[f'{stream}_log']}):")
+                lines += [f"    {line}" for line in tail.splitlines()]
+    return "\n".join(lines)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = acli_args.argument_parser(
+        prog="verify",
+        description=__doc__,
+        exit_codes={
+            0: "every selected check passed (skips allowed)",
+            1: "at least one check failed or timed out; the report is still complete",
+            2: "usage or configuration error",
+            4: "no verify.toml or verify.local.toml at or above the start directory",
+        },
+    )
+    parser.add_argument(
+        "--project",
+        default=".",
+        help="start directory; the nearest ancestor with a verify config is the root",
+    )
+    parser.add_argument(
+        "--deep",
+        action="store_true",
+        help='also run checks declared with tier = "deep"',
+    )
+    parser.add_argument(
+        "--only",
+        action="append",
+        default=None,
+        metavar="NAME",
+        help="run only the named check; repeatable",
+    )
+    parser.add_argument(
+        "--list", action="store_true", help="list checks without running them"
+    )
+    parser.add_argument(
+        "--passed",
+        action="store_true",
+        help="run nothing; report the checks whose latest result passed on "
+        "exactly the current files (--text: comma-separated names)",
+    )
+    parser.add_argument(
+        "--warnings-file",
+        metavar="PATH",
+        help="write every line matched by a check's warn pattern, as "
+        "'<check>: <line>', to PATH (replaced each run; empty when none)",
+    )
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=min(4, os.cpu_count() or 1),
+        help="checks run concurrently (default: min(4, CPUs))",
+    )
+    acli_args.add_standard_args(parser)
+    acli_args.maybe_complete(parser, argv)
+    ns = parser.parse_args(argv)
+    try:
+        fmt = session.resolve_format(ns)
+    except ValueError as exc:
+        errors.die(str(exc), errors.ExitCode.USAGE)
+    if ns.jobs < 1:
+        errors.die("--jobs must be at least 1", errors.ExitCode.USAGE)
+    try:
+        root = find_root(Path(ns.project).resolve())
+    except FileNotFoundError:
+        errors.die(
+            "no verify.toml or verify.local.toml here or in any parent directory",
+            errors.ExitCode.NOT_FOUND,
+            detail={"start": str(Path(ns.project).resolve())},
+        )
+    try:
+        checks = load_checks(root)
+    except ConfigError as exc:
+        errors.die(str(exc), errors.ExitCode.USAGE, detail={"root": str(root)})
+    tier = "deep" if ns.deep else "quick"
+    selected = [c for c in checks if ns.deep or c.tier == "quick"]
+    if ns.only:
+        names = {c.name for c in checks}
+        unknown = sorted(set(ns.only) - names)
+        if unknown:
+            errors.die(
+                f"unknown check name(s): {', '.join(unknown)}",
+                errors.ExitCode.USAGE,
+                detail={"known": sorted(names)},
+            )
+        selected = [c for c in checks if c.name in ns.only]
+    if ns.list:
+        emit([c.record() for c in selected] or [], fmt)
+        return 0
+    if ns.passed:
+        tree = source_tree(root)
+        pool = selected if ns.only else checks  # every tier unless --only
+        names = passed_here(pool, load_state(root), tree) if tree else []
+        emit(
+            {"kind": "passed", "root": str(root), "tree": tree, "checks": names},
+            fmt,
+            text=",".join(names),
+        )
+        return 0
+
+    start = time.monotonic()
+    ensure_excluded(root)  # before hashing, so our own logs never count
+    tree = source_tree(root)
+    results = run_checks(root, selected, ns.jobs)
+    # Remember results only when the files did not change during the run.
+    recorded = tree is not None and source_tree(root) == tree
+    if recorded:
+        state = load_state(root)
+        stamp = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        runs = {c.name: c.run for c in selected}
+        for r in results:
+            state[r["name"]] = {
+                "status": r["status"],
+                "tree": tree,
+                "run": runs[r["name"]],
+                "warnings": len(r.get("warnings", [])),
+                "at": stamp,
+            }
+        save_state(root, state)
+    warned = [r for r in results if r.get("warnings")]
+    if ns.warnings_file:
+        Path(ns.warnings_file).write_text(
+            "".join(f"{r['name']}: {line}\n" for r in warned for line in r["warnings"]),
+            encoding="utf-8",
+        )
+    if not ns.full:
+        for r in warned:
+            if len(r["warnings"]) > TAIL_LINES:
+                r["warnings_total"] = len(r["warnings"])
+                r["warnings"] = r["warnings"][:TAIL_LINES]
+    failures = []
+    for r in results:
+        if r["status"] == "failed":
+            r["stdout_tail"] = _tail(Path(r["stdout_log"]), TAIL_LINES)
+            r["stderr_tail"] = _tail(Path(r["stderr_log"]), TAIL_LINES)
+            failures.append(r)
+    summary = {
+        "kind": "summary",
+        "ok": not failures,
+        "root": str(root),
+        "tier": "only" if ns.only else tier,
+        "passed": sum(r["status"] == "passed" for r in results),
+        "failed": len(failures),
+        "skipped": sum(r["status"] == "skipped" for r in results),
+        "duration_s": round(time.monotonic() - start, 2),
+        "source": describe_source(root, tree, recorded),
+        "log_dir": _display(str(root / LOG_DIR), Path.cwd()),
+        "failed_checks": [f["name"] for f in failures],
+        "warned_checks": [w["name"] for w in warned],
+    }
+    shown = (
+        results
+        if ns.full
+        else [r for r in results if r["status"] != "passed" or r.get("warnings")]
+    )
+    records = [{"kind": "result", **r} for r in shown] + [summary]
+    skipped = [r for r in results if r["status"] == "skipped"]
+    emit(records, fmt, text=render_text(summary, failures, skipped, warned))
+    return 0 if summary["ok"] else 1
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except BrokenPipeError:
+        os._exit(0)

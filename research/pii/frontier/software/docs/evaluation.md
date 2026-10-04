@@ -9,7 +9,7 @@ relative to the package root.
 
 | Command | What it does | Use it for |
 |---|---|---|
-| `python pii-reproduce.py evaluate --checkpoint CKPT` | The paper's human-gold view: bias sweep, coverage masks, optional references, title policy, untyped redaction regions | Comparing with the paper's O4 numbers |
+| `python pii-reproduce.py evaluate --checkpoint CKPT` | The paper's human-gold and Ont3 views: bias sweep, the paper's serving stages (`--raw` skips them), coverage masks, optional references, title policy, redaction regions and Ont3 typed spans, paired against O4 | Comparing with the paper's O4 numbers |
 | `python pii-reproduce.py score-jsonl --input GOLD --checkpoint CKPT --out DIR` | Generic prediction and scoring of any JSONL with `id`, `text` and `spans` (`start`, `end`, `type`) | Your own test data in the model's own labels |
 
 The generic scorer (`scripts/pii_eval.py`) has none of the paper's corpus
@@ -289,10 +289,11 @@ exact typed spans on Ont3: +1.79 (+0.51 to +3.13).
 
 What `verify` establishes: the reported numbers follow from the per-row
 counts by the stated pooling and resampling. What it cannot establish: that
-the counts came from the stated models and gold. For the human-gold
-population you can close that gap yourself by rebuilding the rows and scoring
-a model; for the Ont3 development pool, whose text is private, the hashes
-commit to the withheld data but do not reveal it.
+the counts came from the stated models and gold. You can close that gap for
+the evaluation data yourself: rebuild the human-gold rows, and score a model
+on the shipped Ont3 populations (`data/ont3-evaluation/`), which hold the
+rows, text and references O4 was scored on. O4's weights are not released,
+so its own counts remain receipts.
 
 ## Qualifications
 
@@ -317,11 +318,13 @@ commit to the withheld data but do not reveal it.
 - **Publisher splits are not all document-disjoint.** OpenNER re-split
   AnCora by sentence, so most AnCora test documents also contribute training
   sentences ([data.md](data.md#known-limitations)).
-- **The Ont3 development pool is partly reused and private.** Its 1,201 rows
-  cover 35 languages (plus 12 rows of undetermined language) and come from
-  two collections: 659 rows with manually revised references, the subset used
-  to select O4, and 542 fresh training-disjoint rows with single-teacher
-  references, never used for selection. Only their receipts are shipped.
+- **The Ont3 development pool is partly reused.** Its 1,201 rows cover 35
+  languages (plus 12 rows of undetermined language) and come from two
+  collections, both shipped in `data/ont3-evaluation/`: 659 rows whose
+  references were settled by two annotation passes (exact agreements kept,
+  disputes adjudicated) and then manually revised, the subset used to select
+  O4; and 542 fresh training-disjoint rows with single-teacher references,
+  never used for selection. Report both collections and the pool.
 - **Coarse corpora bound what human gold can show.** Its corpora annotate a
   few types; performance on the other Ont3 types is visible only in the Ont3
   development scores.

@@ -1,0 +1,26 @@
+{
+ "schema": "pii-dedup-legacy-detector-code/v1",
+ "purpose": "SHA-256 of every committed revision of the detector files that receipts recorded before the detector moved to overlaplib.py (detector_version absent); a legacy receipt verifies when each recorded hash is one of these.",
+ "code_sha256": {
+  "scripts/pii_overlap_neighbors.py": [
+   "257347d330f59b2671012426ac53f235896f32429cfc0e584224e00120e6e5bf",
+   "5c4861fa3ad0bd3ecc2518532cd32b76e88a9fc5875ece979f04e58d8e69c747",
+   "a3542006d54af907bc5aebf4fb1f83c73cacbd419386d0289e856ae84f030d8e",
+   "ad3972b6b9e9d1a01f607e6673143fba8b01eba481a3bbd955c8dc7d39fdfa29"
+  ],
+  "scripts/pii_overlap_filter.py": [
+   "40f56395a9ba1626aaa12bf715910479c36b2f8989fb2ae63c7334717b171e09",
+   "411376e1d6c0c4e9a33c8cb1834a713bf60c34d77e38a0ee1515944698034610",
+   "95d28b793fcfcb9f2058ef78771afc4f69f129ee1380f6439dbd1965a301d3ae",
+   "d0bfaec9b75c458c695abae3e3163c2aa2fa18cb13a3d2a47db7812c52d143aa"
+  ],
+  "scripts/pii_dedup_gate.py": [
+   "1988519d163986621ec7f1482947a403d3fe4c4238adbb689f6a53d97a8893e0",
+   "621555ab0a058f402cae736104904c3cfc6712063ac75febf64d0c1776427e6d",
+   "6635ee8573b7eae77ba78971e0c7102dd5bfff330f0a80a8c83120c83eb54329",
+   "a08da5d57a03988964a9e5cd68a803bb5f29be2e3bdb5dbabdd9761d3f3619aa",
+   "b8b8d11860fb086e68bafc3de4e47f9983703a779b2d278909d505dfdbb8223f",
+   "f7e636b379abf9389fe529a26983448458c9e961405439d369a29013f1412f46"
+  ]
+ }
+}

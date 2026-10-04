@@ -69,6 +69,11 @@
       "redacted": false
     },
     {
+      "path": "overlaplib.py",
+      "sha256": "ae3b5183b842228cb27595d783593014863f6fa04472fbc0d645f3dba53b783f",
+      "redacted": false
+    },
+    {
       "path": "pii-reproduce.py",
       "sha256": "165666de4c3a2b608394f1b176ba3c10357d008efa678807618c68599770df93",
       "redacted": false
@@ -125,7 +130,7 @@
     },
     {
       "path": "scripts/pii_annotation_sampling.py",
-      "sha256": "6490b509f5346dd70a2a08e148b9ab07cca30869a0d8f5d68d2dd87720d6db67",
+      "sha256": "a47cefa68c85ac4124458f0a2f60dbb638eb2ee5ea38651f1c8b3070f90089dc",
       "redacted": false
     },
     {
@@ -150,7 +155,7 @@
     },
     {
       "path": "scripts/pii_character_boundary_refiner.py",
-      "sha256": "0a0b23f437723fb5fc53bd124b482d6290148046f9b0634ebbb299e4a8a76993",
+      "sha256": "21122802bdae3f21856e9107443ca3910321043c4e3a2889f9cf49491dad8869",
       "redacted": false
     },
     {
@@ -185,7 +190,7 @@
     },
     {
       "path": "scripts/pii_dedup_gate.py",
-      "sha256": "6635ee8573b7eae77ba78971e0c7102dd5bfff330f0a80a8c83120c83eb54329",
+      "sha256": "9bad21e072e44de5f861521ff58c1bf080985317e367a8e3615e0d31b7415855",
       "redacted": false
     },
     {
@@ -295,7 +300,7 @@
     },
     {
       "path": "scripts/pii_name_role_char_pilot.py",
-      "sha256": "5168a693108a3c3c0f78306bb663de919730185f4ee9d8e19db613c4299bed15",
+      "sha256": "433183028a08fe14d4a1778620c5f49e060c64bc572ee9150eca177fab8a4429",
       "redacted": false
     },
     {
@@ -345,12 +350,12 @@
     },
     {
       "path": "scripts/pii_overlap_filter.py",
-      "sha256": "95d28b793fcfcb9f2058ef78771afc4f69f129ee1380f6439dbd1965a301d3ae",
+      "sha256": "00d8e9ea9eacf7c2f63be0dbe9ffe68487f536450794f80df74df4bea85993e0",
       "redacted": false
     },
     {
       "path": "scripts/pii_overlap_neighbors.py",
-      "sha256": "a3542006d54af907bc5aebf4fb1f83c73cacbd419386d0289e856ae84f030d8e",
+      "sha256": "01f7688845d900a4894c6a4006535c2ebd80df092cded56a79a834e08e2c2a66",
       "redacted": false
     },
     {
@@ -395,12 +400,12 @@
     },
     {
       "path": "scripts/pii_public_gold.py",
-      "sha256": "a9c3df031e8058b8816568cc5c26188e20bae1d90760ab377349c9b9c275d5e0",
+      "sha256": "b22ea3fb2faefa908cf68cc3f39a9f494be459ffa7f0d151b9cdfda783563a00",
       "redacted": false
     },
     {
       "path": "scripts/pii_public_mixture.py",
-      "sha256": "14140a5e4f45d1f67c366470671f7f249d8b91093a7a6e8cfe63ad30748c97f2",
+      "sha256": "214bedf6e0487259ef6de0da3577ec7304a59b83d21123c647357d6a2fab996e",
       "redacted": false
     },
     {
@@ -420,12 +425,12 @@
     },
     {
       "path": "scripts/pii_reproduction.py",
-      "sha256": "4d92703e68d5c30e81bb528a7fb0341eae2e0906913129a9d5cccdfb44bef2b2",
+      "sha256": "420fe5056b8046334d1523d99a6cba7e69188601f5fcaaf58dcdf2c6b0b34449",
       "redacted": false
     },
     {
       "path": "scripts/pii_reproduction_export.py",
-      "sha256": "cd54a33a2b7e9eb65ec4b9b81cc6533b0b16d444708d8f1f80bbca281e31dcd3",
+      "sha256": "8229d3d0c1561162aae5d603ef7189912617a93a149f950ee82dcea9b58172ac",
       "redacted": false
     },
     {
@@ -449,6 +454,11 @@
       "redacted": false
     },
     {
+      "path": "scripts/pii_serving_chain.py",
+      "sha256": "ab64c830ff94a2cd240fb220082dd61f96e7438523005deb9483cfa0b339806e",
+      "redacted": true
+    },
+    {
       "path": "scripts/pii_slot_morphology.py",
       "sha256": "577774b27e3accb85789d9fcfa4f26175a3af5bcb257a3e9f0646187ec6f7434",
       "redacted": false
@@ -469,13 +479,18 @@
       "redacted": false
     },
     {
+      "path": "scripts/pii_software_ont3.py",
+      "sha256": "dc517f5577c1df2512ec11f62e9e61fb351f992ebf6b80f6c19bf085bd71f3f2",
+      "redacted": false
+    },
+    {
       "path": "scripts/pii_software_receipts.py",
       "sha256": "96d6a317ab1eafa2b7d35173551ead4877f38fa6d92c66ccea12de37350f8419",
       "redacted": false
     },
     {
       "path": "scripts/pii_software_screen.py",
-      "sha256": "56bd9efd86cae601f13589bb3fdcf6a10c9a8fe231a3ed14db0f6b4cca8c27c8",
+      "sha256": "163c6982bab949de837aab9a103c07a13baa495a5a5eddfca7c795d33771a986",
       "redacted": false
     },
     {
@@ -485,7 +500,7 @@
     },
     {
       "path": "scripts/pii_software_workflow.py",
-      "sha256": "af50a9a23166f0abd8526c5fa109bad73ca780e949af52e4d86a236cd1945f37",
+      "sha256": "26ae318759911ea3a0b9ac5c082682aec1bd11dbfd617b467bb1f7213c8f8710",
       "redacted": false
     },
     {
@@ -594,8 +609,13 @@
       "redacted": false
     },
     {
+      "path": "trainlib_mix.py",
+      "sha256": "2ac57dd7739dca0dbdd6a38a204dd0750365a8d2e7298e33529b449dd632af78",
+      "redacted": false
+    },
+    {
       "path": "research/pii/frontier/software/guide.md",
-      "sha256": "d5742500f4978812ebf299561c21c2ed0c1446eb401a30785d0959bbacf5cc74",
+      "sha256": "f503164a978d9a1392abe6b9796dd77640964f760568bfcc3eb4b1a201fc4f86",
       "redacted": false
     },
     {
@@ -605,7 +625,7 @@
     },
     {
       "path": "research/pii/frontier/software/docs/evaluation.md",
-      "sha256": "5db776fdddf467b4d09bea0b0b8fe8128d6bc96fe585ae46c39e17e8295f0a35",
+      "sha256": "ed397a8c9e762fb7186420f7cd6b6cd150ddcaaa9d0750df3bfbaa65937bfb91",
       "redacted": false
     },
     {
@@ -615,12 +635,12 @@
     },
     {
       "path": "research/pii/frontier/software/docs/training.md",
-      "sha256": "0f0e6b190878d874194ff4f362fd2bbcc3aeac16c70415e5db78512e021cb95f",
+      "sha256": "5c987e9c08c6fe9e0643f5739238366dd9c4d2b72cf5946cf1eea37720a5f656",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/models/boundary-refiner/README.md",
-      "sha256": "e59911cd03d3981c68c9d99d5c94daafd02702e82e6d17b991d4236cdf91a79e",
+      "sha256": "d21d1c47fa50b97795d792f5274ece7b70e1c0140055190b76d658a382c14d68",
       "redacted": false
     },
     {
@@ -640,7 +660,7 @@
     },
     {
       "path": "research/pii/frontier/software/pixi.toml",
-      "sha256": "5dae47c7553a3fdcda0f020752c63574230211ddf34dbf197a0dc7fd28f9e9d2",
+      "sha256": "c3486ad2b39feb9391670b8463dca0d04e354f01548500ff560fddcb39cc2670",
       "redacted": false
     },
     {
@@ -649,8 +669,443 @@
       "redacted": false
     },
     {
+      "path": "research/pii/frontier/software/language-caps.yaml",
+      "sha256": "0a914d00a4330c5dbf462f1e4da8f610eff9b9eb0f79de1130cb215c6bae8446",
+      "redacted": false
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "d53bb91386dcab009e45c5bfe3904ad0fde461fe422bb9eaf582528598b5df84",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_band_random_batches.py",
+      "sha256": "e78929c19a9a005f36087352a1e267f410263fed20491a252dfe34b96a48f9aa",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_batch_schedule_metrics.py",
+      "sha256": "8e5b2f5028135cdf1e3ac5a9b5fe6f052161fe7e901b66757cf524edf37552d4",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_best_checkpoint_links.py",
+      "sha256": "4b2acef23ef0c7bd8d614cf3878c9b20df462844a80f0a0fb6261becdbcd77ec",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_checkpoint_mirror.py",
+      "sha256": "9bb5df4f22a63ac91bc8338be87c491af517ae0eb20f5755582d5f6dd86ad500",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_decodelib.py",
+      "sha256": "6d0816c745b206122213ab6e50ffe0dffaa16da5f658dbae3d6fe1f8818771eb",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_dimension_weighted_items.py",
+      "sha256": "28d290cd78e0df9dc993775d022c0e6dfed5f91132ed05f50e82cebb24f0bb07",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_draw_policies.py",
+      "sha256": "482144413fc953f424d83a57f8c28a4c3ea94b68f221cb493314b8763f719e86",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_language_rules.py",
+      "sha256": "a1a178223d926a7bcc92aa0896dacc38a12a56dff618c445c90cfe5fcd6c7259",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_log_format.py",
+      "sha256": "bcd7aba658c995a53ecb2d3dc2171ede37f81e9908e009827631d1856b17d874",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_logical_batch_stream_mixing.py",
+      "sha256": "cec874f82d409c486ae48a3446e44890d133708a38d5a707214f1fb1aa5f20b1",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_mechanical_affix_alignment.py",
+      "sha256": "ac758afa11eb9475cbb6c0f342f6683ce44f10602b69de47b60776f60e79acaa",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_orderly_checkpoint.py",
+      "sha256": "b901d4b10f8415f98e8d0ce9db7ddaa912f197b7b34981cb2b6da023afb75151",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_overlaplib.py",
+      "sha256": "ffad9e75bfd356299f021c9ea9a5ec742bae6b447ec00618efc805d0eae5cea8",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_patience_lr_controller.py",
+      "sha256": "e503eb00bde47b9d11ebc8fefda9b8ec3a9b016e69f5643771a001d79378d653",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_annotation_order_review.py",
+      "sha256": "374351593918ab916f5aac4dcaa7ee1ca21f11fc3b5abc4f8a94076a457f86ab",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_annotation_sampling.py",
+      "sha256": "6a399244de4794eba01b2593c28811839b4eb3ea4daf78336dc8f99bd4ac4f8e",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_api_label.py",
+      "sha256": "bbbed293f2fec60f68ed0a7a5b758f8c56ecd7568d9f84fa61e1746e146e8d86",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_assemble_corpus.py",
+      "sha256": "293e6e39fad66562ceb82a949e48e975a5b9db0b017c5732347101eb33b927d9",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_bcp47.py",
+      "sha256": "735e3948138e89e5d9f2c4b810e008865eadf59bd1e01b5db5301bde87d7621f",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_bioes.py",
+      "sha256": "f1ac0ffe2094acedc00ec69aa1172ebb891773e1ceae1b5d13cfe0ed95c29f7c",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_bioes_backoff.py",
+      "sha256": "afee125ff4b6932f6a1c5a6f1731921cb2590b3b13db23743dbdb4d15d9ef691",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_character_boundary_refiner.py",
+      "sha256": "1b75eaf9037886afddc0c04ba0d0126b5584696b381f7abc2e3d918777671731",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_cjk_name_order.py",
+      "sha256": "6470eee5d9f6ef27c592da45735ebf759bfa2b0df463b2aa9b7c5a1af5fd903c",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_codex_app_server.py",
+      "sha256": "eb805857df399c3a4c9e36995d5c8898511389a76d26f03fd1bc29dbb8a0d1c7",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_context_variants.py",
+      "sha256": "b679aee9a7cf03471b3d8c416a43822d7f643bd7dc48f4ae89657abd2d1a077d",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_crf_model.py",
+      "sha256": "8de2213282584e03313234a225c0b336a8e5789a87212ebe3f7ffcd48ba3aca5",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_dedup_gate.py",
+      "sha256": "c2c4cf178b7c323d10a936a400855f92bb5eafbd3131d35fdd0221c54f1ebae1",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_document_context.py",
+      "sha256": "6e91f5fb88c09c4a448172b8d86587f1916f0d0df14b1d6a73abe8335a6488ed",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_document_start.py",
+      "sha256": "e9d1fb06a2cf9cf5130f975480f7907615cd9bbbfe4ba24cfe0a91b1a026b82d",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_dual_head_transition.py",
+      "sha256": "769b800711f6a614e4ccf3c33eeb18381ecf7d79bdaf65c73fcd31c3fc800bcd",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_encoder_train.py",
+      "sha256": "476d181aae7135188d892991d489571bf66c813a99172dab4e78509c7e6c5338",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_eval.py",
+      "sha256": "c4bf758f23e06cbfefbadbdf54073395217a15acee33321c650e972278773bbc",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_evaluation_replay.py",
+      "sha256": "24fb1471d2c51ac2addf0bd0ac9750aecaed11a49a1029a2b3e9461980898612",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_final35_native_draw.py",
+      "sha256": "cd21bbf472bee6868b9a0e1fa0c329572f75828e5714fb4640e68c73db2a372f",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gold_replay_compiler.py",
+      "sha256": "23c232af035ad8219ef334e66806092840ae08285a08a69e2112a011cc3d4056",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_head_input_norm.py",
+      "sha256": "1178718ad006515e9a200fe5539ad229350f80698431928c1dc48281ae4080bf",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_language_policy.py",
+      "sha256": "7647b34acc9f8ff83209df9a0bf4705ff06cec29d9a4c45d7369a8c1c40cab94",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_layered_head_model.py",
+      "sha256": "0636327a7b31073a52eacff564c99f84943a5a773bac5d0a2ee52b714b2c30f6",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_length_audit.py",
+      "sha256": "febe1bb2128abe484888247aadb3bd716bee4be298a3b8b649a84d7391030e44",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_locale_render.py",
+      "sha256": "853343c80e42e4bfb9713e6aab6a0c148cd4aedffbee2ce209ae9ec649867ae1",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_mapped_unknown_outside.py",
+      "sha256": "63c935375d10c050042697abbb041820ffc2d828628016bb26835035ad4c9ae7",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_name_annotation_qc.py",
+      "sha256": "e14d385397f27da83ba05b00d825cff7592e792fe27b06c3d7ad62d2ed8191d5",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_name_kind_config.py",
+      "sha256": "bba2460256072f859fe0eb636fbe7607e715d20dba1e2709a43627a50c1ed957",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_name_kind_conformance.py",
+      "sha256": "5bacbeaa58e0a155d5721b01d50be86905d4a5728a0c9aa0c741718004127504",
+      "redacted": true
+    },
+    {
+      "path": "tests/unit/test_pii_name_resource_inventory.py",
+      "sha256": "6f0767d5e4cb734632dde8d14e7b701e283d7d4be72893c002c85c97337e6364",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_name_role_char_pilot.py",
+      "sha256": "26556b461c0ae98fb4e470e31ac66c35d8625608efd65fd826a1a4ed226b354b",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_name_role_publish.py",
+      "sha256": "9024022d6c219adfd8c111ebd115e6528503642ba1dfec8c65f4a5a9bc3bcc9b",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_native_heads.py",
+      "sha256": "1295cc500bc02a7582dbb15d1d69d9aa19ecc483f13ceea25af2aa41fd60f5b6",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_native_unknown_outside.py",
+      "sha256": "6c1798b588effdcda667f9ed51a53fda42247c426c2d9225ae494f81177bc196",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_needle_select.py",
+      "sha256": "687c95de9ccdd6644e01f70d15b74d88bb1c27fd0feecf15f855a2efcf9e6388",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_onboard_sources.py",
+      "sha256": "1c949a6bb93073829317ae2efdbfb15ce3b4e25f78b67ee12512fe1bb117397c",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_ont3_eval.py",
+      "sha256": "996967d563971e22dc78d1b6c239ac9bfd85b56d95ea3e207ccfa544e3c82f2d",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_ont3_eval_merge.py",
+      "sha256": "97bde9dbfab08a74ccf93f786a6c65605f14bd9c67078eaf1a9c8dede0505490",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_ont3_eval_trim.py",
+      "sha256": "7b255722ee920142f68917bda05fee3e186ebfafc9189dde724888a5fe903ade",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_ontology_v2.py",
+      "sha256": "8deb6d9321776612728ac1dff04871caef4bdcc60baef45d788360316cca6eeb",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_prompt_slots.py",
+      "sha256": "b93dc3e03be0334cbbec899fc7d347501237d4c7536f4f4bcaff18af7cd7c8ee",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_public_mixture_caps.py",
+      "sha256": "e5be9736c562a33c3079b3dd7684fae1ebd9f7e00105b9683b7a57727fcae310",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_reproduction_annotate.py",
+      "sha256": "8aed83fab7cbe50cb416d50134f27dc537a781ffe06acc72aec1544e8c5f189b",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_reproduction_export.py",
+      "sha256": "03dfdb279b377f36e2fd286ee86b30827733a92610c52b8b1cb163f8a1b4e7fb",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_rule_completion.py",
+      "sha256": "84966e2254ddab14318bb3062d6cc835fef0da827c215ac2bc837aa4f1c252e4",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_seed_tree.py",
+      "sha256": "4297ebeaa3916b4f6b05df2e35d88ac365d61bed36bd38695e65d5ccfbec208a",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_segment_eval.py",
+      "sha256": "ed2cf1ea4a0cb7e4e948e93194fac84f38b5e4abea80c721b867584ea6c324f1",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_sentence_training_view.py",
+      "sha256": "e1655b642327b271291fa878f2c06e591f9a63b173afe08654a5859fc3e005c3",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_soft_prompt.py",
+      "sha256": "eb4ba8eb225d760584f8a01a428b42fe345fd414ca6f6cdb7ebdc158fc3ba096",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_soft_registers.py",
+      "sha256": "f005515c75bf4242577d75abfc94ebe530a8a843cd0368a885e81425f40cbb75",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_software_select.py",
+      "sha256": "7b8f8169492cebe10dbc3150a04679766ea6e07cb694edb381eac464ce4b71d5",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_supervision_exclusion.py",
+      "sha256": "24132828b61caba77f9665a6adc02acc1d9fb7b2e7bd631cf92d6ba166ab5739",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_surface_audit.py",
+      "sha256": "ae287852cbd012979b29b28cce1fcba1d4dcbf1b40fbe1090f97ee292286e911",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_surface_context_generator.py",
+      "sha256": "8ecf04f0986135b7900c6b49aa937684c33996f3fa25d71c73b9c6d60af62125",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_surface_count_source.py",
+      "sha256": "ab269959e7600c2e1848d68f041bf157fab791b68a876f38d5cca8c29d204513",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_surface_pool.py",
+      "sha256": "648fbf31e2aad4662fb19fe1e3b8abc048f197285a15c793a382504a9a817dc1",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_tag_status_ids.py",
+      "sha256": "ec19dfe30b78a6a84567e83838b26e18b8e9157162707c42c674f7eac4e0470b",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_tag_status_prompt.py",
+      "sha256": "92400ac5c614487848a719570a4b1ebcda3e7072ed8183befdb860a7a9c23f53",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_text_segmentation.py",
+      "sha256": "798c39a3f6cddecbaa3e3c3e236ec03c5647a3924018b0ffe7c50b5be0355dc9",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_training_precision.py",
+      "sha256": "d8487a43f7813a483e44d928d66b19dd743af1b99abd9986a8fcc6a4f37d6200",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_training_quarantine.py",
+      "sha256": "2963ca581d18613b10ccbe7c3e9988ec2cfabdba0d1ad13d2e9ea34e34972cfe",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_transport_semantic_guard.py",
+      "sha256": "ee357a9a371eb9aec7f30454f171925586dea62e129c6fdba7e9fb57bda6778b",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_prompt.py",
+      "sha256": "4fbb6a24a9791f2cb64bf9a8ff1adf9b1b8e380bc1203e04fb798ed57ca90d80",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_run_metrics.py",
+      "sha256": "abfee6f1a9bc05e0981e7674c1a08eeeb37bd1abe35331e0d7b5beb3cfb07687",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_sophia_optimizer.py",
+      "sha256": "86dd8b58c2e5175be25a00d4dde61f36dd6f1b77234a7c877e90f97b7c303c52",
+      "redacted": true
+    },
+    {
+      "path": "tests/unit/test_thin_optimizer_state.py",
+      "sha256": "39e0a8929442297917c32023dd93f2fc10f7eb7d72c6d58c85d5eeeaeb654572",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_trainlib_input.py",
+      "sha256": "58f563bb73c55ea4a176ac2f11b01b3622261e07c3550916e8f17bcd4ea06ddd",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_trainlib_mix.py",
+      "sha256": "31539c1695089218acfaee4a7e7f4306de4721c363b32e015052b80b2d5eeb96",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_validation_controller.py",
+      "sha256": "75903fdc91f71d2384fba0c05edd587843496544dc205e2c1395e69f07b13113",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_weighted_length_sampling.py",
+      "sha256": "5f05839ba2ddb432d820b9b442e4b18cf6f631d501f9085be421d9361231f4b9",
+      "redacted": false
+    },
+    {
       "path": "research/pii/frontier/software/records/CLAIMS.md",
-      "sha256": "e9a4b6151bcb44e98de3504ae3a2ec88f96431e0772f7a8f932327b79ea1a027",
+      "sha256": "06868bfed9d10f1002060d3aae4da7f2313703ee8cb2fef920640791b179f046",
       "redacted": false
     },
     {
@@ -690,7 +1145,7 @@
     },
     {
       "path": "research/pii/frontier/software/records/receipts/fresh-fit-summary.json",
-      "sha256": "4813e1cdc0fd554f1c6ba47fdebb432732377b7dcd12dc8269f8ac5d0485f8c3",
+      "sha256": "d0b2d27caa7b6afe43c35ddae24094ad9250563abedfdd1b7123ab8498686490",
       "redacted": false
     },
     {
@@ -735,7 +1190,7 @@
     },
     {
       "path": "research/pii/frontier/software/records/receipts/receipts.json",
-      "sha256": "10d4ea5e895c3c64dbc0583108409c8d847e998ea886b6a31b33b21abe43fdb9",
+      "sha256": "4df143b7fec2094daec6f3ea3967cbe9ef81dd23528b6c01533ba21f6197d335",
       "redacted": false
     },
     {
@@ -804,6 +1259,36 @@
       "redacted": false
     },
     {
+      "path": "scripts/pii_locale_profiles.yaml",
+      "sha256": "3635b563bac9595cd4e8f40c2a24cfd4e980598f04ce2faaec08d68e30951118",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_named_entity_materializer.yaml",
+      "sha256": "35b6b19e3870cef5f781278fc6385c4ddf7af2f4cda4fac7c7c497078966819a",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_subclass_families_v4.json",
+      "sha256": "b48274311e3ca54dd8a2a039b6f338ada2b09200e254056b0b116367db888da1",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_component_grammars_v1.json",
+      "sha256": "22124950c3d99d271f500064d7b57e103d95765891ed750a0820c4a319ab1cb8",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_name_annotation_qc_profiles_v1.json",
+      "sha256": "a5c77b71549b9a10f7c9d14b48b2ff10de641bb32240b68a0824a5929c5ad6b1",
+      "redacted": false
+    },
+    {
+      "path": "tests/data/name-kind-conformance-v1.json",
+      "sha256": "dca8437133d0e22f681549c2ee79dfcbea3e80fc5f3d7b2b3a42230c6e20ea4b",
+      "redacted": false
+    },
+    {
       "path": "prompts/pii-label/catalog-ontology-v3-primary-v3.md",
       "sha256": "f138f33a6f82f4e2892c1ae3d46592dc8b3a8c3d5cb60fd168c2a094d6d6024b",
       "redacted": false
@@ -836,6 +1321,11 @@
     {
       "path": "prompts/pii-label/paper-eval/README.md",
       "sha256": "4cdf1cac00677efa8f48a1604c569aa31cca011cfaf311a90993f167516444d4",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_dedup_legacy_detector_code.json",
+      "sha256": "776d19bca956b22b6866411fa16da45322b0196be5c8bc8d7a898eb36705ac69",
       "redacted": false
     },
     {
@@ -986,6 +1476,31 @@
     {
       "path": "data/pii-onboarded/wojood-sample/manifest.json",
       "sha256": "8370256aa00ca9dc5c14ed89db094e6533e09a1717f6f0367b8bf5ab9cc47859",
+      "redacted": false
+    },
+    {
+      "path": "data/ont3-evaluation/README.md",
+      "sha256": "92a37f9e55d3bb7d8702ad8e42d1163635c735a3804efbb1daff6feb2111a966",
+      "redacted": false
+    },
+    {
+      "path": "data/ont3-evaluation/heldout.jsonl",
+      "sha256": "a6a52fba2a49000d54e4186ab1492e31c9d0efdcb2e43dfde8eaadd30ac6c64d",
+      "redacted": false
+    },
+    {
+      "path": "data/ont3-evaluation/selection-inputs.jsonl",
+      "sha256": "f567bd9b4e66407530d9568c661d048837444eca205bb3d06edbb142517a9432",
+      "redacted": false
+    },
+    {
+      "path": "data/ont3-evaluation/selection-language-review.json",
+      "sha256": "4cc8677e4b8a1d96f6fd77d87f3ca100a71377f0f1b258c6c6d5a670017bac19",
+      "redacted": false
+    },
+    {
+      "path": "data/ont3-evaluation/selection-references.jsonl",
+      "sha256": "cb298d7f7696282331f15bed88ebdb123d4ac85384ce216d1bffd6b2f29fb840",
       "redacted": false
     },
     {
@@ -1165,7 +1680,7 @@
     },
     {
       "path": "research/pii/frontier/software/pixi.lock",
-      "sha256": "9d22e08f8ea39fe3bf42f08224b055ba50cafa3cf71658060f5545e45183a7af",
+      "sha256": "61ae1b04669f2dba2a49e7c1b5df751201fe843514f7aaea55a6ece79ef2f6ee",
       "redacted": false
     },
     {
@@ -1186,6 +1701,16 @@
     {
       "path": "CITATION.cff",
       "sha256": "289ae55c1560891c1381ee32543951989a8ff95288bc59a95578f7084248becf",
+      "redacted": false
+    },
+    {
+      "path": "verify.toml",
+      "sha256": "a9b358edd4e8b126979d1ed19ad23e4f43289015dd71f1b97c306cdc9f2b0d59",
+      "redacted": false
+    },
+    {
+      "path": "scripts/verify",
+      "sha256": "7ca16c5e66df18b7baec1d5e0d645e30f777562611c9b21ff723f82d7c337565",
       "redacted": false
     }
   ]

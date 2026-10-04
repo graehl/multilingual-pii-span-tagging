@@ -104,9 +104,9 @@
     "fresh-fit-summary.json": {
       "source": {
         "evidence": "software-fresh-fit-v1/summary.json",
-        "sha256": "e513957620e1b0ae85376fd2ae5c153a0bb75f75b6d133b87dbc0576f9f4c949"
+        "sha256": "9dc7e913e5a1aeef7004484ea4c18ab291e78c50165aa5880269159905515c3e"
       },
-      "sha256": "4813e1cdc0fd554f1c6ba47fdebb432732377b7dcd12dc8269f8ac5d0485f8c3"
+      "sha256": "d0b2d27caa7b6afe43c35ddae24094ad9250563abedfdd1b7123ab8498686490"
     }
   }
 }

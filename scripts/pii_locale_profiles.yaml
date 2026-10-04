@@ -1,0 +1,155 @@
+# Locale surface-convention profiles for PII placeholder materialization.
+#
+# Policy file: these distributions are the *decisions* about how
+# convention-bearing placeholder values render per language — native
+# month-name dates vs local numeric vs ISO/computer forms, era
+# calendars, CJK myriad number grouping, bankers' numerals. The
+# renderer (`pii_locale_render.py`) validates and draws from them; the
+# materializer (`pii_instantiate_transport.py --locale-profile`) applies
+# them value-preservingly (same date/amount, different surface).
+#
+# Shares within a family must sum to 1.0 (±1e-6). Form names must be
+# supported for the language (the loader rejects e.g. `era` outside ja
+# or `bankers` outside zh). `keep` means "leave the source surface
+# untouched" — the deliberate Latin/computer share that stays
+# on-distribution for web text in every language.
+#
+# Provenance of the initial shares: measured eval-gold form
+# distributions where we have them (ko/ja/zh Fresh7 audit 2026-08-06),
+# priors elsewhere. The installed Faker providers and every configured
+# renderer form are frozen in faker-locale-surface-audit-v1.json; that audit
+# exposes provider fallbacks but does not estimate future-input shares.
+# Every current Final20 language has an explicit entry: identical shares mean
+# the installed provider and renderer were reviewed and the same mixture was
+# chosen, not that the language silently inherited an unreviewed default.
+# Update history belongs in git, not comments here.
+
+schema_version: 1
+
+defaults:
+  date: {native: 0.50, local_numeric: 0.12, keep: 0.28, weekday_native: 0.10}
+  # native_sep = the language's own thousands grouping (dot or narrow
+  # space); latin_sep (comma) stays as the deliberate Anglo/computer share
+  monetary: {digits: 0.45, native_sep: 0.35, latin_sep: 0.20}
+
+languages:
+  ar:
+    date: {native: 0.45, local_numeric: 0.15, keep: 0.25, weekday_native: 0.05, hijri: 0.10}
+    monetary: {digits: 0.35, native_sep: 0.45, latin_sep: 0.20}
+  cs:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  de:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  en:
+    # English carriers already carry native-English conventions; keep-heavy.
+    date: {native: 0.25, local_numeric: 0.10, keep: 0.60, weekday_native: 0.05}
+    monetary: {digits: 0.55, latin_sep: 0.45}
+  es:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  fr:
+    date: {native: 0.45, local_numeric: 0.20, keep: 0.30, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  hi:
+    date: {native: 0.40, local_numeric: 0.25, keep: 0.30, weekday_native: 0.05}
+    monetary: {digits: 0.35, native_sep: 0.45, latin_sep: 0.20}
+  id:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  it:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  ja:
+    date: {native: 0.45, era: 0.15, keep: 0.25, local_numeric: 0.05, weekday_native: 0.10}
+    monetary: {digits: 0.40, myriad: 0.35, latin_sep: 0.25}
+  ko:
+    # gold: 85% native / 6% ISO; dot-dates (1987.03.14) are common in
+    # Korean documents (frontier spot-check), so local_numeric raised.
+    date: {native: 0.55, local_numeric: 0.12, keep: 0.23, weekday_native: 0.10}
+    monetary: {digits: 0.45, myriad: 0.30, latin_sep: 0.25}
+  nl:
+    date: {native: 0.40, local_numeric: 0.25, keep: 0.30, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  pl:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  pt:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  ru:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  sv:
+    # ISO is the genuine Swedish convention; native month names still common.
+    date: {native: 0.40, local_numeric: 0.05, keep: 0.45, weekday_native: 0.10}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  tr:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  uk:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  vi:
+    date: {native: 0.45, local_numeric: 0.25, keep: 0.25, weekday_native: 0.05}
+    monetary: {digits: 0.40, native_sep: 0.40, latin_sep: 0.20}
+  zh:
+    # full_char ~1% in gold; bankers' 大写 mandated on official RMB docs.
+    date: {native: 0.50, local_numeric: 0.05, full_char: 0.03, minguo: 0.015, keep: 0.305, weekday_native: 0.10}
+    monetary: {digits: 0.45, myriad: 0.25, bankers: 0.12, char_num: 0.08, latin_sep: 0.10}
+
+  # Added 2026-09-13 for the ont3 35-language round, and corrected the same day.
+  # The loader requires an entry for every language it sees. These fifteen were
+  # added with default shares on the assumption that the permutation recipe
+  # realizes no convention-bearing tag, and that assumption was wrong: the
+  # filler renders every date and monetary surface through the locale profile
+  # regardless of what the recipe opts in to, so the invented shares were live.
+  # They are now all `keep`, which is what "we have not measured this
+  # convention" actually means. The twenty measured languages above are
+  # unaffected. Measure a language here before giving it any other share.
+  bn:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  da:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  el:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  fa:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  fi:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  fil:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  he:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  hr:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  ms:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  "no":
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  ro:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  ta:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  te:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  th:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}
+  ur:
+    date: {keep: 1.0}
+    monetary: {digits: 1.0}

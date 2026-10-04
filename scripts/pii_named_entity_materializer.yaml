@@ -1,0 +1,24 @@
+# Named-entity materializer policy.
+#
+# Locale surface distributions live in the referenced profile. Source repairs
+# are deliberately narrower: they correct a demonstrated defect in named
+# source families or transforms, never every row in a target language.
+
+schema_version: 1
+locale_profile: pii_locale_profiles.yaml
+
+source_repairs:
+  cjk_family_first:
+    languages: [ja, ko, zh]
+    # New transport rows record the carrier language. English carriers with
+    # separate GIVEN_NAME/FAMILY_NAME placeholders inherit Western order.
+    source_language_codes: [en]
+    # Legacy assembled rows lost transform metadata and retain only `src`.
+    # Each entry was measured as predominantly given-first before admission.
+    legacy_sources:
+      - ai4p-1.5m-extra-langs
+      - ja-transport-semantic-policy-v2-admitted
+      - ko-targeted-final20
+      - ko-transport
+      - zh-targeted-final20
+      - zh-transport

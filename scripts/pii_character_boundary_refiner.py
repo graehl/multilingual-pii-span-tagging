@@ -56,9 +56,14 @@ def file_sha256(path: str | Path) -> str:
     return digest.hexdigest()
 
 
-def git_commit() -> str:
+def git_commit() -> str | None:
+    """The source checkout's commit; None when this code runs from an extracted archive, not a checkout."""
+    root = Path(__file__).resolve().parents[1]
+    if not (root / ".git").exists():
+        return None
     return subprocess.run(
         ["git", "rev-parse", "HEAD"],
+        cwd=root,
         check=True,
         capture_output=True,
         text=True,

@@ -53,8 +53,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import acli
+import overlaplib as neighbors
 from scripts import pii_dedup_gate as gate
-from scripts import pii_overlap_neighbors as neighbors
 
 MODEL = "intfloat/multilingual-e5-base"
 # Revision the paper's receipts recorded; a different hub revision is reported, not refused.
@@ -65,7 +65,6 @@ POLICY = {
     "semantic_threshold": 0.875,
     "semantic_model": MODEL,
 }
-CODE = ("scripts/pii_overlap_neighbors.py", "scripts/pii_overlap_filter.py", "scripts/pii_dedup_gate.py")
 EMPTY_SOURCE = "declared-empty"
 BATCH_SOURCE = "batch"
 WITHIN_TOP_K = 4
@@ -292,7 +291,7 @@ def screen(args) -> dict[str, Any]:
         "within_neighbors": gate.file_identity(out / "within" / "joined-top3.jsonl"),
         "evidence": [gate.file_identity(path) for path in manifests],
         "policy": POLICY,
-        "code": {name: gate.file_identity(ROOT / name)["sha256"] for name in CODE},
+        **gate.detector_identity(),
         "screen": {
             "tool": "scripts/pii_software_screen.py",
             "tool_sha256": gate.file_identity(Path(__file__))["sha256"],

@@ -13,7 +13,7 @@ short of a word end. It is the first of the paper's serving stages for O4.
 **Input and output.** Text, language and predicted primary spans in; the same
 spans with possibly adjusted endpoints out. Reference types
 (`person_reference`, `organization_reference`) are passed through unchanged.
-Use it with `pii-reproduce.py redact --serve`, or call
+`pii-reproduce.py redact` and `evaluate` apply it by default (`--raw` skips it), or call
 `scripts/pii_character_boundary_refiner.py apply-sweep` on a prediction
 sweep.
 

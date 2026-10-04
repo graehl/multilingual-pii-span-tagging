@@ -1,0 +1,31 @@
+# Checks for this package. Run `python3 scripts/verify` from the package root:
+# one summary line when everything passes, details and log paths for any
+# failure (logs under .verify/last/). `--deep` adds the slower checks,
+# `--list` shows them. A check reports "skipped" when a prerequisite is
+# missing (for example before `python pii-reproduce.py install`).
+
+# Unit tests of the shipped code, in the pinned environment.
+[[check]]
+name = "unit"
+run = "test -x research/pii/frontier/software/.pixi/envs/default/bin/python || exit 69; research/pii/frontier/software/.pixi/envs/default/bin/python -m pytest -q -p no:cacheprovider tests/unit"
+timeout = "20m"
+
+# Recompute every reported comparison score and interval from the receipts.
+[[check]]
+name = "receipts"
+run = "python3 pii-reproduce.py verify"
+
+# The README is the driver's own help text, rendered by the pinned Python
+# (argparse wraps usage lines differently across Python versions).
+[[check]]
+name = "readme"
+run = "test -x research/pii/frontier/software/.pixi/envs/default/bin/python || exit 69; research/pii/frontier/software/.pixi/envs/default/bin/python pii-reproduce.py -h | cmp -s - README.md"
+
+# Minutes-scale end-to-end run on three small public corpora (GPU). Approve
+# their licenses first: python pii-reproduce.py licenses --approve aqmar-openner
+# --approve wojood-sample --approve idner-news-2k
+[[check]]
+name = "demo"
+run = "test -f license-approvals.json || exit 69; rm -rf .verify/work-demo && python3 pii-reproduce.py demo --work .verify/work-demo"
+tier = "deep"
+timeout = "30m"

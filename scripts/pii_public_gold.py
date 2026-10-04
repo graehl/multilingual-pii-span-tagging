@@ -183,7 +183,7 @@ def score(args) -> dict:
 
         if args.model == "o4":
             raise ValueError("--model o4 would collide with the O4 receipt in the paired comparison")
-        o4 = expand(read_receipt(args.compare_receipt))["systems"]["o4"]["human"]
+        o4 = expand(read_receipt(args.compare_receipt))["systems"][args.compare_system]["human"]
         report = {"systems": {args.model: {"human": {"points": points}}, "o4": {"human": o4}}}
         versus_o4 = paired(report, args.model, "o4", ["human"], False)
     return {
@@ -238,6 +238,12 @@ def build_parser():
         type=Path,
         help="O4 score receipt (records/receipts/o4-comparison.json.gz): paired bootstrap versus O4 "
         "at zero bias, exact regions, when all 1,283 rows and the title sidecar are scored",
+    )
+    score_command.add_argument(
+        "--compare-system",
+        default="o4",
+        help="System in the receipt to pair against: o4 (served) in o4-comparison, or o4-unrefined "
+        "in o4-boundary for raw output",
     )
     score_command.set_defaults(action=score)
     acli.add_standard_args(parser)

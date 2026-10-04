@@ -9,8 +9,11 @@ not recompute it; the file's per-item counts, where present, let you do so.
 data with this software.
 
 Human gold is 1,283 publisher test segments in seven languages from four
-public corpora, reused during development. Ont3 is 1,201 development segments
-with our annotations (not released). Scores are untyped redaction-region F1
+public corpora, reused during development. The Ont3 evaluation is a dev set
+(659 segments, used to select O4) and a test set (542 segments) of public web
+text with our reference annotations; both ship in `data/ont3-evaluation/`.
+None of the roughly 50,000 Ont3-annotated training rows ship. Scores are
+untyped redaction-region F1
 at 80% overlap unless marked typed; "max" is the best point on each system's
 confidence or O-bias curve, "fixed" the predeclared operating point.
 
@@ -41,10 +44,11 @@ confidence or O-bias curve, "fixed" the predeclared operating point.
 
 | Claim | Value | Evidence | Status |
 |---|---|---|---|
-| O4 recipe from scratch on public gold, public corpora and O4's web text with teacher labels, human gold (max / zero bias) | 89.46 / 89.35; +1.41 [0.30, 2.53] vs O4 | `receipts/fresh-fit-summary.json` | Recorded; reproducible with `fetch-web`, `annotate` (your teacher) and the pipeline |
-| Same recipe on public data only | 86.62 / 82.15; −6.21 [−8.05, −4.40] vs O4 | same | Recorded; reproducible with the pipeline |
+| O4 recipe from scratch on public gold, public corpora and O4's web text with teacher labels, served, human gold (max / zero bias) | 89.15 / 88.95; +0.86 [−0.29, 2.03] exact regions vs O4 | `receipts/fresh-fit-summary.json` | Recorded; reproducible with `fetch-web`, `annotate` (your teacher) and the pipeline |
+| Same fit, served, Ont3 pooled 1,201 (80% regions / exact typed) | 81.79 / 76.14; −0.04 [−1.26, 1.17] exact regions, −0.16 [−1.48, 1.16] typed vs O4 | same | Recorded; reproducible as above |
 
 What `verify` cannot establish: that withheld gold labels are correct or
-that counts came from the stated predictions. The human-gold rows are public,
-so for that population you can rebuild the rows and score your own models
-with identical code. The Ont3 population is not released.
+that counts came from the stated predictions. Both evaluations are
+available: you can rebuild the human-gold rows, and the Ont3 dev and test
+sets ship in `data/ont3-evaluation/`, so you can score your own models on
+either with identical code.

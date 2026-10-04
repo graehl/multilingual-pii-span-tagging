@@ -14,14 +14,50 @@ import math
 from pathlib import Path
 from typing import Any
 
-from scripts.pii_overlap_filter import passing_candidates
-from scripts.pii_overlap_neighbors import join_neighbors, normalize_text, sha256_text
+from overlaplib import DETECTOR_VERSION, join_neighbors, normalize_text, passing_candidates, sha256_text
 
 SCHEMA = "pii-annotation-dedup-receipt/v1"
+ROOT = Path(__file__).resolve().parents[1]
+# Code a current receipt names: recorded for provenance; behavior is bound by DETECTOR_VERSION.
+DETECTOR_CODE = ("overlaplib.py", "scripts/pii_overlap_filter.py", "scripts/pii_dedup_gate.py")
+# Receipts without a detector_version predate overlaplib.py; they name these files, and each
+# recorded hash must be a committed revision of the file (scripts/pii_dedup_legacy_detector_code.json).
+LEGACY_DETECTOR_CODE = frozenset(
+    {"scripts/pii_overlap_neighbors.py", "scripts/pii_overlap_filter.py", "scripts/pii_dedup_gate.py"}
+)
+LEGACY_CODE_HASHES = ROOT / "scripts/pii_dedup_legacy_detector_code.json"
 ROSTER_SCHEMA = "pii-dedup-comparison-roster/v1"
 REQUIRED_ROLES = frozenset(
     {"prior_draws", "annotation_attempts", "training", "development", "validation", "evaluation", "reserved"}
 )
+
+
+def detector_identity() -> dict[str, Any]:
+    """What a new receipt records about the detector: its behavior version and current code hashes."""
+    return {
+        "detector_version": DETECTOR_VERSION,
+        "code": {relative: file_identity(ROOT / relative)["sha256"] for relative in DETECTOR_CODE},
+    }
+
+
+def verify_detector_identity(receipt: dict[str, Any]) -> None:
+    """A receipt's detector must be the current version, or a committed pre-overlaplib revision."""
+    code = receipt["code"]
+    version = receipt.get("detector_version")
+    if version is None:
+        if set(code) != LEGACY_DETECTOR_CODE:
+            raise ValueError("deduplication receipt lacks the complete detector code identity")
+        known = json.loads(LEGACY_CODE_HASHES.read_text(encoding="utf-8"))["code_sha256"]
+        for relative, recorded in code.items():
+            if recorded not in known[relative]:
+                raise ValueError(f"deduplication detector code is not a committed revision: {relative}")
+        return
+    if version != DETECTOR_VERSION:
+        raise ValueError(
+            f"deduplication receipt detector {version!r} is not the current {DETECTOR_VERSION!r}"
+        )
+    if set(code) != set(DETECTOR_CODE):
+        raise ValueError("deduplication receipt lacks the complete detector code identity")
 
 
 def file_identity(path: Path) -> dict[str, str]:
@@ -166,16 +202,7 @@ def verify_decisions(receipt: dict[str, Any]) -> list[str]:
         checked_file(artifact)
     if not receipt["evidence"]:
         raise ValueError("deduplication receipt has no model/retrieval evidence")
-    for relative, recorded in receipt["code"].items():
-        actual = Path(__file__).resolve().parents[1] / relative
-        if file_identity(actual)["sha256"] != recorded:
-            raise ValueError(f"deduplication detector code changed: {relative}")
-    if set(receipt["code"]) != {
-        "scripts/pii_overlap_neighbors.py",
-        "scripts/pii_overlap_filter.py",
-        "scripts/pii_dedup_gate.py",
-    }:
-        raise ValueError("deduplication receipt lacks the complete detector code identity")
+    verify_detector_identity(receipt)
 
     prior = keyed_rows(read_rows(checked_file(receipt["prior_neighbors"])), "eval_id")
     within = keyed_rows(read_rows(checked_file(receipt["within_neighbors"])), "eval_id")

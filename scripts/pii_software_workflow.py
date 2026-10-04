@@ -168,7 +168,16 @@ def mixture_command(args) -> dict:
         str(args.gold_share),
         "--out",
         str(out),
+        "--screen",
+        getattr(args, "screen", "overlap"),
     ]
+    # Keep both of the paper's evaluations out of training: human gold and the Ont3 populations.
+    for name in ("selection-inputs.jsonl", "heldout.jsonl"):
+        command.extend(("--evaluation", str(ROOT / "data/ont3-evaluation" / name)))
+    if getattr(args, "no_language_caps", False):
+        command.append("--no-language-caps")
+    for value in getattr(args, "language_cap", None) or ():
+        command.extend(("--language-cap", value))
     for source in DEMO_GOLD if args.demo else ():
         command.extend(("--gold-corpus", source))
     if args.o4_membership:
@@ -502,16 +511,15 @@ def licenses_command(args) -> dict:
     return json.loads(result.stdout.splitlines()[0])
 
 
-def evaluate_command(args) -> dict:
-    """Paper human-gold view: the paper's bias sweep, prediction code and scorer."""
-    work = args.work.resolve()
-    out = (args.out or work / "evaluation").resolve()
-    human = (args.human_gold or work / "human-gold").resolve()
-    out.mkdir(parents=True, exist_ok=False)
-    sweep = out / "sweep.json"
+ONT3_DATA = ROOT / "data/ont3-evaluation"
+
+
+def predicted_sweep(out: Path, name: str, inputs: Path, checkpoint: Path, raw: bool, work: Path):
+    """The paper's O-bias prediction sweep on one population, served unless raw."""
+    sweep = out / f"sweep-{name}.json"
     step(
         out,
-        "predict",
+        f"predict-{name}",
         [
             "nice",
             "-n",
@@ -519,15 +527,62 @@ def evaluate_command(args) -> dict:
             python(),
             "research/pii/frontier/evidence/priority9-shared-v1/predict-sweeps.py",
             "ont3",
-            str(human / "inputs.jsonl"),
+            str(inputs),
             str(sweep),
             "--model-path",
-            str(args.checkpoint.resolve()),
+            str(checkpoint.resolve()),
             "--context-side",
             "none",
         ],
-        {"checkpoint": str(args.checkpoint), "view": "paper human-gold, no context, O-bias sweep"},
+        {"checkpoint": str(checkpoint), "view": f"paper {name} view, no context, O-bias sweep"},
     )
+    if raw:
+        return sweep, []
+    return served_sweep(work, out, inputs, sweep, name)
+
+
+def evaluate_command(args) -> dict:
+    """The paper's human-gold and Ont3 views: its bias sweep, prediction code, serving and scorer."""
+    work = args.work.resolve()
+    out = (args.out or work / "evaluation").resolve()
+    raw = getattr(args, "raw", False)
+    populations = getattr(args, "population", "all")
+    out.mkdir(parents=True, exist_ok=False)
+    result = {"ok": True, "serving": None, "control": "o4-unrefined" if raw else "o4"}
+    if populations in ("all", "human"):
+        result["human"] = evaluate_human(args, work, out, raw, result)
+    if populations in ("all", "ont3"):
+        result["ont3"] = evaluate_ont3(args, work, out, raw, result)
+    result["serving"] = result["serving"] or "raw model output (--raw)"
+    (out / "summary.json").write_text(json.dumps(result, indent=2) + "\n")
+    return result
+
+
+def evaluate_ont3(args, work: Path, out: Path, raw: bool, result: dict) -> dict:
+    """Both Ont3 collections, scored and paired against O4's receipts like the paper's numbers."""
+    sweeps = {}
+    for name, filename in (("selection", "selection-inputs.jsonl"), ("heldout", "heldout.jsonl")):
+        sweeps[name], serving = predicted_sweep(out, name, ONT3_DATA / filename, args.checkpoint, raw, work)
+        result["serving"] = result["serving"] or serving
+    command = [python(), "scripts/pii_software_ont3.py", "--selection-sweep", str(sweeps["selection"])]
+    command += ["--heldout-sweep", str(sweeps["heldout"]), "--model", args.name]
+    command += ["--control", result["control"], "--out", str(out / "scores-ont3.json.gz")]
+    scored = step(out, "score-ont3", command, {"control": result["control"]})
+    summary = json.loads(Path(scored["receipt"]).parent.joinpath("stdout.log").read_text().splitlines()[0])
+    return {
+        "scores": str(out / "scores-ont3.json.gz"),
+        "views": summary["summary"],
+        "note": "Zero bias; F1 in percent: redaction regions at 80% and exact overlap, exact typed spans; "
+        "selection = the 659 rows O4 was selected on, heldout = 542 never used for selection, pooled = both.",
+    }
+
+
+def evaluate_human(args, work: Path, out: Path, raw: bool, result: dict) -> dict:
+    """The paper's public human-gold view, paired against O4's receipt."""
+    human = (args.human_gold or work / "human-gold").resolve()
+    sweep, serving = predicted_sweep(out, "human", human / "inputs.jsonl", args.checkpoint, raw, work)
+    result["serving"] = result["serving"] or serving
+    receipt_name = "o4-boundary.json.gz" if raw else "o4-comparison.json.gz"
     command = [
         python(),
         "scripts/pii_public_gold.py",
@@ -539,30 +594,77 @@ def evaluate_command(args) -> dict:
         "--model",
         args.name,
         "--out",
-        str(out / "scores.json.gz"),
+        str(out / "scores-human.json.gz"),
     ]
     sidecar = SOFTWARE / "records/title-extents-human-gold.jsonl"
     if sidecar.is_file():
         command.extend(("--title-sidecar", str(sidecar)))
-    command.extend(("--compare-receipt", str(SOFTWARE / "records/receipts/o4-comparison.json.gz")))
-    scored = step(out, "score", command, {"title_sidecar": sidecar.is_file()})
+    command.extend(("--compare-receipt", str(SOFTWARE / "records/receipts" / receipt_name)))
+    command.extend(("--compare-system", result["control"]))
+    scored = step(out, "score-human", command, {"title_sidecar": sidecar.is_file()})
     summary = json.loads(Path(scored["receipt"]).parent.joinpath("stdout.log").read_text().splitlines()[0])
     receipt = json.loads((human / "receipt.json").read_text())
     comparable = receipt["rows"] == 1283 and sidecar.is_file()
-    result = {
-        "ok": True,
-        "scores": str(out / "scores.json.gz"),
+    return {
+        "scores": str(out / "scores-human.json.gz"),
         "rows": summary["rows"],
         "maximum": summary["maximum"],
         "fixed_zero_bias": summary["fixed_zero_bias"],
         "paired_versus_o4": summary["paired_versus_o4"],
         "paper_o4": PAPER_O4_HUMAN,
         "comparable_to_paper": comparable,
-        "note": "Exact redaction regions, 80% overlap, paper title and coverage policy."
+        "note": "Redaction regions at 80% overlap (maximum, fixed); exact regions in the paired "
+        "comparison; paper title and coverage policy. O4's paper numbers are served output."
         + ("" if comparable else " Not paper-comparable: subset rows or missing title sidecar."),
     }
-    (out / "summary.json").write_text(json.dumps(result, indent=2) + "\n")
-    return result
+
+
+def name_kind_bundle(work: Path) -> Path | None:
+    """The name-kind model the names command built, if any."""
+    bundle = work / "name-kind/bundle/name-kind.config.json"
+    return bundle.resolve() if bundle.is_file() else None
+
+
+def served_sweep(work: Path, out: Path, inputs: Path, sweep: Path, name: str) -> tuple[Path, list[str]]:
+    """Apply the paper's serving stages to a prediction sweep, in serving order.
+
+    Boundary refinement with the shipped refiner, then name-kind postprocessing
+    when WORK/name-kind holds a bundle, then regex supplementation.
+    """
+    refined = out / f"sweep-{name}-refined.json"
+    step(
+        out,
+        f"refine-{name}",
+        [
+            python(),
+            "scripts/pii_character_boundary_refiner.py",
+            "apply-sweep",
+            "--exclude-reference-spans",
+            "--refiner",
+            str(SOFTWARE / "models/boundary-refiner"),
+            "--gold",
+            str(inputs),
+            "--predictions",
+            str(sweep),
+            "--output",
+            str(refined),
+            "--receipt",
+            str(out / f"sweep-{name}-refined.receipt.json"),
+        ],
+        {"stage": "boundary refinement (shipped refiner)"},
+    )
+    bundle = name_kind_bundle(work)
+    served = out / f"sweep-{name}-served.json"
+    chain = [python(), "scripts/pii_serving_chain.py", "--sweep", str(refined), "--inputs", str(inputs)]
+    chain += ["--output", str(served)]
+    chain += ["--name-kind-bundle", str(bundle)] if bundle else ["--no-name-kind"]
+    step(
+        out,
+        f"serve-{name}",
+        chain,
+        {"stage": "name-kind and regex", "name_kind_bundle": str(bundle) if bundle else None},
+    )
+    return served, ["boundary_refinement", *(["name_kind"] if bundle else []), "regex"]
 
 
 def redact_command(args) -> dict:
@@ -586,13 +688,13 @@ def redact_command(args) -> dict:
     if types:
         command.extend(("--types", types))
     served = []
-    if getattr(args, "serve", False):
+    if not getattr(args, "raw", False):
         # The paper's serving order: boundary refinement, name-kind, regex.
         command.extend(("--refiner", str(SOFTWARE / "models/boundary-refiner"), "--regex"))
         served = ["boundary_refinement", "regex"]
-        bundle = getattr(args, "work", None) and args.work / "name-kind/bundle/name-kind.config.json"
-        if bundle and bundle.is_file():
-            command.extend(("--name-kind-bundle", str(bundle.resolve())))
+        bundle = getattr(args, "work", None) and name_kind_bundle(args.work)
+        if bundle:
+            command.extend(("--name-kind-bundle", str(bundle)))
             served.insert(1, "name_kind")
     work = args.out.resolve().parent
     receipt = step(
@@ -653,7 +755,9 @@ def demo_command(args) -> dict:
     results["train"] = train
     checkpoint = work / "model/fit/model" / f"checkpoint-{args.steps}"
     results["evaluate"] = evaluate_command(
-        argparse.Namespace(work=work, out=None, human_gold=None, checkpoint=checkpoint, name="demo")
+        argparse.Namespace(
+            work=work, out=None, human_gold=None, checkpoint=checkpoint, name="demo", population="human"
+        )
     )
     sample = work / "demo-input.txt"
     sample.write_text(DEMO_TEXT, encoding="utf-8")

@@ -82,6 +82,12 @@ def build_parser() -> MarkdownHelpParser:
         help="Stage the public release into a git repository for review and commit (no commit made).",
     )
     publish.add_argument("--repo", type=Path, required=True, help="The release repository's checkout")
+    publish.add_argument(
+        "--uncommitted",
+        action="store_true",
+        help="Test publish: allow uncommitted shipped draft files, to run verify in the repository before "
+        "deciding to commit. A release still needs them committed and published again.",
+    )
     redaction_arguments(publish)
     publish.set_defaults(action=publish_command)
     acli.add_standard_args(publish)
@@ -315,6 +321,23 @@ def add_workflow_commands(commands) -> None:
     )
     mixture.add_argument("--out", type=Path, help="New training directory; default WORK/mixture")
     mixture.add_argument(
+        "--screen",
+        choices=("overlap", "exact"),
+        default="overlap",
+        help="overlap (default): drop training rows the paper's overlap detector matches to a human-gold "
+        "or Ont3 evaluation row; exact: drop only exact text matches",
+    )
+    mixture.add_argument(
+        "--language-cap",
+        action="append",
+        metavar="LANG=SHARE",
+        help="Override one language's maximum share of training draws (defaults in "
+        "research/pii/frontier/software/language-caps.yaml: 0.20 for any language, 0.08 for Hindi); repeatable",
+    )
+    mixture.add_argument(
+        "--no-language-caps", action="store_true", help="Sample languages by row weight alone"
+    )
+    mixture.add_argument(
         "--annotated",
         type=Path,
         action="append",
@@ -419,13 +442,27 @@ def add_workflow_commands(commands) -> None:
     evaluate = work_command(
         "evaluate",
         workflow.evaluate_command,
-        "Score a checkpoint on the paper's human-gold view and compare with O4.",
+        "Score a checkpoint on the paper's human-gold and Ont3 views and compare with O4.",
         demo=False,
     )
     evaluate.add_argument("--checkpoint", type=Path, required=True)
     evaluate.add_argument("--human-gold", type=Path, help="Default: WORK/human-gold")
     evaluate.add_argument("--out", type=Path, help="New directory; default WORK/evaluation")
     evaluate.add_argument("--name", default="model", help="System name in the score file")
+    evaluate.add_argument(
+        "--raw",
+        action="store_true",
+        help="Score the tagger's own output, paired against O4 without boundary refinement; by default "
+        "the paper's serving stages (boundary refiner, name-kind when built, regex) are applied first "
+        "and the pairing is against served O4, as for O4's reported numbers",
+    )
+    evaluate.add_argument(
+        "--population",
+        choices=("all", "human", "ont3"),
+        default="all",
+        help="human: the rebuilt public human gold; ont3: the paper's shipped 31-type evaluation "
+        "(659 selection + 542 held-out rows); all: both",
+    )
     redact = commands.add_parser("redact", help="Tag and redact raw text (one document per line, or JSONL).")
     redact.add_argument("--checkpoint", type=Path, required=True)
     redact.add_argument("--input", type=Path, required=True)
@@ -436,12 +473,15 @@ def add_workflow_commands(commands) -> None:
         help="Comma-separated Ont3 types to emit; default: the types WORK/mixture supervised, else all",
     )
     redact.add_argument("--work", type=Path, help="Pipeline work directory whose mixture trained the model")
-    redact.add_argument(
-        "--serve",
+    serving = redact.add_mutually_exclusive_group()
+    serving.add_argument(
+        "--raw",
         action="store_true",
-        help="Apply the paper's serving stages: shipped boundary refiner, regex supplementation, and "
-        "name-kind postprocessing when WORK/name-kind holds a bundle built by the names command",
+        help="Emit the tagger's own spans without the paper's serving stages (shipped boundary refiner, "
+        "name-kind postprocessing when WORK/name-kind holds a bundle built by names, regex supplementation), "
+        "which are applied by default",
     )
+    serving.add_argument("--serve", action="store_true", help="Apply the serving stages (the default)")
     redact.set_defaults(action=workflow.redact_command)
     acli.add_standard_args(redact)
     verify = commands.add_parser(
@@ -1098,10 +1138,17 @@ PUBLISH_TAG_PREFIX = "pii-span/"
 def publish_command(args: argparse.Namespace) -> dict:
     """Stage the public release into a git repository's worktree and index, without committing.
 
-    The repository holds only published releases, so its worktree is replaced
-    wholesale; it must be clean first. The draft files it ships must be
-    committed, so the release maps to one draft commit, which the publisher
-    tags PUBLISH_TAG_PREFIX + version after committing in the repository.
+    The repository holds only published releases, so its release files are
+    replaced wholesale. Ignored files (the installed environment, run outputs,
+    verify's recorded results) stay. The repository may hold an earlier
+    uncommitted publish, which is fully staged; any unstaged or untracked
+    change is someone's edit and stops the publish.
+
+    The draft files it ships must be committed, so the release maps to one
+    draft commit, which the publisher tags PUBLISH_TAG_PREFIX + version after
+    committing in the repository. --uncommitted lifts that for a test publish
+    whose files are verified before anything is committed; publishing the same
+    files again once they are committed reproduces the verified tree.
     """
     import tempfile
 
@@ -1110,12 +1157,14 @@ def publish_command(args: argparse.Namespace) -> dict:
     repo = args.repo.resolve()
     if not (repo / ".git").exists():
         raise ValueError(f"{repo} is not a git repository; create it with an empty initial commit first")
-    if git_output(repo, "status", "--porcelain"):
-        raise ValueError(f"{repo} has uncommitted changes")
+    status = git_output(repo, "status", "--porcelain").splitlines()
+    if edits := [line for line in status if line[1] != " "]:
+        raise ValueError(f"{repo} has unstaged or untracked changes:\n" + "\n".join(edits))
     files = export_files(ROOT)
     shipped = [str(source.relative_to(ROOT)) for source, _ in files]
-    if dirty := git_output(ROOT, "status", "--porcelain", "--", *shipped):
-        raise ValueError(f"commit the shipped draft files first:\n{dirty}")
+    dirty = git_output(ROOT, "status", "--porcelain", "--", *shipped)
+    if dirty and not args.uncommitted:
+        raise ValueError(f"commit the shipped draft files first, or test with --uncommitted:\n{dirty}")
     with tempfile.TemporaryDirectory(prefix=".pii-publish-", dir=repo.parent) as temporary:
         staged = stage_files(
             files,
@@ -1124,28 +1173,44 @@ def publish_command(args: argparse.Namespace) -> dict:
             redactions=redaction_profiles(args, anonymous=False),
             anonymous=False,
         )
-        for entry in repo.iterdir():
-            if entry.name != ".git":
-                shutil.rmtree(entry) if entry.is_dir() else entry.unlink()
-        for entry in Path(staged["stage"]).iterdir():
-            entry.rename(repo / entry.name)
+        release_files = git_output(repo, "ls-files", "-z", "--cached", "--others", "--exclude-standard")
+        for name in release_files.split("\0"):
+            if name and (repo / name).is_file():
+                (repo / name).unlink()
+        for directory in sorted((d for d in repo.rglob("*") if d.is_dir()), reverse=True):
+            if ".git" not in directory.relative_to(repo).parts and not any(directory.iterdir()):
+                directory.rmdir()
+        for source in sorted(Path(staged["stage"]).rglob("*")):
+            if source.is_file():
+                target = repo / source.relative_to(staged["stage"])
+                target.parent.mkdir(parents=True, exist_ok=True)
+                source.rename(target)
     git_output(repo, "add", "--all")
     draft_head = git_output(ROOT, "rev-parse", "HEAD").strip()
     tags = git_output(ROOT, "tag", "--list", f"{PUBLISH_TAG_PREFIX}*", "--sort=-creatordate").split()
     since = tags[0] if tags else None
     log_range = [f"{since}..HEAD"] if since else ["HEAD"]
     draft_log = git_output(ROOT, "log", "--no-merges", "--format=%h %s", *log_range, "--", *shipped)
+    release = (
+        f"review `git -C {repo} diff --cached`, commit it with a message describing what changed "
+        f"for users, tag the repository vX.Y, then tag this draft commit {PUBLISH_TAG_PREFIX}vX.Y"
+    )
     return {
         "ok": True,
         "repository": str(repo),
         "staged": git_output(repo, "diff", "--cached", "--shortstat").strip() or "no changes",
         "files": staged["files"],
         "draft_commit": draft_head,
+        "draft_uncommitted": dirty.splitlines(),
         "previous_release_tag": since,
         "draft_commits": draft_log.splitlines(),
-        "next": f"review `git -C {repo} diff --cached`, commit it with a message describing what changed "
-        "for users, tag the repository vX.Y, then tag this draft commit "
-        f"{PUBLISH_TAG_PREFIX}vX.Y",
+        "next": (
+            f"test publish of uncommitted draft files: run `python3 scripts/verify` in {repo}; once it "
+            "passes, commit the draft files and publish again (identical files keep verify's result, "
+            f"`scripts/verify --passed`), then {release}"
+            if dirty
+            else release
+        ),
     }
 
 

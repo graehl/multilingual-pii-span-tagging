@@ -84,16 +84,22 @@ python pii-reproduce.py redact --work work \
   trainer options: one update creates the Ont3 head, then the full fit binds
   the label map. `--recipe o4 --init-from-checkpoint DIR` continues an
   existing Ont3 checkpoint instead.
-- `evaluate` runs the paper's prediction sweep and scorer on the human-gold
-  view and reports the curve maximum and the fixed zero-bias point beside
-  O4's 88.8 and 88.2 F1.
+- `evaluate` runs the paper's prediction sweep and scorer on both of the
+  paper's evaluations: the rebuilt human gold and the shipped 31-type Ont3
+  populations (`data/ont3-evaluation/`: 659 rows O4 was selected on, 542
+  never used for selection). It reports zero-bias F1 for each and a paired
+  comparison with O4's receipts. Like O4's reported numbers, it scores
+  served output by default; `--raw` scores the tagger's own spans and pairs
+  them with O4 without refinement. `--population human|ont3` limits it to
+  one evaluation.
 - `redact` emits typed spans and a redacted copy of each input line. With
-  `--work` it only emits types the training data supervised; `--serve` adds
-  the paper's serving stages: the shipped character-boundary refiner
+  `--work` it only emits types the training data supervised. By default it
+  applies the paper's serving stages: the shipped character-boundary refiner
   (`research/pii/frontier/software/models/boundary-refiner/`, worth about
-  +2 region F1 on our 31-type set for a fresh model), name-component
+  +1.5 to 2.5 F1 on Ont3, nothing on human gold), name-component
   postprocessing when you have built the name-kind model, and regex
-  supplementation for identifiers. `train-refiner` fits your own refiner.
+  supplementation for identifiers; `--raw` skips them. `train-refiner` fits
+  your own refiner.
 
 O4 also trained on about 50,000 sentences of public FineWeb text labeled by
 an LLM teacher. We do not release those labels, but you can recover the
@@ -135,25 +141,50 @@ download caches; `mixture` took under two minutes.
 
 ## What a fresh fit reaches
 
-We ran this pipeline from a staged copy of this package on one 96 GB GPU:
+We ran the commands above on one 96 GB GPU: `mixture --annotated` with the
+teacher-labeled web text (our cached labels standing in for yours), then
 `train --recipe o4-fresh --steps 12000` from pretrained XLM-R large, about
-2 hours 15 minutes per fit with two fits sharing the GPU. Human-gold F1 at 80%
-overlap, the paper's view:
+2 hours on a GPU shared with another fit. `mixture` removed 316 of its
+209,593 distinct training texts as overlapping an evaluation row and capped
+Hindi at 8% of sampling. All scores below come from `evaluate`: "served" is
+its default (the paper's serving stages, as in O4's reported numbers; here
+the boundary refiner and regex, since we did not build the name-kind model),
+"raw" is `evaluate --raw`, paired against O4 without refinement. F1 at zero
+bias; brackets are paired 95% intervals.
 
-| Training data | Max | Zero bias | Versus O4 at zero bias, exact regions |
-|---|---|---|---|
-| O4 (paper) | 88.8 | 88.2 | — |
-| Public gold + public corpora + O4's web text with teacher labels | 89.5 | 89.4 | +1.4 [0.3, 2.5] |
-| Public gold + public corpora only | 86.6 | 82.2 | −6.2 [−8.1, −4.4] |
+Human gold (1,283 rows):
 
-The web-text run used our cached teacher labels as a stand-in for yours. It
-already matched O4 after 4,000 updates (88.1 at zero bias) and kept improving
-to 12,000. On our private 31-type development set the same model matches O4
-without character-boundary refinement and trails served O4 by about 2.7
-points, the size of that refinement's gain. Public gold alone reaches its best
-score only at a strongly shifted O-logit bias and fails on types the public
-corpora never annotate: the teacher-labeled text supplies both the missing
-types and the trusted negatives. Human gold comes from the publishers' test
+| Model | Output | Max, 80% regions | 80% regions | Exact regions | Fresh − O4, exact regions |
+|---|---|---|---|---|---|
+| O4 (paper) | served | 88.8 | 88.2 | 87.8 | |
+| O4 (paper) | raw | | 88.2 | 87.9 | |
+| Fresh fit | served | 89.2 | 88.9 | 88.7 | +0.9 [−0.3, 2.0] |
+| Fresh fit | raw | 89.2 | 88.9 | 88.7 | +0.9 [−0.3, 2.0] |
+
+Ont3, exact regions / exact typed spans (selection: the 659 rows O4 was
+selected on; held-out: 542 rows never used for selection):
+
+| Model | Output | Selection | Held-out | Pooled 1,201 |
+|---|---|---|---|---|
+| O4 (paper) | served | 81.8 / 76.9 | 77.0 / 75.2 | 80.2 / 76.3 |
+| O4 (paper) | raw | 78.9 / 74.8 | 75.5 / 74.2 | 77.7 / 74.6 |
+| Fresh fit | served | 80.6 / 76.1 | 79.4 / 76.1 | 80.2 / 76.1 |
+| Fresh fit | raw | 77.7 / 74.0 | 78.0 / 75.4 | 77.8 / 74.5 |
+| Fresh − O4, served, regions | | −1.3 [−2.8, 0.2] | +2.3 [0.3, 4.2] | 0.0 [−1.3, 1.2] |
+| Fresh − O4, served, typed | | −0.8 [−2.5, 0.9] | +0.9 [−1.2, 2.9] | −0.2 [−1.5, 1.2] |
+
+The fresh fit is level with O4 on human gold and on the pooled Ont3
+evaluation, leads it on the held-out Ont3 rows for redaction regions, and
+trails it on the selection rows, not significantly. Ont3 accuracy in a
+language rises with more Ont3 annotation of its text by Luna or a stronger
+teacher; O4's training included such annotations of further text sources,
+which this package does not ship. The fit matched O4 on human gold after
+4,000 updates (88.0 at zero bias) and reached 88.9 at 12,000. The serving
+stages are worth about 1 to 3 points on Ont3, whose conventions put span
+edges at characters the tokenizer splits poorly, and nothing on human gold.
+The public corpora never annotate most of Ont3's types; the teacher-labeled
+text is what teaches those types and supplies trusted negatives for them.
+Human gold comes from the publishers' test
 splits, which never train the model: training uses the same corpora's train
 splits, screened against the evaluation rows. It was reused during
 development, though we do not believe O4 was meaningfully over-selected on
@@ -189,7 +220,7 @@ text-free training membership, the run records and what they cannot show.
 postprocessor (U.S. Census surnames, INSEE given names, the SSA baby-name
 mirror, JMnedict, Wiktionary name categories, Faker), builds the role
 inventory and trains and exports the small name-kind model on CPU into
-`WORK/name-kind`; `redact --serve` then uses it. In our run it took about
+`WORK/name-kind`; `redact` and `evaluate` then use it. In our run it took about
 half an hour and reached the paper's development-stage quality (0.871 test
 macro F1). The paper's deployed copy was also continued on private text, so
 yours will differ somewhat. Some publishers block some networks (the Census

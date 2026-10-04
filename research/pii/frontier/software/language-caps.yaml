@@ -1,0 +1,13 @@
+# Maximum share of all training draws for a language, read by
+# `pii-reproduce.py mixture` (scripts/pii_public_mixture.py). A capped
+# language's base-branch rows are scaled down and the freed mass goes to the
+# other base rows; the human-gold branch is never reweighted.
+
+# Any language: above every language's share in O4's own mixture (largest:
+# English 18.5%, German 17%), so it only stops a single corpus from dominating.
+default: 0.20
+
+languages:
+  # HiNER is a large, partially annotated Hindi news corpus (person, location,
+  # organization only); uncapped it takes about 21% of draws.
+  hi: 0.08

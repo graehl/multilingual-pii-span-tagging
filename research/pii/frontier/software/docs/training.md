@@ -216,7 +216,7 @@ as development results ([evaluation.md](evaluation.md#qualifications)).
 The O4 continuation ran on one GPU with 96 GB of memory (the run record
 names the device). Our fresh fits (`o4-fresh`, 12,000 updates, batch 8 x
 accumulation 8) ran on the same kind of GPU at about 2 updates per second
-alone and 1.5 with two fits sharing it, 2 hours 15 minutes each, peaking
+alone and 1.5 to 1.7 with two fits sharing it, 2 to 2¼ hours each, peaking
 near 13 GB of GPU memory per fit. Reduce `--batch` and raise `--grad-accum`
 to fit a smaller GPU with the same effective batch.
 
@@ -235,7 +235,7 @@ and selection settings, and O4's exact human-gold rows with
    pretrained XLM-R with a one-update head.
 3. **Budget.** The recipe's 4,000 updates were chosen for a continuation.
    In our fresh fit with teacher-labeled web text, human-gold zero-bias F1
-   was 86.3 after 2,000 updates, 88.1 after 4,000, 88.6 after 6,000 and 89.4
+   was 86.6 after 2,000 updates, 88.0 after 4,000, 87.7 after 6,000 and 88.9
    after 12,000; we recommend `--steps 12000` from scratch.
 4. **Validation.** O4's validation rows were Ont3-annotated; the public
    compiler's are relabeled publisher rows.

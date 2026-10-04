@@ -36,6 +36,8 @@ faker = "==40.31.0"
 # Name-kind model export and serving (versions of the paper's bundle).
 onnx = "==1.22.0"
 onnxruntime = "==1.29.0"
+# The shipped unit tests, run by `scripts/verify` (verify.toml).
+pytest = "==9.0.3"
 
 [pypi-options]
 index-url = "https://pypi.org/simple"

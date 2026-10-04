@@ -1,0 +1,115 @@
+{
+  "schema": "pii-name-annotation-qc-profiles",
+  "version": 1,
+  "carrier_labels": [
+    "person_name",
+    "given_name",
+    "middle_name",
+    "family_name",
+    "name_prefix",
+    "clinician_name",
+    "patient_name",
+    "relative_name"
+  ],
+  "component_labels": {
+    "given_name": "given_name",
+    "middle_name": "middle_name",
+    "family_name": "family_name"
+  },
+  "suppress_name_when_exactly_relabeled_as": [
+    "organization_reference",
+    "person_reference"
+  ],
+  "projection_values": {
+    "P19": ["person_name"],
+    "P20": ["person_name"],
+    "family": ["person", "person_name"]
+  },
+  "default_profile": {
+    "component_order": "given_first",
+    "allow_comma_inversion": true,
+    "max_join_gap_chars": 4,
+    "max_name_atoms": 8,
+    "minimum_assignment_margin": 1.0,
+    "weights": {
+      "order": 1.5,
+      "comma": 8.0,
+      "source_component": 0.0,
+      "lexicon": 3.0,
+      "compact_default": 1.25
+    },
+    "family_particles": [
+      "al",
+      "ap",
+      "bin",
+      "binti",
+      "da",
+      "de",
+      "del",
+      "della",
+      "der",
+      "di",
+      "dos",
+      "du",
+      "la",
+      "le",
+      "van",
+      "von",
+      "zu"
+    ],
+    "honorifics": [
+      "dr",
+      "miss",
+      "mr",
+      "mrs",
+      "ms",
+      "prof",
+      "sir"
+    ],
+    "compact_script": null,
+    "compact_family_lengths": [],
+    "default_compact_family_length": null,
+    "given_lexicons": [],
+    "family_lexicons": []
+  },
+  "profiles": {
+    "given_first": {},
+    "family_first": {
+      "component_order": "family_first"
+    },
+    "zh_han": {
+      "component_order": "family_first",
+      "compact_script": "Han",
+      "compact_family_lengths": [1, 2],
+      "default_compact_family_length": 1
+    },
+    "ko_hangul": {
+      "component_order": "family_first",
+      "compact_script": "Hangul",
+      "compact_family_lengths": [1, 2],
+      "default_compact_family_length": 1
+    }
+  },
+  "language_profiles": {
+    "ar": "given_first",
+    "cs": "given_first",
+    "de": "given_first",
+    "en": "given_first",
+    "es": "given_first",
+    "fr": "given_first",
+    "hu": "family_first",
+    "id": "given_first",
+    "it": "given_first",
+    "ja": "family_first",
+    "ko": "ko_hangul",
+    "nl": "given_first",
+    "pl": "given_first",
+    "pt": "given_first",
+    "ru": "given_first",
+    "sv": "given_first",
+    "tr": "given_first",
+    "uk": "given_first",
+    "vi": "family_first",
+    "zh": "zh_han"
+  }
+}

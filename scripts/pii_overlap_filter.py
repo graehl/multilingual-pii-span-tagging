@@ -17,6 +17,9 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from overlaplib import passing_candidates  # noqa: E402
+
 
 @contextmanager
 def atomic_text_output(path: Path) -> Iterator[Any]:
@@ -46,16 +49,6 @@ def read_jsonl(path: Path) -> Iterator[dict[str, Any]]:
         if "eval_id" not in row or "shared_top3" not in row:
             raise ValueError(f"{path}:{line_number}: not a joined overlap-neighbor row")
         yield row
-
-
-def passing_candidates(
-    row: dict[str, Any], lexical_threshold: float, semantic_threshold: float
-) -> list[dict[str, Any]]:
-    return [
-        candidate
-        for candidate in row["shared_top3"]
-        if candidate["chrf3_6_f1"] >= lexical_threshold and candidate["semantic_cosine"] >= semantic_threshold
-    ]
 
 
 def classify(

@@ -10,8 +10,16 @@ The base branch is whatever public rows the reader assembled (for example
 `pii-reproduce.py assemble`), sampled uniformly per distinct input. O4's
 private Luna, Terra and internal pools have no public counterpart here.
 
-Rows whose text equals a human-gold evaluation row are removed; this is an
-exact-text screen, weaker than the semantic overlap screen used for O4.
+Rows that overlap an evaluation row are removed. The default screen is the
+paper's overlap detector (overlaplib.overlapping: lexical and E5 nearest
+neighbors, both cuts passed by one evaluation row) against every
+--evaluation file; --screen exact keeps only the exact-text screen.
+
+Language caps bound each language's share of all training draws (default
+from language-caps.yaml: 20% for any language, 8% for Hindi). A capped
+language's base-branch rows are scaled down and the freed mass goes to the
+other base rows in proportion, so the gold branch and the branch split are
+unchanged; a cap the gold branch alone exceeds is reported, not enforced.
 """
 
 from __future__ import annotations
@@ -186,6 +194,98 @@ def weighted(rows, share):
     return sharing
 
 
+def screen_description(args) -> str:
+    if not args.evaluation:
+        return "none"
+    if args.screen == "overlap":
+        return "paper overlap detector against the evaluation files (exact matches included)"
+    return "exact normalized text against the evaluation files"
+
+
+def evaluation_keys(args) -> set[str]:
+    """Exact normalized texts of every evaluation file, the screen that always applies."""
+    return {
+        screen_key(json.loads(line)["text"])
+        for path in args.evaluation or ()
+        for line in path.open(encoding="utf-8")
+        if line.strip()
+    }
+
+
+def overlap_screen(args, groups: dict[str, list[dict]]) -> tuple[set[str], dict]:
+    """Screen keys of training texts that overlap an evaluation row, and a per-group audit."""
+    from overlaplib import DETECTOR_VERSION, overlapping, text_id
+
+    texts, owners = {}, {}
+    for group, rows in groups.items():
+        for row in rows:
+            identifier = text_id(row["text"])
+            texts.setdefault(identifier, (row["text"], row["lang"]))
+            owners.setdefault(identifier, set()).add(group)
+    evaluation = [(f"evaluation-{index}", path) for index, path in enumerate(args.evaluation)]
+    found = overlapping(
+        texts, evaluation, args.out.parent / f".{args.out.name}-overlap", device=args.screen_device
+    )
+    removed = Counter(group for identifier in found for group in owners[identifier])
+    audit = {
+        "detector": "paper overlap rule: nearest-three lexical chrF F1 >= 0.30 and E5 cosine >= 0.875 "
+        "on the same evaluation row",
+        "detector_version": DETECTOR_VERSION,
+        "evaluation": {name: sha256_file(path) for name, path in evaluation},
+        "distinct_texts_screened": len(texts),
+        "distinct_texts_removed": len(found),
+        "removed_by_group": dict(removed),
+        "examples": [
+            {"text": texts[identifier][0][:160], **match} for identifier, match in list(found.items())[:20]
+        ],
+        "expected_collateral": "about 0.2% of ordinary text, about 5% of template-heavy text (calibration "
+        "on disjoint validation splits, 2026-10-03)",
+    }
+    return {screen_key(texts[identifier][0]) for identifier in found}, audit
+
+
+def load_language_caps(args) -> dict | None:
+    """Per-language maximum share of training draws: file default and overrides, then CLI overrides."""
+    import yaml
+
+    if args.no_language_caps:
+        return None
+    config = yaml.safe_load(args.language_caps.read_text())
+    caps = {"default": float(config["default"]), "languages": dict(config.get("languages") or {})}
+    for value in args.language_cap or ():
+        language, separator, share = value.partition("=")
+        if not separator:
+            raise ValueError(f"--language-cap needs LANG=SHARE: {value!r}")
+        caps["languages"][language] = float(share)
+    for share in (caps["default"], *caps["languages"].values()):
+        if not 0 < share <= 1:
+            raise ValueError(f"language cap must be in (0, 1]: {share}")
+    return caps
+
+
+def apply_language_caps(rows: list[dict], caps: dict) -> dict:
+    """Scale capped languages' base rows down, giving the freed mass to the other base rows.
+
+    Shares are of all training draws. Gold rows and the base branch's total
+    mass are unchanged; a language whose gold rows alone exceed its cap keeps
+    its base rows and is reported.
+    """
+    from trainlib_mix import apply_caps
+
+    report = apply_caps(
+        rows,
+        {"default": caps["default"], "groups": caps["languages"]},
+        group=lambda row: row["lang"],
+        movable=lambda row: row["sampling_branch"] == "base",
+    )
+    return {
+        "default": report["default"],
+        "languages": report["groups"],
+        "capped": report["capped"],
+        "unattainable_from_gold": report["unattainable_from_fixed"],
+    }
+
+
 def write_language_round(path: Path, rows, floor: float) -> dict:
     """Declare this compiled mix's core languages for the trainer's coverage gate.
 
@@ -253,16 +353,22 @@ def compile_root(args) -> dict:
         raise ValueError("--stage root needs --base rows labeled with Ont3 primary types")
     mapping = json.loads(MAP.read_text())
     primary = mapping["ontology"]["primary_types"]
-    screened = set()
-    if args.evaluation:
-        screened = {screen_key(json.loads(line)["text"]) for line in args.evaluation.open(encoding="utf-8")}
+    screened = evaluation_keys(args)
     tokenizer = AutoTokenizer.from_pretrained(args.tokenizer)
     rows, audit = base_branch(args, tokenizer, screened)
     foreign = Counter(span[2] for row in rows for span in row["spans"] if span[2] not in primary)
     if foreign:
         raise ValueError(f"base rows carry labels outside the Ont3 primary types: {dict(foreign)}")
-    sharing = weighted(rows, 1.0)
     validation = base_validation(args, tokenizer, primary)
+    overlap = None
+    if args.screen == "overlap":
+        keys = getattr(args, "overlap_keys", None)
+        if keys is None:
+            keys, overlap = overlap_screen(args, {"base": rows, "validation": validation})
+        rows, validation = (
+            [row for row in part if screen_key(row["text"]) not in keys] for part in (rows, validation)
+        )
+    sharing = weighted(rows, 1.0)
     args.out.mkdir(parents=True, exist_ok=False)
     write_jsonl(args.out / "train.jsonl", rows)
     language_round = write_language_round(args.out / "language-round.yaml", rows, args.language_floor)
@@ -276,14 +382,13 @@ def compile_root(args) -> dict:
         "validation_windows": len(validation),
         "language_round": language_round,
         "validation": "assembler row split; not document-separated",
-        "screen": "exact normalized text against the human-gold evaluation rows"
-        if args.evaluation
-        else "none",
+        "screen": screen_description(args),
+        "overlap_screen": overlap,
         "audit": audit,
         "annotation_sharing": sharing,
         "inputs": {
             "base": sha256_file(args.base / "train.jsonl"),
-            "evaluation": sha256_file(args.evaluation) if args.evaluation else None,
+            "evaluation": [sha256_file(path) for path in args.evaluation or ()],
         },
         "outputs": {
             name: sha256_file(args.out / name) for name in ("train.jsonl", "val.jsonl", "labels.json")
@@ -305,18 +410,12 @@ def compile_mixture(args) -> dict:
     primary = set(mapping["ontology"]["primary_types"])
     negative = json.loads(NEGATIVE_COVERAGE.read_text())["negative_types_by_corpus"]
     unknown_by_corpus = {corpus: sorted(primary - set(negative[corpus])) for corpus in args.gold_corpus}
-    screened = set()
-    if args.evaluation:
-        screened = {screen_key(json.loads(line)["text"]) for line in args.evaluation.open(encoding="utf-8")}
+    if args.screen == "overlap" and not args.evaluation:
+        raise ValueError("the overlap screen needs at least one --evaluation file")
+    screened = evaluation_keys(args)
     tokenizer = AutoTokenizer.from_pretrained(args.tokenizer)
     gold, audit = gold_branch(args, mapping, unknown_by_corpus, tokenizer, screened, "train")
-    sharing = {"human_gold": weighted(gold, args.gold_share)}
-    rows = list(gold)
-    base_audit = None
-    if args.base is not None:
-        base, base_audit = base_branch(args, tokenizer, screened)
-        sharing["base"] = weighted(base, 1 - args.gold_share)
-        rows.extend(base)
+    base, base_audit = base_branch(args, tokenizer, screened) if args.base is not None else ([], None)
     if args.base is not None:
         validation = base_validation(args, tokenizer, mapping["ontology"]["primary_types"])
         validation_audit = {"source": "base assembler validation rows, Ont3 labels; not document-separated"}
@@ -328,6 +427,20 @@ def compile_mixture(args) -> dict:
         validation_audit["source"] = (
             "gold validation splits in native labels; unsuitable for span-F1 selection"
         )
+    overlap = None
+    if args.screen == "overlap":
+        keys, overlap = overlap_screen(args, {"human_gold": gold, "base": base, "validation": validation})
+        gold, base, validation = (
+            [row for row in rows if screen_key(row["text"]) not in keys] for rows in (gold, base, validation)
+        )
+        args.overlap_keys = keys
+    sharing = {"human_gold": weighted(gold, args.gold_share)}
+    rows = list(gold)
+    if args.base is not None:
+        sharing["base"] = weighted(base, 1 - args.gold_share)
+        rows.extend(base)
+    caps = load_language_caps(args)
+    language_caps = apply_language_caps(rows, caps) if caps and args.base is not None else None
     args.out.mkdir(parents=True, exist_ok=False)
     write_jsonl(args.out / "train.jsonl", rows)
     language_round = write_language_round(args.out / "language-round.yaml", rows, args.language_floor)
@@ -353,9 +466,9 @@ def compile_mixture(args) -> dict:
         "validation_windows": len(validation),
         "language_round": language_round,
         "max_records_per_corpus": args.max_records_per_corpus,
-        "screen": "exact normalized text against the human-gold evaluation rows"
-        if args.evaluation
-        else "none",
+        "screen": screen_description(args),
+        "overlap_screen": overlap,
+        "language_caps": language_caps,
         "o4_membership": sha256_file(args.o4_membership) if args.o4_membership else None,
         "audit": dict(audit),
         "base_audit": base_audit,
@@ -364,7 +477,7 @@ def compile_mixture(args) -> dict:
         "inputs": {
             "candidate_map": sha256_file(MAP),
             "negative_coverage": sha256_file(NEGATIVE_COVERAGE),
-            "evaluation": sha256_file(args.evaluation) if args.evaluation else None,
+            "evaluation": [sha256_file(path) for path in args.evaluation or ()],
             "base": sha256_file(args.base / "train.jsonl") if args.base else None,
         },
         "outputs": {
@@ -403,7 +516,35 @@ def build_parser():
     parser.add_argument(
         "--gold-share", type=float, default=0.5, help="Human-gold branch probability (O4: 0.5)"
     )
-    parser.add_argument("--evaluation", type=Path, help="Rebuilt human-gold evaluation.jsonl to screen out")
+    parser.add_argument(
+        "--evaluation",
+        type=Path,
+        action="append",
+        help="Evaluation JSONL (id, text, lang) to keep out of training, e.g. the rebuilt human gold and "
+        "the Ont3 inputs; repeatable",
+    )
+    parser.add_argument(
+        "--screen",
+        choices=("overlap", "exact"),
+        default="overlap",
+        help="overlap: the paper's overlap detector (default); exact: exact normalized text only",
+    )
+    parser.add_argument("--screen-device", default="cuda", help="Embedding device for the overlap screen")
+    parser.add_argument(
+        "--language-caps",
+        type=Path,
+        default=ROOT / "research/pii/frontier/software/language-caps.yaml",
+        help="YAML: default maximum share of training draws for any language, plus per-language overrides",
+    )
+    parser.add_argument(
+        "--language-cap",
+        action="append",
+        metavar="LANG=SHARE",
+        help="Override one language's cap; repeatable",
+    )
+    parser.add_argument(
+        "--no-language-caps", action="store_true", help="Sample languages by row weight alone"
+    )
     parser.add_argument(
         "--o4-membership",
         type=Path,
