@@ -95,12 +95,12 @@
     },
     {
       "path": "research/pii/frontier/evidence/priority9-shared-v1/predict-sweeps.py",
-      "sha256": "e72ccf3a9d8d8584d2cc5f6508bf041864a48d03daa6f12491590aae165b6e1a",
+      "sha256": "c72df38ab64c509043714c9f88b31905103f34759213705cf82031165fd33ec0",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/evidence/priority9-shared-v1/render-comparison.py",
-      "sha256": "339914e593af4203f7127b854eed455998742331e7c3500c5309f53db2970706",
+      "sha256": "a49088c857a727e380cc4772985c9bb649868d2c8ed1c6460971129d84130c1f",
       "redacted": false
     },
     {
@@ -359,18 +359,23 @@
       "redacted": false
     },
     {
+      "path": "scripts/pii_paper_filter_extension.py",
+      "sha256": "f6dfa9ca76cd095d80b7ff3cda0b617cf60e0524b75f092db7c83b4ddada4bef",
+      "redacted": false
+    },
+    {
       "path": "scripts/pii_paper_o4_eval.py",
-      "sha256": "c13c01c394930928d8710ba8aedea8b9635b80fd4235a4f5070740440cf34234",
+      "sha256": "919ef63a366e425b5c491f4c2b6375931295d79c7ddccfaf8a6dd0dcf4d2f9d5",
       "redacted": false
     },
     {
       "path": "scripts/pii_paper_o4_figures.py",
-      "sha256": "72f4b6b5667dce2153863d8cf60f17b9b412a4441b38646fb8a272b4fb263374",
+      "sha256": "59d2720ca35ba593f1242e9430217dbab44847d74f9c6a6c772395f6a1991555",
       "redacted": false
     },
     {
       "path": "scripts/pii_paper_pooled_eval.py",
-      "sha256": "c40091bbdc1b0b137e6e1c84a3a3669a69327d2520e9c8a41cfdbef994edc29c",
+      "sha256": "1b401d580897765ec04077f029abccaa1195c236edf817b4027b8f0b7c009199",
       "redacted": false
     },
     {
@@ -430,7 +435,7 @@
     },
     {
       "path": "scripts/pii_reproduction_export.py",
-      "sha256": "8229d3d0c1561162aae5d603ef7189912617a93a149f950ee82dcea9b58172ac",
+      "sha256": "ceab16f36c38673fbf416235afae05d4de98bae57a2db4ddc09154907c010c8d",
       "redacted": false
     },
     {
@@ -485,7 +490,7 @@
     },
     {
       "path": "scripts/pii_software_receipts.py",
-      "sha256": "96d6a317ab1eafa2b7d35173551ead4877f38fa6d92c66ccea12de37350f8419",
+      "sha256": "e83baee4801d2f0fb5ca10a9e05d1f7b0e7e9a12abe5f5055244c26560fd8fed",
       "redacted": false
     },
     {
@@ -615,17 +620,17 @@
     },
     {
       "path": "research/pii/frontier/software/guide.md",
-      "sha256": "f503164a978d9a1392abe6b9796dd77640964f760568bfcc3eb4b1a201fc4f86",
+      "sha256": "1420f5370a825546d91dec28c4f776b93272de7ccf0990868afd11a60bf7316f",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/docs/data.md",
-      "sha256": "c8d007e23ddb8aec39a055643ac59292e47af10786f4ba3d50950e6924f7ded9",
+      "sha256": "044f9fe1507c63e054d643eefa15eb9504399aa04d7a6194af7fe1dba16bbf7c",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/docs/evaluation.md",
-      "sha256": "ed397a8c9e762fb7186420f7cd6b6cd150ddcaaa9d0750df3bfbaa65937bfb91",
+      "sha256": "8aa5c9528d4e36358718ae86e8753f500998973b8a1f43af55011565f4d7249b",
       "redacted": false
     },
     {
@@ -1105,12 +1110,12 @@
     },
     {
       "path": "research/pii/frontier/software/records/CLAIMS.md",
-      "sha256": "06868bfed9d10f1002060d3aae4da7f2313703ee8cb2fef920640791b179f046",
+      "sha256": "f5d706a7dab3ed39477871b6602c11598c171e6f53c23a540860772da23519bc",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/records/README.md",
-      "sha256": "e01b773fed721fa8bdc50e61b1b125335a9699a2207721426b99a36ff1666945",
+      "sha256": "d5a91f3f9417020729018072bc25f929dc99e5c048179d99966d7fec50a98b1b",
       "redacted": false
     },
     {
@@ -1189,8 +1194,28 @@
       "redacted": false
     },
     {
+      "path": "research/pii/frontier/software/records/receipts/operating-point-fine-bias.json.gz",
+      "sha256": "c5b30bc5bd2e9730b9f98890f1b68ab6986e2012146c8e1c858428e2d1c8b6f0",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/operating-point-presidio.json.gz",
+      "sha256": "3150915c087d9717512dea0c2f56ff04edaf6f00a956756742a14793def0fb33",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/operating-point-refined-grid.json.gz",
+      "sha256": "9e2934dcfbb150eef140c55344524b554185654d9b22f0ff94d9912fff8be8cc",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/operating-points-trust-region.json",
+      "sha256": "ae29ee48618a26d6731f20e749b6ffbc089e29d73c06ef0f4f2d8728ceba8048",
+      "redacted": false
+    },
+    {
       "path": "research/pii/frontier/software/records/receipts/receipts.json",
-      "sha256": "4df143b7fec2094daec6f3ea3967cbe9ef81dd23528b6c01533ba21f6197d335",
+      "sha256": "aecaf29ca7c5c3b4696669bd2e360b9e4282553a4da3335c8a3a4f573c9022bd",
       "redacted": false
     },
     {
@@ -1480,7 +1505,7 @@
     },
     {
       "path": "data/ont3-evaluation/README.md",
-      "sha256": "92a37f9e55d3bb7d8702ad8e42d1163635c735a3804efbb1daff6feb2111a966",
+      "sha256": "e7acc624ff1051e9e41fb15f697aca1a237b62ef16b1603995b8b78cfcc696db",
       "redacted": false
     },
     {

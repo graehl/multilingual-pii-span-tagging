@@ -15,7 +15,10 @@ text with our reference annotations; both ship in `data/ont3-evaluation/`.
 None of the roughly 50,000 Ont3-annotated training rows ship. Scores are
 untyped redaction-region F1
 at 80% overlap unless marked typed; "max" is the best point on each system's
-confidence or O-bias curve, "fixed" the predeclared operating point.
+confidence or O-bias curve, "fixed" the predeclared zero bias (confidence
+0.5 for GLiNER2). The paper's main comparison reports each system at the
+operating point it fixed on Silver-dev (the 659 dev segments); for O4 that
+is zero bias.
 
 | Claim | Value | Evidence | Status |
 |---|---|---|---|
@@ -26,6 +29,9 @@ confidence or O-bias curve, "fixed" the predeclared operating point.
 | Presidio human gold / Ont3 | 57.27 / 44.27 | same | Recomputed |
 | OpenMed multilingual v2 human gold / Ont3 | 35.80 / 39.41 | same | Recomputed |
 | O3, Ont1, Ont2 and the other privacy filters | see `verify --details` | same | Recomputed |
+| Operating points fixed on Silver-dev (near-optimal-range rule) | O4 bias 0, O3 0.25, O2 −2, GLiNER2 0.6, GL4 0.25, Presidio 0.2, OpenMed v2 −1.5 | `receipts/operating-points-trust-region.json`, `o4-comparison` and the `operating-point-*` grids | Recomputed |
+| Gold-7 F1 at those points: O4 / GLiNER2 / Presidio / GL4 / OpenMed v2 | 88.16 / 69.08 / 57.27 / 66.27 / 34.14 | same | Recomputed |
+| Silver-test F1 at those points: O4 / GLiNER2 / OpenMed v2 | 79.88 / 72.73 / 43.85 | same | Recomputed |
 | O4 minus O3, exact regions, human gold | +1.25 [0.19, 2.34] | `receipts/o4-comparison-summary.json` `paired` | Recomputed (10,000 source-group resamples) |
 | O4 minus O3, exact typed spans, Ont3 | +1.79 [0.51, 3.13] | same | Recomputed |
 | O4 minus O3, exact regions, Ont3 | +0.55 [−0.62, 1.74] | same | Recomputed |

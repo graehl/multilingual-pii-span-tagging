@@ -23,6 +23,9 @@ from pii_eval import (
 from pii_ont3_eval import _decode_window, merge_adjacent_same_type, predict_rows
 
 GRID = [*range(-8, 17), 24, 32]
+# Quarter steps over -4..4, where every paper system's Silver-dev optimum lies,
+# keeping every saved integer point so they can be checked against old sweeps.
+FINE_GRID = sorted({float(b) for b in GRID} | {step / 4 for step in range(-16, 17)})
 THRESHOLDS = [0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98, 0.99]
 MODELS = {
     "ont1": "/scratch/paper-priority9-ont1-model",
@@ -49,7 +52,24 @@ def main():
     )
     parser.add_argument("--context-side", choices=["both", "previous", "none"], default="both")
     parser.add_argument("--labels", type=Path, default=Path("/scratch/paper-priority9-labels.json"))
+    parser.add_argument(
+        "--grid",
+        choices=["saved", "fine"],
+        default="saved",
+        help="O-logit bias grid: saved = integers -8..16, 24, 32; fine adds quarter steps over -4..4",
+    )
+    parser.add_argument(
+        "--logit-cache",
+        type=Path,
+        help="ont3 kinds: also save every window's id, primary logits and token offsets with torch.save, "
+        "so a further bias can be decoded without an encoder pass",
+    )
     args = parser.parse_args()
+    grid = FINE_GRID if args.grid == "fine" else GRID
+    # ont1/ont2 decode with legal-BIOES projection, which pii_eval's score
+    # cache does not support.
+    if args.logit_cache and args.kind not in {"ont3", "ont3-context"}:
+        parser.error("--logit-cache is supported for ont3 kinds only")
     kind = args.kind
     path, output = args.input, args.output
     rows = [json.loads(line) for line in path.open()]
@@ -68,7 +88,7 @@ def main():
             print,
             model_id=model_source,
             bioes_project_legal=True,
-            o_logit_biases=GRID,
+            o_logit_biases=grid,
             bucket_compat="redaction_20_v1" if kind == "ont1" else "fine",
             hf_windowing="token-capacity",
         )
@@ -116,7 +136,12 @@ def main():
         labels = {int(k): v for k, v in config["id2label"].items()}
         outside = [k for k, v in labels.items() if v == "O"]
         assert len(outside) == 1
-        for bias in GRID:
+        if args.logit_cache:
+            torch.save(
+                dict(model_path=model_source, id2label=labels, input=str(path), windows=cache),
+                args.logit_cache,
+            )
+        for bias in grid:
             predictions = {r["id"]: [] for r in rows}
             for key, logits, offsets in cache:
                 spans, _, _ = _decode_window(logits, offsets, labels, column_biases={outside[0]: bias})

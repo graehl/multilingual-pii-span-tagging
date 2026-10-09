@@ -10,7 +10,9 @@ expands back to the original counts and that no receipt string occurs in any
 reference text. `verify` (reader side) recomputes every reported maximum,
 fixed-bias score and paired bootstrap interval from the receipts with the
 paper's own pooling and resampling code and compares them with the shipped
-summaries.
+summaries. It also re-runs the paper's Silver-dev operating-point selection
+on the receipts and checks each system's chosen threshold and its F1 on
+Gold-7 and Silver-test against the paper.
 """
 
 from __future__ import annotations
@@ -46,6 +48,47 @@ SOURCES = {
         None,
         "GLiNER2 adaptation checkpoints on the paper populations (development trajectory)",
     ),
+    # Finer threshold grids behind the Silver-dev operating points, merged
+    # over o4-comparison in this order, as the paper's figure script does.
+    "operating-point-presidio": (
+        "paper-o4-v1/presidio-threshold-v1/scores.json.gz",
+        None,
+        "Presidio score-threshold sweep (step 0.05) filtered from its saved threshold-0 outputs",
+    ),
+    "operating-point-refined-grid": (
+        "paper-o4-v1/refined-grid-v1/scores.json.gz",
+        None,
+        "GLiNER2 and GL4 confidence steps of 0.05, Presidio score steps of 0.025, from saved outputs",
+    ),
+    "operating-point-fine-bias": (
+        "paper-o4-v1/fine-bias-v1/scores.json.gz",
+        None,
+        "Quarter-step O biases over -4..4 for O3, O4 and OpenMed Privacy Filter; the rerun "
+        "reproduced every saved bias row by row",
+    ),
+}
+# Silver-dev operating points (the paper's operating-point appendix): the
+# shipped summary is recomputed in full from o4-comparison merged with the
+# finer grids above.
+OPERATING_POINTS = {
+    "summary": "operating-points-trust-region.json",
+    "source": "paper-o4-v1/operating-points-trust-region.json",
+    "rule": "trust-region",
+    "comparison": "o4-comparison",
+    "grids": ("operating-point-presidio", "operating-point-refined-grid", "operating-point-fine-bias"),
+}
+# What the paper states at those points: the threshold fixed on Silver-dev
+# and 80%-overlap redaction-region F1 (percent, one decimal) on Gold-7
+# (`human`) and Silver-test (`heldout`).
+PAPER_OPERATING_POINTS = {
+    "o4": (0, {"gold7": 88.2, "silver_test": 79.9}),
+    "o3": (0.25, {}),
+    "ont2": (-2, {}),
+    "gliner2": (0.6, {"gold7": 69.1, "silver_test": 72.7}),
+    "gliner2-o4": (0.25, {"gold7": 66.3}),
+    "presidio": (0.2, {"gold7": 57.3}),
+    # Silver-test is 43.8496: 43.8, not the 43.9 a two-decimal 43.85 rounds to.
+    "opf-openmed-multi2": (-1.5, {"gold7": 34.1, "silver_test": 43.8}),
 }
 # Already text-free evidence behind other paper claims, shipped as sanitized
 # copies (paths reduced to basenames). Recorded, not recomputed by verify.
@@ -294,6 +337,7 @@ def build(args) -> dict:
                 "sha256": sha256_bytes((EVIDENCE / summary).read_bytes()),
             }
         manifest["receipts"][name] = entry
+    manifest["operating_points"] = build_operating_points(args.out, manifest)
     manifest["recorded"] = {}
     for name, evidence in EXTRAS.items():
         source = EVIDENCE / evidence
@@ -313,26 +357,166 @@ def close(a: float, b: float) -> bool:
     return abs(a - b) <= 1e-12
 
 
+def curve_copy(report: dict) -> dict:
+    """A copy whose population and curve entries can be replaced without touching `report`.
+
+    Pooling and grid merging replace whole populations, curves and points but
+    never edit a point, so the per-row counts are shared rather than deep-copied.
+    """
+    return {
+        **report,
+        "populations": dict(report["populations"]),
+        "systems": {
+            model: {population: dict(entry) for population, entry in populations.items()}
+            for model, populations in report["systems"].items()
+        },
+    }
+
+
+def recompute_operating_points(reports: dict[str, dict]) -> dict:
+    """The paper's Silver-dev operating points from expanded receipts.
+
+    Merges the finer grids over the main comparison with the figure script's
+    own merge (each finer grid must reproduce every coarser point row by
+    row), then applies its selection rule.
+    """
+    import contextlib
+
+    from pii_paper_o4_figures import merge_refined_system, operating_points
+
+    report = curve_copy(reports[OPERATING_POINTS["comparison"]])
+    for name in OPERATING_POINTS["grids"]:
+        grid = reports[name]
+        if grid.get("status") != "complete":
+            raise ValueError(f"{name}: incomplete grid receipt")
+        for model in grid["systems"]:
+            merge_refined_system(report, grid, model)
+    # The figure script narrates each selection on stdout, which carries this tool's result.
+    with contextlib.redirect_stdout(sys.stderr):
+        return operating_points(report, OPERATING_POINTS["rule"])
+
+
+def differences(stated, got, path: str = "") -> list[str]:
+    """Paths where a recomputed value differs from the stated one (numbers within 1e-12)."""
+    if isinstance(stated, dict):
+        if not isinstance(got, dict):
+            return [path]
+        return [
+            difference
+            for key, value in stated.items()
+            for difference in (
+                differences(value, got[key], f"{path}/{key}") if key in got else [f"{path}/{key}"]
+            )
+        ]
+    if isinstance(stated, list):
+        if not isinstance(got, list) or len(stated) != len(got):
+            return [path]
+        return [
+            difference
+            for i, (a, b) in enumerate(zip(stated, got))
+            for difference in differences(a, b, f"{path}/{i}")
+        ]
+    numeric = (int, float)
+    if isinstance(stated, numeric) and not isinstance(stated, bool):
+        ok = isinstance(got, numeric) and not isinstance(got, bool) and close(stated, got)
+        return [] if ok else [path]
+    return [] if stated == got else [path]
+
+
+def operating_point_checks(stated: dict, got: dict) -> tuple[list[dict], list[str]]:
+    """Compare a recomputed operating-point summary with the shipped one and the paper."""
+    # Sources name the maintainer's score archives; the receipts manifest binds their hashes.
+    failures = [
+        f"operating points: {path} differs"
+        for path in differences({k: v for k, v in stated.items() if k != "sources"}, got)
+    ]
+    checks = []
+    for model, (threshold, f1s) in PAPER_OPERATING_POINTS.items():
+        entry = got["systems"][model]
+        f1 = {
+            name: entry["evaluations"][name]["80"]["selected"]["F1"] * 100
+            for name in ("silver_dev", "gold7", "silver_test")
+        }
+        ok = close(entry["selected_threshold"], threshold) and all(
+            f"{f1[name]:.1f}" == f"{value:.1f}" for name, value in f1s.items()
+        )
+        checks.append(
+            {
+                "system": model,
+                "selected": entry["selected_threshold"],
+                "near_optimal": entry["trust_region"]["bounds"],
+                **{f"{name}_f1": round(value, 2) for name, value in f1.items()},
+                "paper": {"threshold": threshold, **f1s},
+                "ok": ok,
+            }
+        )
+        if not ok:
+            failures.append(f"operating points: {model} does not give the paper's {threshold} / {f1s}")
+    return checks, failures
+
+
+def build_operating_points(out: Path, manifest: dict) -> dict:
+    """Ship the operating-point summary and prove the receipts recompute it."""
+    from pii_paper_o4_figures import PRESIDIO_SWEEP, REFINED_SOURCES
+
+    # The grid receipts must be the figure script's own grids, merged in its order.
+    expected = [(PRESIDIO_SWEEP, ("presidio",)), *REFINED_SOURCES.items()]
+    reports = {}
+    for name, (path, models) in zip(OPERATING_POINTS["grids"], expected, strict=True):
+        if EVIDENCE / SOURCES[name][0] != path:
+            raise ValueError(f"{name} is not the figure script's grid {path}")
+        reports[name] = expand(read_json(out / manifest["receipts"][name]["receipt"]))
+        if set(reports[name]["systems"]) != set(models):
+            raise ValueError(f"{name} systems differ from the figure script's {models}")
+    comparison = OPERATING_POINTS["comparison"]
+    reports[comparison] = expand(read_json(out / manifest["receipts"][comparison]["receipt"]))
+    source = EVIDENCE / OPERATING_POINTS["source"]
+    clean = sanitized(read_json(source))
+    text_free(clean)
+    found: set[str] = set()
+    strings(clean, found)
+    corpus = reference_texts(read_json(EVIDENCE / SOURCES[comparison][0]))
+    if leaked := sorted(value for value in found if content_like(value) and value in corpus):
+        raise ValueError(f"operating-point summary strings occur in reference text: {leaked[:5]}")
+    _checks, failures = operating_point_checks(clean, recompute_operating_points(reports))
+    if failures:
+        raise ValueError(f"receipts do not recompute the operating points: {failures[:5]}")
+    target = out / OPERATING_POINTS["summary"]
+    write_json(target, clean)
+    return {
+        "purpose": "Silver-dev trust-region operating point of every main-comparison system, "
+        "scored on Gold-7 and Silver-test",
+        "summary": target.name,
+        "summary_sha256": sha256_bytes(target.read_bytes()),
+        "summary_source": {
+            "evidence": OPERATING_POINTS["source"],
+            "sha256": sha256_bytes(source.read_bytes()),
+        },
+        "rule": OPERATING_POINTS["rule"],
+        "comparison": comparison,
+        "grids": list(OPERATING_POINTS["grids"]),
+    }
+
+
 def verify(args) -> dict:
     """Recompute every reported number from the receipts and compare."""
-    import copy
-
     from pii_paper_o4_figures import fixed, paired, pool_ont3
     from pii_paper_pooled_eval import metrics
 
     manifest = json.loads((args.receipts / "receipts.json").read_text())
     checks, failures = [], []
+    reports = {}
     for name, entry in manifest["receipts"].items():
         path = args.receipts / entry["receipt"]
         if sha256_bytes(path.read_bytes()) != entry["receipt_sha256"]:
             failures.append(f"{name}: receipt hash differs from manifest")
             continue
-        report = expand(read_json(path))
+        report = reports[name] = expand(read_json(path))
         if "summary" not in entry:
             checks.append({"receipt": name, "check": "expanded", "systems": len(report["systems"])})
             continue
         summary = read_json(args.receipts / entry["summary"])
-        pooled = pool_ont3(copy.deepcopy(report))
+        pooled = pool_ont3(curve_copy(report))
         for model, populations in summary.get("systems", {}).items():
             for population, views in populations.items():
                 points = pooled["systems"][model][population]["points"]
@@ -386,10 +570,31 @@ def verify(args) -> dict:
             )
             if not ok:
                 failures.append(f"{name}: paired {stated['candidate']}/{stated['control']}")
+    operating = manifest["operating_points"]
+    summary_path = args.receipts / operating["summary"]
+    operating_rows = []
+    if sha256_bytes(summary_path.read_bytes()) != operating["summary_sha256"]:
+        failures.append("operating points: summary hash differs from manifest")
+    elif missing := [name for name in (operating["comparison"], *operating["grids"]) if name not in reports]:
+        failures.append(f"operating points: unverified receipts {missing}")
+    else:
+        operating_rows, operating_failures = operating_point_checks(
+            read_json(summary_path), recompute_operating_points(reports)
+        )
+        failures.extend(operating_failures)
+        checks.extend({"receipt": "operating-points", **row} for row in operating_rows)
+    o4 = next((row for row in operating_rows if row["system"] == "o4"), None)
     result = {
         "ok": not failures,
         "checks": len(checks),
         "failures": failures,
+        "operating_points": (
+            f"{len(operating_rows)} systems' Silver-dev trust-region points and their Gold-7/Silver-test "
+            f"F1 match the paper; O4 bias {o4['selected']:g}: Gold-7 {o4['gold7_f1']:.1f}, "
+            f"Silver-test {o4['silver_test_f1']:.1f}"
+            if o4 and not failures
+            else "not verified"
+        ),
         "details": checks if args.details else None,
     }
     if failures:

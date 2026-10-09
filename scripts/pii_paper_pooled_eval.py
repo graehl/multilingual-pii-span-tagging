@@ -16,6 +16,8 @@ from importlib.metadata import distribution, version
 from pathlib import Path
 
 sys.path.insert(0, str(Path.home() / "agents"))
+# The repository's (or software package's) own acli copy when ~/agents is absent.
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 import acli
 
 ROOT = Path(__file__).resolve().parents[1]

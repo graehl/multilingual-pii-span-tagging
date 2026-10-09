@@ -49,7 +49,62 @@
         "strings_checked": 2532,
         "reference_documents": 2514
       }
+    },
+    "operating-point-presidio": {
+      "purpose": "Presidio score-threshold sweep (step 0.05) filtered from its saved threshold-0 outputs",
+      "receipt": "operating-point-presidio.json.gz",
+      "receipt_sha256": "3150915c087d9717512dea0c2f56ff04edaf6f00a956756742a14793def0fb33",
+      "source": {
+        "evidence": "paper-o4-v1/presidio-threshold-v1/scores.json.gz",
+        "sha256": "1ba2f98efd6b634db8c5e96b552583d382ea84b5b6a4218d1870b9c09b865c3e"
+      },
+      "leak_scan": {
+        "strings_checked": 3268,
+        "reference_documents": 2514
+      }
+    },
+    "operating-point-refined-grid": {
+      "purpose": "GLiNER2 and GL4 confidence steps of 0.05, Presidio score steps of 0.025, from saved outputs",
+      "receipt": "operating-point-refined-grid.json.gz",
+      "receipt_sha256": "9e2934dcfbb150eef140c55344524b554185654d9b22f0ff94d9912fff8be8cc",
+      "source": {
+        "evidence": "paper-o4-v1/refined-grid-v1/scores.json.gz",
+        "sha256": "60dca89aa29995914509be0aa1981da887a95f3f0795fc58c2b5512a96dac392"
+      },
+      "leak_scan": {
+        "strings_checked": 3304,
+        "reference_documents": 2514
+      }
+    },
+    "operating-point-fine-bias": {
+      "purpose": "Quarter-step O biases over -4..4 for O3, O4 and OpenMed Privacy Filter; the rerun reproduced every saved bias row by row",
+      "receipt": "operating-point-fine-bias.json.gz",
+      "receipt_sha256": "c5b30bc5bd2e9730b9f98890f1b68ab6986e2012146c8e1c858428e2d1c8b6f0",
+      "source": {
+        "evidence": "paper-o4-v1/fine-bias-v1/scores.json.gz",
+        "sha256": "673a428adb8812ea0f5b3cc655d7398759b6a1f3ce86db5dd9f2ae11f0dd2e00"
+      },
+      "leak_scan": {
+        "strings_checked": 3289,
+        "reference_documents": 2514
+      }
     }
+  },
+  "operating_points": {
+    "purpose": "Silver-dev trust-region operating point of every main-comparison system, scored on Gold-7 and Silver-test",
+    "summary": "operating-points-trust-region.json",
+    "summary_sha256": "ae29ee48618a26d6731f20e749b6ffbc089e29d73c06ef0f4f2d8728ceba8048",
+    "summary_source": {
+      "evidence": "paper-o4-v1/operating-points-trust-region.json",
+      "sha256": "b053a6a79680c289cd2a3253572d65b7d2d5fad9bc8d0ad7ec76caa61ba67272"
+    },
+    "rule": "trust-region",
+    "comparison": "o4-comparison",
+    "grids": [
+      "operating-point-presidio",
+      "operating-point-refined-grid",
+      "operating-point-fine-bias"
+    ]
   },
   "recorded": {
     "local-llm-summary.json": {

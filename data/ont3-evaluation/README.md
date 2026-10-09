@@ -22,6 +22,10 @@ scorer checks each sweep's recorded input hash against these files.
 a reused development set; the 542 held-out rows were never used to select
 it. Report both and the pooled 1,201.
 
+**Paper names.** The paper calls the selection rows Silver-dev, the held-out
+rows Silver-test, and all 1,201 rows Silver; receipts and sweep files call
+them `ont3`, `heldout`, and the pooled Ont3 development set.
+
 **Spans** are `[start, end, type]` character offsets into `text` over the 31
 Ont3 types (`docs/ontology.md`); `*_reference` types are optional references,
 neutral in scoring.

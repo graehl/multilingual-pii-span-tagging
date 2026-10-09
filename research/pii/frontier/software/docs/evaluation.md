@@ -61,7 +61,7 @@ of four public corpora:
 
 | Corpus | Rows | | Language | Rows |
 |---|---|---|---|---|
-| OpenNER commercial core | 904 | | German | 196 |
+| OpenNER (non-NC subset) | 904 | | German | 196 |
 | MAPA | 189 | | Spanish | 195 |
 | AQMAR | 134 | | Chinese | 195 |
 | Wojood sample | 56 | | Portuguese | 192 |
@@ -183,15 +183,29 @@ prediction script
 decodes every row at `b` = -8, -7, ..., 16, 24 and 32 in one pass and
 scores each.
 
-Two numbers are reported per system:
+Three numbers appear per system:
 
 - **Curve maximum**: the best F1 over the sweep. It is chosen on the
   evaluation rows themselves, so it is **descriptive**: it shows what the
   model could reach with a tuned threshold, not an honest held-out estimate.
   O4's human-gold maximum is at `b` = 1.
-- **Fixed zero bias**: F1 at `b` = 0, declared in advance as the operating
-  point. This is the number for comparisons and intervals. Systems with a
-  confidence threshold instead of a bias (GLiNER2) use a fixed 0.5.
+- **Fixed zero bias**: F1 at `b` = 0, declared in advance. The paired
+  intervals in the receipts' main comparison and `evaluate`'s comparison
+  with O4 use it. Systems with a confidence threshold instead of a bias
+  (GLiNER2) use a fixed 0.5.
+- **Operating point fixed on Silver-dev**: the point the paper's main
+  comparison reports. Every grid setting is scored on Silver-dev (the 659
+  `ont3` selection rows) alone; its source documents are resampled 10,000
+  times (seed 20261009), and a setting is near-optimal when the 95% interval
+  of its F1 difference from the best setting includes zero. The operating
+  point is the median setting of the contiguous near-optimal range around
+  the best, and it is applied unchanged to Gold-7 (`human`) and Silver-test
+  (`heldout`). The grids are finer than the sweep above: quarter steps of
+  `b` from -4 to 4 for O3, O4 and OpenMed Privacy Filter, GLiNER2 confidence
+  steps of 0.05 and Presidio score steps of 0.025; O2 keeps its saved
+  integer grid. O4's operating point is `b` = 0, so its zero-bias numbers
+  are also its Silver-dev-fixed numbers (88.16 F1 on Gold-7 and 79.88 on
+  Silver-test at 80% overlap).
 
 ## Paired bootstrap intervals
 
@@ -273,6 +287,15 @@ each receipt to the withheld score archive, gold files and prediction files.
 | `o4-comparison` | 13 systems on human gold and the Ont3 development pool; paired O4 vs. O3 and GLiNER2 comparisons |
 | `o4-boundary` | O4 with and without boundary refinement at zero bias |
 | `gliner-trajectory` | GLiNER2 adaptation checkpoints on the paper populations (development diagnostic) |
+| `operating-point-presidio`, `operating-point-refined-grid`, `operating-point-fine-bias` | The finer threshold and bias grids behind the Silver-dev operating points |
+| `operating-points-trust-region.json` | Each system's Silver-dev operating point, its near-optimal range and its scores on Gold-7 and Silver-test |
+
+For the operating points, `verify` merges the finer grids over the main
+comparison, reruns the paper's selection rule
+(`operating_points` in `scripts/pii_paper_o4_figures.py`), compares every
+value of `operating-points-trust-region.json` with the result, and checks
+each system's chosen setting and its rounded F1 against the paper. Its
+result line reads, for example, `O4 bias 0: Gold-7 88.2, Silver-test 79.9`.
 
 Selected values recomputed by `verify` (F1, percent):
 
@@ -308,7 +331,12 @@ so its own counts remain receipts.
   Ont3 segments, freshly annotated from documents that never train and never
   used to select O4, O4 leads the adapted GLiNER2 baseline by 12.1 [9.1,
   15.3] fine-type character F1 and 10.2 [7.3, 13.4] redaction-character F1
-  (86.8 and 89.3 F1 for O4; the paper's GLiNER2-adaptation appendix).
+  (86.8 and 89.3 F1 for O4; the paper's GLiNER2-adaptation appendix). An
+  unselected model also matches it: the package's fresh fit, 12,000 updates
+  of O4's recipe from pretrained XLM-R with no checkpoint or run selected on
+  human gold, scores +0.9 [−0.3, 2.0] exact-region F1 over O4 there (served;
+  `research/pii/frontier/software/records/receipts/fresh-fit-summary.json`),
+  which indicates that selection has not inflated O4's human-gold score.
 - **Human gold is in-distribution.** Every scored corpus also supplies
   training rows from its train split. As with any split of one identically
   annotated corpus into train and test, the test rows share the training
@@ -328,5 +356,11 @@ so its own counts remain receipts.
 - **Coarse corpora bound what human gold can show.** Its corpora annotate a
   few types; performance on the other Ont3 types is visible only in the Ont3
   development scores.
-- **Curve maxima are not operating points.** Compare systems at the fixed
-  bias.
+- **Operating points are fixed on Silver-dev.** Curve maxima are chosen on
+  the scored rows and only describe each curve. The paper compares systems
+  at points fixed on Silver-dev by the near-optimal-range rule of
+  [the bias sweep](#o-logit-bias-sweep), never on Gold-7 or Silver-test
+  rows; `verify` recomputes them from
+  `research/pii/frontier/software/records/receipts/operating-points-trust-region.json`
+  and the `operating-point-*` grid receipts. Silver-dev also selected O4,
+  so it is not a held-out set for O4.

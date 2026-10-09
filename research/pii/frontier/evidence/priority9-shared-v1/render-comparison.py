@@ -159,10 +159,21 @@ def render(
     recall_floor=0.0,
     extra_row=None,
     coverages=(80, 90, 100),
+    operating_points=None,
+    operating_label=None,
+    secondary_points=None,
+    secondary_label=None,
+    extents=None,
+    stem_suffix="",
 ):
     """Render one comparison family. `extra_row` = (evidence, [(panel key,
     title), ...]) adds one row of three aggregate panels below a
-    seven-language view, sharing its legend."""
+    seven-language view, sharing its legend. `operating_points` maps a model
+    to the threshold fixed outside every graphed population; each panel rings
+    that point, and `operating_label` names the ring in the legend.
+    `secondary_points` adds a filled square per curve (`secondary_label`),
+    `extents` shades each curve between two thresholds, and `stem_suffix`
+    names a separate output variant."""
     # Plotting libraries load here so scoring callers need no plotting stack.
     import matplotlib
 
@@ -255,7 +266,8 @@ def render(
             # Small panels get lighter strokes so curves stay separable.
             small = lang != "overall"
             linewidth, markersize, point_size = (1.0, 1.9, 3.6) if small else (1.6, 3, 5)
-            labels, targets, occupied, fixed_labels = [], [], [], []
+            labels, targets, occupied, fixed_labels, rings = [], [], [], [], []
+            secondaries, spans = [], []
             outside_view = 0
             for model, (label, color, style, marker) in models.items():
                 points = [p["panels"][lang] for p in view["scores"][str(coverage)][model]]
@@ -286,6 +298,41 @@ def render(
                     alpha=0.88,
                     label=label,
                 )
+                operating = None
+                if operating_points and model in operating_points:
+                    operating = next(
+                        p["panels"][lang]
+                        for p in view["scores"][str(coverage)][model]
+                        if p["threshold"] == operating_points[model]
+                    )
+                    if (
+                        operating["predicted"] > 0
+                        and operating["P"] >= precision_floor
+                        and operating["R"] >= recall_floor
+                    ):
+                        rings.append((operating, color))
+                    else:
+                        operating = None
+                in_view = lambda p: (
+                    p["predicted"] > 0 and p["P"] >= precision_floor and p["R"] >= recall_floor
+                )  # noqa: E731
+                if secondary_points and model in secondary_points:
+                    point = next(
+                        p["panels"][lang]
+                        for p in view["scores"][str(coverage)][model]
+                        if p["threshold"] == secondary_points[model]
+                    )
+                    if in_view(point):
+                        secondaries.append((point, color))
+                if extents and model in extents:
+                    low, high = extents[model]
+                    segment = [
+                        p["panels"][lang]
+                        for p in view["scores"][str(coverage)][model]
+                        if low <= p["threshold"] <= high and p["panels"][lang]["predicted"] > 0
+                    ]
+                    if len(segment) > 1:
+                        spans.append((segment, color))
                 visible = [p for p in points if p["P"] >= precision_floor and p["R"] >= recall_floor]
                 if not visible:
                     if model == "presidio":
@@ -351,7 +398,7 @@ def render(
                     occupied.extend((p["R"], p["P"]) for p in points)
                     continue
                 if model == "o4":
-                    anchor = max(visible, key=lambda p: p["F1"])
+                    anchor = operating or max(visible, key=lambda p: p["F1"])
                     text = ax.annotate(
                         "O4",
                         (anchor["R"], anchor["P"]),
@@ -439,6 +486,47 @@ def render(
                         bbox=dict(facecolor="white", edgecolor="none", alpha=0.85, pad=0.3),
                     )
                 )
+            # Rings follow every curve so curve indices stay in model order
+            # for the monochrome restyling below.
+            for point, color in rings:
+                ax.plot(
+                    [point["R"]],
+                    [point["P"]],
+                    linestyle="None",
+                    marker="o",
+                    markersize=7 if small else 9.5,
+                    markerfacecolor="none",
+                    markeredgecolor=color,
+                    markeredgewidth=1.4 if small else 1.7,
+                    zorder=4,
+                    gid="operating-point",
+                )
+                occupied.append((point["R"], point["P"]))
+            for segment, color in spans:
+                ax.plot(
+                    [p["R"] for p in segment],
+                    [p["P"] for p in segment],
+                    color=color,
+                    linewidth=5 if small else 7,
+                    alpha=0.22,
+                    solid_capstyle="round",
+                    zorder=1,
+                    gid="operating-extent",
+                )
+            for point, color in secondaries:
+                ax.plot(
+                    [point["R"]],
+                    [point["P"]],
+                    linestyle="None",
+                    marker="s",
+                    markersize=4 if small else 5.5,
+                    markerfacecolor=color,
+                    markeredgecolor="#111111",
+                    markeredgewidth=0.7,
+                    zorder=5,
+                    gid="operating-secondary",
+                )
+                occupied.append((point["R"], point["P"]))
             ax.set(
                 xlim=(recall_floor, 1.02),
                 ylim=(precision_floor, 1.02),
@@ -481,10 +569,20 @@ def render(
                 for ax, *_ in panels:
                     for text in ax.texts:
                         text.set_color("#111111")
-                    for index, line in enumerate(ax.lines):
+                    marks = {"operating-point", "operating-secondary", "operating-extent"}
+                    curves = [line for line in ax.lines if line.get_gid() not in marks]
+                    for index, line in enumerate(curves):
                         line.set_color("#111111")
                         line.set_alpha(1)
                         line.set_markerfacecolor("white" if index in (0, 1, 3) else "#111111")
+                    for line in ax.lines:
+                        if line.get_gid() == "operating-point":
+                            line.set_markeredgecolor("#111111")
+                        elif line.get_gid() == "operating-secondary":
+                            line.set_markerfacecolor("#111111")
+                        elif line.get_gid() == "operating-extent":
+                            line.set_color("#111111")
+                            line.set_alpha(0.15)
             handles = [
                 Line2D(
                     [],
@@ -502,17 +600,48 @@ def render(
                 )
                 for i, (model, (label, c, s, m)) in enumerate(models.items())
             ]
+            if operating_points:
+                handles.append(
+                    Line2D(
+                        [],
+                        [],
+                        linestyle="None",
+                        marker="o",
+                        markersize=7,
+                        markerfacecolor="none",
+                        markeredgecolor="#111111",
+                        markeredgewidth=1.4,
+                        label=operating_label or "Fixed operating point",
+                    )
+                )
+            if secondary_points:
+                handles.append(
+                    Line2D(
+                        [],
+                        [],
+                        linestyle="None",
+                        marker="s",
+                        markersize=5,
+                        markerfacecolor="#777777",
+                        markeredgecolor="#111111",
+                        markeredgewidth=0.7,
+                        label=secondary_label or "Alternative operating point",
+                    )
+                )
+            # The aggregate-only layout reserves three-column legend rows.
+            wide = len(handles) > 8 and not aggregate_only
             legend = fig.legend(
                 handles=handles,
                 loc="lower center",
-                ncol=4 if len(models) == 7 else 3,
+                ncol=5 if wide else 4 if len(models) == 7 else 3,
                 frameon=False,
-                fontsize=9 if len(models) == 7 else 10,
-                handlelength=2.2 if len(models) == 7 else 3.2,
+                fontsize=8 if wide else 9 if len(models) == 7 else 10,
+                handlelength=2.0 if wide else 2.2 if len(models) == 7 else 3.2,
+                columnspacing=0.9 if wide else 2.0,
                 bbox_to_anchor=(0.5, 0.005 if extra_row is not None else 0.015),
             )
             variant = "-bw" if monochrome else ""
-            stem = output / f"{prefix}-overlap{coverage}{variant}-v1"
+            stem = output / f"{prefix}-overlap{coverage}{stem_suffix}{variant}-v1"
             for suffix in ("svg", "pdf", "png"):
                 fig.savefig(stem.with_suffix("." + suffix), dpi=150)
             legend.remove()

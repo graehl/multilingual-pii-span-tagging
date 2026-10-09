@@ -51,6 +51,8 @@ ENTRY_POINTS = (
     "scripts/pii_name_role_publish.py",
     "scripts/pii_paper_o4_eval.py",
     "scripts/pii_paper_o4_figures.py",
+    # Privacy Filter predictions on the quarter-step bias grid behind its operating point.
+    "scripts/pii_paper_filter_extension.py",
     # Paper scripts the workflow loads by path rather than by import.
     "research/pii/frontier/evidence/human-gold-v1/score.py",
     "research/pii/frontier/evidence/priority9-shared-v1/render-comparison.py",

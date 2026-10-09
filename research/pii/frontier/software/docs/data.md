@@ -92,7 +92,7 @@ in `research/pii/frontier/evidence/four-corpus-v1/negative-coverage-v1.json`:
 
 | Corpus | Trusted negative types |
 |---|---|
-| OpenNER (commercial core), AQMAR | person_name, organization, admin_area, locality, location, street_address, postal_code, gps_coordinates |
+| OpenNER (non-NC subset), AQMAR | person_name, organization, admin_area, locality, location, street_address, postal_code, gps_coordinates |
 | MAPA | the above plus date, date_of_birth, time, monetary_amount, quantity |
 | Wojood (sample) | the OpenNER set plus date, date_of_birth, time, monetary_amount, url |
 
@@ -140,7 +140,10 @@ MIT license does not cover data or model weights.
 | `openpii-1m` | `ai4privacy/pii-masking-openpii-1m` on Hugging Face (`ecfdc547f4a0`) | 23 languages | CC-BY-4.0 | Available adapter; not in the default pipeline |
 | `ai4privacy-health-phi-400k-sample-1k` | `ai4privacy/pii-masking-health-phi-400k` (`f1c06d3062df`) | 30 languages | ai4privacy commercial terms; local file only | Available adapter; requires a separately obtained file |
 
-The OpenNER commercial core draws on AnCora (Spanish), GermEval 2014
+We use seven components of OpenNER's core-types release (source slug
+`openner-commercial-core`), all licensed CC BY 4.0 or CC BY-SA 4.0;
+noncommercial (-NC) components are excluded. They are AnCora (Spanish),
+GermEval 2014
 (German), Japanese GSD, and the Universal NER English EWT, Portuguese Bosque,
 Swedish Talbanken and Simplified Chinese GSD treebanks; each component's
 license and attribution are listed in `OPENNER_COMMERCIAL_CORE_COMPONENTS`.
@@ -157,7 +160,7 @@ directory (`--work`, default `work/`), with a log directory and a receipt per
 step.
 
 **`data [--demo]`** fetches and prepares the four human-gold corpora
-(OpenNER commercial core, MAPA, AQMAR, Wojood) and the two base-only corpora
+(OpenNER's non-NC subset, MAPA, AQMAR, Wojood) and the two base-only corpora
 (HiNER, IDNER) into `WORK/onboarded`, then assembles the base rows from the
 natural training splits of OpenNER, AQMAR, HiNER and IDNER into `WORK/base`.
 "Natural" means the publisher's own sentences and labels, as opposed to
@@ -261,7 +264,7 @@ languages. Shares of sampling mass, computed from that file:
 
 | Branch | Content | Windows | Share of draws |
 |---|---|---|---|
-| Human gold | OpenNER commercial core, train split | 67,344 | 41.8% |
+| Human gold | OpenNER non-NC subset, train split | 67,344 | 41.8% |
 | Human gold | MAPA, train split | 11,312 | 7.0% |
 | Human gold | AQMAR, train split | 1,263 | 0.8% |
 | Human gold | Wojood sample, train split | 910 | 0.5% |

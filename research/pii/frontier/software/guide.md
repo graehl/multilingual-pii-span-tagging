@@ -101,6 +101,19 @@ python pii-reproduce.py redact --work work \
   supplementation for identifiers; `--raw` skips them. `train-refiner` fits
   your own refiner.
 
+The paper names its evaluation sets differently from this package's code,
+files and receipts. "Ont3" in the paper is only the 31-type label set.
+
+| Paper | Rows | Code, receipts and sweep files | Data |
+|---|---|---|---|
+| Gold-7 | 1,283 | `human` ("human gold") | rebuilt by `data` from publisher test splits |
+| Silver-dev | 659 | `ont3`, or "selection" | `data/ont3-evaluation/selection-inputs.jsonl` and `selection-references.jsonl` |
+| Silver-test | 542 | `heldout` | `data/ont3-evaluation/heldout.jsonl` |
+| Silver | 1,201 | both Ont3 collections pooled ("Ont3 development pool") | both of the above |
+
+The paper fixes each system's operating point on Silver-dev and reports it
+on Gold-7 and Silver-test.
+
 O4 also trained on about 50,000 sentences of public FineWeb text labeled by
 an LLM teacher. We do not release those labels, but you can recover the
 exact text and label it with your own teacher:
@@ -161,6 +174,11 @@ Human gold (1,283 rows):
 | Fresh fit | served | 89.2 | 88.9 | 88.7 | +0.9 [−0.3, 2.0] |
 | Fresh fit | raw | 89.2 | 88.9 | 88.7 | +0.9 [−0.3, 2.0] |
 
+"Max" is the best point of each bias curve on these same rows, which only
+describes the curve. The paper reports O4 at the bias it fixed on Silver-dev,
+which for O4 is zero: 88.2 redaction F1 on Gold-7 (human gold), the
+zero-bias column above.
+
 Ont3, exact regions / exact typed spans (selection: the 659 rows O4 was
 selected on; held-out: 542 rows never used for selection):
 
@@ -189,7 +207,9 @@ splits, which never train the model: training uses the same corpora's train
 splits, screened against the evaluation rows. It was reused during
 development, though we do not believe O4 was meaningfully over-selected on
 it: on 542 freshly annotated segments never used to select it, O4 keeps a
-10 to 12 F1 lead over the adapted GLiNER2 baseline. As with any train/test
+10 to 12 F1 lead over the adapted GLiNER2 baseline, and the fresh fit above,
+with no checkpoint or run selected on human gold, scores +0.9 [−0.3, 2.0]
+exact-region F1 over O4 there. As with any train/test
 split of identically annotated data, human gold is
 in-distribution and overstates accuracy on other domains; see
 [docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md#qualifications).
@@ -201,7 +221,11 @@ Details, including the intermediate checkpoints and the 31-type results:
 `verify` expands the receipts in `research/pii/frontier/software/records/receipts/`
 and recomputes every maximum, fixed-bias score and paired bootstrap interval
 reported for the main comparison and the boundary-refinement ablation with
-the paper's own pooling and resampling code. It fails on any mismatch.
+the paper's own pooling and resampling code. It also reruns the paper's
+Silver-dev operating-point selection on the receipts and checks each
+system's chosen setting and its Gold-7 and Silver-test F1 against the paper
+([docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md#o-logit-bias-sweep)).
+It fails on any mismatch.
 [records/README.md](research/pii/frontier/software/records/README.md) describes the receipts, O4's
 text-free training membership, the run records and what they cannot show.
 

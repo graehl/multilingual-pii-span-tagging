@@ -32,6 +32,57 @@ O3_ARM = "o3-2000-both"
 GOLD = EVIDENCE / "ont3-five-model-v1/gold-manual-r4.jsonl"
 HELDOUT = Path.home() / "artifacts/pii-redaction-frontier/needle-heldout-v1/inputs.jsonl"
 SIDECAR = Path.home() / "artifacts/pii-redaction-frontier/title-extents-v1/neutral-extents-fulltest-v2.jsonl"
+# Presidio analyzer score thresholds, a fixed data-independent grid.
+PRESIDIO_THRESHOLDS = [round(0.05 * step, 2) for step in range(21)]
+# Halved-step grids for operating-point selection (`--refined-grid`). Both
+# are emulated from saved outputs; XLM-R and Privacy Filter O-bias sweeps
+# kept no logits, so their grids cannot be refined without re-inference.
+PRESIDIO_REFINED = [round(0.025 * step, 3) for step in range(41)]
+GLINER_REFINED = [round(0.05 * step, 2) for step in range(1, 20)] + [0.98, 0.99]
+
+
+def gliner_points(points, thresholds=GLINER_REFINED):
+    """Emulate GLiNER2 confidence thresholds from the saved 0.05 point.
+
+    Every saved threshold must equal the 0.05 output filtered by confidence,
+    row by row, before any intermediate threshold is trusted.
+    """
+    base = {row["id"]: row["preds"] for row in points["0.05"]}
+    for threshold, saved in points.items():
+        for row in saved:
+            emulated = sorted(
+                (p["start"], p["end"], p["label"])
+                for p in base[row["id"]]
+                if p["confidence"] >= float(threshold)
+            )
+            if emulated != sorted((p["start"], p["end"], p["label"]) for p in row["preds"]):
+                raise ValueError(
+                    f"GLiNER2 confidence filtering does not reproduce threshold {threshold}: {row['id']}"
+                )
+    return {
+        f"{threshold:g}": [
+            {"id": row_id, "preds": [p for p in preds if p["confidence"] >= threshold]}
+            for row_id, preds in base.items()
+        ]
+        for threshold in thresholds
+    }
+
+
+def presidio_points(predictions, thresholds=PRESIDIO_THRESHOLDS):
+    """Emulate `AnalyzerEngine.analyze(score_threshold=t)` from a threshold-0 run.
+
+    The pinned fork drops results scoring below the threshold and only then
+    removes duplicates. A duplicate is dropped only for a same-type result
+    containing it with at least its score, so filtering the saved deduplicated
+    output by score gives the same set as rerunning at that threshold.
+    """
+    return {
+        f"{threshold:g}": [
+            {**row, "preds": [p for p in row["preds"] if p["score"] >= threshold - 1e-9]}
+            for row in predictions
+        ]
+        for threshold in thresholds
+    }
 
 
 def paper_sweeps():
@@ -128,8 +179,13 @@ def score_paper_o4(
     sweeps=None,
     destination=DEST,
     selection_note=None,
+    refined_grid=False,
 ):
-    """Score aligned saved predictions with the shared title and coverage policy."""
+    """Score aligned saved predictions with the shared title and coverage policy.
+
+    `refined_grid` scores GLiNER2 and Presidio on the halved-step grids.
+    """
+    presidio_grid = PRESIDIO_REFINED if refined_grid else PRESIDIO_THRESHOLDS
     human = load_module("o4_human_score", EVIDENCE / "human-gold-v1/score.py")
     from pii_ontology_v2 import load_ontology
 
@@ -180,6 +236,8 @@ def score_paper_o4(
         sweeps = gliner_trajectory_sweeps(full_human) if gliner_trajectory else paper_sweeps()
     for model, population, path, projection in sweeps:
         sweep = read_json(path)
+        if refined_grid and model.startswith("gliner2"):
+            sweep["points"] = gliner_points(sweep["points"])
         input_path = (
             human_root / "inputs.jsonl"
             if population == "human"
@@ -196,11 +254,13 @@ def score_paper_o4(
         inputs = rows(input_path)
         records = populations[population]
         if model == "presidio" and not pooled:
-            sweep["points"] = {"0": sweep["rows"]}
+            sweep["points"] = presidio_points(sweep["rows"], presidio_grid)
         if pooled:
             inputs = [{**r, "id": r["original_id"]} for r in inputs if r["population"] == population]
             records = [r for r in records if population != "human" or r["evaluation_source"] != "ont3"]
-            raw_points = {"0": sweep["rows"]} if model == "presidio" else sweep["points"]
+            raw_points = (
+                presidio_points(sweep["rows"], presidio_grid) if model == "presidio" else sweep["points"]
+            )
             sweep["points"] = {
                 threshold: [
                     {**p, "id": p["id"].removeprefix(population + "::")}
@@ -441,6 +501,12 @@ def main():
     )
     parser.add_argument("--destination", type=Path, default=DEST, help="Directory for score artifacts")
     parser.add_argument("--selection-note", help="Describe the selection status of explicit comparisons")
+    parser.add_argument(
+        "--refined-grid",
+        action="store_true",
+        help="Score GLiNER2 confidence and Presidio score thresholds on halved-step grids emulated from "
+        "saved outputs; without --sweep, score only the main-figure GLiNER2, GL4 and Presidio sweeps",
+    )
     acli.add_standard_args(parser)
     acli.maybe_complete(parser)
     args = parser.parse_args()
@@ -454,6 +520,8 @@ def main():
         sweeps = [
             (model, population, Path(path), projection) for model, population, path, projection in args.sweep
         ]
+    elif args.refined_grid:
+        sweeps = [sweep for sweep in paper_sweeps() if sweep[0] in {"gliner2", "gliner2-o4", "presidio"}]
     score_paper_o4(
         args.limit,
         args.gliner_trajectory or args.gliner_fullhuman,
@@ -461,6 +529,7 @@ def main():
         sweeps=sweeps,
         destination=args.destination,
         selection_note=args.selection_note,
+        refined_grid=args.refined_grid,
     )
 
 

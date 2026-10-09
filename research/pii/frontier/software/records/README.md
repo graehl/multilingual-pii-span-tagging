@@ -17,6 +17,8 @@ maxima, fixed-bias scores and paired bootstrap intervals exactly.
 | `o4-comparison.json.gz` | Main comparison: 13 systems on 1,283 human-gold and 1,201 Ont3 development segments; O3 versus O4 intervals |
 | `o4-boundary.json.gz` | Character-boundary refinement on and off for O4 |
 | `gliner-trajectory.json.gz` | GLiNER2 adaptation checkpoints (development trajectory) |
+| `operating-point-presidio.json.gz`, `operating-point-refined-grid.json.gz`, `operating-point-fine-bias.json.gz` | Finer threshold and bias grids for Presidio, GLiNER2, GL4, O3, O4 and OpenMed Privacy Filter |
+| `operating-points-trust-region.json` | Each main-comparison system's operating point fixed on Silver-dev, and its scores there and on Gold-7 and Silver-test |
 
 Each receipt stores document ids, languages and source groups once per
 population and one flat count array per system, threshold and matching view.
@@ -28,14 +30,18 @@ expand back to exactly the archived counts and that no content-like string in
 them occurs in any evaluated document.
 
 ```bash
-python pii-reproduce.py verify            # recompute all 61 reported numbers
+python pii-reproduce.py verify            # recompute the reported numbers
 python pii-reproduce.py verify --details  # list each recomputed value
 ```
 
 `verify` uses the paper's own pooling (`pool_ont3`) and resampling (`paired`,
 10,000 resamples of source groups, fixed seed) from
 `scripts/pii_paper_o4_figures.py`, and fails if any number differs from the
-`*-summary.json` values the paper was written from.
+`*-summary.json` values the paper was written from. It also merges the finer
+grids over `o4-comparison`, reruns the paper's Silver-dev operating-point
+rule (`operating_points` there), and fails unless the result equals
+`operating-points-trust-region.json` and gives the paper's chosen settings
+and Gold-7 and Silver-test F1.
 
 What a receipt cannot show: that the withheld gold labels are correct, or
 that the counts came from the stated predictions. For the human-gold
