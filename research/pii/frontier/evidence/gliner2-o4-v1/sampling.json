@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "pools": [{"name": "o4", "match": {}, "weight": 1.0}],
+  "example_factor_field": "sampling_weight"
+}

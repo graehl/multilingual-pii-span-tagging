@@ -92,6 +92,11 @@ python pii-reproduce.py redact --work work \
   served output by default; `--raw` scores the tagger's own spans and pairs
   them with O4 without refinement. `--population human|ont3` limits it to
   one evaluation.
+- `calibrate --evaluation DIR` fixes the model's bias on Silver-dev by the
+  paper's operating-point rule and reports that setting on Gold-7 and
+  Silver-test, next to O4's paired scores; run `evaluate --grid fine` first
+  for the paper's finer bias grid
+  ([docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md#fixing-an-operating-point)).
 - `redact` emits typed spans and a redacted copy of each input line. With
   `--work` it only emits types the training data supervised. By default it
   applies the paper's serving stages: the shipped character-boundary refiner
@@ -207,7 +212,7 @@ splits, which never train the model: training uses the same corpora's train
 splits, screened against the evaluation rows. It was reused during
 development, though we do not believe O4 was meaningfully over-selected on
 it: on 542 freshly annotated segments never used to select it, O4 keeps a
-10 to 12 F1 lead over the adapted GLiNER2 baseline, and the fresh fit above,
+9 to 13 F1 lead over the adapted GLiNER2 baseline, and the fresh fit above,
 with no checkpoint or run selected on human gold, scores +0.9 [−0.3, 2.0]
 exact-region F1 over O4 there. As with any train/test
 split of identically annotated data, human gold is
@@ -235,8 +240,8 @@ text-free training membership, the run records and what they cannot show.
 |---|---|
 | [docs/ontology.md](research/pii/frontier/software/docs/ontology.md) | The 31 Ont3 types, reference types, native corpus labels and the many-to-many label map, auxiliary channels, migrating to a new inventory |
 | [docs/data.md](research/pii/frontier/software/docs/data.md) | Public sources and licenses, supervision conventions (complete versus partial annotation, type masks, ignored spans), sampling branches and gold share |
-| [docs/training.md](research/pii/frontier/software/docs/training.md) | The O4 recipe flag by flag, the fresh two-step fit, sampling, validation and selection |
-| [docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md) | Redaction regions, overlap matching, the bias sweep, coverage and title policies, pooling and paired intervals |
+| [docs/training.md](research/pii/frontier/software/docs/training.md) | The O4 recipe flag by flag, the fresh two-step fit, sampling, validation and selection, the GLiNER2 baseline |
+| [docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md) | Redaction regions, overlap matching, the bias sweep, coverage and title policies, pooling and paired intervals, fixing an operating point |
 
 ## Other commands
 
@@ -253,6 +258,15 @@ file downloaded in a browser, and checks its hash against the paper's input.
 `train-refiner` fits a character-boundary refiner for your tagger from
 complete Ont3 rows; the shipped refiner is usually the better choice (see
 its model card).
+`train-gliner2` rebuilds the paper's adapted GLiNER2 baseline (GL4) on a
+`mixture` directory by its recorded recipe, about 10 minutes of training on
+one large GPU; `evaluate` and `calibrate` score its checkpoints. It is the
+paper's baseline, not a recommended model: on Gold-7 the adapted model
+scored below the published GLiNER2 model, which is scored only on the types
+it has labels for. GL4 shuffles each training prompt's entity types, an
+option GLiNER2's trainer leaves off; without it (`--unshuffled`, the paper's
+first run) training collapses after a few hundred updates
+([docs/training.md](research/pii/frontier/software/docs/training.md#the-gliner2-baseline-gl4)).
 `select` draws new unlabeled candidate text from FineWeb and FineWeb-2: by
 default the paper's source-only training draw, or, optionally, paragraphs
 matching rare-identifier patterns (`--needles`) or resembling example text

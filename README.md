@@ -92,6 +92,11 @@ python pii-reproduce.py redact --work work \
   served output by default; `--raw` scores the tagger's own spans and pairs
   them with O4 without refinement. `--population human|ont3` limits it to
   one evaluation.
+- `calibrate --evaluation DIR` fixes the model's bias on Silver-dev by the
+  paper's operating-point rule and reports that setting on Gold-7 and
+  Silver-test, next to O4's paired scores; run `evaluate --grid fine` first
+  for the paper's finer bias grid
+  ([docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md#fixing-an-operating-point)).
 - `redact` emits typed spans and a redacted copy of each input line. With
   `--work` it only emits types the training data supervised. By default it
   applies the paper's serving stages: the shipped character-boundary refiner
@@ -207,7 +212,7 @@ splits, which never train the model: training uses the same corpora's train
 splits, screened against the evaluation rows. It was reused during
 development, though we do not believe O4 was meaningfully over-selected on
 it: on 542 freshly annotated segments never used to select it, O4 keeps a
-10 to 12 F1 lead over the adapted GLiNER2 baseline, and the fresh fit above,
+9 to 13 F1 lead over the adapted GLiNER2 baseline, and the fresh fit above,
 with no checkpoint or run selected on human gold, scores +0.9 [−0.3, 2.0]
 exact-region F1 over O4 there. As with any train/test
 split of identically annotated data, human gold is
@@ -235,8 +240,8 @@ text-free training membership, the run records and what they cannot show.
 |---|---|
 | [docs/ontology.md](research/pii/frontier/software/docs/ontology.md) | The 31 Ont3 types, reference types, native corpus labels and the many-to-many label map, auxiliary channels, migrating to a new inventory |
 | [docs/data.md](research/pii/frontier/software/docs/data.md) | Public sources and licenses, supervision conventions (complete versus partial annotation, type masks, ignored spans), sampling branches and gold share |
-| [docs/training.md](research/pii/frontier/software/docs/training.md) | The O4 recipe flag by flag, the fresh two-step fit, sampling, validation and selection |
-| [docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md) | Redaction regions, overlap matching, the bias sweep, coverage and title policies, pooling and paired intervals |
+| [docs/training.md](research/pii/frontier/software/docs/training.md) | The O4 recipe flag by flag, the fresh two-step fit, sampling, validation and selection, the GLiNER2 baseline |
+| [docs/evaluation.md](research/pii/frontier/software/docs/evaluation.md) | Redaction regions, overlap matching, the bias sweep, coverage and title policies, pooling and paired intervals, fixing an operating point |
 
 ## Other commands
 
@@ -253,6 +258,15 @@ file downloaded in a browser, and checks its hash against the paper's input.
 `train-refiner` fits a character-boundary refiner for your tagger from
 complete Ont3 rows; the shipped refiner is usually the better choice (see
 its model card).
+`train-gliner2` rebuilds the paper's adapted GLiNER2 baseline (GL4) on a
+`mixture` directory by its recorded recipe, about 10 minutes of training on
+one large GPU; `evaluate` and `calibrate` score its checkpoints. It is the
+paper's baseline, not a recommended model: on Gold-7 the adapted model
+scored below the published GLiNER2 model, which is scored only on the types
+it has labels for. GL4 shuffles each training prompt's entity types, an
+option GLiNER2's trainer leaves off; without it (`--unshuffled`, the paper's
+first run) training collapses after a few hundred updates
+([docs/training.md](research/pii/frontier/software/docs/training.md#the-gliner2-baseline-gl4)).
 `select` draws new unlabeled candidate text from FineWeb and FineWeb-2: by
 default the paper's source-only training draw, or, optionally, paragraphs
 matching rare-identifier patterns (`--needles`) or resembling example text
@@ -301,13 +315,13 @@ usage: pii-reproduce.py [-h] [--no-commentary] [--text] [--verbose N] [-v]
                         [--acli-quiet]
                         [--format {compact,jsonl,pretty,toon,text} | --compact | --json | --pretty | --toon]
                         [--full]
-                        {doctor,readme,files,stage,package,publish,install,fetch,prepare,annotate,codex-home,train,score-jsonl,licenses,data,human-gold,mixture,fetch-web,select,screen,names,train-refiner,evaluate,redact,verify,demo,fetch-model,assemble}
+                        {doctor,readme,files,stage,package,publish,install,fetch,prepare,annotate,codex-home,train,score-jsonl,licenses,data,human-gold,mixture,fetch-web,select,screen,names,train-refiner,evaluate,calibrate,train-gliner2,redact,verify,demo,fetch-model,assemble}
                         ...
 
 Portable PII reproduction workflow.
 
 positional arguments:
-  {doctor,readme,files,stage,package,publish,install,fetch,prepare,annotate,codex-home,train,score-jsonl,licenses,data,human-gold,mixture,fetch-web,select,screen,names,train-refiner,evaluate,redact,verify,demo,fetch-model,assemble}
+  {doctor,readme,files,stage,package,publish,install,fetch,prepare,annotate,codex-home,train,score-jsonl,licenses,data,human-gold,mixture,fetch-web,select,screen,names,train-refiner,evaluate,calibrate,train-gliner2,redact,verify,demo,fetch-model,assemble}
     doctor              Report local prerequisites without loading models.
     readme              Write this help as the staged package README.md.
     files               List the local Python dependency subset (no data or builds).
@@ -331,6 +345,8 @@ positional arguments:
     names               Fetch approved public name lexicons and build the name-kind model into WORK/name-kind (CPU).
     train-refiner       Fit a character-boundary refiner for your tagger from complete Ont3 rows (e.g. annotate output).
     evaluate            Score a checkpoint on the paper's human-gold and Ont3 views and compare with O4.
+    calibrate           Fix a checkpoint's operating point on a development set by the paper's rule; report held-out scores.
+    train-gliner2       Fine-tune GLiNER2 on a mixture by the paper's recorded GL4 recipe (its baseline, not a recommended model).
     redact              Tag and redact raw text (one document per line, or JSONL).
     verify              Recompute the paper's reported scores and intervals from the text-free receipts.
     demo                Run the whole pipeline at minutes scale on three small corpora; proves the code works.

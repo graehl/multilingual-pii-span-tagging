@@ -20,6 +20,8 @@ transformers = "==5.10.2"
 accelerate = "==1.13.0"
 datasets = "==4.3.0"
 huggingface-hub = "==1.9.1"
+# Its `hf` CLI (fetch-model, train-gliner2) imports click, which current typer no longer requires.
+click = "*"
 tokenizers = "==0.22.2"
 numpy = "*"
 pyyaml = "*"
@@ -38,6 +40,9 @@ onnx = "==1.22.0"
 onnxruntime = "==1.29.0"
 # The shipped unit tests, run by `scripts/verify` (verify.toml).
 pytest = "==9.0.3"
+# GLiNER2 baseline (train-gliner2, evaluate on a GLiNER2 checkpoint): the
+# source revision of the paper's runs. GLiNER2 does not publish to PyPI.
+gliner2 = { url = "https://github.com/fastino-ai/GLiNER2/archive/81f4e486cc4c4b39e6093558715b087fdcda0a26.tar.gz" }
 
 [pypi-options]
 index-url = "https://pypi.org/simple"

@@ -159,6 +159,47 @@ def trust_region(groups, curve_counts, argmax_index):
     return selected, (first, last), low, high
 
 
+def resample_weights(groups):
+    """Bootstrap counts over `groups` source documents, shared by every system scored on them."""
+    rng = np.random.default_rng(TRUST_REGION_SEED)
+    draws = rng.integers(0, groups, size=(TRUST_REGION_RESAMPLES, groups))
+    return np.stack([np.bincount(draw, minlength=groups) for draw in draws]).astype(float)
+
+
+def select_threshold(points, default, weights=None, group_index=None):
+    """One system's operating point from its development curve `points`.
+
+    The argmax of pooled 80%-overlap region F1, ties to the threshold nearest
+    `default`; with bootstrap `weights` over the source groups numbered by
+    `group_index`, the median of its trust region instead. Returns the chosen
+    threshold, the argmax, the trust-region record (None for the argmax rule)
+    and the development curve.
+    """
+    development = {p["threshold"]: total(items(p, 80)) for p in points}
+    argmax = max(development, key=lambda t: (development[t]["F1"], -abs(t - default)))
+    if weights is None:
+        return argmax, argmax, None, development
+    grid = sorted(development)
+    by_threshold = {p["threshold"]: p for p in points}
+    counts = np.zeros((len(group_index), len(grid), 3))
+    for k, threshold in enumerate(grid):
+        for row in items(by_threshold[threshold], 80):
+            counts[group_index[row["group"]], k] += row["counts"]
+    selected, (first, last), low, high = trust_region(weights, counts, grid.index(argmax))
+    region = dict(
+        argmax_threshold=argmax,
+        bounds=[grid[first], grid[last]],
+        width=grid[last] - grid[first],
+        grid_points=last - first + 1,
+        grid=grid,
+        difference_from_argmax_ci95=[
+            dict(threshold=t, low=float(lo), high=float(hi))
+            for t, lo, hi in zip(grid, low, high, strict=True)
+        ],
+    )
+    return grid[selected], argmax, region, development
+
+
 def operating_point_sources(rule):
     """Paths and hashes of the score archives `operating_points` reads under `rule`."""
     archives = {"scores": SOURCE, "presidio_sweep": PRESIDIO_SWEEP}
@@ -186,43 +227,20 @@ def operating_points(report, rule="argmax", sources=None):
             for p in report["systems"][model][population]["points"]
         }
 
-    weights = None
+    weights = index = None
     if rule == "trust-region":
         group_ids = sorted({r["group"] for r in items(report["systems"]["o4"][SELECTION]["points"][0], 80)})
         index = {group: i for i, group in enumerate(group_ids)}
-        rng = np.random.default_rng(TRUST_REGION_SEED)
-        draws = rng.integers(0, len(group_ids), size=(TRUST_REGION_RESAMPLES, len(group_ids)))
-        weights = np.stack([np.bincount(draw, minlength=len(group_ids)) for draw in draws]).astype(float)
+        weights = resample_weights(len(group_ids))
 
     systems = {}
     # O1 appears only in the pooled-Silver appendix figure; it is fitted but
     # takes no part in the paired comparisons.
     for model in (*MAIN_SYSTEMS, "ont1") if rule == "trust-region" else MAIN_SYSTEMS:
         default = default_threshold(model)
-        development = scored(model, SELECTION, None, 80)
-        argmax = max(development, key=lambda t: (development[t]["F1"], -abs(t - default)))
-        chosen = argmax
-        region = None
-        if rule == "trust-region":
-            grid = sorted(development)
-            points = {p["threshold"]: p for p in report["systems"][model][SELECTION]["points"]}
-            counts = np.zeros((len(index), len(grid), 3))
-            for k, threshold in enumerate(grid):
-                for row in items(points[threshold], 80):
-                    counts[index[row["group"]], k] += row["counts"]
-            selected, (first, last), low, high = trust_region(weights, counts, grid.index(argmax))
-            chosen = grid[selected]
-            region = dict(
-                argmax_threshold=argmax,
-                bounds=[grid[first], grid[last]],
-                width=grid[last] - grid[first],
-                grid_points=last - first + 1,
-                grid=grid,
-                difference_from_argmax_ci95=[
-                    dict(threshold=t, low=float(lo), high=float(hi))
-                    for t, lo, hi in zip(grid, low, high, strict=True)
-                ],
-            )
+        chosen, argmax, region, development = select_threshold(
+            report["systems"][model][SELECTION]["points"], default, weights, index
+        )
         entry = dict(
             default_threshold=default,
             selected_threshold=chosen,
@@ -545,7 +563,10 @@ def main():
             recall_floor=0.4,
             coverages=(80, 100),
         )
-    gold_share(plot.plt)
+    # render() configured matplotlib (backend, rcParams); it imports pyplot lazily.
+    import matplotlib.pyplot as plt
+
+    gold_share(plt)
 
 
 def write_summary(report):

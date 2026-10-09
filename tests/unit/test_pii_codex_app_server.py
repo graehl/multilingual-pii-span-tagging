@@ -343,10 +343,12 @@ def test_timed_out_turn_is_interrupted_before_a_fresh_fork_runs():
 )
 def test_timed_out_turn_accepts_thread_read_terminal_confirmation(prompt):
     async def exercise():
+        # Requests the fake server answers must not race host load; the unanswered
+        # interrupt in the no-ack case costs this timeout once.
         async with CodexAppServer(
             [sys.executable, "-u", "-c", FAKE_APP_SERVER],
             env={},
-            request_timeout=0.1,
+            request_timeout=2,
         ) as server:
             root = await server.start_protocol_root(
                 base_instructions="common protocol",
@@ -371,7 +373,7 @@ def test_timed_out_turn_rejects_thread_read_active_status():
         async with CodexAppServer(
             [sys.executable, "-u", "-c", FAKE_APP_SERVER],
             env={},
-            request_timeout=0.1,
+            request_timeout=2,
         ) as server:
             root = await server.start_protocol_root(
                 base_instructions="common protocol",

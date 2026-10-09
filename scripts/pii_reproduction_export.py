@@ -53,6 +53,14 @@ ENTRY_POINTS = (
     "scripts/pii_paper_o4_figures.py",
     # Privacy Filter predictions on the quarter-step bias grid behind its operating point.
     "scripts/pii_paper_filter_extension.py",
+    # calibrate: the paper's operating-point rule on a reader's own evaluate scores.
+    "scripts/pii_software_calibrate.py",
+    # train-gliner2: GL4, the paper's adapted GLiNER2 baseline, and its accepted-label variant.
+    "scripts/pii_gliner2_ont3_finetune.py",
+    # The matched short-adaptation appendix's GLiNER2 arm (frozen encoder, LoRA, cost-weighted
+    # calibration, legal span decoding); code only, no driver command.
+    "scripts/pii_gliner2_calibrate.py",
+    "scripts/pii_gliner2_span_decode.py",
     # Paper scripts the workflow loads by path rather than by import.
     "research/pii/frontier/evidence/human-gold-v1/score.py",
     "research/pii/frontier/evidence/priority9-shared-v1/render-comparison.py",
@@ -254,6 +262,10 @@ def export_files(root: Path) -> list[tuple[Path, str]]:
             "research/pii/frontier/evidence/human-gold-v1/selected-ids.json",
             # Counts-only corroboration the ontology loader validates.
             "research/pii/frontier/evidence/ontology-v2-source-extension-evidence-v1.json",
+            # train-gliner2's recorded inputs: Ont3 prompt names with donor embeddings, and the
+            # sampling pool over a mixture's row weights.
+            "research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json",
+            "research/pii/frontier/evidence/gliner2-o4-v1/sampling.json",
             # Serving stages: regex supplementation and name-component postprocessing.
             "scripts/pii_regex_tags_v1.json",
             "scripts/pii_regex_policy_ont3_v1.json",
@@ -459,11 +471,14 @@ def redact_python_prose(text: str, redact) -> str:
     return text
 
 
-def build_archive(stage: Path, archive: Path) -> dict:
-    """Deterministic, anonymously owned tarball of a staged tree, then a fresh-extraction check."""
+def build_archive(stage: Path, archive: Path, *, python: str) -> dict:
+    """Deterministic, anonymously owned tarball of a staged tree, then a fresh-extraction check.
+
+    `python` is the pinned environment's interpreter, which renders the README the
+    package's verify compares with its help.
+    """
     import os
     import subprocess
-    import sys
     import tarfile
 
     if archive.exists():
@@ -519,7 +534,7 @@ def build_archive(stage: Path, archive: Path) -> dict:
         home.mkdir()
         environment = dict(os.environ, HOME=str(home), PYTHONPATH="", PYTHONDONTWRITEBYTECODE="1")
         shown = subprocess.run(
-            [sys.executable, "pii-reproduce.py", "-h"],
+            [python, "pii-reproduce.py", "-h"],
             cwd=root,
             env=environment,
             capture_output=True,
@@ -532,5 +547,5 @@ def build_archive(stage: Path, archive: Path) -> dict:
         "sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
         "bytes": archive.stat().st_size,
         "files": len(manifest["files"]),
-        "checks": "safe paths, anonymous ownership, manifest hashes, Python syntax, help equals README in an empty home",
+        "checks": "safe paths, anonymous ownership, manifest hashes, Python syntax, help (pinned Python) equals README in an empty home",
     }

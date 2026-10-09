@@ -172,8 +172,12 @@ def score(args) -> dict:
         },
     }
     write(args.out, result)
+    from pii_paper_o4_figures import default_threshold
+
     best = max(points, key=lambda point: point["regions"]["80"]["metrics"]["F1"])
-    fixed = next((point for point in points if point["threshold"] == 0), None)
+    # Zero O bias, or confidence 0.5 for a GLiNER2 sweep (a model named gliner2*).
+    default = default_threshold(args.model)
+    fixed = next((point for point in points if point["threshold"] == default), None)
     versus_o4 = None
     if args.compare_receipt and len(rows) == HUMAN_ROWS and args.title_sidecar and fixed:
         # Same documents, groups and scoring as O4's shipped counts: pair them.
@@ -186,6 +190,11 @@ def score(args) -> dict:
         o4 = expand(read_receipt(args.compare_receipt))["systems"][args.compare_system]["human"]
         report = {"systems": {args.model: {"human": {"points": points}}, "o4": {"human": o4}}}
         versus_o4 = paired(report, args.model, "o4", ["human"], False)
+    fixed_metrics = (
+        metrics([sum(row["counts"][i] for row in fixed["regions"]["80"]["per_input"]) for i in range(3)])
+        if fixed
+        else None
+    )
     return {
         "ok": True,
         "out": str(args.out.resolve()),
@@ -193,11 +202,8 @@ def score(args) -> dict:
         "title_sidecar": bool(args.title_sidecar),
         "paired_versus_o4": versus_o4,
         "maximum": {"threshold": best["threshold"], **best["regions"]["80"]["metrics"]},
-        "fixed_zero_bias": metrics(
-            [sum(row["counts"][i] for row in fixed["regions"]["80"]["per_input"]) for i in range(3)]
-        )
-        if fixed
-        else None,
+        "fixed_zero_bias": fixed_metrics if fixed and default == 0 else None,
+        "fixed_default": {"threshold": default, **fixed_metrics} if fixed else None,
     }
 
 
@@ -237,7 +243,8 @@ def build_parser():
         "--compare-receipt",
         type=Path,
         help="O4 score receipt (records/receipts/o4-comparison.json.gz): paired bootstrap versus O4 "
-        "at zero bias, exact regions, when all 1,283 rows and the title sidecar are scored",
+        "at zero bias (a gliner2* model at confidence 0.5), exact regions, when all 1,283 rows and the "
+        "title sidecar are scored",
     )
     score_command.add_argument(
         "--compare-system",

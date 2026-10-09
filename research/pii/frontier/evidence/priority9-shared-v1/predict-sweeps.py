@@ -7,6 +7,7 @@ of ont1, ont2, ont3, gliner2 or gliner2-tuned. Worker paths are pinned below.
 import argparse
 import hashlib
 import json
+import random
 import sys
 from pathlib import Path
 
@@ -27,6 +28,9 @@ GRID = [*range(-8, 17), 24, 32]
 # keeping every saved integer point so they can be checked against old sweeps.
 FINE_GRID = sorted({float(b) for b in GRID} | {step / 4 for step in range(-16, 17)})
 THRESHOLDS = [0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98, 0.99]
+# Confidence steps of 0.05, the grid the paper's GLiNER2 operating points were fixed on
+# (there emulated from the saved 0.05 output; pii_paper_o4_eval.GLINER_REFINED).
+FINE_THRESHOLDS = sorted({*THRESHOLDS, *(round(0.05 * step, 2) for step in range(1, 20))})
 MODELS = {
     "ont1": "/scratch/paper-priority9-ont1-model",
     "ont2": "/scratch/artifacts/pii-redaction-frontier/models/paper-ont2-checkpoint",
@@ -56,7 +60,8 @@ def main():
         "--grid",
         choices=["saved", "fine"],
         default="saved",
-        help="O-logit bias grid: saved = integers -8..16, 24, 32; fine adds quarter steps over -4..4",
+        help="O-logit bias grid: saved = integers -8..16, 24, 32; fine adds quarter steps over -4..4. "
+        "GLiNER2 kinds: fine adds confidence steps of 0.05 to the saved thresholds",
     )
     parser.add_argument(
         "--logit-cache",
@@ -64,8 +69,17 @@ def main():
         help="ont3 kinds: also save every window's id, primary logits and token offsets with torch.save, "
         "so a further bias can be decoded without an encoder pass",
     )
+    parser.add_argument(
+        "--shuffle-labels",
+        type=int,
+        metavar="SEED",
+        help="GLiNER2 kinds: prompt each row's types in an order shuffled by SEED and the row id, "
+        "instead of one fixed order",
+    )
     args = parser.parse_args()
     grid = FINE_GRID if args.grid == "fine" else GRID
+    if args.shuffle_labels is not None and not args.kind.startswith("gliner2"):
+        parser.error("--shuffle-labels applies to GLiNER2 kinds")
     # ont1/ont2 decode with legal-BIOES projection, which pii_eval's score
     # cache does not support.
     if args.logit_cache and args.kind not in {"ont3", "ont3-context"}:
@@ -179,9 +193,13 @@ def main():
         candidates = []
         for index, row in enumerate(rows):
             found = {}
+            prompted = labels
+            if args.shuffle_labels is not None:
+                prompted = labels[:]
+                random.Random(f"{args.shuffle_labels}:{row['id']}").shuffle(prompted)
             for offset, text in windows(row["text"], max_chars=1200, overlap=200):
                 entities = model.extract_entities(
-                    text, labels, threshold=min(THRESHOLDS), include_confidence=True, include_spans=True
+                    text, prompted, threshold=min(THRESHOLDS), include_confidence=True, include_spans=True
                 )["entities"]
                 for label, values in entities.items():
                     for value in values:
@@ -209,7 +227,7 @@ def main():
             )
             if index % 100 == 0:
                 print(f"[predict] {kind} {index}/{len(rows)}", flush=True)
-        for threshold in THRESHOLDS:
+        for threshold in FINE_THRESHOLDS if args.grid == "fine" else THRESHOLDS:
             points[str(threshold)] = [
                 dict(id=r["id"], preds=[p for p in r["preds"] if p["confidence"] >= threshold])
                 for r in candidates
@@ -224,6 +242,7 @@ def main():
         requested_labels=labels if kind.startswith("gliner2") else None,
         canonical_to_prompt=mapping,
         synthetic_suffix=synthetic_suffix if kind.startswith("gliner2") else None,
+        label_order_seed=args.shuffle_labels,
         points=points,
     )
     output.write_text(json.dumps(receipt) + "\n")

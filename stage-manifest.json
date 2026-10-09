@@ -95,7 +95,7 @@
     },
     {
       "path": "research/pii/frontier/evidence/priority9-shared-v1/predict-sweeps.py",
-      "sha256": "c72df38ab64c509043714c9f88b31905103f34759213705cf82031165fd33ec0",
+      "sha256": "fdf18b485b528f6586299a9f0b1b75a5ff95f13c5cd0faad821388eed7f3a173",
       "redacted": false
     },
     {
@@ -151,6 +151,11 @@
     {
       "path": "scripts/pii_bioes.py",
       "sha256": "3f31b6c866f74c93c03b5c7e5a42dba46990bd34c29aadbdb817ee1de41e1d4b",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_calibration_score.py",
+      "sha256": "6751b165fc9ab83eb73c758c0b1113676c7257f14910357ec0272ffa85111730",
       "redacted": false
     },
     {
@@ -244,13 +249,53 @@
       "redacted": false
     },
     {
+      "path": "scripts/pii_gliner2_calibrate.py",
+      "sha256": "cd2fb3fc66e30a212f0144589b8586edd1d68233c641ea5595cf9405abdecb71",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_calibration_smoke.py",
+      "sha256": "9fcc13338241b28840076a087af645c9e8bb7bbab045f67eeaa0ad0c108cd92d",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_exact.py",
+      "sha256": "1367247c5cbb622b67c7a07403f258e5948bd11a1fe1d73b1ad90d61b4db22b9",
+      "redacted": false
+    },
+    {
       "path": "scripts/pii_gliner2_label_transfer.py",
       "sha256": "58a8ae665b58b5e7d812991481b4fd9cdea30fffdf6bf4a6d31b6a033d44f21a",
       "redacted": false
     },
     {
+      "path": "scripts/pii_gliner2_mapped_loss.py",
+      "sha256": "3cdce99c35139afd6276cc76f7319db0e9c885bca45419fb07d99cd27f9e530a",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_mapped_training.py",
+      "sha256": "3af9f3325dd11b4744f99f6497aa9d0da7653d4d64c4aa42566ae6ae7940741e",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_ont3_finetune.py",
+      "sha256": "ebc0a4e48177f269b2ad01839fe7cfbaa2fe9a906c36d5ceccd13f07db60d8e2",
+      "redacted": false
+    },
+    {
       "path": "scripts/pii_gliner2_ont3_predict.py",
       "sha256": "30e3f5b385e96e948090fcd713c56c507c76688e6469bc87a834b358d3bcabd6",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_projection.py",
+      "sha256": "712667e789ebaf760dae428aa6ce46c3ce856edd1926d1d33ae6a300fc546b74",
+      "redacted": false
+    },
+    {
+      "path": "scripts/pii_gliner2_span_decode.py",
+      "sha256": "930a2aa1c5046a249a56406c3ccd8bdb2dac614bc0445c43ecd3e1dcc45df032",
       "redacted": false
     },
     {
@@ -365,12 +410,12 @@
     },
     {
       "path": "scripts/pii_paper_o4_eval.py",
-      "sha256": "919ef63a366e425b5c491f4c2b6375931295d79c7ddccfaf8a6dd0dcf4d2f9d5",
+      "sha256": "18205b1bd09eef902fd4bf461e6f76fa3c32a3f01ab9580465ca63ed8535d977",
       "redacted": false
     },
     {
       "path": "scripts/pii_paper_o4_figures.py",
-      "sha256": "59d2720ca35ba593f1242e9430217dbab44847d74f9c6a6c772395f6a1991555",
+      "sha256": "ec345d7824231111b3082367f4d768b4e8946fc6ae57a4add15e18a81d089f21",
       "redacted": false
     },
     {
@@ -405,7 +450,7 @@
     },
     {
       "path": "scripts/pii_public_gold.py",
-      "sha256": "b22ea3fb2faefa908cf68cc3f39a9f494be459ffa7f0d151b9cdfda783563a00",
+      "sha256": "fed7e19f7ed67b72cc7e47a031c5993a9b1eaaeca13672e2ed416f5b23c3e2ca",
       "redacted": false
     },
     {
@@ -430,12 +475,12 @@
     },
     {
       "path": "scripts/pii_reproduction.py",
-      "sha256": "420fe5056b8046334d1523d99a6cba7e69188601f5fcaaf58dcdf2c6b0b34449",
+      "sha256": "82419b98fe1412a5608842115f81beec2f3d6bca35a726fc11209acfae3673da",
       "redacted": false
     },
     {
       "path": "scripts/pii_reproduction_export.py",
-      "sha256": "ceab16f36c38673fbf416235afae05d4de98bae57a2db4ddc09154907c010c8d",
+      "sha256": "c4760025171a3ba0bf42398071d350c0e04621aba2b684999a802430bf764260",
       "redacted": false
     },
     {
@@ -479,6 +524,11 @@
       "redacted": false
     },
     {
+      "path": "scripts/pii_software_calibrate.py",
+      "sha256": "ca866f96615e111d5e926ee84e4fc641b4ae92b07304e8b6467e4a073cbce83b",
+      "redacted": false
+    },
+    {
       "path": "scripts/pii_software_names.py",
       "sha256": "dc27ba8ce54ca16fbb49b77b16a739e7648d4f8e712c51708132ae4f4ee7ed89",
       "redacted": false
@@ -490,7 +540,7 @@
     },
     {
       "path": "scripts/pii_software_receipts.py",
-      "sha256": "e83baee4801d2f0fb5ca10a9e05d1f7b0e7e9a12abe5f5055244c26560fd8fed",
+      "sha256": "eeb7d001e1285689b98e4b96b68ba4e39d8d75814375ede7c0364ee631735cf9",
       "redacted": false
     },
     {
@@ -505,7 +555,7 @@
     },
     {
       "path": "scripts/pii_software_workflow.py",
-      "sha256": "26ae318759911ea3a0b9ac5c082682aec1bd11dbfd617b467bb1f7213c8f8710",
+      "sha256": "15bf8873afbeff5aa71f86e986cfe14d6fe0fa5e3bee272e0426bbf8895a1dbf",
       "redacted": false
     },
     {
@@ -620,7 +670,7 @@
     },
     {
       "path": "research/pii/frontier/software/guide.md",
-      "sha256": "1420f5370a825546d91dec28c4f776b93272de7ccf0990868afd11a60bf7316f",
+      "sha256": "74cdb8d4decf38070385f2f8f1471f99e0d3258be6fedc999901fde35dc8cff0",
       "redacted": false
     },
     {
@@ -630,7 +680,7 @@
     },
     {
       "path": "research/pii/frontier/software/docs/evaluation.md",
-      "sha256": "8aa5c9528d4e36358718ae86e8753f500998973b8a1f43af55011565f4d7249b",
+      "sha256": "ee869382484f844ee61685c1be0f8993258f3651a836d8ba124e2f5c3f0ed0dd",
       "redacted": false
     },
     {
@@ -640,7 +690,7 @@
     },
     {
       "path": "research/pii/frontier/software/docs/training.md",
-      "sha256": "5c987e9c08c6fe9e0643f5739238366dd9c4d2b72cf5946cf1eea37720a5f656",
+      "sha256": "cc5cc2c40ff0a26f5e3c356d543dad3b8bca3dc6a07d4e5a4142eadc8c1a5dd9",
       "redacted": false
     },
     {
@@ -665,7 +715,7 @@
     },
     {
       "path": "research/pii/frontier/software/pixi.toml",
-      "sha256": "c3486ad2b39feb9391670b8463dca0d04e354f01548500ff560fddcb39cc2670",
+      "sha256": "1ab80ecb2194c620e9b34b8d42db95b5ee38ee42508ffe14d523fc5c077eafaa",
       "redacted": false
     },
     {
@@ -800,7 +850,7 @@
     },
     {
       "path": "tests/unit/test_pii_codex_app_server.py",
-      "sha256": "eb805857df399c3a4c9e36995d5c8898511389a76d26f03fd1bc29dbb8a0d1c7",
+      "sha256": "2fbc9650fe70caffc813b0f5b7e70dd1ea4b0694b667114c2cfcc4421d7b2ba7",
       "redacted": false
     },
     {
@@ -851,6 +901,46 @@
     {
       "path": "tests/unit/test_pii_final35_native_draw.py",
       "sha256": "cd21bbf472bee6868b9a0e1fa0c329572f75828e5714fb4640e68c73db2a372f",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_calibrate.py",
+      "sha256": "b011f36d3e6710c69191694bad8e6e29341089cfa69bf8b1f53f389f6c58f4fc",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_calibration_smoke.py",
+      "sha256": "fa490524307b1125271e6e5308904997da519c358f7a5aba36403526452c8784",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_exact.py",
+      "sha256": "e5ba4ce77e79d7894072f561e0266fb00957d17a151548062a4b3a81bc011973",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_label_transfer.py",
+      "sha256": "7ef20245af8e30dfacc7803cebf698b237058ac52d3f3e0a56c08c9f0c691c8e",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_mapped_loss.py",
+      "sha256": "ccd548c263de378c1afb5f44d934b51bcab6dd00d8594ff3827c90ab4d7dd470",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_ont3_finetune.py",
+      "sha256": "aa5e77802f2be121b5a942fa96a174fba3d9eb5c456816dca94a4e3cc1feccdd",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_projection.py",
+      "sha256": "a7f3b91513b349c22943f25bd72289ac0ed7b35c95c8bd4dadf66b6bd0619f93",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_gliner2_span_decode.py",
+      "sha256": "3553b3ea6adcf4b05e5fb4954a592422f05081a5294e28a656953751e4c38e41",
       "redacted": false
     },
     {
@@ -1009,6 +1099,16 @@
       "redacted": false
     },
     {
+      "path": "tests/unit/test_pii_software_calibrate.py",
+      "sha256": "e341826bb993c89df5bd0f623bf3efe0d8d70b8d2d5514e9091de970b949900c",
+      "redacted": false
+    },
+    {
+      "path": "tests/unit/test_pii_software_gliner2.py",
+      "sha256": "be790699353c2bdf3fc5c45d2c562edad89b9e6e9a1d21486cae9b535b83a653",
+      "redacted": false
+    },
+    {
       "path": "tests/unit/test_pii_software_select.py",
       "sha256": "7b8f8169492cebe10dbc3150a04679766ea6e07cb694edb381eac464ce4b71d5",
       "redacted": false
@@ -1110,12 +1210,12 @@
     },
     {
       "path": "research/pii/frontier/software/records/CLAIMS.md",
-      "sha256": "f5d706a7dab3ed39477871b6602c11598c171e6f53c23a540860772da23519bc",
+      "sha256": "bea6dd47084f8864ef6786aaee99a25389cb6a8547c172ca05f5277d694c3fad",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/records/README.md",
-      "sha256": "d5a91f3f9417020729018072bc25f929dc99e5c048179d99966d7fec50a98b1b",
+      "sha256": "a0d36ce4ba47a5be670ce819fb45f0c5d22347d4bc1f8b0f7f5763f801c94e07",
       "redacted": false
     },
     {
@@ -1130,7 +1230,7 @@
     },
     {
       "path": "research/pii/frontier/software/records/paper-run-records.json",
-      "sha256": "cab4dc18ee27f89b68af723a46d6f195b23e2e14e7e58da80a10863118739d58",
+      "sha256": "5aebe4633bd04b681f5518d8d9b06bd7767d474a9f570dab52471b8399de0d93",
       "redacted": true
     },
     {
@@ -1159,8 +1259,13 @@
       "redacted": false
     },
     {
-      "path": "research/pii/frontier/software/records/receipts/gliner-trajectory.json.gz",
+      "path": "research/pii/frontier/software/records/receipts/gliner-trajectory-unshuffled.json.gz",
       "sha256": "76ee25b1375aa1fec3dc3392a38556db9b7e773b1d5232eebe48b46187740927",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/software/records/receipts/gliner-trajectory.json.gz",
+      "sha256": "5d9e42d2b73a3d1e99611c5fd0341891b8889df4586fa7280c7e851f691672b7",
       "redacted": false
     },
     {
@@ -1185,12 +1290,12 @@
     },
     {
       "path": "research/pii/frontier/software/records/receipts/o4-comparison-summary.json",
-      "sha256": "94f0e6d5cc53974bed46a8968caf3b1bde9ef5d9454d13bd8300d36a64c58b61",
+      "sha256": "08c5d38821f155362607a40d4e5958f74f789f56bfa1a9c302bf0e937d887612",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/records/receipts/o4-comparison.json.gz",
-      "sha256": "f07185face3a77bfae000ee3433abaeebba36550bc756a5387b27a892a820608",
+      "sha256": "d340e81fe2814b24787b5f3ba9c873a5667cd97b240613312e0f070a93bfdd8b",
       "redacted": false
     },
     {
@@ -1205,17 +1310,17 @@
     },
     {
       "path": "research/pii/frontier/software/records/receipts/operating-point-refined-grid.json.gz",
-      "sha256": "9e2934dcfbb150eef140c55344524b554185654d9b22f0ff94d9912fff8be8cc",
+      "sha256": "46dfe1d4a8b47d670287cf941f6144fdf2e0cf3b7f8efd5cc2c72bafb04d027b",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/records/receipts/operating-points-trust-region.json",
-      "sha256": "ae29ee48618a26d6731f20e749b6ffbc089e29d73c06ef0f4f2d8728ceba8048",
+      "sha256": "d89ec91721960cd17de7f14ba9959c2681957ee13a044b1184c4f122ce4b959f",
       "redacted": false
     },
     {
       "path": "research/pii/frontier/software/records/receipts/receipts.json",
-      "sha256": "aecaf29ca7c5c3b4696669bd2e360b9e4282553a4da3335c8a3a4f573c9022bd",
+      "sha256": "154529e65c4d70d893006fbd2c22bf6f37c091544897a9698a0b2e25a3714aa9",
       "redacted": false
     },
     {
@@ -1401,6 +1506,16 @@
     {
       "path": "research/pii/frontier/evidence/ontology-v2-source-extension-evidence-v1.json",
       "sha256": "f842d3c06f07222a14992a7535525d78202df09ebce339035f896185911ed118",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json",
+      "sha256": "a322128a3236fe94137983ce6ea4f67d6459fbf08d6f7a6801b2f70347ff37a1",
+      "redacted": false
+    },
+    {
+      "path": "research/pii/frontier/evidence/gliner2-o4-v1/sampling.json",
+      "sha256": "ed86a93354c1c5caf277ce892103d3c18ec124136d92ba95eebc036e5e1acf55",
       "redacted": false
     },
     {
@@ -1705,7 +1820,7 @@
     },
     {
       "path": "research/pii/frontier/software/pixi.lock",
-      "sha256": "61ae1b04669f2dba2a49e7c1b5df751201fe843514f7aaea55a6ece79ef2f6ee",
+      "sha256": "755d2aab1b1d3eb9b0e2ec6f91fb541d0211da7f4560c37374d4018f09d021bf",
       "redacted": false
     },
     {

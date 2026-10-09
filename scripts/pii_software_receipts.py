@@ -44,9 +44,14 @@ SOURCES = {
         "Character-boundary refinement on and off for O4 at zero bias",
     ),
     "gliner-trajectory": (
+        "gl4-shuffled-o4-v1/trajectory/gliner-paper-trajectory-scores.json.gz",
+        None,
+        "GL4 checkpoints (shuffled type order) on Gold-7 and Silver-dev (development trajectory)",
+    ),
+    "gliner-trajectory-unshuffled": (
         "paper-o4-v1/gliner-paper-trajectory-scores.json.gz",
         None,
-        "GLiNER2 adaptation checkpoints on the paper populations (development trajectory)",
+        "The first, unshuffled GL4 run's checkpoints on Gold-7 and Silver-dev (development trajectory)",
     ),
     # Finer threshold grids behind the Silver-dev operating points, merged
     # over o4-comparison in this order, as the paper's figure script does.
@@ -85,7 +90,7 @@ PAPER_OPERATING_POINTS = {
     "o3": (0.25, {}),
     "ont2": (-2, {}),
     "gliner2": (0.6, {"gold7": 69.1, "silver_test": 72.7}),
-    "gliner2-o4": (0.25, {"gold7": 66.3}),
+    "gliner2-o4": (0.6, {"gold7": 65.4, "silver_test": 64.9}),
     "presidio": (0.2, {"gold7": 57.3}),
     # Silver-test is 43.8496: 43.8, not the 43.9 a two-decimal 43.85 rounds to.
     "opf-openmed-multi2": (-1.5, {"gold7": 34.1, "silver_test": 43.8}),
@@ -373,16 +378,13 @@ def curve_copy(report: dict) -> dict:
     }
 
 
-def recompute_operating_points(reports: dict[str, dict]) -> dict:
-    """The paper's Silver-dev operating points from expanded receipts.
+def operating_point_curves(reports: dict[str, dict]) -> dict:
+    """The main comparison with the finer selection grids merged in, from expanded receipts.
 
-    Merges the finer grids over the main comparison with the figure script's
-    own merge (each finer grid must reproduce every coarser point row by
-    row), then applies its selection rule.
+    Uses the figure script's own merge: each finer grid must reproduce every
+    coarser point row by row.
     """
-    import contextlib
-
-    from pii_paper_o4_figures import merge_refined_system, operating_points
+    from pii_paper_o4_figures import merge_refined_system
 
     report = curve_copy(reports[OPERATING_POINTS["comparison"]])
     for name in OPERATING_POINTS["grids"]:
@@ -391,6 +393,16 @@ def recompute_operating_points(reports: dict[str, dict]) -> dict:
             raise ValueError(f"{name}: incomplete grid receipt")
         for model in grid["systems"]:
             merge_refined_system(report, grid, model)
+    return report
+
+
+def recompute_operating_points(reports: dict[str, dict]) -> dict:
+    """The paper's Silver-dev operating points from expanded receipts, by its selection rule."""
+    import contextlib
+
+    from pii_paper_o4_figures import operating_points
+
+    report = operating_point_curves(reports)
     # The figure script narrates each selection on stdout, which carries this tool's result.
     with contextlib.redirect_stdout(sys.stderr):
         return operating_points(report, OPERATING_POINTS["rule"])

@@ -9,7 +9,7 @@ relative to the package root.
 
 | Command | What it does | Use it for |
 |---|---|---|
-| `python pii-reproduce.py evaluate --checkpoint CKPT` | The paper's human-gold and Ont3 views: bias sweep, the paper's serving stages (`--raw` skips them), coverage masks, optional references, title policy, redaction regions and Ont3 typed spans, paired against O4 | Comparing with the paper's O4 numbers |
+| `python pii-reproduce.py evaluate --checkpoint CKPT` | The paper's human-gold and Ont3 views: bias sweep, the paper's serving stages (`--raw` skips them), coverage masks, optional references, title policy, redaction regions and Ont3 typed spans, paired against O4; then `calibrate` fixes an operating point by the paper's rule | Comparing with the paper's O4 numbers |
 | `python pii-reproduce.py score-jsonl --input GOLD --checkpoint CKPT --out DIR` | Generic prediction and scoring of any JSONL with `id`, `text` and `spans` (`start`, `end`, `type`) | Your own test data in the model's own labels |
 
 The generic scorer (`scripts/pii_eval.py`) has none of the paper's corpus
@@ -166,12 +166,13 @@ three stages after the tagger: character-level boundary refinement,
 name-component postprocessing and regular-expression supplementation for
 structured identifiers where the model found nothing. On the human-gold
 population at 80% overlap these stages leave O4's score unchanged: raw and
-served predictions both give 88.83 and 88.16. `evaluate` scores raw model
-output, and it matches the paper on this view. On the Ont3 development set
+served predictions both give 88.83 and 88.16. On the Ont3 development set
 the stages do matter: boundary refinement alone adds 2.5 exact-region and
 1.7 exact typed-span F1 points
 (`research/pii/frontier/software/records/receipts/o4-boundary-summary.json`).
-The boundary refiner and name-component models are not part of this package.
+`evaluate` applies the same stages by default: the shipped boundary refiner,
+name-component postprocessing once `names` has built the name-kind model,
+and regex supplementation; `--raw` scores the tagger's own output.
 
 ## O-logit bias sweep
 
@@ -231,22 +232,66 @@ python pii-reproduce.py evaluate --checkpoint work/o4-fresh/fit/model/checkpoint
   --name my-model
 ```
 
-This predicts on `WORK/human-gold/inputs.jsonl` with isolated windows over the
-whole bias grid, scores with `scripts/pii_public_gold.py score`, and writes
-`WORK/evaluation/summary.json`:
+This predicts on `WORK/human-gold/inputs.jsonl` and the two Ont3 collections
+with isolated windows over the whole bias grid, applies the paper's serving
+stages unless `--raw`, scores with the paper's code, and writes
+`WORK/evaluation/summary.json`. Its `human` entry holds:
 
 - `maximum` and `fixed_zero_bias`: precision, recall and F1 at 80% overlap;
+  `fixed_default` is the same at the default setting (zero bias, or
+  confidence 0.5 for GLiNER2);
 - `paper_o4`: the paper's O4 values for the same view;
 - `comparable_to_paper`: true only for the full 1,283 rows with the title
   sidecar present;
 - `paired_versus_o4`: when comparable, a paired bootstrap of your model
-  against O4 on the same 1,283 rows at zero bias and exact regions, computed
-  with the paper's code from O4's shipped receipt.
+  against O4 on the same 1,283 rows at the default setting and exact
+  regions, computed with the paper's code from O4's shipped receipt.
 
-`WORK/evaluation/scores.json.gz` keeps per-row counts at both overlap
-thresholds for every bias, in the schema of the paper's score archives (from
-which the shipped receipts were derived), so you can compute your own panels
-and intervals.
+Its `ont3` entry gives the same view per collection and pooled, with exact
+typed spans. `WORK/evaluation/scores-human.json.gz` and `scores-ont3.json.gz`
+keep per-row counts at both overlap thresholds (and typed, on Ont3) for every
+setting, in the schema of the paper's score archives (from which the shipped
+receipts were derived), so you can compute your own panels and intervals.
+
+`--grid fine` adds the finer settings the paper fixed operating points on
+(quarter biases from -4 to 4; GLiNER2 confidence steps of 0.05); use it
+before `calibrate`. A GLiNER2 checkpoint from `train-gliner2` is recognized
+from its configuration and scored on its own output, as the paper scored GL4,
+at confidence thresholds instead of biases; its `--name` must start with
+`gliner2` (default `gliner2-model`), which is how the paper's code knows its
+default setting is 0.5.
+
+## Fixing an operating point
+
+```bash
+python pii-reproduce.py evaluate --checkpoint CKPT --grid fine --out work/evaluation-mine
+python pii-reproduce.py calibrate --evaluation work/evaluation-mine
+```
+
+`calibrate` fixes your model's bias (or GLiNER2 confidence threshold) on one
+population and reports that setting unchanged on the others, by the rule the
+paper used for every system
+([the bias sweep](#o-logit-bias-sweep); `select_threshold` in
+`scripts/pii_paper_o4_figures.py`, the same code): take the setting with the
+best pooled 80%-overlap region F1 on the development population, resample
+its source documents 10,000 times, keep the contiguous range of settings
+whose F1 difference from the best has a 95% interval including zero, and
+take the median setting of that range. Choosing the middle of the
+near-optimal range rather than the single best point keeps the choice from
+chasing noise in a few hundred rows.
+
+`--development silver-dev` (the default, as in the paper) chooses on the 659
+Ont3 selection rows; `gold-7` or `silver-test` choose on those instead. The
+result, `EVALUATION/calibration-DEVELOPMENT.json`, gives for every population
+the scores at the selected setting, at the default and at the development
+argmax (regions at 80% and exact overlap, and typed spans on Ont3), marks
+which population was the development set, pairs your model against O4 at
+O4's own operating point (bias 0; 80%-overlap regions, like the paper's
+operating-point comparisons), and lists the paper's O4 (and, for a
+GLiNER2 model, GL4) at their operating points. Only the held-out populations'
+scores are estimates of what to expect at that setting. Applied to the
+shipped receipt curves of O3 and GL4, `calibrate` reproduces their published
+operating points and scores exactly (`tests/unit/test_pii_software_calibrate.py`).
 
 To tag or redact raw text:
 
@@ -257,7 +302,8 @@ python pii-reproduce.py redact --checkpoint CKPT --input docs.txt --out redacted
 Input is one document per line, or JSONL with `text` and optional `id` and
 `lang`. Each output line has typed spans and a copy of the text with each
 span replaced by `[type]`. Decoding is at zero bias with adjacent person and
-organization pieces merged; no serving stage is applied. Pass the right
+organization pieces merged, followed by the paper's serving stages unless
+`--raw`. Pass the right
 `--lang`, because the model's language bias is chosen by it. A model is
 unreliable on types its training data never supervised: with `--work WORK`,
 `redact` emits only the types `WORK/mixture` supervised, and `--types`
@@ -329,9 +375,10 @@ so its own counts remain receipts.
   final test. We do not believe this selection meaningfully overfit the O4
   recipe to them. The paper's evaluation on fresh data supports this: on 542
   Ont3 segments, freshly annotated from documents that never train and never
-  used to select O4, O4 leads the adapted GLiNER2 baseline by 12.1 [9.1,
-  15.3] fine-type character F1 and 10.2 [7.3, 13.4] redaction-character F1
-  (86.8 and 89.3 F1 for O4; the paper's GLiNER2-adaptation appendix). An
+  used to select O4, O4 leads the adapted GLiNER2 baseline by 12.8 [10.0,
+  15.6] fine-type character F1 and 9.3 [6.7, 12.1] redaction-character F1
+  (86.8 and 89.3 F1 for O4, each system at its Silver-dev operating point;
+  the paper's GLiNER2-adaptation appendix). An
   unselected model also matches it: the package's fresh fit, 12,000 updates
   of O4's recipe from pretrained XLM-R with no checkpoint or run selected on
   human gold, scores +0.9 [−0.3, 2.0] exact-region F1 over O4 there (served;

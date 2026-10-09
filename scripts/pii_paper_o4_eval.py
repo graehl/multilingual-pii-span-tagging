@@ -39,6 +39,13 @@ PRESIDIO_THRESHOLDS = [round(0.05 * step, 2) for step in range(21)]
 # kept no logits, so their grids cannot be refined without re-inference.
 PRESIDIO_REFINED = [round(0.025 * step, 3) for step in range(41)]
 GLINER_REFINED = [round(0.05 * step, 2) for step in range(1, 20)] + [0.98, 0.99]
+# GL4, the paper's adapted GLiNER2: since 2026-10-10 the retrain with shuffled type
+# order (pii-gliner2-o4-shuffled-train-v1), checkpoint frozen on Silver-dev in
+# evidence/gl4-shuffled-o4-v1/freeze.json. The first, unshuffled GL4 was checkpoint-600
+# of gliner-trajectory-*, with gliner-o4-heldout.json.
+GL4_TRAJECTORY = "gliner-shuffled-trajectory"
+GL4_CHECKPOINT = "checkpoint-600"
+GL4_HELDOUT = "gliner-shuffled-o4-heldout.json"
 
 
 def gliner_points(points, thresholds=GLINER_REFINED):
@@ -100,7 +107,7 @@ def paper_sweeps():
         ("ont1", "ont1-heldout.json", "ont1"),
         ("ont2", "ont2-heldout-served.json", "ont3"),
         ("gliner2-tuned", "gl3-heldout-raw.json", "ont3"),
-        ("gliner2-o4", "gliner-o4-heldout.json", "ont3"),
+        ("gliner2-o4", GL4_HELDOUT, "ont3"),
         ("presidio", "presidio-extension/presidio.json.gz", PRESIDIO_SCHEMA),
     ):
         yield model, "heldout", ARTIFACTS / "paper-o4-v1" / filename, projection
@@ -115,7 +122,7 @@ def paper_sweeps():
         yield (
             "gliner2-o4",
             population,
-            ARTIFACTS / f"paper-o4-v1/gliner-trajectory-{population}/checkpoint-600.json",
+            ARTIFACTS / f"paper-o4-v1/{GL4_TRAJECTORY}-{population}/{GL4_CHECKPOINT}.json",
             "ont3",
         )
         yield (
@@ -171,6 +178,44 @@ def gliner_trajectory_sweeps(full_human=False):
     )
 
 
+# GL4 checkpoint criteria: (population, family, share) over language-weighted pooled
+# counts at fixed confidence 0.5. The first GL4 used the full one; the shuffled GL4
+# that replaced it keeps only its Silver-dev terms, in the same proportion.
+GL4_CRITERION = (("human", "regions", 0.70), ("ont3", "regions", 0.12), ("ont3", "typed", 0.18))
+SILVER_DEV_CRITERION = (("ont3", "regions", 0.40), ("ont3", "typed", 0.60))
+
+
+def checkpoint_ranking(systems, criterion, limit=0):
+    """Rank trajectory checkpoints by a weighted criterion; the first is selected."""
+    import yaml
+
+    language_path = Path(__file__).with_name("pii_language_round.yaml")
+    importance = yaml.safe_load(language_path.read_text())["language_importance"]
+    ranking = []
+    for model, populations in systems.items():
+        combined = [0.0, 0.0, 0.0]
+        for population, family, share in criterion:
+            point = next(p for p in populations[population]["points"] if p["threshold"] == 0.5)
+            items = point[family]["100"]["per_input"] if family == "regions" else point[family]["per_input"]
+            weights = [
+                float(importance["weights"].get(row["lang"], importance["unlisted_language_weight"]))
+                for row in items
+            ]
+            total = sum(weights)
+            for row, weight in zip(items, weights, strict=True):
+                for i, value in enumerate(row["counts"]):
+                    combined[i] += share * weight / total * value
+        ranking.append({"checkpoint": model, "metrics": metrics(combined)})
+    ranking.sort(key=lambda row: row["metrics"]["F1"], reverse=True)
+    terms = ", ".join(f"{share:.0%} {population} exact {family}" for population, family, share in criterion)
+    return {
+        "criterion": f"language-weighted pooled counts: {terms}; fixed confidence 0.5",
+        "language_weights_sha256": sha(language_path),
+        "ranking": ranking,
+        "selected": ranking[0]["checkpoint"] if not limit else None,
+    }
+
+
 def score_paper_o4(
     limit=0,
     gliner_trajectory=False,
@@ -180,6 +225,7 @@ def score_paper_o4(
     destination=DEST,
     selection_note=None,
     refined_grid=False,
+    silver_dev_selection=False,
 ):
     """Score aligned saved predictions with the shared title and coverage policy.
 
@@ -314,38 +360,9 @@ def score_paper_o4(
             flush=True,
         )
     if full_human:
-        import yaml
-
-        language_path = Path(__file__).with_name("pii_language_round.yaml")
-        importance = yaml.safe_load(language_path.read_text())["language_importance"]
-        ranking = []
-        for model, populations in result["systems"].items():
-            combined = [0.0, 0.0, 0.0]
-            for population, family, share in (
-                ("human", "regions", 0.70),
-                ("ont3", "regions", 0.12),
-                ("ont3", "typed", 0.18),
-            ):
-                point = populations[population]["points"][0]
-                items = (
-                    point[family]["100"]["per_input"] if family == "regions" else point[family]["per_input"]
-                )
-                weights = [
-                    float(importance["weights"].get(row["lang"], importance["unlisted_language_weight"]))
-                    for row in items
-                ]
-                total = sum(weights)
-                for row, weight in zip(items, weights, strict=True):
-                    for i, value in enumerate(row["counts"]):
-                        combined[i] += share * weight / total * value
-            ranking.append({"checkpoint": model, "metrics": metrics(combined)})
-        ranking.sort(key=lambda row: row["metrics"]["F1"], reverse=True)
-        result["selection"] = {
-            "criterion": "language-weighted pooled counts: 70% human exact regions, 12% Ont3 exact regions, 18% Ont3 exact typed spans; fixed confidence 0.5",
-            "language_weights_sha256": sha(language_path),
-            "ranking": ranking,
-            "selected": ranking[0]["checkpoint"] if not limit else None,
-        }
+        result["selection"] = checkpoint_ranking(result["systems"], GL4_CRITERION, limit)
+    elif silver_dev_selection:
+        result["selection"] = checkpoint_ranking(result["systems"], SILVER_DEV_CRITERION, limit)
     if selection_note is not None and not full_human:
         result["selection"] = selection_note
     destination.mkdir(parents=True, exist_ok=True)
@@ -507,9 +524,17 @@ def main():
         help="Score GLiNER2 confidence and Presidio score thresholds on halved-step grids emulated from "
         "saved outputs; without --sweep, score only the main-figure GLiNER2, GL4 and Presidio sweeps",
     )
+    parser.add_argument(
+        "--silver-dev-selection",
+        action="store_true",
+        help="With --gliner-trajectory: rank checkpoints by GL4's criterion restricted to its Silver-dev "
+        "terms (no human gold)",
+    )
     acli.add_standard_args(parser)
     acli.maybe_complete(parser)
     args = parser.parse_args()
+    if args.silver_dev_selection and not args.gliner_trajectory:
+        parser.error("--silver-dev-selection ranks a --gliner-trajectory")
     sweeps = None
     if args.sweep:
         if any(population not in {"human", "ont3", "heldout"} for _, population, _, _ in args.sweep):
@@ -530,6 +555,7 @@ def main():
         destination=args.destination,
         selection_note=args.selection_note,
         refined_grid=args.refined_grid,
+        silver_dev_selection=args.silver_dev_selection,
     )
 
 

@@ -2,6 +2,223 @@
   "projection": "schema, identity, params, metrics and source; free-text logs excluded",
   "records": [
     {
+      "path": "runs/aim/pii-gl4-mapped-train-v1/runs/20260929T095354Z.json",
+      "original_sha256": "e8ae4080a625b427d12e3a16ec7f9e2209e4ffa01b4f6ae4f13efebf91ef5f28",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260929T095354Z",
+          "experiment": "pii-gl4-mapped-train-v1",
+          "run_name": "pii-gl4-mapped-train-v1/20260929T095354Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": "/local/draft/.agentctl/runs/pii-gl4-mapped-train-v1/20260929T095354Z/headline.txt",
+            "job": "pii-gl4-mapped-train-v1",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-mapped-train",
+            "post_run_note": "Completed 2000 updates with exit 0 in 11m25s; accepted-label and coverage objective. Eight downstream selection stages returned with verified hashes; quality evaluation pending. Fallback and mapped initial weight hashes match.",
+            "post_run_noted_at": "2026-09-29T10:55:45Z",
+            "run_id": "20260929T095354Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "train",
+              "--train",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl",
+              "--eval",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl",
+              "--model",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock",
+              "--label-transfer",
+              "research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json",
+              "--output-dir",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-mapped-train",
+              "--max-steps",
+              "2000",
+              "--epochs",
+              "20",
+              "--eval-steps",
+              "100",
+              "--save-total-limit",
+              "25",
+              "--warmup-steps",
+              "1000",
+              "--encoder-lr",
+              "1e-5",
+              "--task-lr",
+              "2e-5",
+              "--batch-size",
+              "8",
+              "--grad-accum",
+              "4",
+              "--patience",
+              "20",
+              "--verify-supervision",
+              "--acceptable-labels"
+            ],
+            "cwd": "/local/draft",
+            "text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py train --train artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl --eval artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl --model artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock --label-transfer research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json --output-dir artifacts/pii-redaction-frontier/paper-o4-v1/gliner-mapped-train --max-steps 2000 --epochs 20 --eval-steps 100 --save-total-limit 25 --warmup-steps 1000 --encoder-lr 1e-5 --task-lr 2e-5 --batch-size 8 --grad-accum 4 --patience 20 --verify-supervision --acceptable-labels"
+          },
+          "inputs": {
+            "data": {
+              "is_dir": true,
+              "mtime": "2026-09-29T09:45:07Z",
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1",
+              "raw": true,
+              "size": 24658177
+            }
+          },
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "b8003e1b1fa7620eb0b75651345511316f3fd924",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-1da28a2b-d57b-ced8-2886-d72c8405d490"
+              }
+            ],
+            "hostname": "ip-172-31-22-39",
+            "kernel": "6.8.0-1061-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 22.04.5 LTS",
+              "version_id": "22.04"
+            },
+            "pid": "18720",
+            "python_executable": "/usr/bin/python3.10",
+            "python_version": "3.10.12",
+            "started_at": "2026-09-29T09:53:54Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-mapped-train.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file.",
+            "post-run-analysis (2026-09-29T10:55:45Z): Completed 2000 updates with exit 0 in 11m25s; accepted-label and coverage objective. Eight downstream selection stages returned with verified hashes; quality evaluation pending. Fallback and mapped initial weight hashes match."
+          ],
+          "output": {
+            "log_path": "/local/draft/.agentctl/runs/pii-gl4-mapped-train-v1/20260929T095354Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-mapped-train.meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-mapped-train",
+            "title": "pii-gl4-mapped-train-v1 20260929T095354Z"
+          },
+          "outputs": {
+            "primary": {
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-mapped-train"
+            }
+          },
+          "related": {
+            "agentctl-state": "/local/draft/.agentctl/runs/pii-gl4-mapped-train-v1/20260929T095354Z/state.json"
+          },
+          "request_plan": [],
+          "result": {
+            "analysis-summary": "Completed 2000 updates with exit 0 in 11m25s; accepted-label and coverage objective. Eight downstream selection stages returned with verified hashes; quality evaluation pending. Fallback and mapped initial weight hashes match."
+          },
+          "script": {
+            "git_blob": "e407ec733c2eabde74d1f45f78c69bbe49181d0f",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-09-29T09:51:57Z",
+            "path": "/local/draft/scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "7acfb81b2f828412e7422bccdf5d713033b5e8f6ba80a2ad71c470568b1cfa91",
+            "size": 29063
+          },
+          "setup": {
+            "job": "pii-gl4-mapped-train-v1",
+            "launch_status": "running",
+            "run_id": "20260929T095354Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "/local/draft/pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "/local/draft/pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "/local/draft/pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "/local/draft/requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "/local/draft/uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "/local/draft/agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "e407ec733c2eabde74d1f45f78c69bbe49181d0f",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "/local/draft/scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "7acfb81b2f828412e7422bccdf5d713033b5e8f6ba80a2ad71c470568b1cfa91",
+                "size": 29063
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "b8003e1b1fa7620eb0b75651345511316f3fd924",
+            "git_root": "/local/draft",
+            "guard": "record",
+            "launch_check_at": "2026-09-29T09:53:55Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-29T09:53:54Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "7c0fa93c2bc33f6aa06b1716",
+          "exported_at": "2026-09-29T09:53:55Z"
+        }
+      }
+    },
+    {
       "path": "runs/aim/pii-gliner2-no-ai4p-train-v1/runs/20260923T190624Z.json",
       "original_sha256": "6d8e2deb08c94310970dd622c5d01a195e734923400924ab4e8dc18f97d5dcef",
       "record": {
@@ -218,6 +435,1238 @@
           "aim_repo": ".",
           "aim_run_hash": "aff613b409dfeed7b9861455",
           "exported_at": "2026-09-23T19:06:25Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-gliner2-o4-mapped-materialize-v1/runs/20260929T094304Z.json",
+      "original_sha256": "e99f8e5f91ba0a9edba4aeaf553fe2b7397932d71a885a75037ddb785c5e06ed",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260929T094304Z",
+          "experiment": "pii-gliner2-o4-mapped-materialize-v1",
+          "run_name": "pii-gliner2-o4-mapped-materialize-v1/20260929T094304Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": ".agentctl/runs/pii-gliner2-o4-mapped-materialize-v1/20260929T094304Z/headline.txt",
+            "job": "pii-gliner2-o4-mapped-materialize-v1",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl",
+            "run_id": "20260929T094304Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "--json",
+              "materialize",
+              "--input",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/train.jsonl",
+              "--output",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl",
+              "--labels",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json",
+              "--label-map",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json",
+              "--sampling-config",
+              "research/pii/frontier/evidence/gliner2-o4-v1/sampling.json",
+              "--sample-records",
+              "50000",
+              "--minimum-language-share",
+              "0.0075",
+              "--language-round",
+              "research/pii/frontier/evidence/four-corpus-v1/language-round.yaml",
+              "--snap-word-boundaries",
+              "--acceptable-labels"
+            ],
+            "cwd": ".",
+            "text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py --json materialize --input artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/train.jsonl --output artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl --labels artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json --label-map artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json --sampling-config research/pii/frontier/evidence/gliner2-o4-v1/sampling.json --sample-records 50000 --minimum-language-share 0.0075 --language-round research/pii/frontier/evidence/four-corpus-v1/language-round.yaml --snap-word-boundaries --acceptable-labels"
+          },
+          "inputs": {
+            "data": {
+              "is_dir": true,
+              "mtime": "2026-09-28T10:02:34Z",
+              "path": "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles",
+              "raw": true,
+              "size": 268816009
+            }
+          },
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "234adb00cbdae739448a6d04325d8df3a859aaf4",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-efc5c7f2-802e-ac7d-4fa5-55cfb26ee388"
+              }
+            ],
+            "hostname": "gra",
+            "kernel": "7.0.0-1012-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 26.04.1 LTS",
+              "version_id": "26.04"
+            },
+            "pid": "1747210",
+            "python_executable": "pixi-gemma4/.pixi/envs/default/bin/python",
+            "python_version": "3.12.13",
+            "started_at": "2026-09-29T09:43:05Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": ".agentctl/runs/pii-gliner2-o4-mapped-materialize-v1/20260929T094304Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl.meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl",
+            "title": "pii-gliner2-o4-mapped-materialize-v1 20260929T094304Z"
+          },
+          "outputs": {
+            "primary": {
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/train.jsonl"
+            }
+          },
+          "related": {
+            "agentctl-state": ".agentctl/runs/pii-gliner2-o4-mapped-materialize-v1/20260929T094304Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "835f720a1302e8c467ee33e2c0d36f857eca46fc",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-09-29T09:42:29Z",
+            "path": "scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "3f37254dbf83c160c6e71470e6f24baefa8e6c1a507b1c5a56b090c44666c557",
+            "size": 28836
+          },
+          "setup": {
+            "job": "pii-gliner2-o4-mapped-materialize-v1",
+            "launch_status": "running",
+            "run_id": "20260929T094304Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "835f720a1302e8c467ee33e2c0d36f857eca46fc",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "3f37254dbf83c160c6e71470e6f24baefa8e6c1a507b1c5a56b090c44666c557",
+                "size": 28836
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "234adb00cbdae739448a6d04325d8df3a859aaf4",
+            "git_root": ".",
+            "guard": "record",
+            "launch_check_at": "2026-09-29T09:43:06Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-29T09:43:05Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "ea474ebdb9efef186432e97f",
+          "exported_at": "2026-09-29T09:43:06Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-gliner2-o4-mapped-selector-v1/runs/20260929T094446Z.json",
+      "original_sha256": "b328fd6eeab2fd25f155eee69d049212f19673001b2d35150bb2b077f240d038",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260929T094446Z",
+          "experiment": "pii-gliner2-o4-mapped-selector-v1",
+          "run_name": "pii-gliner2-o4-mapped-selector-v1/20260929T094446Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": ".agentctl/runs/pii-gliner2-o4-mapped-selector-v1/20260929T094446Z/headline.txt",
+            "job": "pii-gliner2-o4-mapped-selector-v1",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl",
+            "run_id": "20260929T094446Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "--json",
+              "materialize",
+              "--input",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/val.jsonl",
+              "--output",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl",
+              "--labels",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json",
+              "--label-map",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json",
+              "--snap-word-boundaries",
+              "--acceptable-labels"
+            ],
+            "cwd": ".",
+            "text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py --json materialize --input artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/val.jsonl --output artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl --labels artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json --label-map artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json --snap-word-boundaries --acceptable-labels"
+          },
+          "inputs": {},
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "234adb00cbdae739448a6d04325d8df3a859aaf4",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-efc5c7f2-802e-ac7d-4fa5-55cfb26ee388"
+              }
+            ],
+            "hostname": "gra",
+            "kernel": "7.0.0-1012-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 26.04.1 LTS",
+              "version_id": "26.04"
+            },
+            "pid": "1747961",
+            "python_executable": "pixi-gemma4/.pixi/envs/default/bin/python",
+            "python_version": "3.12.13",
+            "started_at": "2026-09-29T09:44:47Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": ".agentctl/runs/pii-gliner2-o4-mapped-selector-v1/20260929T094446Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl.meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl",
+            "title": "pii-gliner2-o4-mapped-selector-v1 20260929T094446Z"
+          },
+          "outputs": {
+            "primary": {
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-mapped-v1/selector.jsonl"
+            }
+          },
+          "related": {
+            "agentctl-state": ".agentctl/runs/pii-gliner2-o4-mapped-selector-v1/20260929T094446Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "835f720a1302e8c467ee33e2c0d36f857eca46fc",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-09-29T09:42:29Z",
+            "path": "scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "3f37254dbf83c160c6e71470e6f24baefa8e6c1a507b1c5a56b090c44666c557",
+            "size": 28836
+          },
+          "setup": {
+            "job": "pii-gliner2-o4-mapped-selector-v1",
+            "launch_status": "running",
+            "run_id": "20260929T094446Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "835f720a1302e8c467ee33e2c0d36f857eca46fc",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "3f37254dbf83c160c6e71470e6f24baefa8e6c1a507b1c5a56b090c44666c557",
+                "size": 28836
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "234adb00cbdae739448a6d04325d8df3a859aaf4",
+            "git_root": ".",
+            "guard": "record",
+            "launch_check_at": "2026-09-29T09:44:48Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-29T09:44:46Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "32b777183ed5c3cbbe650128",
+          "exported_at": "2026-09-29T09:44:48Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-gliner2-o4-materialize-v3/runs/20260928T205322Z.json",
+      "original_sha256": "f5cdc9de98601fdf961dbe721ac2873276bd52dd68c5b68a1defb3ef0b9053f2",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260928T205322Z",
+          "experiment": "pii-gliner2-o4-materialize-v3",
+          "run_name": "pii-gliner2-o4-materialize-v3/20260928T205322Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": ".agentctl/runs/pii-gliner2-o4-materialize-v3/20260928T205322Z/headline.txt",
+            "job": "pii-gliner2-o4-materialize-v3",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl",
+            "run_id": "20260928T205322Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "--json",
+              "materialize",
+              "--input",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/train.jsonl",
+              "--output",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl",
+              "--labels",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json",
+              "--label-map",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json",
+              "--sampling-config",
+              "research/pii/frontier/evidence/gliner2-o4-v1/sampling.json",
+              "--sample-records",
+              "50000",
+              "--minimum-language-share",
+              "0.0075",
+              "--language-round",
+              "research/pii/frontier/evidence/four-corpus-v1/language-round.yaml",
+              "--snap-word-boundaries"
+            ],
+            "cwd": ".",
+            "text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py --json materialize --input artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/train.jsonl --output artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl --labels artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json --label-map artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json --sampling-config research/pii/frontier/evidence/gliner2-o4-v1/sampling.json --sample-records 50000 --minimum-language-share 0.0075 --language-round research/pii/frontier/evidence/four-corpus-v1/language-round.yaml --snap-word-boundaries"
+          },
+          "inputs": {
+            "data": {
+              "is_dir": true,
+              "mtime": "2026-09-28T10:02:34Z",
+              "path": "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles",
+              "raw": true,
+              "size": 268816009
+            }
+          },
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "47a7e2fc4f44e1914d8d85bd0076f58d29292679",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-efc5c7f2-802e-ac7d-4fa5-55cfb26ee388"
+              }
+            ],
+            "hostname": "gra",
+            "kernel": "7.0.0-1012-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 26.04.1 LTS",
+              "version_id": "26.04"
+            },
+            "pid": "4172331",
+            "python_executable": "pixi-gemma4/.pixi/envs/default/bin/python",
+            "python_version": "3.12.13",
+            "started_at": "2026-09-28T20:53:23Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": ".agentctl/runs/pii-gliner2-o4-materialize-v3/20260928T205322Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl.meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl",
+            "title": "pii-gliner2-o4-materialize-v3 20260928T205322Z"
+          },
+          "outputs": {
+            "data": {
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl"
+            }
+          },
+          "related": {
+            "agentctl-state": ".agentctl/runs/pii-gliner2-o4-materialize-v3/20260928T205322Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "1da8eb66cc1d3411817bae15480bf7837ce4eeeb",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-09-28T20:52:45Z",
+            "path": "scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "8682f5eac03049633c55a7b99327703d9c3dffdab1cd0edbad986d018f3cd321",
+            "size": 26741
+          },
+          "setup": {
+            "job": "pii-gliner2-o4-materialize-v3",
+            "launch_status": "running",
+            "run_id": "20260928T205322Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "1da8eb66cc1d3411817bae15480bf7837ce4eeeb",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "8682f5eac03049633c55a7b99327703d9c3dffdab1cd0edbad986d018f3cd321",
+                "size": 26741
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "47a7e2fc4f44e1914d8d85bd0076f58d29292679",
+            "git_root": ".",
+            "guard": "enforce",
+            "launch_check_at": "2026-09-28T20:53:24Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-28T20:53:22Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "3658e839e21f2aaddba54bb2",
+          "exported_at": "2026-09-28T20:53:24Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-gliner2-o4-selector-v1/runs/20260928T205418Z.json",
+      "original_sha256": "34fad472d1dfcee31059407c05c39220f858c33ed06de3e7b5bfc54b39a097f8",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260928T205418Z",
+          "experiment": "pii-gliner2-o4-selector-v1",
+          "run_name": "pii-gliner2-o4-selector-v1/20260928T205418Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": ".agentctl/runs/pii-gliner2-o4-selector-v1/20260928T205418Z/headline.txt",
+            "job": "pii-gliner2-o4-selector-v1",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl",
+            "run_id": "20260928T205418Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "--json",
+              "materialize",
+              "--input",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/val.jsonl",
+              "--output",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl",
+              "--labels",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json",
+              "--label-map",
+              "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json",
+              "--snap-word-boundaries"
+            ],
+            "cwd": ".",
+            "text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py --json materialize --input artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/val.jsonl --output artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl --labels artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json --label-map artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json --snap-word-boundaries"
+          },
+          "inputs": {
+            "data": {
+              "is_dir": true,
+              "mtime": "2026-09-28T10:02:34Z",
+              "path": "artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles",
+              "raw": true,
+              "size": 268816009
+            }
+          },
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "47a7e2fc4f44e1914d8d85bd0076f58d29292679",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-efc5c7f2-802e-ac7d-4fa5-55cfb26ee388"
+              }
+            ],
+            "hostname": "gra",
+            "kernel": "7.0.0-1012-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 26.04.1 LTS",
+              "version_id": "26.04"
+            },
+            "pid": "4173173",
+            "python_executable": "pixi-gemma4/.pixi/envs/default/bin/python",
+            "python_version": "3.12.13",
+            "started_at": "2026-09-28T20:54:20Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": ".agentctl/runs/pii-gliner2-o4-selector-v1/20260928T205418Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl.meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl",
+            "title": "pii-gliner2-o4-selector-v1 20260928T205418Z"
+          },
+          "outputs": {
+            "data": {
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl"
+            }
+          },
+          "related": {
+            "agentctl-state": ".agentctl/runs/pii-gliner2-o4-selector-v1/20260928T205418Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "1da8eb66cc1d3411817bae15480bf7837ce4eeeb",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-09-28T20:52:45Z",
+            "path": "scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "8682f5eac03049633c55a7b99327703d9c3dffdab1cd0edbad986d018f3cd321",
+            "size": 26741
+          },
+          "setup": {
+            "job": "pii-gliner2-o4-selector-v1",
+            "launch_status": "running",
+            "run_id": "20260928T205418Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "1da8eb66cc1d3411817bae15480bf7837ce4eeeb",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "8682f5eac03049633c55a7b99327703d9c3dffdab1cd0edbad986d018f3cd321",
+                "size": 26741
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "47a7e2fc4f44e1914d8d85bd0076f58d29292679",
+            "git_root": ".",
+            "guard": "enforce",
+            "launch_check_at": "2026-09-28T20:54:20Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-28T20:54:19Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "a389d9970ac91860e4037b35",
+          "exported_at": "2026-09-28T20:54:20Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-gliner2-o4-shuffled-train-v1/runs/20261010T004257Z.json",
+      "original_sha256": "0c6d15d8d16edd1c958420a93c965f024cbef50ba51c77f5f82005ceeece57d5",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20261010T004257Z",
+          "experiment": "pii-gliner2-o4-shuffled-train-v1",
+          "run_name": "pii-gliner2-o4-shuffled-train-v1/20261010T004257Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": ".agentctl/runs/pii-gliner2-o4-shuffled-train-v1/20261010T004257Z/headline.txt",
+            "job": "pii-gliner2-o4-shuffled-train-v1",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train-shuffled",
+            "run_id": "20261010T004257Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "train",
+              "--train",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl",
+              "--eval",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl",
+              "--model",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock",
+              "--label-transfer",
+              "research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json",
+              "--output-dir",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train-shuffled",
+              "--max-steps",
+              "2000",
+              "--epochs",
+              "20",
+              "--eval-steps",
+              "100",
+              "--save-total-limit",
+              "25",
+              "--warmup-steps",
+              "1000",
+              "--encoder-lr",
+              "1e-5",
+              "--task-lr",
+              "2e-5",
+              "--batch-size",
+              "8",
+              "--grad-accum",
+              "4",
+              "--patience",
+              "20",
+              "--verify-supervision",
+              "--shuffle-labels"
+            ],
+            "cwd": ".",
+            "text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py train --train artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl --eval artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl --model artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock --label-transfer research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json --output-dir artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train-shuffled --max-steps 2000 --epochs 20 --eval-steps 100 --save-total-limit 25 --warmup-steps 1000 --encoder-lr 1e-5 --task-lr 2e-5 --batch-size 8 --grad-accum 4 --patience 20 --verify-supervision --shuffle-labels"
+          },
+          "inputs": {
+            "selector": {
+              "mtime": "2026-09-28T20:54:24Z",
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl",
+              "raw": true,
+              "size": 105402,
+              "source_command_text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py --json materialize --input artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/val.jsonl --output artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl --labels artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json --label-map artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json --snap-word-boundaries",
+              "source_dump": "runs/aim/pii-gliner2-o4-selector-v1/runs/20260928T205418Z.json",
+              "source_experiment": "pii-gliner2-o4-selector-v1",
+              "source_origin": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl",
+              "source_run_id": "20260928T205418Z"
+            },
+            "stock": {
+              "mtime": "2026-09-28T20:48:34Z",
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock/model.safetensors",
+              "raw": true,
+              "size": 1228421964
+            },
+            "train": {
+              "mtime": "2026-09-28T20:53:36Z",
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl",
+              "raw": true,
+              "size": 12924898,
+              "source_command_text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py --json materialize --input artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/train.jsonl --output artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl --labels artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/labels.json --label-map artifacts/pii-redaction-frontier/four-corpus-coverage-mixtures-v1/p50-luna-needle-v6-titles/mapping.json --sampling-config research/pii/frontier/evidence/gliner2-o4-v1/sampling.json --sample-records 50000 --minimum-language-share 0.0075 --language-round research/pii/frontier/evidence/four-corpus-v1/language-round.yaml --snap-word-boundaries",
+              "source_dump": "runs/aim/pii-gliner2-o4-materialize-v3/runs/20260928T205322Z.json",
+              "source_experiment": "pii-gliner2-o4-materialize-v3",
+              "source_origin": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl",
+              "source_run_id": "20260928T205322Z"
+            }
+          },
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "5ab61a14d11f07443e48349c49869b4cf6578e84",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-efc5c7f2-802e-ac7d-4fa5-55cfb26ee388"
+              }
+            ],
+            "hostname": "gra",
+            "kernel": "7.0.0-1012-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 26.04.1 LTS",
+              "version_id": "26.04"
+            },
+            "pid": "1170843",
+            "python_executable": "pixi-gemma4/.pixi/envs/default/bin/python",
+            "python_version": "3.12.13",
+            "started_at": "2026-10-10T00:42:57Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train-shuffled.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": ".agentctl/runs/pii-gliner2-o4-shuffled-train-v1/20261010T004257Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train-shuffled.meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train-shuffled",
+            "title": "pii-gliner2-o4-shuffled-train-v1 20261010T004257Z"
+          },
+          "outputs": {
+            "model": {
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train-shuffled"
+            }
+          },
+          "related": {
+            "agentctl-state": ".agentctl/runs/pii-gliner2-o4-shuffled-train-v1/20261010T004257Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "88a9c109cbf4ad681c79f52a52964aca7a6096a3",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-10-09T22:53:29Z",
+            "path": "scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "ebc0a4e48177f269b2ad01839fe7cfbaa2fe9a906c36d5ceccd13f07db60d8e2",
+            "size": 30001
+          },
+          "setup": {
+            "job": "pii-gliner2-o4-shuffled-train-v1",
+            "launch_status": "running",
+            "run_id": "20261010T004257Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "ac8d6cda89da416cb622cdf28d00fccfb451c71d",
+                "git_path": "requirements.txt",
+                "path": "requirements.txt",
+                "sha256": "752f712692631c30716008bd49e05e588b2931988721a9f436c1b0de23301b61",
+                "size": 89
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "88a9c109cbf4ad681c79f52a52964aca7a6096a3",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "ebc0a4e48177f269b2ad01839fe7cfbaa2fe9a906c36d5ceccd13f07db60d8e2",
+                "size": 30001
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "5ab61a14d11f07443e48349c49869b4cf6578e84",
+            "git_root": ".",
+            "guard": "record",
+            "launch_check_at": "2026-10-10T00:42:57Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-10-10T00:42:57Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "0e9b2382abae8c928a6f4473",
+          "exported_at": "2026-10-10T00:42:57Z"
+        }
+      }
+    },
+    {
+      "path": "runs/aim/pii-gliner2-o4-train-v1/runs/20260928T205629Z.json",
+      "original_sha256": "e00c2c62e9d4b69a16da1d94eee47c45867e5238a71b049c466fa0ea57718e54",
+      "record": {
+        "schema": "aim-text-dump-v1",
+        "identity": {
+          "agentctl_run_id": "20260928T205629Z",
+          "experiment": "pii-gliner2-o4-train-v1",
+          "run_name": "pii-gliner2-o4-train-v1/20260928T205629Z",
+          "tags": [
+            "agentctl"
+          ]
+        },
+        "params": {
+          "agentctl": {
+            "headline_file": ".agentctl/runs/pii-gliner2-o4-train-v1/20260928T205629Z/headline.txt",
+            "job": "pii-gliner2-o4-train-v1",
+            "mode": "start",
+            "output": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train",
+            "run_id": "20260928T205629Z",
+            "step_id": ""
+          },
+          "command": {
+            "argv": [
+              "nice",
+              "-n",
+              "10",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python",
+              "scripts/pii_gliner2_ont3_finetune.py",
+              "train",
+              "--train",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl",
+              "--eval",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl",
+              "--model",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock",
+              "--label-transfer",
+              "research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json",
+              "--output-dir",
+              "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train",
+              "--max-steps",
+              "2000",
+              "--epochs",
+              "20",
+              "--eval-steps",
+              "100",
+              "--save-total-limit",
+              "25",
+              "--warmup-steps",
+              "1000",
+              "--encoder-lr",
+              "1e-5",
+              "--task-lr",
+              "2e-5",
+              "--batch-size",
+              "8",
+              "--grad-accum",
+              "4",
+              "--patience",
+              "20",
+              "--verify-supervision"
+            ],
+            "cwd": ".",
+            "text": "nice -n 10 artifacts/pii-redaction-frontier/paper-o4-v1/gliner-env/bin/python scripts/pii_gliner2_ont3_finetune.py train --train artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/train.jsonl --eval artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3/selector.jsonl --model artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock --label-transfer research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json --output-dir artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train --max-steps 2000 --epochs 20 --eval-steps 100 --save-total-limit 25 --warmup-steps 1000 --encoder-lr 1e-5 --task-lr 2e-5 --batch-size 8 --grad-accum 4 --patience 20 --verify-supervision"
+          },
+          "inputs": {
+            "data": {
+              "is_dir": true,
+              "mtime": "2026-09-28T20:54:25Z",
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-data-v3",
+              "raw": true,
+              "size": 13743625
+            },
+            "runtime": {
+              "mtime": "2026-09-23T18:58:04Z",
+              "path": "research/pii/frontier/evidence/four-corpus-v1/runtime/gliner2-requirements.txt",
+              "raw": true,
+              "size": 264
+            },
+            "stock": {
+              "is_dir": true,
+              "mtime": "2026-09-28T20:48:34Z",
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock",
+              "raw": true,
+              "size": 1244455459,
+              "source_command_text": "nice -n 10 pixi-gemma4/.pixi/envs/default/bin/python -m huggingface_hub.cli.hf download fastino/gliner2-privacy-filter-PII-multi --revision 59894c087cb2923b01f337d4ee72f6ff84d5bdd6 --local-dir artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock",
+              "source_dump": "runs/aim/pii-gliner2-o4-stock-v2/runs/20260928T204825Z.json",
+              "source_experiment": "pii-gliner2-o4-stock-v2",
+              "source_origin": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-stock",
+              "source_run_id": "20260928T204825Z"
+            }
+          },
+          "machine": {
+            "architecture": "x86_64",
+            "git_branch": "conditioned-diversity",
+            "git_commit": "47a7e2fc4f44e1914d8d85bd0076f58d29292679",
+            "gpus": [
+              {
+                "driver_version": "595.91.07",
+                "memory_total_mib": "97887",
+                "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+                "uuid": "GPU-efc5c7f2-802e-ac7d-4fa5-55cfb26ee388"
+              }
+            ],
+            "hostname": "gra",
+            "kernel": "7.0.0-1012-aws",
+            "os": {
+              "id": "ubuntu",
+              "pretty_name": "Ubuntu 26.04.1 LTS",
+              "version_id": "26.04"
+            },
+            "pid": "4177163",
+            "python_executable": "pixi-gemma4/.pixi/envs/default/bin/python",
+            "python_version": "3.12.13",
+            "started_at": "2026-09-28T20:56:30Z"
+          },
+          "meta": {
+            "format": "artifact_meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train.meta.md"
+          },
+          "notes": [
+            "Created by agentctl at launch; output-specific metadata may overwrite or extend this file."
+          ],
+          "output": {
+            "log_path": ".agentctl/runs/pii-gliner2-o4-train-v1/20260928T205629Z/run.log",
+            "meta_path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train.meta.md",
+            "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train",
+            "title": "pii-gliner2-o4-train-v1 20260928T205629Z"
+          },
+          "outputs": {
+            "model": {
+              "path": "artifacts/pii-redaction-frontier/paper-o4-v1/gliner-train"
+            }
+          },
+          "related": {
+            "agentctl-state": ".agentctl/runs/pii-gliner2-o4-train-v1/20260928T205629Z/state.json"
+          },
+          "request_plan": [],
+          "result": {},
+          "script": {
+            "git_blob": "1da8eb66cc1d3411817bae15480bf7837ce4eeeb",
+            "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+            "mtime": "2026-09-28T20:52:45Z",
+            "path": "scripts/pii_gliner2_ont3_finetune.py",
+            "selection": "detected",
+            "sha256": "8682f5eac03049633c55a7b99327703d9c3dffdab1cd0edbad986d018f3cd321",
+            "size": 26741
+          },
+          "setup": {
+            "job": "pii-gliner2-o4-train-v1",
+            "launch_status": "running",
+            "run_id": "20260928T205629Z"
+          },
+          "source": {
+            "execution_guarantee": "admission-time-only",
+            "execution_tree": "mutable-shared-worktree",
+            "files": {
+              "environment:pixi.lock": {
+                "git_blob": "aa9ee5f9cbc04e77c533bb78e672a37062de064a",
+                "git_path": "pixi.lock",
+                "path": "pixi.lock",
+                "sha256": "e5ec55d9753b6b49ac3387a9fc7ac981481a56dc4cfe54dbb1a99c2170d315a2",
+                "size": 240110
+              },
+              "environment:pixi.toml": {
+                "git_blob": "99b81b045c60aad5e94f0d0e89120c9606cc35cf",
+                "git_path": "pixi.toml",
+                "path": "pixi.toml",
+                "sha256": "c53f04b912d174f31cc2cdfde993eb55324a1ada7b31768711fa7ecf0258e438",
+                "size": 3053
+              },
+              "environment:pyproject.toml": {
+                "git_blob": "a83ab741c004021da151cbc1f532958aea601c76",
+                "git_path": "pyproject.toml",
+                "path": "pyproject.toml",
+                "sha256": "42b9d574c4377fe089af6ad32afe31c73273dfaf49ccbfa85ebda439c19659da",
+                "size": 327
+              },
+              "environment:requirements.txt": {
+                "git_blob": "d709c637896036cc60c75cf468cd97c4fe66f506",
+                "git_path": "requirements.txt",
+                "path": "requirements.txt",
+                "sha256": "3907d7a5014f49d6cfcc1308f1abead7e5992d6b571d62ceff326d6a5fd3b511",
+                "size": 75
+              },
+              "environment:uv.lock": {
+                "git_blob": "7518fc90bf78b2b347b694f695c6e1ed120d523c",
+                "git_path": "uv.lock",
+                "path": "uv.lock",
+                "sha256": "c59e3d361f8f175c3d661018029aeb9df00761b74d70f79d6d1e3971fcc59082",
+                "size": 52
+              },
+              "project_env": {
+                "git_blob": "a6b833adcd8810b771f8fc853afdafa30fecd8ce",
+                "git_path": "agentctl.env",
+                "path": "agentctl.env",
+                "sha256": "5f50ec41574026df523e2eb356fc8fdd798989fa57fae9afa04576ab54b4b83f",
+                "size": 310
+              },
+              "script": {
+                "git_blob": "1da8eb66cc1d3411817bae15480bf7837ce4eeeb",
+                "git_path": "scripts/pii_gliner2_ont3_finetune.py",
+                "path": "scripts/pii_gliner2_ont3_finetune.py",
+                "sha256": "8682f5eac03049633c55a7b99327703d9c3dffdab1cd0edbad986d018f3cd321",
+                "size": 26741
+              }
+            },
+            "git_branch": "conditioned-diversity",
+            "git_commit": "47a7e2fc4f44e1914d8d85bd0076f58d29292679",
+            "git_root": ".",
+            "guard": "enforce",
+            "launch_check_at": "2026-09-28T20:56:31Z",
+            "schema": "agentctl-source-v1",
+            "source_scope": "non-doc",
+            "status": "committed",
+            "submission_check_at": "2026-09-28T20:56:29Z",
+            "tracked_clean": true,
+            "untracked_python_count": 0,
+            "violations": []
+          }
+        },
+        "metrics": [],
+        "source": {
+          "aim_repo": ".",
+          "aim_run_hash": "e393e7e4204619f365777de3",
+          "exported_at": "2026-09-28T20:56:31Z"
         }
       }
     },

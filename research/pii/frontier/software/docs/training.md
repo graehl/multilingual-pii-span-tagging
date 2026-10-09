@@ -244,6 +244,108 @@ The result is a recipe reproduction, not a recreation of O4's weights or
 scores. Expect the largest gaps on types and languages the public corpora do
 not annotate.
 
+## The GLiNER2 baseline (GL4)
+
+GL4 is the paper's adapted GLiNER2 baseline: the published multilingual PII
+GLiNER2 model fine-tuned on O4's training mixture. It ships so the paper's
+baseline can be rebuilt and checked, not as a recommended model. The
+adaptation was not very effective: at its Silver-dev operating point GL4
+scores 65.4 redaction F1 on Gold-7, against 69.1 for the published GLiNER2
+(which is scored only on the types it has labels for) and 88.2 for O4.
+
+```bash
+python pii-reproduce.py mixture                    # as for O4; GL4 trains on the same directory
+python pii-reproduce.py train-gliner2              # WORK/gliner2; about 10 minutes on one large GPU
+python pii-reproduce.py evaluate --checkpoint work/gliner2/model/checkpoint-600 \
+    --grid fine --out work/evaluation-gl4-600
+python pii-reproduce.py calibrate --evaluation work/evaluation-gl4-600
+```
+
+`train-gliner2` replays GL4's three recorded runs, read from
+`research/pii/frontier/software/records/paper-run-records.json`, on your
+mixture:
+
+1. **Start model.** `fastino/gliner2-privacy-filter-PII-multi` (Apache-2.0)
+   at the paper's revision, downloaded into `WORK/models/`; `--model DIR`
+   starts from another GLiNER2 checkpoint. GLiNER2 itself is installed from
+   the source revision the paper used.
+2. **Training windows.** 50,000 draws with replacement from the mixture's
+   rows, weighted by their sampling weights (O4's 50% human-gold share), cut
+   into windows of at most 900 characters. Native gold labels become each
+   label's single fallback Ont3 type. Spans snap outward to GLiNER2's word
+   boundaries, because it predicts whole words only. GLiNER2's training
+   format names entity surfaces and marks every occurrence of each, so a
+   window is kept only when marking every occurrence of its labeled surfaces
+   reproduces its gold spans exactly; the receipt counts the windows dropped.
+   Each kept window supervises the types present in it plus eight absent
+   types drawn at random; rows with incomplete type coverage get no absent
+   types. Languages below 0.75% of windows are topped up by resampling.
+   The paper's run kept 32,204 windows from 50,000 draws.
+3. **Selector windows** from the mixture's `val.jsonl`, the same way, for
+   the trainer's validation loss.
+4. **Training.** Label transfer first: each Ont3 type gets a familiar prompt
+   name (`research/pii/frontier/evidence/gliner2-ont3-label-transfer-v1.json`),
+   and names that are new tokens start from a weighted average of related
+   pretrained label embeddings. Then 2,000 updates, batch 8 with
+   accumulation 4, encoder and task learning rates 1e-5 and 2e-5, 1,000
+   warmup updates and cosine decay, with a checkpoint every 100 updates.
+   Each training example's types are shuffled into a new order (see below).
+   `WORK/gliner2/model/initial` is the transferred start before any update.
+
+The driver owns the input and output paths, the update budget (`--steps`,
+`--step-scale`, `--max-steps`), which scale warmup with it, and the number
+of draws (`--sample-records`); everything else is the recorded value. It
+replaces O4's 35-language declaration with the mixture's
+`language-round.yaml`. `--objective accepted` runs the appendix variant on
+the same draws and schedule, as it was run, before shuffling: a gold span
+counts as found under any Ont3 type its native label accepts, and types a
+row does not cover get no absent-label targets.
+
+**Selecting a checkpoint.** The paper scored eight checkpoints (0, 100, 200,
+300, 400, 600, 1,000 and 2,000 updates) on Silver-dev alone and selected
+step 600, narrowly ahead of step 2,000; the validation loss alone would have
+chosen step 1,300. Score candidate checkpoints with `evaluate`, choose on
+Silver-dev, then fix the confidence threshold with `calibrate`
+([evaluation.md](evaluation.md#fixing-an-operating-point)); the paper's GL4
+point is confidence 0.6.
+`research/pii/frontier/software/records/receipts/gliner-trajectory.json.gz`
+holds the paper's trajectory counts for comparison.
+
+### Shuffled type order
+
+Each training example lists the types it asks about: those present in the
+window, then the sampled absent ones. GLiNER2's trainer keeps that order
+unless its `shuffle_entities` option is set, which is off by default and
+which the GLiNER2 paper ([arXiv 2507.18546](https://arxiv.org/abs/2507.18546))
+does not mention. The paper's first GL4 run kept the order, so a type's
+position told the model whether it was present; its checkpoints learned
+that cue and collapsed after a few hundred updates, favoring whichever types
+the inference prompt listed first. GL4 shuffles each example's types, as the
+original GLiNER recipe does
+([arXiv 2311.08526](https://arxiv.org/abs/2311.08526), §3.2).
+`train-gliner2 --unshuffled` replays the first run, and
+`evaluate --shuffle-labels SEED` prompts each row in its own shuffled order
+instead of the alphabetical one.
+
+With shuffling, training on O4's mixture holds Silver-dev through step
+2,000, where the first run had fallen from 54.8 to 32.9 exact-region F1 at
+confidence 0.5. At their operating points the two are close on redaction
+(65.4 versus 66.3 on Gold-7, 64.9 versus 64.2 on Silver-test; pooled over
+Gold-7 and Silver, equal), and shuffling gains 1.4 exact typed F1 on Silver
+(95% interval [0.2, 2.7]). On the public fresh-fit mixture (the guide's
+"What a fresh fit reaches"), the same contrast, each run selected on
+Silver-dev, gained 4.0 redaction F1 on Silver-test ([1.5, 6.8]). Gold-7
+still declines slowly with longer shuffled training, which the absence of
+GLiNER2's original training data may explain.
+
+GL4 otherwise keeps GLiNER2's trainer defaults: no types are dropped from a
+prompt (`remove_entity_prob` 0), and a fifth of examples rename the types
+"entity 1", "entity 2", … in prompt order, without type descriptions. The
+learning rates are 1e-5 for the encoder and 2e-5 for the task layers (the
+trainer's defaults are 1e-5 and 5e-4). Options not tested: dropping types at
+random (GLiNER, §5.3), turning off the placeholder renaming, and drawing
+absent types from other examples in the batch, as GLiNER does.
+
 ## Adapting the recipe
 
 - **More annotated data.** Add Ont3-labeled rows to the base branch with

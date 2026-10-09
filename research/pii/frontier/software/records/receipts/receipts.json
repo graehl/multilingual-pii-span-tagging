@@ -4,10 +4,10 @@
     "o4-comparison": {
       "purpose": "Main comparison: 13 systems on human gold and the pooled Ont3 development set; O3-O4 paired intervals",
       "receipt": "o4-comparison.json.gz",
-      "receipt_sha256": "f07185face3a77bfae000ee3433abaeebba36550bc756a5387b27a892a820608",
+      "receipt_sha256": "d340e81fe2814b24787b5f3ba9c873a5667cd97b240613312e0f070a93bfdd8b",
       "source": {
         "evidence": "paper-o4-v1/scores.json.gz",
-        "sha256": "dee13dc7cb080c04b8ec59970fdbb82736a3f2e04183c84f1510fbdf405a0a21"
+        "sha256": "5b317f7995573e31afb50d1c1c8685d9bc489be22088569db6164d845ff0fd79"
       },
       "leak_scan": {
         "strings_checked": 3378,
@@ -16,7 +16,7 @@
       "summary": "o4-comparison-summary.json",
       "summary_source": {
         "evidence": "paper-o4-v1/summary.json",
-        "sha256": "ad497164838c98187874f79359bd278930ccf1b9ae7d72d51b8f1f6c3a197e1d"
+        "sha256": "84c221e45981d507dc301064f8a9135b66535b1966ec163af65251f1653a4b62"
       }
     },
     "o4-boundary": {
@@ -38,8 +38,21 @@
       }
     },
     "gliner-trajectory": {
-      "purpose": "GLiNER2 adaptation checkpoints on the paper populations (development trajectory)",
+      "purpose": "GL4 checkpoints (shuffled type order) on Gold-7 and Silver-dev (development trajectory)",
       "receipt": "gliner-trajectory.json.gz",
+      "receipt_sha256": "5d9e42d2b73a3d1e99611c5fd0341891b8889df4586fa7280c7e851f691672b7",
+      "source": {
+        "evidence": "gl4-shuffled-o4-v1/trajectory/gliner-paper-trajectory-scores.json.gz",
+        "sha256": "5ee0d6345f53a2d6abe026359a9e51eb68165f2f9854cabebdb67daa39289424"
+      },
+      "leak_scan": {
+        "strings_checked": 2531,
+        "reference_documents": 2514
+      }
+    },
+    "gliner-trajectory-unshuffled": {
+      "purpose": "The first, unshuffled GL4 run's checkpoints on Gold-7 and Silver-dev (development trajectory)",
+      "receipt": "gliner-trajectory-unshuffled.json.gz",
       "receipt_sha256": "76ee25b1375aa1fec3dc3392a38556db9b7e773b1d5232eebe48b46187740927",
       "source": {
         "evidence": "paper-o4-v1/gliner-paper-trajectory-scores.json.gz",
@@ -66,10 +79,10 @@
     "operating-point-refined-grid": {
       "purpose": "GLiNER2 and GL4 confidence steps of 0.05, Presidio score steps of 0.025, from saved outputs",
       "receipt": "operating-point-refined-grid.json.gz",
-      "receipt_sha256": "9e2934dcfbb150eef140c55344524b554185654d9b22f0ff94d9912fff8be8cc",
+      "receipt_sha256": "46dfe1d4a8b47d670287cf941f6144fdf2e0cf3b7f8efd5cc2c72bafb04d027b",
       "source": {
         "evidence": "paper-o4-v1/refined-grid-v1/scores.json.gz",
-        "sha256": "60dca89aa29995914509be0aa1981da887a95f3f0795fc58c2b5512a96dac392"
+        "sha256": "b7d42811be676cedff24d0e57751f56f6bcdfdf813c177efd765f84a9d76ea08"
       },
       "leak_scan": {
         "strings_checked": 3304,
@@ -93,10 +106,10 @@
   "operating_points": {
     "purpose": "Silver-dev trust-region operating point of every main-comparison system, scored on Gold-7 and Silver-test",
     "summary": "operating-points-trust-region.json",
-    "summary_sha256": "ae29ee48618a26d6731f20e749b6ffbc089e29d73c06ef0f4f2d8728ceba8048",
+    "summary_sha256": "d89ec91721960cd17de7f14ba9959c2681957ee13a044b1184c4f122ce4b959f",
     "summary_source": {
       "evidence": "paper-o4-v1/operating-points-trust-region.json",
-      "sha256": "b053a6a79680c289cd2a3253572d65b7d2d5fad9bc8d0ad7ec76caa61ba67272"
+      "sha256": "a761c4c51a1bc4e5e41ab975913d7b557d6d199dbda7f165a0b4f433a80f08f1"
     },
     "rule": "trust-region",
     "comparison": "o4-comparison",

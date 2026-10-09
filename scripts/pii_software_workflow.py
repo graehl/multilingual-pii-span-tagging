@@ -6,7 +6,9 @@ receipt, so a reader can run the pipeline piecewise or all at once:
     data        fetch and convert the public corpora, assemble the base rows
     human-gold  rebuild the paper's 1,283-row public human-gold evaluation
     mixture     compile an O4-style training directory from public data
-    evaluate    predict and score a checkpoint on the paper's human-gold view
+    evaluate    predict and score a checkpoint on the paper's human-gold and Ont3 views
+    calibrate   fix an evaluated checkpoint's operating point by the paper's rule
+    train-gliner2  fine-tune GLiNER2 by the paper's recorded GL4 recipe
     redact      tag or redact raw text with a checkpoint
     demo        all of the above at minutes scale on three small corpora
 """
@@ -174,7 +176,8 @@ def mixture_command(args) -> dict:
     # Keep both of the paper's evaluations out of training: human gold and the Ont3 populations.
     for name in ("selection-inputs.jsonl", "heldout.jsonl"):
         command.extend(("--evaluation", str(ROOT / "data/ont3-evaluation" / name)))
-    if getattr(args, "no_language_caps", False):
+    # The demo's corpora cover two languages, which no per-language cap below one half can admit.
+    if getattr(args, "no_language_caps", False) or (args.demo and not getattr(args, "language_cap", None)):
         command.append("--no-language-caps")
     for value in getattr(args, "language_cap", None) or ():
         command.extend(("--language-cap", value))
@@ -482,6 +485,187 @@ def train_refiner_command(args) -> dict:
     return {"ok": True, "refiner": str(out), "partition": partition, "receipt": receipt["receipt"]}
 
 
+GLINER2_SCRIPT = "scripts/pii_gliner2_ont3_finetune.py"
+# GL4, the paper's adapted GLiNER2 baseline, as its runs were recorded: materialize the
+# training windows, materialize the selector windows, train with shuffled type order.
+# The gliner-trajectory receipt scores this training run's checkpoints. "accepted" is
+# the appendix variant with an accepted-label objective, run before shuffling.
+GL4_RECORDS = {
+    "fallback": (
+        "runs/aim/pii-gliner2-o4-materialize-v3/runs/20260928T205322Z.json",
+        "runs/aim/pii-gliner2-o4-selector-v1/runs/20260928T205418Z.json",
+        "runs/aim/pii-gliner2-o4-shuffled-train-v1/runs/20261010T004257Z.json",
+    ),
+    "accepted": (
+        "runs/aim/pii-gliner2-o4-mapped-materialize-v1/runs/20260929T094304Z.json",
+        "runs/aim/pii-gliner2-o4-mapped-selector-v1/runs/20260929T094446Z.json",
+        "runs/aim/pii-gl4-mapped-train-v1/runs/20260929T095354Z.json",
+    ),
+}
+# The first GL4 training run: the same windows and schedule with each window's present
+# types listed first, unshuffled. Its checkpoints collapsed after a few hundred updates.
+GL4_UNSHUFFLED_TRAIN = "runs/aim/pii-gliner2-o4-train-v1/runs/20260928T205629Z.json"
+# Options train-gliner2 binds per invocation (name -> number of values); recorded values are dropped.
+GL4_MATERIALIZE_BOUND = {
+    "--json": 0,
+    "--input": 1,
+    "--output": 1,
+    "--labels": 1,
+    "--label-map": 1,
+    "--language-round": 1,
+    "--sample-records": 1,
+}
+GL4_TRAIN_BOUND = {
+    "--train": 1,
+    "--eval": 1,
+    "--model": 1,
+    "--output-dir": 1,
+    "--max-steps": 1,
+    "--eval-steps": 1,
+    "--warmup-steps": 1,
+}
+
+
+def recorded_phase(argv: list[str], bound: dict[str, int], phase: str) -> list[str]:
+    """A recorded GL4 command's unbound options after its phase word."""
+    options = driver().unbound_options(argv, bound)
+    if options[:1] != [phase]:
+        raise ValueError(f"the recorded GL4 command is not a {phase} run")
+    return options[1:]
+
+
+def last_json_line(receipt: dict) -> dict:
+    return json.loads(Path(receipt["receipt"]).parent.joinpath("stdout.log").read_text().splitlines()[-1])
+
+
+def train_gliner2_command(args) -> dict:
+    """GL4, the paper's adapted GLiNER2 baseline, by its recorded runs on a compiled mixture."""
+    import math
+
+    from scripts.pii_eval import GLINER2_FRONTIER_REVISION, GLINER2_ID
+
+    run = driver()
+    work = args.work.resolve()
+    data = (args.data or work / "mixture").resolve()
+    out = (args.out or work / "gliner2").resolve()
+    for name in ("train.jsonl", "val.jsonl", "labels.json", "mapping.json"):
+        if not (data / name).is_file():
+            raise ValueError(f"{data} lacks {name}; compile a training directory with mixture first")
+    if out.exists():
+        raise ValueError(f"{out} already exists")
+    records = list(GL4_RECORDS[args.objective])
+    if args.unshuffled:
+        if args.objective != "fallback":
+            raise ValueError(
+                "--unshuffled selects the first GL4 run; the accepted variant was only run unshuffled"
+            )
+        records[2] = GL4_UNSHUFFLED_TRAIN
+    materialize, selector, train = (run.recorded_argv(path, GLINER2_SCRIPT) for path in records)
+    shuffled = "--shuffle-labels" in train
+    recorded_steps = int(run.recorded_value(train, "--max-steps"))
+    requested = args.steps or recorded_steps
+    steps = max(1, math.ceil(requested * args.step_scale))
+    if args.max_steps is not None:
+        steps = min(steps, args.max_steps)
+    # The recorded schedule (warmup, cosine decay) keeps its shape over the effective budget.
+    warmup = round(int(run.recorded_value(train, "--warmup-steps")) * steps / recorded_steps)
+    eval_steps = min(int(run.recorded_value(train, "--eval-steps")), steps)
+    draws = args.sample_records or int(run.recorded_value(materialize, "--sample-records"))
+    # O4's round names its private pools' 35 languages; a compiled mixture declares its own.
+    declared = data / "language-round.yaml"
+    language_round = (
+        str(declared) if declared.is_file() else run.recorded_value(materialize, "--language-round")
+    )
+    settings = {
+        "recipe": f"GL4 ({args.objective}{', unshuffled' if not shuffled else ''})",
+        "recipe_source": records,
+        "data": str(data),
+        "requested_steps": requested,
+        "step_scale": args.step_scale,
+        "max_steps": args.max_steps,
+        "effective_steps": steps,
+        "warmup_steps": warmup,
+        "sample_records": draws,
+        "shuffle_labels": shuffled,
+        "smoke": steps < requested,
+    }
+    receipts = {}
+    model = args.model.resolve() if args.model else work / "models/gliner2-privacy-filter-PII-multi"
+    if args.model is None:
+        hf = Path(python()).with_name("hf")
+        command = [str(hf), "download", GLINER2_ID, "--revision", GLINER2_FRONTIER_REVISION]
+        stock = step(
+            work,
+            "gliner2-stock",
+            [*command, "--local-dir", str(model)],
+            {"model": GLINER2_ID, "revision": GLINER2_FRONTIER_REVISION},
+        )
+        receipts["stock"] = stock["receipt"]
+    windows = out / "data"
+    labels = ["--labels", str(data / "labels.json"), "--label-map", str(data / "mapping.json")]
+    summaries = {}
+    for name, source, extra, recorded in (
+        (
+            "train",
+            data / "train.jsonl",
+            ["--language-round", language_round, "--sample-records", str(draws)],
+            materialize,
+        ),
+        ("selector", data / "val.jsonl", [], selector),
+    ):
+        command = [python(), GLINER2_SCRIPT, "--json", "materialize", "--input", str(source)]
+        command += ["--output", str(windows / f"{name}.jsonl"), *labels, *extra]
+        command += recorded_phase(recorded, GL4_MATERIALIZE_BOUND, "materialize")
+        materialized = step(
+            work, f"gliner2-{name}-windows", command, {**settings, "phase": f"{name} windows"}
+        )
+        receipts[f"{name}_windows"] = materialized["receipt"]
+        summary = last_json_line(materialized)
+        summaries[name] = {
+            key: summary[key]
+            for key in ("windows_accepted", "windows_rejected", "rejection_reasons", "accepted_languages")
+        }
+    command = ["nice", "-n", "10", python(), GLINER2_SCRIPT, "train"]
+    command += ["--train", str(windows / "train.jsonl"), "--eval", str(windows / "selector.jsonl")]
+    command += ["--model", str(model), "--output-dir", str(out / "model"), "--max-steps", str(steps)]
+    command += ["--eval-steps", str(eval_steps), "--warmup-steps", str(warmup)]
+    command += recorded_phase(train, GL4_TRAIN_BOUND, "train")
+    receipts["train"] = step(work, "gliner2-train", command, settings)["receipt"]
+
+    def order(name: str) -> tuple[int, int]:
+        if name.startswith("checkpoint-"):
+            return 1, int(name.removeprefix("checkpoint-"))
+        return {"initial": 0, "best": 2, "final": 3}.get(name, 4), 0
+
+    checkpoints = sorted(
+        (path.name for path in (out / "model").iterdir() if (path / "config.json").is_file()), key=order
+    )
+    return {
+        "ok": True,
+        "model": str(out / "model"),
+        "checkpoints": checkpoints,
+        "windows": summaries,
+        "receipts": receipts,
+        "settings": settings,
+        "next": f"pii-reproduce.py evaluate --checkpoint {out / 'model'}/checkpoint-N --grid fine, then "
+        "calibrate. The paper kept every 100th step and selected step 600 of 2,000 on Silver-dev alone; "
+        "`initial` is the label-transferred start before any update.",
+    }
+
+
+def calibrate_command(args) -> dict:
+    """Fix an evaluated checkpoint's operating point on a development set by the paper's rule."""
+    work = args.work.resolve()
+    evaluation = (args.evaluation or work / "evaluation").resolve()
+    if not (evaluation / "summary.json").is_file():
+        raise ValueError(f"{evaluation} is not an evaluate output directory")
+    out = (args.out or evaluation / f"calibration-{args.development}.json").resolve()
+    command = [python(), "scripts/pii_software_calibrate.py", "--json", "--evaluation", str(evaluation)]
+    command += ["--development", args.development, "--out", str(out)]
+    receipt = step(evaluation, f"calibrate-{args.development}", command, {"development": args.development})
+    return {**last_json_line(receipt), "calibration": str(out), "receipt": receipt["receipt"]}
+
+
 def names_command(args) -> dict:
     """Build the name-kind model from approved public lexicons into WORK/name-kind."""
     work = args.work.resolve()
@@ -512,29 +696,38 @@ def licenses_command(args) -> dict:
 
 
 ONT3_DATA = ROOT / "data/ont3-evaluation"
+CANDIDATE_MAP = EVIDENCE / "four-corpus-v1/candidate-map.json"
 
 
-def predicted_sweep(out: Path, name: str, inputs: Path, checkpoint: Path, raw: bool, work: Path):
-    """The paper's O-bias prediction sweep on one population, served unless raw."""
+def gliner2_types(checkpoint: Path) -> list[str] | None:
+    """The Ont3 types a GLiNER2 checkpoint is prompted with; None for a token tagger."""
+    config = json.loads((checkpoint / "config.json").read_text())
+    if "GLiNER2" not in config.get("architectures", []):
+        return None
+    # train-gliner2 records its one-to-one prompt names under the Ont3 type names.
+    transfer = config.get("pii_ont3_label_transfer")
+    if transfer:
+        return sorted(transfer["labels"])
+    return sorted(json.loads(CANDIDATE_MAP.read_text())["ontology"]["primary_types"])
+
+
+def predicted_sweep(out: Path, name: str, inputs: Path, args, raw: bool, work: Path):
+    """The paper's prediction sweep on one population (O bias, or GLiNER2 confidence), served unless raw."""
     sweep = out / f"sweep-{name}.json"
+    command = ["nice", "-n", "10", python()]
+    command += ["research/pii/frontier/evidence/priority9-shared-v1/predict-sweeps.py", args.kind]
+    command += [str(inputs), str(sweep), "--model-path", str(args.checkpoint.resolve())]
+    command += ["--context-side", "none", "--grid", args.grid]
+    if args.labels is not None:
+        command += ["--labels", str(args.labels)]
+    if args.shuffle_labels is not None:
+        command += ["--shuffle-labels", str(args.shuffle_labels)]
+    setting = "confidence" if args.labels is not None else "O-bias"
     step(
         out,
         f"predict-{name}",
-        [
-            "nice",
-            "-n",
-            "10",
-            python(),
-            "research/pii/frontier/evidence/priority9-shared-v1/predict-sweeps.py",
-            "ont3",
-            str(inputs),
-            str(sweep),
-            "--model-path",
-            str(checkpoint.resolve()),
-            "--context-side",
-            "none",
-        ],
-        {"checkpoint": str(checkpoint), "view": f"paper {name} view, no context, O-bias sweep"},
+        command,
+        {"checkpoint": str(args.checkpoint), "view": f"paper {name} view, no context, {setting} sweep"},
     )
     if raw:
         return sweep, []
@@ -543,17 +736,49 @@ def predicted_sweep(out: Path, name: str, inputs: Path, checkpoint: Path, raw: b
 
 def evaluate_command(args) -> dict:
     """The paper's human-gold and Ont3 views: its bias sweep, prediction code, serving and scorer."""
+    import argparse
+
     work = args.work.resolve()
     out = (args.out or work / "evaluation").resolve()
-    raw = getattr(args, "raw", False)
     populations = getattr(args, "population", "all")
+    types = gliner2_types(args.checkpoint)
+    name = getattr(args, "name", None) or ("gliner2-model" if types else "model")
+    if types and not name.startswith("gliner2"):
+        # The paper's code fixes a system's default point by name: confidence 0.5 for gliner2*.
+        raise ValueError(f"a GLiNER2 checkpoint's --name must start with gliner2, not {name!r}")
+    shuffle = getattr(args, "shuffle_labels", None)
+    if shuffle is not None and not types:
+        raise ValueError("--shuffle-labels applies to GLiNER2 checkpoints")
     out.mkdir(parents=True, exist_ok=False)
-    result = {"ok": True, "serving": None, "control": "o4-unrefined" if raw else "o4"}
+    labels = None
+    if types:
+        labels = out / "gliner2-types.json"
+        labels.write_text(json.dumps({"labels": types}, indent=2) + "\n")
+    # GLiNER2 is scored on its own output, as the paper scored GL4, and paired against served O4.
+    raw = getattr(args, "raw", False)
+    model = argparse.Namespace(
+        checkpoint=args.checkpoint,
+        name=name,
+        kind="gliner2-tuned" if types else "ont3",
+        labels=labels,
+        grid=getattr(args, "grid", "saved"),
+        human_gold=getattr(args, "human_gold", None),
+        shuffle_labels=shuffle,
+    )
+    result = {"ok": True, "name": name, "serving": None, "control": "o4-unrefined" if raw else "o4"}
+    if types:
+        result["label_order"] = "alphabetical" if shuffle is None else f"shuffled per row, seed {shuffle}"
+    raw = raw or types is not None
     if populations in ("all", "human"):
-        result["human"] = evaluate_human(args, work, out, raw, result)
+        result["human"] = evaluate_human(model, work, out, raw, result)
     if populations in ("all", "ont3"):
-        result["ont3"] = evaluate_ont3(args, work, out, raw, result)
-    result["serving"] = result["serving"] or "raw model output (--raw)"
+        result["ont3"] = evaluate_ont3(model, work, out, raw, result)
+    result["serving"] = result["serving"] or (
+        "GLiNER2 output, unserved as in the paper" if types else "raw model output (--raw)"
+    )
+    result["next"] = f"pii-reproduce.py calibrate --evaluation {out}" + (
+        "" if model.grid == "fine" else " (evaluate with --grid fine first to calibrate on the paper's grid)"
+    )
     (out / "summary.json").write_text(json.dumps(result, indent=2) + "\n")
     return result
 
@@ -562,7 +787,7 @@ def evaluate_ont3(args, work: Path, out: Path, raw: bool, result: dict) -> dict:
     """Both Ont3 collections, scored and paired against O4's receipts like the paper's numbers."""
     sweeps = {}
     for name, filename in (("selection", "selection-inputs.jsonl"), ("heldout", "heldout.jsonl")):
-        sweeps[name], serving = predicted_sweep(out, name, ONT3_DATA / filename, args.checkpoint, raw, work)
+        sweeps[name], serving = predicted_sweep(out, name, ONT3_DATA / filename, args, raw, work)
         result["serving"] = result["serving"] or serving
     command = [python(), "scripts/pii_software_ont3.py", "--selection-sweep", str(sweeps["selection"])]
     command += ["--heldout-sweep", str(sweeps["heldout"]), "--model", args.name]
@@ -572,7 +797,8 @@ def evaluate_ont3(args, work: Path, out: Path, raw: bool, result: dict) -> dict:
     return {
         "scores": str(out / "scores-ont3.json.gz"),
         "views": summary["summary"],
-        "note": "Zero bias; F1 in percent: redaction regions at 80% and exact overlap, exact typed spans; "
+        "note": "Zero bias (GLiNER2: confidence 0.5); F1 in percent: redaction regions at 80% and exact "
+        "overlap, exact typed spans; "
         "selection = the 659 rows O4 was selected on, heldout = 542 never used for selection, pooled = both.",
     }
 
@@ -580,9 +806,9 @@ def evaluate_ont3(args, work: Path, out: Path, raw: bool, result: dict) -> dict:
 def evaluate_human(args, work: Path, out: Path, raw: bool, result: dict) -> dict:
     """The paper's public human-gold view, paired against O4's receipt."""
     human = (args.human_gold or work / "human-gold").resolve()
-    sweep, serving = predicted_sweep(out, "human", human / "inputs.jsonl", args.checkpoint, raw, work)
+    sweep, serving = predicted_sweep(out, "human", human / "inputs.jsonl", args, raw, work)
     result["serving"] = result["serving"] or serving
-    receipt_name = "o4-boundary.json.gz" if raw else "o4-comparison.json.gz"
+    receipt_name = "o4-boundary.json.gz" if result["control"] == "o4-unrefined" else "o4-comparison.json.gz"
     command = [
         python(),
         "scripts/pii_public_gold.py",
@@ -610,11 +836,13 @@ def evaluate_human(args, work: Path, out: Path, raw: bool, result: dict) -> dict
         "rows": summary["rows"],
         "maximum": summary["maximum"],
         "fixed_zero_bias": summary["fixed_zero_bias"],
+        "fixed_default": summary["fixed_default"],
         "paired_versus_o4": summary["paired_versus_o4"],
         "paper_o4": PAPER_O4_HUMAN,
         "comparable_to_paper": comparable,
         "note": "Redaction regions at 80% overlap (maximum, fixed); exact regions in the paired "
-        "comparison; paper title and coverage policy. O4's paper numbers are served output."
+        "comparison; paper title and coverage policy. O4's paper numbers are served output. "
+        "fixed_default is zero bias, or confidence 0.5 for GLiNER2."
         + ("" if comparable else " Not paper-comparable: subset rows or missing title sidecar."),
     }
 

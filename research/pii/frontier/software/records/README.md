@@ -16,7 +16,7 @@ maxima, fixed-bias scores and paired bootstrap intervals exactly.
 |---|---|
 | `o4-comparison.json.gz` | Main comparison: 13 systems on 1,283 human-gold and 1,201 Ont3 development segments; O3 versus O4 intervals |
 | `o4-boundary.json.gz` | Character-boundary refinement on and off for O4 |
-| `gliner-trajectory.json.gz` | GLiNER2 adaptation checkpoints (development trajectory) |
+| `gliner-trajectory.json.gz`, `gliner-trajectory-unshuffled.json.gz` | GL4's checkpoints (shuffled type order) and the first, unshuffled run's, on Gold-7 and Silver-dev (development trajectories) |
 | `operating-point-presidio.json.gz`, `operating-point-refined-grid.json.gz`, `operating-point-fine-bias.json.gz` | Finer threshold and bias grids for Presidio, GLiNER2, GL4, O3, O4 and OpenMed Privacy Filter |
 | `operating-points-trust-region.json` | Each main-comparison system's operating point fixed on Silver-dev, and its scores there and on Gold-7 and Silver-test |
 
@@ -88,10 +88,13 @@ you obtain but does not retrieve it.
 ## Run records
 
 `paper-run-records.json` contains selected saved run records, including
-O4's final training stage. It keeps structured commands, metrics and source
-provenance and omits free-text logs. `pii-reproduce.py train --recipe o4`
-reads O4's trainer options from this record. Historical absolute paths
-describe the original run and must be rebound to local inputs.
+O4's final training stage and GL4's runs (training windows, selector
+windows, training with shuffled type order), the first GL4's unshuffled
+training run, and those of the accepted-label variant. It keeps
+structured commands, metrics and source provenance and omits free-text logs.
+`pii-reproduce.py train --recipe o4` reads O4's trainer options from these
+records, and `train-gliner2` GL4's. Historical absolute paths describe the
+original run and must be rebound to local inputs.
 
 ## Source manifests
 

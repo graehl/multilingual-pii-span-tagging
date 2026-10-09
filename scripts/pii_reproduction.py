@@ -30,6 +30,23 @@ class MarkdownHelpParser(acli.args.ArgumentParser):
         return f"{guide}\n\n## Command reference\n\n```text\n{reference}\n```\n\nacli: 1 complete\n"
 
 
+def readme_text() -> str:
+    """This help, rendered by the pinned environment's Python, as the package README.
+
+    argparse wraps usage lines differently across Python versions, and the
+    package's verify checks the README against the pinned interpreter's help.
+    """
+    shown = subprocess.run(
+        [workflow_python(), "pii-reproduce.py", "-h"],
+        cwd=ROOT,
+        env=dict(os.environ, PYTHONPATH=""),
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return shown.stdout
+
+
 def positive_int(value: str) -> int:
     number = int(value)
     if number < 1:
@@ -335,7 +352,9 @@ def add_workflow_commands(commands) -> None:
         "research/pii/frontier/software/language-caps.yaml: 0.20 for any language, 0.08 for Hindi); repeatable",
     )
     mixture.add_argument(
-        "--no-language-caps", action="store_true", help="Sample languages by row weight alone"
+        "--no-language-caps",
+        action="store_true",
+        help="Sample languages by row weight alone (the --demo default: its two languages cannot meet a cap)",
     )
     mixture.add_argument(
         "--annotated",
@@ -445,16 +464,26 @@ def add_workflow_commands(commands) -> None:
         "Score a checkpoint on the paper's human-gold and Ont3 views and compare with O4.",
         demo=False,
     )
-    evaluate.add_argument("--checkpoint", type=Path, required=True)
+    evaluate.add_argument(
+        "--checkpoint",
+        type=Path,
+        required=True,
+        help="An XLM-R tagger, or a GLiNER2 model from train-gliner2",
+    )
     evaluate.add_argument("--human-gold", type=Path, help="Default: WORK/human-gold")
     evaluate.add_argument("--out", type=Path, help="New directory; default WORK/evaluation")
-    evaluate.add_argument("--name", default="model", help="System name in the score file")
+    evaluate.add_argument(
+        "--name",
+        help="System name in the score file (default model, or gliner2-model for a GLiNER2 checkpoint, "
+        "whose name must start with gliner2)",
+    )
     evaluate.add_argument(
         "--raw",
         action="store_true",
         help="Score the tagger's own output, paired against O4 without boundary refinement; by default "
         "the paper's serving stages (boundary refiner, name-kind when built, regex) are applied first "
-        "and the pairing is against served O4, as for O4's reported numbers",
+        "and the pairing is against served O4, as for O4's reported numbers. A GLiNER2 model is always "
+        "scored raw, as the paper scored GL4, and paired against served O4",
     )
     evaluate.add_argument(
         "--population",
@@ -462,6 +491,81 @@ def add_workflow_commands(commands) -> None:
         default="all",
         help="human: the rebuilt public human gold; ont3: the paper's shipped 31-type evaluation "
         "(659 selection + 542 held-out rows); all: both",
+    )
+    evaluate.add_argument(
+        "--grid",
+        choices=("saved", "fine"),
+        default="saved",
+        help="Settings scored: saved = O bias -8..16, 24, 32 (GLiNER2: confidence 0.05, 0.1, 0.2, ..., "
+        "0.99); fine adds the paper's operating-point steps (quarter biases over -4..4; GLiNER2 "
+        "confidence steps of 0.05). Use fine before calibrate",
+    )
+    evaluate.add_argument(
+        "--shuffle-labels",
+        type=int,
+        metavar="SEED",
+        help="GLiNER2 only: prompt each row's types in an order shuffled by SEED and the row id, instead "
+        "of the fixed alphabetical order the paper used",
+    )
+    calibrate = work_command(
+        "calibrate",
+        workflow.calibrate_command,
+        "Fix a checkpoint's operating point on a development set by the paper's rule; report held-out scores.",
+        demo=False,
+    )
+    calibrate.add_argument(
+        "--evaluation", type=Path, help="An evaluate output directory (default WORK/evaluation)"
+    )
+    calibrate.add_argument(
+        "--development",
+        choices=("silver-dev", "gold-7", "silver-test"),
+        default="silver-dev",
+        help="Population that fixes the setting; the others are held out (default silver-dev, the 659 "
+        "Ont3 selection rows, as in the paper)",
+    )
+    calibrate.add_argument(
+        "--out", type=Path, help="New JSON; default EVALUATION/calibration-DEVELOPMENT.json"
+    )
+    gliner2 = work_command(
+        "train-gliner2",
+        workflow.train_gliner2_command,
+        "Fine-tune GLiNER2 on a mixture by the paper's recorded GL4 recipe (its baseline, not a "
+        "recommended model).",
+        demo=False,
+    )
+    gliner2.add_argument("--data", type=Path, help="A mixture output (default WORK/mixture)")
+    gliner2.add_argument("--out", type=Path, help="New directory; default WORK/gliner2")
+    gliner2.add_argument(
+        "--objective",
+        choices=("fallback", "accepted"),
+        default="fallback",
+        help="fallback (GL4): a native gold label trains its single fallback Ont3 type; accepted: the "
+        "appendix variant, where a span counts as found under any Ont3 type its label accepts",
+    )
+    gliner2.add_argument(
+        "--model",
+        type=Path,
+        help="GLiNER2 checkpoint to start from (default: the published multilingual PII model at the "
+        "paper's revision, downloaded into WORK/models)",
+    )
+    gliner2.add_argument(
+        "--steps",
+        type=positive_int,
+        help="Unscaled update budget (default the recorded 2000); warmup keeps its recorded share of the "
+        "effective budget",
+    )
+    gliner2.add_argument("--step-scale", type=positive_scale, default=1.0)
+    gliner2.add_argument("--max-steps", type=positive_int, help="Cap the scaled budget (smoke runs)")
+    gliner2.add_argument(
+        "--sample-records",
+        type=positive_int,
+        help="Weighted mixture draws before windowing (default the recorded 50000)",
+    )
+    gliner2.add_argument(
+        "--unshuffled",
+        action="store_true",
+        help="Replay the paper's first GL4 run instead, which kept each training prompt's present types "
+        "first (GLiNER2's trainer default) and collapsed after a few hundred updates; GL4 shuffles them",
     )
     redact = commands.add_parser("redact", help="Tag and redact raw text (one document per line, or JSONL).")
     redact.add_argument("--checkpoint", type=Path, required=True)
@@ -610,24 +714,39 @@ O4_RUN = "runs/aim/pii-gs30-titles-v6-g50-seed2-4000/runs/20260928T142402Z.json"
 ROOT_LEARNING_RATES = {"--lr": "5e-5", "--encoder-lr": "3e-5"}
 
 
-def recorded_trainer_options(record_path: str) -> list[str]:
-    """Trainer options from a shipped run record, without driver-bound values."""
+def recorded_argv(record_path: str, script: str) -> list[str]:
+    """Arguments a shipped run record passed to `script`."""
     records = json.loads((SOFTWARE / "records/paper-run-records.json").read_text())["records"]
     record = next((item for item in records if item["path"] == record_path), None)
     if record is None:
         raise ValueError(f"paper-run-records.json lacks {record_path}")
     argv = record["record"]["params"]["command"]["argv"]
-    position = next(i for i, value in enumerate(argv) if value.endswith("scripts/pii_encoder_train.py"))
-    options, remaining = [], argv[position + 1 :]
+    position = next(i for i, value in enumerate(argv) if value.endswith(script))
+    return argv[position + 1 :]
+
+
+def unbound_options(argv: list[str], bound: dict[str, int]) -> list[str]:
+    """`argv` without the options in `bound` (name -> number of values), which the driver sets."""
+    options, remaining = [], list(argv)
     while remaining:
         value = remaining.pop(0)
         name = value.split("=", 1)[0]
-        if name in DRIVER_BOUND:
+        if name in bound:
             if "=" not in value:
-                del remaining[: DRIVER_BOUND[name]]
+                del remaining[: bound[name]]
             continue
         options.append(value)
     return options
+
+
+def recorded_value(argv: list[str], name: str) -> str:
+    position = argv.index(name)
+    return argv[position + 1]
+
+
+def recorded_trainer_options(record_path: str) -> list[str]:
+    """Trainer options from a shipped run record, without driver-bound values."""
+    return unbound_options(recorded_argv(record_path, "scripts/pii_encoder_train.py"), DRIVER_BOUND)
 
 
 def replace_option(options: list[str], name: str, value: str) -> list[str]:
@@ -1088,7 +1207,7 @@ def stage_command(args: argparse.Namespace) -> dict:
     return stage_sources(
         ROOT,
         args.out,
-        readme=build_parser().format_help(),
+        readme=readme_text(),
         redactions=redaction_profiles(args, args.anonymous),
         anonymous=args.anonymous,
     )
@@ -1119,7 +1238,8 @@ def package_command(args: argparse.Namespace) -> dict:
                 public_redactions=args.public_redactions,
             )
         )
-    result = {**build_archive(args.out / "software", args.out / "software.tgz"), "stage": staged}
+    archive = build_archive(args.out / "software", args.out / "software.tgz", python=workflow_python())
+    result = {**archive, "stage": staged}
     if source:
         result["source"] = source
     (args.out / "verification.json").write_text(json.dumps(result, indent=2) + "\n")
@@ -1169,7 +1289,7 @@ def publish_command(args: argparse.Namespace) -> dict:
         staged = stage_files(
             files,
             Path(temporary) / "software",
-            readme=build_parser().format_help(),
+            readme=readme_text(),
             redactions=redaction_profiles(args, anonymous=False),
             anonymous=False,
         )
@@ -1244,7 +1364,7 @@ def doctor_command(args: argparse.Namespace) -> dict:
 def readme_command(args: argparse.Namespace) -> dict:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     with args.out.open("x", encoding="utf-8") as output:
-        output.write(build_parser().format_help())
+        output.write(readme_text())
     return {"ok": True, "readme": str(args.out.resolve())}
 
 

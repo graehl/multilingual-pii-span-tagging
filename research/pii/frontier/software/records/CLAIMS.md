@@ -25,13 +25,14 @@ is zero bias.
 | O4 human-gold F1 (max / fixed) | 88.83 / 88.16 | `receipts/o4-comparison.json.gz` | Recomputed; reproducible: `human-gold` + `evaluate` on O4-style models gives the same per-document schema |
 | O4 Ont3 F1 | 82.13 | same | Recomputed |
 | GLiNER2 human gold / Ont3 | 69.08 / 66.00 | same | Recomputed |
-| GLiNER2 adapted to Ont3 (GL4) human gold / Ont3 | 67.79 / 61.94 | same | Recomputed |
-| Presidio human gold / Ont3 | 57.27 / 44.27 | same | Recomputed |
+| GLiNER2 adapted to Ont3 (GL4) human gold / Ont3 | 67.58 / 62.44 | same | Recomputed |
+| Presidio human gold / Ont3 | 57.27 / 44.30 | same | Recomputed |
 | OpenMed multilingual v2 human gold / Ont3 | 35.80 / 39.41 | same | Recomputed |
 | O3, Ont1, Ont2 and the other privacy filters | see `verify --details` | same | Recomputed |
-| Operating points fixed on Silver-dev (near-optimal-range rule) | O4 bias 0, O3 0.25, O2 −2, GLiNER2 0.6, GL4 0.25, Presidio 0.2, OpenMed v2 −1.5 | `receipts/operating-points-trust-region.json`, `o4-comparison` and the `operating-point-*` grids | Recomputed |
-| Gold-7 F1 at those points: O4 / GLiNER2 / Presidio / GL4 / OpenMed v2 | 88.16 / 69.08 / 57.27 / 66.27 / 34.14 | same | Recomputed |
-| Silver-test F1 at those points: O4 / GLiNER2 / OpenMed v2 | 79.88 / 72.73 / 43.85 | same | Recomputed |
+| Operating points fixed on Silver-dev (near-optimal-range rule) | O4 bias 0, O3 0.25, O2 −2, GLiNER2 0.6, GL4 0.6, Presidio 0.2, OpenMed v2 −1.5 | `receipts/operating-points-trust-region.json`, `o4-comparison` and the `operating-point-*` grids | Recomputed |
+| Gold-7 F1 at those points: O4 / GLiNER2 / Presidio / GL4 / OpenMed v2 | 88.16 / 69.08 / 57.27 / 65.37 / 34.14 | same | Recomputed |
+| Silver-test F1 at those points: O4 / GLiNER2 / GL4 / OpenMed v2 | 79.88 / 72.73 / 64.89 / 43.85 | same | Recomputed |
+| GL4 trajectory, shuffled type order and the first (unshuffled) run | per-checkpoint counts | `receipts/gliner-trajectory.json.gz`, `receipts/gliner-trajectory-unshuffled.json.gz` | Recorded |
 | O4 minus O3, exact regions, human gold | +1.25 [0.19, 2.34] | `receipts/o4-comparison-summary.json` `paired` | Recomputed (10,000 source-group resamples) |
 | O4 minus O3, exact typed spans, Ont3 | +1.79 [0.51, 3.13] | same | Recomputed |
 | O4 minus O3, exact regions, Ont3 | +0.55 [−0.62, 1.74] | same | Recomputed |
